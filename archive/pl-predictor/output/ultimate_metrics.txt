@@ -1,0 +1,54 @@
+Ultimate Optimization Benchmark - Test Size: 598
+
+[Logistic Regression (Balanced Weights)]
+Accuracy:  0.4749
+Report:
+              precision    recall  f1-score   support
+
+    Draw (0)       0.21      0.20      0.21       144
+    Home (1)       0.56      0.61      0.58       254
+    Away (2)       0.54      0.51      0.52       200
+
+    accuracy                           0.47       598
+   macro avg       0.44      0.44      0.44       598
+weighted avg       0.47      0.47      0.47       598
+
+========================================
+
+[Random Forest (SMOTE)]
+Accuracy:  0.4465
+Report:
+              precision    recall  f1-score   support
+
+    Draw (0)       0.25      0.26      0.25       144
+    Home (1)       0.57      0.43      0.49       254
+    Away (2)       0.47      0.61      0.53       200
+
+    accuracy                           0.45       598
+   macro avg       0.43      0.43      0.42       598
+weighted avg       0.46      0.45      0.45       598
+
+========================================
+
+[XGBoost (Optuna Tuned + SMOTE)]
+Accuracy:  0.5351
+Report:
+              precision    recall  f1-score   support
+
+    Draw (0)       0.33      0.10      0.15       144
+    Home (1)       0.56      0.74      0.64       254
+    Away (2)       0.54      0.59      0.56       200
+
+    accuracy                           0.54       598
+   macro avg       0.47      0.48      0.45       598
+weighted avg       0.50      0.54      0.50       598
+
+========================================
+
+Top 5 Feature Importances:
+home_roll_3_win_streak: 0.0614
+away_roll_3_win_streak: 0.0608
+home_roll_5_win_streak: 0.0568
+away_roll_5_win_streak: 0.0526
+home_roll_3_pts: 0.0425
+
