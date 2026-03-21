@@ -1,0 +1,13 @@
+Loading engineered features for ALL seasons (with DEEP features)...
+Dataset shape after dropping NaNs: 4940 matches
+
+==================================================
+EVALUATING MODELS FOR TARGET: 1X2 (Match Winner)
+==================================================
+               Model  Accuracy ROC_AUC
+         Naive Bayes  0.568826     N/A
+ Logistic Regression  0.551619     N/A
+            AdaBoost  0.540486     N/A
+       Random Forest  0.539474     N/A
+HistGradientBoosting  0.508097     N/A
+Neural Network (MLP)  0.447368     N/A
