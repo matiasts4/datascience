@@ -1,0 +1,321 @@
+import { useQuery } from "@tanstack/react-query";
+
+export interface APITeam {
+  id: string;
+  name: string;
+  elo: number;
+  played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  cleanSheets: number;
+  form: any;
+}
+
+export interface APIMatch {
+  id: string;
+  date: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeGoals: number;
+  awayGoals: number;
+  result: string;
+  referee: string;
+  totalCards: number;
+}
+
+export interface APIStatsResponse {
+  totalMatches: number;
+  seasons: number;
+  teams: number;
+  accuracy_pct: number;
+  brier_score: number;
+  markets_tracked: number;
+}
+
+export interface APIPredictParams {
+  homeTeam: string;
+  awayTeam: string;
+  homeMissingKey?: boolean;
+  awayMissingKey?: boolean;
+  date?: string;
+}
+
+export interface APIPredictResponse {
+  homeTeam: string;
+  awayTeam: string;
+  homeElo: number;
+  awayElo: number;
+  homeForm: any;
+  awayForm: any;
+  predictions: {
+    Market: string;
+    Probability: number;
+    Confidence: string;
+  }[];
+}
+
+// Fetchers
+export const fetchStats = async (): Promise<APIStatsResponse> => {
+  const res = await fetch("/api/stats");
+  if (!res.ok) throw new Error("Error fetching stats");
+  return res.json();
+};
+
+export const fetchTeams = async (season?: string): Promise<APITeam[]> => {
+  const url = season ? `/api/teams?season=${season}` : `/api/teams`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Error fetching teams");
+  return res.json();
+};
+
+export const fetchRecentMatches = async (): Promise<APIMatch[]> => {
+  const res = await fetch("/api/matches/recent");
+  if (!res.ok) throw new Error("Error fetching matches");
+  return res.json();
+};
+
+export const fetchTeamList = async (): Promise<string[]> => {
+  const res = await fetch("/api/teams/list");
+  if (!res.ok) throw new Error("Error fetching team list");
+  return res.json();
+};
+
+export const fetchPrediction = async (params: APIPredictParams): Promise<APIPredictResponse> => {
+  const res = await fetch("/api/predict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+  if (!res.ok) throw new Error("Error fetching prediction");
+  return res.json();
+};
+
+import { teamsData } from "@/data/mockData";
+
+export const mapAPIMatchToMockMatch = (m: APIMatch) => {
+  const home = Object.values(teamsData).find(t => t.name === m.homeTeam) || 
+    { id: m.homeTeam, name: m.homeTeam, shortName: m.homeTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
+  const away = Object.values(teamsData).find(t => t.name === m.awayTeam) || 
+    { id: m.awayTeam, name: m.awayTeam, shortName: m.awayTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
+
+  return {
+    id: m.id,
+    homeTeam: home as any,
+    awayTeam: away as any,
+    date: m.date,
+    time: "FT", // Past matches are Full Time
+    stadium: "Premier League",
+    refereeId: m.referee,
+    prediction: { homeWin: 0.45, draw: 0.25, awayWin: 0.30 }, // Dummy since it's past
+    markets: [
+      { category: "Match Result", name: "Score", prediction: `${m.homeGoals} - ${m.awayGoals}`, odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0 }
+    ] as any[],
+    status: "completed" as any,
+    score: { home: m.homeGoals, away: m.awayGoals }
+  };
+};
+
+export const useAPIStats = () => {
+  return useQuery({
+    queryKey: ["stats"],
+    queryFn: fetchStats,
+    staleTime: 60000,
+  });
+};
+
+export const useAPITeams = (season?: string) => {
+  return useQuery({
+    queryKey: ["teams", season ?? "all"],
+    queryFn: () => fetchTeams(season),
+    staleTime: 60000,
+  });
+};
+
+export const useAPIMatches = () => {
+  return useQuery({
+    queryKey: ["matches_recent"],
+    queryFn: fetchRecentMatches,
+    staleTime: 60000,
+  });
+};
+
+export const useAPITeamList = () => {
+  return useQuery({
+    queryKey: ["teams_list"],
+    queryFn: fetchTeamList,
+    staleTime: 60000,
+  });
+};
+
+export interface APIUpcomingResponse {
+  id: string;
+  date: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeElo: number;
+  awayElo: number;
+  topPrediction?: {
+    Market: string;
+    Probability: number;
+    Confidence: string;
+  };
+}
+
+export const fetchUpcomingMatches = async (): Promise<APIUpcomingResponse[]> => {
+  const res = await fetch("/api/matches/upcoming");
+  if (!res.ok) throw new Error("Error fetching upcoming matches");
+  return res.json();
+};
+
+export const useAPIUpcomingMatches = () => {
+  return useQuery({
+    queryKey: ["matches_upcoming"],
+    queryFn: fetchUpcomingMatches,
+    staleTime: 300000, // 5 mins cache for scraped data
+  });
+};
+
+export const mapAPIUpcomingToMockMatch = (m: APIUpcomingResponse) => {
+  const home = Object.values(teamsData).find(t => t.name === m.homeTeam) || 
+    { id: m.homeTeam, name: m.homeTeam, shortName: m.homeTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
+  const away = Object.values(teamsData).find(t => t.name === m.awayTeam) || 
+    { id: m.awayTeam, name: m.awayTeam, shortName: m.awayTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
+
+  const markets = [];
+  if (m.topPrediction) {
+    markets.push({
+      category: "match-odds",
+      name: m.topPrediction.Market,
+      prediction: m.topPrediction.Confidence,
+      odds: 1.0, 
+      fairOdds: 1.0, 
+      confidence: m.topPrediction.Probability * 100,
+      edge: 0
+    });
+  }
+
+  return {
+    id: m.id,
+    homeTeam: home as any,
+    awayTeam: away as any,
+    date: m.date,
+    time: "TBD", 
+    stadium: "Premier League",
+    refereeId: "tbd",
+    prediction: { homeWin: 0.33, draw: 0.33, awayWin: 0.33 }, 
+    markets: markets as any[],
+    status: "upcoming" as any,
+  };
+};
+
+export interface APIPerformanceResponse {
+  performanceSummary: {
+    totalProfit: number;
+    winRate: number;
+    totalBets: number;
+    wins: number;
+    losses: number;
+  };
+  profitChartData: {
+    name: string;
+    profit: number;
+  }[];
+  historyData: {
+    date: string;
+    match: string;
+    prediction: string;
+    odds: number;
+    result: string;
+    profit: number;
+  }[];
+}
+
+export const fetchPerformance = async (): Promise<APIPerformanceResponse> => {
+  const res = await fetch("/api/performance");
+  if (!res.ok) throw new Error("Error fetching performance data");
+  return res.json();
+};
+
+export const useAPIPerformance = () => {
+  return useQuery({
+    queryKey: ["performance_stats"],
+    queryFn: fetchPerformance,
+    staleTime: 60000,
+  });
+};
+
+export interface APIDetailedHistoryMatch {
+  date: string;
+  home: string;
+  away: string;
+  homeGoals: number;
+  awayGoals: number;
+  features: Record<string, number>;
+  predictions: {
+    market: string;
+    probability: number;
+    odds: number;
+    won: boolean;
+  }[];
+}
+
+export const fetchDetailedHistory = async (nMatches: number = 100): Promise<APIDetailedHistoryMatch[]> => {
+  const res = await fetch(`/api/detailed-history?n=${nMatches}`);
+  if (!res.ok) throw new Error("Error fetching detailed history");
+  return res.json();
+};
+
+export const useAPIDetailedHistory = (nMatches: number = 100) => {
+  return useQuery({
+    queryKey: ["detailed_history", nMatches],
+    queryFn: () => fetchDetailedHistory(nMatches),
+    staleTime: 60000,
+  });
+};
+
+export interface APISimulateParams {
+  initialBankroll: number;
+  stake: number;
+  nMatches: number;
+  strategy?: "fixed" | "variable";
+  season?: string;
+  minOdds?: number;
+}
+
+export interface APISimulateResponse {
+  performanceSummary: {
+    finalBankroll: number;
+    netProfit: number;
+    winRate: number;
+    totalBets: number;
+    wins: number;
+    losses: number;
+    period?: string;
+  };
+  profitChartData: {
+    name: string;
+    bankroll: number;
+  }[];
+  historyData: {
+    date: string;
+    match: string;
+    prediction: string;
+    odds: number;
+    result: string;
+    profit: number;
+    balance: number;
+  }[];
+}
+
+export const fetchSimulation = async (params: APISimulateParams): Promise<APISimulateResponse> => {
+  const res = await fetch("/api/simulate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+  if (!res.ok) throw new Error("Error fetching simulation data");
+  return res.json();
+};
