@@ -303,6 +303,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'away_elo':              round(elo_map.get(away, 1500), 1),
             'h_missing_key_player':  0,
             'a_missing_key_player':  0,
+            'home_rest':             7,
+            'away_rest':             7,
             'h_l5_pts':              h_form.get('pts', 0),
             'h_l5_sh':               h_form.get('sh', 0),
             'h_l5_sot':              h_form.get('sot', 0),

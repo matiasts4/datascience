@@ -23,7 +23,7 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 BASE_DIR      = r"/home/matias/datascience/archive/pl-predictor"
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
+FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_seasons_unified.csv")
 FRONTEND_DIR   = r"/home/matias/datascience/pl-web/dist"
 
 # No static_folder here — we serve the SPA manually via the catch-all route
@@ -35,13 +35,31 @@ CORS(app)
 # ─────────────────────────────────────────────────────────────────────────────
 _df: pd.DataFrame | None = None
 
+# ─────────────────────────────────────────────────────────────────────────────
+# In-memory cache for scraped upcoming fixtures (avoids hitting FBref every request)
+# ─────────────────────────────────────────────────────────────────────────────
+import time as _time
+_upcoming_cache: dict = {"data": None, "timestamp": 0.0}
+UPCOMING_CACHE_TTL = 6 * 3600  # 6 hours in seconds
+
 def get_df() -> pd.DataFrame:
     global _df
     if _df is None:
         _df = pd.read_csv(FEATURES_PATH, parse_dates=['date'])
         _df = _df.sort_values('date').reset_index(drop=True)
-        # Derive result info
-        _df[['home_goals','away_goals']] = _df['score'].str.split('–', expand=True).astype(float)
+        # Parse score → goals only for rows where score is a valid string like "2–1"
+        # (some 2024-25 rows may have already-parsed home_goals/away_goals from the merge)
+        if 'home_goals' not in _df.columns or _df['home_goals'].isna().all():
+            parsed = _df['score'].str.split('–', expand=True)
+            _df['home_goals'] = pd.to_numeric(parsed[0], errors='coerce')
+            _df['away_goals'] = pd.to_numeric(parsed[1], errors='coerce')
+        else:
+            # Fill any missing home_goals/away_goals from score column
+            mask = _df['home_goals'].isna() & _df['score'].notna()
+            if mask.any():
+                parsed = _df.loc[mask, 'score'].str.split('–', expand=True)
+                _df.loc[mask, 'home_goals'] = pd.to_numeric(parsed[0], errors='coerce')
+                _df.loc[mask, 'away_goals'] = pd.to_numeric(parsed[1], errors='coerce')
         _df['total_goals']  = _df['home_goals'] + _df['away_goals']
         _df['result_label'] = _df['result_1x2'].map({2:'H', 1:'D', 0:'A'})
     return _df
@@ -217,16 +235,21 @@ def recent_matches():
     recent = df[df['home_goals'].notna()].tail(30)
     result = []
     for _, row in recent.iterrows():
+        date_str = row['date'].strftime('%Y-%m-%d')
+        home = row['home_team']
+        away = row['away_team']
+        # Build a stable URL-safe ID that the frontend can reconstruct
+        match_id = f"{date_str} {home}-{away}"
         result.append({
-            'id':        str(row.get('game', '')),
-            'date':      row['date'].strftime('%Y-%m-%d'),
-            'homeTeam':  row['home_team'],
-            'awayTeam':  row['away_team'],
+            'id':        match_id,
+            'date':      date_str,
+            'homeTeam':  home,
+            'awayTeam':  away,
             'homeGoals': int(row['home_goals']),
             'awayGoals': int(row['away_goals']),
             'result':    row.get('result_label', '?'),
-            'referee':   str(row.get('referee', '')),
-            'totalCards':int(row.get('total_cards', 0)),
+            'referee':   str(row.get('referee', '')) if pd.notna(row.get('referee')) else '',
+            'totalCards':int(row.get('total_cards', 0)) if pd.notna(row.get('total_cards')) else 0,
         })
     return jsonify(result[::-1])  # newest first
 
@@ -259,13 +282,30 @@ def referees():
 
 @app.route('/api/matches/upcoming', methods=['GET'])
 def upcoming_matches():
-    """Live scraper endpoint returning the next 7 days of scheduled matches with predictions."""
+    """Live scraper endpoint returning the next 30 days of scheduled matches with predictions.
+    Results are cached in memory for UPCOMING_CACHE_TTL seconds (default 6h) to avoid
+    launching a browser on every page load. Pass ?refresh=true to force a new scrape.
+    """
+    global _upcoming_cache
+    force_refresh = request.args.get('refresh', 'false').lower() == 'true'
+    now = _time.time()
+    cache_age = now - _upcoming_cache["timestamp"]
+
+    if not force_refresh and _upcoming_cache["data"] is not None and cache_age < UPCOMING_CACHE_TTL:
+        print(f"[Cache] Returning cached upcoming fixtures (age: {cache_age/60:.1f} min)")
+        return jsonify(_upcoming_cache["data"])
+
+    print("[Cache] Cache miss or forced refresh — scraping FBref for upcoming fixtures...")
     from src.upcoming import get_upcoming_predictions
     df = get_df()
     selector = get_selector()
-    
+
     # We pass build_team_last5 to recycle the exact same form logic from the API
     results = get_upcoming_predictions(df, selector, build_team_last5)
+
+    _upcoming_cache["data"] = results
+    _upcoming_cache["timestamp"] = _time.time()
+    print(f"[Cache] Cached {len(results)} upcoming fixtures.")
     return jsonify(results)
 
 

@@ -15,7 +15,13 @@ def run(seasons=SEASONS_TODO):
             logger.info(f"⏭  Temporada {season} ya completa, saltando")
             continue
 
-        logger.info(f"⏳ Iniciando temporada {season}/{str(season+1)[-2:]}")
+        try:
+            s_num = int(season)
+            s_display = f"{s_num}/{str(s_num+1)[-2:]}"
+        except:
+            s_display = str(season)
+            
+        logger.info(f"⏳ Iniciando temporada {s_display}")
         cp.init_season(season)
         fbref = get_fbref(season)
 

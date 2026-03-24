@@ -1,0 +1,1016 @@
+league,season,game,team,minute,score,player1,player2,event_type
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,31’,0:0,Junior Firpo,Robin Koch,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,34’,0:1,Harry Maguire,Luke Shaw,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,45+5’,0:2,Bruno Fernandes,Jadon Sancho,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,46’,0:2,Raphinha,Jack Harrison,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,46’,0:2,Joe Gelhardt,Diego Llorente,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,53’,1:2,Rodrigo,Junior Firpo,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,54’,2:2,Raphinha,Daniel James,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,56’,2:2,Cristiano Ronaldo,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,61’,2:2,Pascal Struijk,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,67’,2:2,Anthony Elanga,Jesse Lingard,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,67’,2:2,Fred,Paul Pogba,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,68’,2:2,Luke Ayling,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,70’,2:3,Fred,Jadon Sancho,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,76’,2:3,Adam Forshaw,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,77’,2:3,Scott McTominay,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,81’,2:3,Raphinha,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,85’,2:3,Raphaël Varane,Cristiano Ronaldo,substitute_in
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,88’,2:4,Anthony Elanga,Bruno Fernandes,goal
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Manchester United,90+2’,2:4,Luke Shaw,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,90+2’,2:4,Junior Firpo,,yellow_card
+ENG-Premier League,2122,2022-02-20 Leeds United-Manchester Utd,Leeds United,90+5’,2:4,Mateusz Klich,,yellow_card
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,16’,0:0,Wesley Fofana,,yellow_card
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,30’,0:0,Youri Tielemans,,yellow_card
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,46’,0:0,Alex Telles,Luke Shaw,substitute_in
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,49’,0:0,Scott McTominay,,yellow_card
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,55’,0:0,Marcus Rashford,Scott McTominay,substitute_in
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,5’,0:0,Luke Shaw,,yellow_card
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,63’,0:1,Kelechi Iheanacho,James Maddison,goal
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,64’,0:1,Daniel Amartey,Jonny Evans,substitute_in
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,66’,1:1,Fred,,goal
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Manchester United,75’,1:1,Nemanja Matić,Paul Pogba,substitute_in
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,90+1’,1:1,Hamza Choudhury,Nampalys Mendy,substitute_in
+ENG-Premier League,2122,2022-04-02 Manchester Utd-Leicester City,Leicester City,90+2’,1:1,Patson Daka,Kelechi Iheanacho,substitute_in
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Wolverhampton Wanderers,20’,1:0,Hwang Hee-chan,Raúl Jiménez,goal
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,36’,1:0,Jeff Hendrick,Joe Willock,substitute_in
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,41’,1:1,Jeff Hendrick,Javier Manquillo,goal
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,56’,1:1,Ciaran Clark,,yellow_card
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Wolverhampton Wanderers,58’,2:1,Hwang Hee-chan,Raúl Jiménez,goal
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,60’,2:1,Javier Manquillo,,yellow_card
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,70’,2:1,Jacob Murphy,Javier Manquillo,substitute_in
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Newcastle United,77’,2:1,Dwight Gayle,Miguel Almirón,substitute_in
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Wolverhampton Wanderers,86’,2:1,Leander Dendoncker,Francisco Trincão,substitute_in
+ENG-Premier League,2122,2021-10-02 Wolves-Newcastle United,Wolverhampton Wanderers,90+3’,2:1,Adama Traoré,Hwang Hee-chan,substitute_in
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,Wolverhampton Wanderers,54’,0:0,Rúben Neves,,yellow_card
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,Wolverhampton Wanderers,58’,1:0,Raúl Jiménez,Daniel Podence,goal
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,West Ham United,59’,1:0,Manuel Lanzini,Pablo Fornals,substitute_in
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,West Ham United,71’,1:0,Nikola Vlašić,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,West Ham United,71’,1:0,Andriy Yarmolenko,Jarrod Bowen,substitute_in
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,Wolverhampton Wanderers,76’,1:0,Adama Traoré,Daniel Podence,substitute_in
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,West Ham United,86’,1:0,Declan Rice,,yellow_card
+ENG-Premier League,2122,2021-11-20 Wolves-West Ham United,Wolverhampton Wanderers,87’,1:0,Leander Dendoncker,Hwang Hee-chan,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,12’,1:0,Ryan Fraser,,goal
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,14’,2:0,Fabian Schär,Ryan Fraser,goal
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Brighton & Hove Albion,55’,2:1,Lewis Dunk,Pascal Groß,goal
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Brighton & Hove Albion,59’,2:1,Solly March,Tariq Lamptey,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Brighton & Hove Albion,59’,2:1,Neal Maupay,Jakub Moder,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Brighton & Hove Albion,63’,2:1,Shane Duffy,,yellow_card
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,64’,2:1,Allan Saint-Maximin,Jacob Murphy,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,79’,2:1,Bruno Guimarães,Ryan Fraser,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Brighton & Hove Albion,79’,2:1,Alexis Mac Allister,Steven Alzate,substitute_in
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,87’,2:1,Joelinton,,yellow_card
+ENG-Premier League,2122,2022-03-05 Newcastle United-Brighton,Newcastle United,90+4’,2:1,Sean Longstaff,Joe Willock,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,64’,0:0,Richarlison,,yellow_card
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Newcastle United,71’,0:0,Allan Saint-Maximin,Miguel Almirón,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,76’,0:0,Anthony Gordon,,yellow_card
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,76’,0:0,Dominic Calvert-Lewin,Demarai Gray,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Newcastle United,76’,0:0,Emil Krafth,,yellow_card
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,83’,0:0,Allan,,red_card
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Newcastle United,85’,0:0,Jacob Murphy,Ryan Fraser,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,88’,0:0,André Gomes,Richarlison,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,90+15’,1:0,Andros Townsend,Anthony Gordon,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Newcastle United,90+3’,0:0,Javier Manquillo,Emil Krafth,substitute_in
+ENG-Premier League,2122,2022-03-17 Everton-Newcastle United,Everton,90+9’,1:0,Alex Iwobi,Dominic Calvert-Lewin,goal
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,41’,1:0,Conor Gallagher,Jordan Ayew,goal
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Everton,58’,1:0,Anthony Gordon,Fabian Delph,substitute_in
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Everton,58’,1:0,Salomón Rondón,Richarlison,substitute_in
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,62’,2:0,James Tomkins,Will Hughes,goal
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Everton,70’,2:1,Salomón Rondón,,goal
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Everton,72’,2:1,Abdoulaye Doucouré,,yellow_card
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,73’,2:1,Jeffrey Schlupp,Will Hughes,substitute_in
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,74’,2:1,Christian Benteke,Odsonne Édouard,substitute_in
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Everton,76’,2:1,Demarai Gray,,yellow_card
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,90+1’,2:1,Nathaniel Clyne,Tyrick Mitchell,substitute_in
+ENG-Premier League,2122,2021-12-12 Crystal Palace-Everton,Crystal Palace,90+3’,3:1,Conor Gallagher,,goal
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,10’,0:1,Matt Doherty,Ryan Sessegnon,goal
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,15’,0:2,Dejan Kulusevski,Matt Doherty,goal
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,27’,0:3,Harry Kane,Pierre Højbjerg,goal
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,46’,0:3,Mateusz Klich,Pascal Struijk,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,46’,0:3,Rodrigo,Jack Harrison,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,48’,0:3,Ryan Sessegnon,,yellow_card
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,52’,0:3,Mateusz Klich,,yellow_card
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,53’,0:3,Stuart Dallas,,yellow_card
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,54’,0:3,Junior Firpo,,yellow_card
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,77’,0:3,Rodrigo,,yellow_card
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Leeds United,78’,0:3,Jamie Shackleton,Junior Firpo,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,78’,0:3,Emerson,Ryan Sessegnon,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,78’,0:3,Steven Bergwijn,Dejan Kulusevski,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,85’,0:4,Son Heung-min,Harry Kane,goal
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,87’,0:4,Dane Scarlett,Son Heung-min,substitute_in
+ENG-Premier League,2122,2022-02-26 Leeds United-Tottenham Hotspur,Tottenham Hotspur,89’,0:4,Ben Davies,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,18’,1:0,Jan Bednarek,,own_goal
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,23’,1:1,Armando Broja,Romain Perraud,goal
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,59’,1:1,Davinson Sánchez,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,60’,1:1,Rodrigo Bentancur,Pierre Højbjerg,substitute_in
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,70’,2:1,Son Heung-min,Lucas Moura,goal
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,76’,2:1,Dejan Kulusevski,Lucas Moura,substitute_in
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,76’,2:1,Romain Perraud,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,77’,2:1,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,79’,2:2,Mohamed Elyounoussi,James Ward-Prowse,goal
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,82’,2:3,Che Adams,James Ward-Prowse,goal
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,83’,2:3,Steven Bergwijn,Sergio Reguilón,substitute_in
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,84’,2:3,Fraser Forster,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,88’,2:3,Shane Long,Che Adams,substitute_in
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Tottenham Hotspur,90+4’,2:3,Cristian Romero,,yellow_card
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,90+7’,2:3,Ibrahima Diallo,Mohamed Elyounoussi,substitute_in
+ENG-Premier League,2122,2022-02-09 Tottenham Hotspur-Southampton,Southampton,90’,2:3,Theo Walcott,Armando Broja,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,44’,0:0,Matt Ritchie,,yellow_card
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,48’,0:0,Emil Krafth,,yellow_card
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,56’,1:0,Bukayo Saka,Nuno Tavares,goal
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,63’,1:0,Jamaal Lascelles,,yellow_card
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,64’,1:0,Gabriel Martinelli,Bukayo Saka,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,66’,2:0,Gabriel Martinelli,Takehiro Tomiyasu,goal
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,67’,2:0,Miguel Almirón,Matt Ritchie,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,67’,2:0,Jacob Murphy,Joelinton,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,76’,2:0,Pierre-Emerick Aubameyang,,yellow_card
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,76’,2:0,Alexandre Lacazette,Pierre-Emerick Aubameyang,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Arsenal,85’,2:0,Mohamed Elneny,Thomas Partey,substitute_in
+ENG-Premier League,2122,2021-11-27 Arsenal-Newcastle United,Newcastle United,88’,2:0,Isaac Hayden,Jonjo Shelvey,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,10’,1:0,Shane Duffy,Pascal Groß,goal
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,41’,2:0,Neal Maupay,Yves Bissouma,goal
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,46’,2:0,Aaron Connolly,Neal Maupay,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Watford,46’,2:0,Cucho,Imran Louza,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,62’,2:0,Adam Webster,,yellow_card
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,65’,2:0,Shane Duffy,,yellow_card
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Watford,65’,2:0,Joshua King,Craig Cathcart,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,72’,2:0,Enock Mwepu,Leandro Trossard,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Watford,78’,2:0,Troy Deeney,Ken Sema,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,80’,2:0,Jakub Moder,Adam Lallana,substitute_in
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,86’,2:0,Enock Mwepu,,yellow_card
+ENG-Premier League,2122,2021-08-21 Brighton-Watford,Brighton & Hove Albion,90+1’,2:0,Solly March,,yellow_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,55’,0:0,David Raya,,yellow_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Leeds United,56’,0:1,Raphinha,,penalty_goal
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,58’,0:1,Josh Dasilva,Mathias Jensen,substitute_in
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,63’,0:1,Sergi Canós,Rico Henry,substitute_in
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,71’,0:1,Shandon Baptiste,Mads Bech Sørensen,substitute_in
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Leeds United,71’,0:1,Pascal Struijk,Joe Gelhardt,substitute_in
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,78’,1:1,Sergi Canós,Yoane Wissa,goal
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,78’,1:1,Sergi Canós,,yellow_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,79’,1:1,Ivan Toney,,yellow_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Brentford,80’,1:1,Sergi Canós,,yellow_red_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Leeds United,82’,1:1,Kalvin Phillips,,yellow_card
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Leeds United,85’,1:1,Mateusz Klich,Sam Greenwood,substitute_in
+ENG-Premier League,2122,2022-05-22 Brentford-Leeds United,Leeds United,90+4’,1:2,Jack Harrison,,goal
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,42’,0:0,Sean Longstaff,Joelinton,substitute_in
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,57’,0:0,Daniel James,,yellow_card
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,57’,0:0,Allan Saint-Maximin,,yellow_card
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,62’,0:0,Paul Dummett,,yellow_card
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,63’,0:0,Javier Manquillo,Paul Dummett,substitute_in
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,67’,0:0,Stuart Dallas,,yellow_card
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,68’,0:0,Ciaran Clark,Jamaal Lascelles,substitute_in
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,71’,0:0,Tyler Roberts,Daniel James,substitute_in
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,74’,0:0,Diego Llorente,,yellow_card
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Newcastle United,75’,0:1,Jonjo Shelvey,,goal
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,80’,0:1,Joe Gelhardt,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-01-22 Leeds United-Newcastle United,Leeds United,84’,0:1,Rodrigo,,yellow_card
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Brentford,23’,1:1,Vitaly Janelt,Bryan Mbeumo,goal
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,37’,2:1,Álvaro Fernández,,own_goal
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Brentford,45+2’,2:1,Ivan Toney,,yellow_card
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,49’,3:1,Armando Broja,Oriol Romeu,goal
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Brentford,56’,3:1,Yoane Wissa,Shandon Baptiste,substitute_in
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,5’,1:0,Jan Bednarek,James Ward-Prowse,goal
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,65’,3:1,Che Adams,Nathan Redmond,substitute_in
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Brentford,68’,3:1,Mathias Jensen,Ethan Pinnock,substitute_in
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,70’,3:1,Stuart Armstrong,Nathan Tella,substitute_in
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,70’,4:1,Che Adams,Ibrahima Diallo,goal
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Brentford,76’,4:1,Finley Stevens,Sergi Canós,substitute_in
+ENG-Premier League,2122,2022-01-11 Southampton-Brentford,Southampton,78’,4:1,Adam Armstrong,Armando Broja,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,30’,1:0,Josh Brownhill,,yellow_card
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,46’,1:1,Luka Milivojević,,own_goal
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Crystal Palace,60’,1:1,Jean-Philippe Mateta,Luka Milivojević,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,60’,1:1,Ashley Westwood,Jack Cork,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,60’,1:1,Charlie Taylor,Erik Pieters,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,72’,1:1,James Tarkowski,,yellow_card
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Crystal Palace,84’,1:1,Cheikhou Kouyaté,Jeffrey Schlupp,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Burnley,88’,1:1,Ashley Barnes,Jay Rodriguez,substitute_in
+ENG-Premier League,2122,2022-02-26 Crystal Palace-Burnley,Crystal Palace,9’,1:0,Jeffrey Schlupp,Michael Olise,goal
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,45’,0:0,Scott McTominay,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,49’,0:0,Marcus Rashford,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,50’,0:1,Jadon Sancho,,goal
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,53’,0:1,Reece James,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,64’,0:1,Cristiano Ronaldo,Jadon Sancho,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,69’,1:1,Jorginho,,penalty_goal
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,77’,1:1,Bruno Fernandes,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,77’,1:1,Jesse Lingard,Marcus Rashford,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,78’,1:1,Mason Mount,Marcos Alonso,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,78’,1:1,Christian Pulisic,Callum Hudson-Odoi,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,82’,1:1,Romelu Lukaku,Timo Werner,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,89’,1:1,Donny van de Beek,Bruno Fernandes,substitute_in
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,90+2’,1:1,Cristiano Ronaldo,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Chelsea,90+5’,1:1,Jorginho,,yellow_card
+ENG-Premier League,2122,2021-11-28 Chelsea-Manchester Utd,Manchester United,90+6’,1:1,Eric Bailly,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,13’,0:0,Kyle Walker-Peters,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,25’,1:0,James Ward-Prowse,,goal
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,27’,1:0,Mohammed Salisu,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,39’,1:0,Mohammed Salisu,,yellow_red_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,41’,1:1,Harry Kane,,penalty_goal
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,45+1’,1:1,Sergio Reguilón,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,46’,1:1,Matt Doherty,Sergio Reguilón,substitute_in
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,51’,1:1,Adam Armstrong,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,62’,1:1,Lucas Moura,Dele Alli,substitute_in
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,69’,1:1,Harry Winks,,yellow_card
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,71’,1:1,Armando Broja,Shane Long,substitute_in
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Tottenham Hotspur,77’,1:1,Bryan Gil,Emerson,substitute_in
+ENG-Premier League,2122,2021-12-28 Southampton-Tottenham Hotspur,Southampton,83’,1:1,Nathan Redmond,Adam Armstrong,substitute_in
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Watford,13’,0:0,Oghenekaro Etebo,,yellow_card
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Watford,53’,0:0,Cucho,Joshua King,substitute_in
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,63’,0:0,Hwang Hee-chan,Francisco Trincão,substitute_in
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Watford,67’,0:0,Danny Rose,,yellow_card
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Watford,68’,0:0,Emmanuel Dennis,,yellow_card
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,68’,0:0,Fernando Marçal,,yellow_card
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,74’,0:1,Francisco Sierralta,,own_goal
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Watford,77’,0:1,Ken Sema,Oghenekaro Etebo,substitute_in
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,81’,0:1,Daniel Podence,Adama Traoré,substitute_in
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,83’,0:2,Hwang Hee-chan,,goal
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,90+2’,0:2,Raúl Jiménez,,yellow_card
+ENG-Premier League,2122,2021-09-11 Watford-Wolves,Wolverhampton Wanderers,90+5’,0:2,Max Kilman,,yellow_card
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Manchester United,10’,1:0,Jesse Lingard,Paul Pogba,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,22’,2:0,Mohamed Salah,Sadio Mané,goal
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Manchester United,46’,2:0,Jadon Sancho,Phil Jones,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,5’,1:0,Luis Díaz,Mohamed Salah,goal
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,68’,3:0,Sadio Mané,Luis Díaz,goal
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,70’,3:0,Diogo Jota,Luis Díaz,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,80’,3:0,Naby Keïta,Thiago Alcántara,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Manchester United,84’,3:0,Hannibal Mejbri,Anthony Elanga,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,85’,4:0,Mohamed Salah,Diogo Jota,goal
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,86’,4:0,Naby Keïta,,yellow_card
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Liverpool,86’,4:0,James Milner,Fabinho,substitute_in
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Manchester United,88’,4:0,Hannibal Mejbri,,yellow_card
+ENG-Premier League,2122,2022-04-19 Liverpool-Manchester Utd,Manchester United,89’,4:0,Bruno Fernandes,,yellow_card
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,10’,1:0,Séamus Coleman,,goal
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,23’,2:0,Michael Keane,Anthony Gordon,goal
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Leeds United,29’,2:0,Daniel James,,yellow_card
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Leeds United,46’,2:0,Adam Forshaw,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Leeds United,46’,2:0,Tyler Roberts,Raphinha,substitute_in
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,72’,2:0,Dele Alli,Dominic Calvert-Lewin,substitute_in
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,74’,2:0,Alex Iwobi,,yellow_card
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,78’,3:0,Anthony Gordon,Richarlison,goal
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,81’,3:0,Anwar El Ghazi,Anthony Gordon,substitute_in
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Everton,86’,3:0,Salomón Rondón,Richarlison,substitute_in
+ENG-Premier League,2122,2022-02-12 Everton-Leeds United,Leeds United,9’,0:0,Leo Fuhr Hjelde,Stuart Dallas,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,26’,0:0,Enock Mwepu,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,27’,0:0,Dejan Kulusevski,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,34’,0:0,Rodrigo Bentancur,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,46’,0:0,Danny Welbeck,Enock Mwepu,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,58’,0:0,Yves Bissouma,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,64’,0:0,Lucas Moura,Dejan Kulusevski,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,72’,0:0,Harry Winks,Rodrigo Bentancur,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,78’,0:0,Adam Lallana,Moisés Caicedo,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,82’,0:0,Solly March,Tariq Lamptey,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,87’,0:0,Steven Bergwijn,Son Heung-min,substitute_in
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Tottenham Hotspur,90+4’,0:1,Emerson,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,90+5’,0:1,Lewis Dunk,,yellow_card
+ENG-Premier League,2122,2022-04-16 Tottenham Hotspur-Brighton,Brighton & Hove Albion,90’,0:1,Leandro Trossard,,goal
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Leicester City,41’,1:0,Jamie Vardy,Ricardo Pereira,goal
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Wolverhampton Wanderers,59’,1:0,Fernando Marçal,,yellow_card
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Leicester City,62’,1:0,Boubakary Soumaré,James Maddison,substitute_in
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Leicester City,62’,1:0,Jannik Vestergaard,Ayoze Pérez,substitute_in
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Wolverhampton Wanderers,66’,1:0,Leander Dendoncker,João Moutinho,substitute_in
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Leicester City,72’,1:0,Kelechi Iheanacho,Harvey Barnes,substitute_in
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Wolverhampton Wanderers,76’,1:0,Ki-Jana Hoever,,yellow_card
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Wolverhampton Wanderers,86’,1:0,Morgan Gibbs-White,Francisco Trincão,substitute_in
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Leicester City,90+1’,1:0,Jamie Vardy,,yellow_card
+ENG-Premier League,2122,2021-08-14 Leicester City-Wolves,Wolverhampton Wanderers,90+1’,1:0,Fábio Silva,Max Kilman,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,15’,0:0,Jacob Ramsey,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,30’,0:1,Bukayo Saka,,goal
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,33’,0:1,Tyrone Mings,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,34’,0:1,John McGinn,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,45+1’,0:1,Granit Xhaka,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,57’,0:1,Cédric Soares,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,65’,0:1,Thomas Partey,,yellow_card
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,69’,0:1,Bertrand Traoré,Jacob Ramsey,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,69’,0:1,Leon Bailey,Emi Buendía,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,69’,0:1,Nicolas Pépé,Bukayo Saka,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,78’,0:1,Eddie Nketiah,Alexandre Lacazette,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Aston Villa,82’,0:1,Danny Ings,Ollie Watkins,substitute_in
+ENG-Premier League,2122,2022-03-19 Aston Villa-Arsenal,Arsenal,86’,0:1,Rob Holding,Martin Ødegaard,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,39’,0:0,Kai Havertz,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,50’,0:0,Jacob Murphy,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,58’,0:0,Hakim Ziyech,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,63’,0:0,Romelu Lukaku,Timo Werner,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,63’,0:0,Mateo Kovačić,Mason Mount,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,69’,0:0,Allan Saint-Maximin,Miguel Almirón,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,78’,0:0,Christian Pulisic,Malang Sarr,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,80’,0:0,Bruno Guimarães,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,87’,0:0,Mateo Kovačić,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,89’,1:0,Kai Havertz,Jorginho,goal
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Chelsea,90+1’,1:0,Antonio Rüdiger,,yellow_card
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,90+1’,1:0,Dwight Gayle,Javier Manquillo,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,90+1’,1:0,Ryan Fraser,Jacob Murphy,substitute_in
+ENG-Premier League,2122,2022-03-13 Chelsea-Newcastle United,Newcastle United,90+2’,1:0,Dwight Gayle,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,12’,0:1,Charlie Goode,Mathias Jørgensen,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,28’,0:1,Charlie Goode,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,29’,0:2,Teemu Pukki,,penalty_goal
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,32’,0:2,Mathias Normann,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,46’,0:2,Saman Ghoddos,Vitaly Janelt,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,4’,0:0,Ivan Toney,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,52’,0:2,Andrew Omobamidele,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,60’,1:2,Rico Henry,Saman Ghoddos,goal
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Brentford,69’,1:2,Marcus Forss,Rico Henry,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,6’,0:1,Mathias Normann,,goal
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,74’,1:2,Dimitris Giannoulis,Kieran Dowell,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,78’,1:2,Josh Sargent,Teemu Pukki,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,90+5’,1:2,Adam Idah,Milot Rashica,substitute_in
+ENG-Premier League,2122,2021-11-06 Brentford-Norwich City,Norwich City,90’,1:2,Max Aarons,,yellow_card
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,42’,1:0,Bukayo Saka,,yellow_card
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,42’,1:0,James McArthur,,yellow_card
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,46’,1:0,Albert Sambi Lokonga,Bukayo Saka,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,50’,1:1,Christian Benteke,Jordan Ayew,goal
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,67’,1:1,Alexandre Lacazette,Martin Ødegaard,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,67’,1:1,Cheikhou Kouyaté,Luka Milivojević,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,71’,1:1,Michael Olise,Jordan Ayew,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,73’,1:2,Odsonne Édouard,Michael Olise,goal
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,81’,1:2,Gabriel Martinelli,Thomas Partey,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Crystal Palace,82’,1:2,James Tomkins,Odsonne Édouard,substitute_in
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,8’,1:0,Pierre-Emerick Aubameyang,,goal
+ENG-Premier League,2122,2021-10-18 Arsenal-Crystal Palace,Arsenal,90+5’,2:2,Alexandre Lacazette,,goal
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Liverpool,30’,1:1,Jordan Henderson,Fabinho,substitute_in
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Aston Villa,3’,1:0,Douglas Luiz,,goal
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Aston Villa,62’,1:1,Carney Chukwuemeka,Marvelous Nakamba,substitute_in
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Liverpool,62’,1:1,Thiago Alcántara,Curtis Jones,substitute_in
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Liverpool,65’,1:2,Sadio Mané,Luis Díaz,goal
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Liverpool,6’,1:1,Joël Matip,,goal
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Aston Villa,70’,1:2,Emi Buendía,Philippe Coutinho,substitute_in
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Liverpool,72’,1:2,Mohamed Salah,Luis Díaz,substitute_in
+ENG-Premier League,2122,2022-05-10 Aston Villa-Liverpool,Aston Villa,81’,1:2,Bertrand Traoré,Ollie Watkins,substitute_in
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,12’,0:0,Jamaal Lascelles,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,24’,1:0,Leandro Trossard,,penalty_goal
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,46’,1:0,Alexis Mac Allister,Enock Mwepu,substitute_in
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,60’,1:0,Jacob Murphy,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,65’,1:0,Neal Maupay,Solly March,substitute_in
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,66’,1:1,Isaac Hayden,Ciaran Clark,goal
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,69’,1:1,Jonjo Shelvey,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,73’,1:1,Callum Wilson,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,74’,1:1,Joelinton,Miguel Almirón,substitute_in
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,75’,1:1,Adam Lallana,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,75’,1:1,Adam Webster,Tariq Lamptey,substitute_in
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,84’,1:1,Neal Maupay,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,84’,1:1,Yves Bissouma,,yellow_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Brighton & Hove Albion,90+2’,1:1,Robert Sánchez,,red_card
+ENG-Premier League,2122,2021-11-06 Brighton-Newcastle United,Newcastle United,90+4’,1:1,Dwight Gayle,Emil Krafth,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Norwich City,21’,0:0,Jakob Sørensen,Grant Hanley,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Manchester United,67’,0:0,Mason Greenwood,Jadon Sancho,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Norwich City,70’,0:0,Todd Cantwell,Przemysław Płacheta,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Manchester United,74’,0:0,Eric Bailly,Victor Lindelöf,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Manchester United,75’,0:1,Cristiano Ronaldo,,penalty_goal
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Norwich City,76’,0:1,Pierre Lees-Melou,Lukas Rupp,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Manchester United,77’,0:1,Diogo Dalot,,yellow_card
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Manchester United,88’,0:1,Donny van de Beek,Bruno Fernandes,substitute_in
+ENG-Premier League,2122,2021-12-11 Norwich City-Manchester Utd,Norwich City,90+4’,0:1,Pierre Lees-Melou,,yellow_card
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Burnley,32’,0:0,Matěj Vydra,Maxwel Cornet,substitute_in
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Newcastle United,40’,1:0,Callum Wilson,Fabian Schär,goal
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Burnley,75’,1:0,Nathan Collins,,yellow_card
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Burnley,75’,1:0,Connor Roberts,Matthew Lowton,substitute_in
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Burnley,80’,1:0,Jay Rodriguez,Jóhann Berg Guðmundsson,substitute_in
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Newcastle United,85’,1:0,Federico Fernández,Miguel Almirón,substitute_in
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Newcastle United,87’,1:0,Javier Manquillo,,yellow_card
+ENG-Premier League,2122,2021-12-04 Newcastle United-Burnley,Newcastle United,90+1’,1:0,Jacob Murphy,Allan Saint-Maximin,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,16’,0:0,Hassane Kamara,,yellow_card
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,31’,1:0,Wilfried Zaha,,penalty_goal
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,52’,1:0,Ken Sema,Tom Cleverley,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,63’,1:0,Jeffrey Schlupp,Conor Gallagher,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,64’,1:0,Will Hughes,,yellow_card
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,69’,1:0,Hassane Kamara,,yellow_red_card
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,73’,1:0,Tyrick Mitchell,Marc Guéhi,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,73’,1:0,Adam Masina,Emmanuel Dennis,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,78’,1:0,William Troost-Ekong,Samir Santos,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,83’,1:0,Jean-Philippe Mateta,Wilfried Zaha,substitute_in
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Watford,84’,1:0,Joshua King,,yellow_card
+ENG-Premier League,2122,2022-05-07 Crystal Palace-Watford,Crystal Palace,90+4’,1:0,Michael Olise,,yellow_card
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,22’,1:1,Jonny Evans,,goal
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,34’,2:1,Che Adams,Nathan Redmond,goal
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,3’,1:0,Jan Bednarek,,goal
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,46’,2:1,Kiernan Dewsbury-Hall,Boubakary Soumaré,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,48’,2:1,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,49’,2:2,James Maddison,Luke Thomas,goal
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,55’,2:2,Ademola Lookman,,yellow_card
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,61’,2:2,Ayoze Pérez,Ademola Lookman,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,65’,2:2,Armando Broja,Nathan Tella,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,73’,2:2,Mohamed Elyounoussi,Adam Armstrong,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,75’,2:2,Patson Daka,Harvey Barnes,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,82’,2:2,Wilfred Ndidi,,yellow_card
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Southampton,85’,2:2,Lyanco,Jan Bednarek,substitute_in
+ENG-Premier League,2122,2021-12-01 Southampton-Leicester City,Leicester City,90+3’,2:2,Kiernan Dewsbury-Hall,,yellow_card
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Southampton,37’,0:0,Mohammed Salisu,Jack Stephens,substitute_in
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Southampton,52’,0:0,Kyle Walker-Peters,,yellow_card
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Manchester City,65’,0:0,Kevin De Bruyne,Fernandinho,substitute_in
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Manchester City,67’,0:0,Riyad Mahrez,Gabriel Jesus,substitute_in
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Southampton,68’,0:0,Armando Broja,Che Adams,substitute_in
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Manchester City,72’,0:0,Phil Foden,Bernardo Silva,substitute_in
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Southampton,84’,0:0,Valentino Livramento,,yellow_card
+ENG-Premier League,2122,2021-09-18 Manchester City-Southampton,Southampton,86’,0:0,Romain Perraud,Valentino Livramento,substitute_in
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,10’,0:0,Michail Antonio,,yellow_card
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,31’,0:0,Pablo Fornals,,yellow_card
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,74’,0:1,Angelo Ogbonna,Jarrod Bowen,goal
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,Everton,79’,0:1,Anthony Gordon,Alex Iwobi,substitute_in
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,79’,0:1,Craig Dawson,Tomáš Souček,substitute_in
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,87’,0:1,Manuel Lanzini,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-10-17 Everton-West Ham United,West Ham United,90+4’,0:1,Andriy Yarmolenko,Jarrod Bowen,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,49’,1:0,James Maddison,,goal
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,63’,1:0,Ayoze Pérez,Kiernan Dewsbury-Hall,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,63’,1:0,Che Adams,Adam Armstrong,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,70’,1:0,Ricardo Pereira,Timothy Castagne,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,70’,1:0,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,72’,1:0,Moussa Djenepo,Mohamed Elyounoussi,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,74’,2:0,Jamie Vardy,Harvey Barnes,goal
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,77’,2:0,Ademola Lookman,Harvey Barnes,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,79’,2:1,James Ward-Prowse,,penalty_goal
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,81’,3:1,Ayoze Pérez,James Maddison,goal
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,82’,3:1,Daniel Amartey,James Maddison,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,83’,3:1,Shane Long,Nathan Redmond,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Southampton,90+3’,3:1,William Smallbone,Oriol Romeu,substitute_in
+ENG-Premier League,2122,2022-05-22 Leicester City-Southampton,Leicester City,90+6’,4:1,Ayoze Pérez,Ricardo Pereira,goal
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,15’,0:0,Jack Harrison,Liam Cooper,substitute_in
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,27’,1:0,Tyler Roberts,Raphinha,goal
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,29’,1:0,Tyler Roberts,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,45+2’,1:0,Charlie Goode,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,54’,1:1,Shandon Baptiste,,goal
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,55’,1:1,Mateusz Klich,Kalvin Phillips,substitute_in
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,55’,1:1,Sergi Canós,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,61’,1:2,Sergi Canós,Bryan Mbeumo,goal
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,68’,1:2,Patrick Bamford,Junior Firpo,substitute_in
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,69’,1:2,Frank Onyeka,Shandon Baptiste,substitute_in
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,72’,1:2,Yoane Wissa,Sergi Canós,substitute_in
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,75’,1:2,Jack Harrison,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,79’,1:2,Mateusz Klich,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,80’,1:2,Rico Henry,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,85’,1:2,Raphinha,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,90+5’,2:2,Patrick Bamford,Luke Ayling,goal
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Leeds United,90+5’,2:2,Patrick Bamford,,yellow_card
+ENG-Premier League,2122,2021-12-05 Leeds United-Brentford,Brentford,90’,1:2,Mathias Jensen,Vitaly Janelt,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,36’,1:0,Che Adams,,goal
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,39’,1:0,Mohammed Salisu,,yellow_card
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Norwich City,59’,1:0,Teemu Pukki,,yellow_card
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Norwich City,72’,1:0,Lukas Rupp,Mathias Normann,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Norwich City,72’,1:0,Pierre Lees-Melou,Milot Rashica,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,81’,1:0,Jack Stephens,Armando Broja,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Norwich City,81’,1:0,Kieran Dowell,Billy Gilmour,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,83’,1:0,Shane Long,Che Adams,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,88’,2:0,Oriol Romeu,,goal
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Southampton,90+2’,2:0,Moussa Djenepo,Stuart Armstrong,substitute_in
+ENG-Premier League,2122,2022-02-25 Southampton-Norwich City,Norwich City,90’,2:0,Brandon Williams,,yellow_card
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,63’,0:0,Nampalys Mendy,,yellow_card
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,65’,0:0,Kiernan Dewsbury-Hall,,yellow_card
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,71’,0:0,Jamie Vardy,Patson Daka,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Aston Villa,72’,0:0,Douglas Luiz,,yellow_card
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,75’,0:0,James Maddison,,yellow_card
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Aston Villa,76’,0:0,Tim Iroegbunam,Douglas Luiz,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Aston Villa,79’,0:0,Emi Buendía,Philippe Coutinho,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,80’,0:0,Harvey Barnes,Ademola Lookman,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Leicester City,86’,0:0,Ayoze Pérez,Youri Tielemans,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Aston Villa,90+4’,0:0,Marvelous Nakamba,Jacob Ramsey,substitute_in
+ENG-Premier League,2122,2022-04-23 Leicester City-Aston Villa,Aston Villa,90+5’,0:0,Leon Bailey,,yellow_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Tottenham Hotspur,12’,0:0,Joe Rodon,Eric Dier,substitute_in
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,53’,0:0,Wilfried Zaha,,yellow_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Tottenham Hotspur,53’,0:0,Japhet Tanganga,,yellow_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Tottenham Hotspur,58’,0:0,Japhet Tanganga,,yellow_red_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Tottenham Hotspur,60’,0:0,Ben Davies,Harry Winks,substitute_in
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,67’,0:0,Luka Milivojević,Cheikhou Kouyaté,substitute_in
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,76’,1:0,Wilfried Zaha,,penalty_goal
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Tottenham Hotspur,81’,1:0,Lucas Moura,,yellow_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,84’,2:0,Odsonne Édouard,Wilfried Zaha,goal
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,84’,2:0,Odsonne Édouard,Christian Benteke,substitute_in
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,86’,2:0,Michael Olise,Jordan Ayew,substitute_in
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,89’,2:0,Conor Gallagher,,yellow_card
+ENG-Premier League,2122,2021-09-11 Crystal Palace-Tottenham Hotspur,Crystal Palace,90+2’,3:0,Odsonne Édouard,Conor Gallagher,goal
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,37’,1:0,Wilfried Zaha,,goal
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,43’,1:0,Will Hughes,,yellow_card
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,44’,1:0,Hannibal Mejbri,,yellow_card
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,59’,1:0,Diogo Dalot,,yellow_card
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,62’,1:0,Juan Mata,Hannibal Mejbri,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,63’,1:0,Odsonne Édouard,,yellow_card
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,67’,1:0,Cheikhou Kouyaté,Jesurun Rak Sakyi,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,75’,1:0,Shola Shoretire,Fred,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,79’,1:0,Eberechi Eze,Odsonne Édouard,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,79’,1:0,Alejandro Garnacho,Diogo Dalot,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Crystal Palace,83’,1:0,James McArthur,Will Hughes,substitute_in
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,84’,1:0,Victor Lindelöf,,yellow_card
+ENG-Premier League,2122,2022-05-22 Crystal Palace-Manchester Utd,Manchester United,90’,1:0,Bruno Fernandes,,yellow_card
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Manchester City,27’,0:1,Rúben Dias,Raheem Sterling,goal
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Aston Villa,31’,0:1,Ashley Young,Leon Bailey,substitute_in
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Manchester City,43’,0:2,Bernardo Silva,Gabriel Jesus,goal
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Aston Villa,47’,1:2,Ollie Watkins,Douglas Luiz,goal
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Aston Villa,67’,1:2,Carney Chukwuemeka,Matt Targett,substitute_in
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Aston Villa,77’,1:2,Morgan Sanson,Marvelous Nakamba,substitute_in
+ENG-Premier League,2122,2021-12-01 Aston Villa-Manchester City,Manchester City,87’,1:2,Jack Grealish,Gabriel Jesus,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,17’,0:0,Bryan Mbeumo,,yellow_card
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,37’,0:0,Jakub Moder,Adam Webster,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,55’,0:0,Joël Veltman,,yellow_card
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,57’,0:0,Shane Duffy,,yellow_card
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,61’,0:0,Mads Roerslev,Sergi Canós,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,64’,0:0,Alexis Mac Allister,Danny Welbeck,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,68’,0:0,Mathias Jensen,Vitaly Janelt,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,6’,0:0,Sergi Canós,,yellow_card
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,74’,0:0,Kristoffer Ajer,,yellow_card
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brentford,75’,0:0,Frank Onyeka,Shandon Baptiste,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,82’,0:0,Solly March,Marc Cucurella,substitute_in
+ENG-Premier League,2122,2021-09-11 Brentford-Brighton,Brighton & Hove Albion,90’,0:1,Leandro Trossard,Alexis Mac Allister,goal
+ENG-Premier League,2122,2021-12-29 Brentford-Manchester City,Manchester City,16’,0:1,Phil Foden,Kevin De Bruyne,goal
+ENG-Premier League,2122,2021-12-29 Brentford-Manchester City,Brentford,69’,0:1,Sergi Canós,Yoane Wissa,substitute_in
+ENG-Premier League,2122,2021-12-29 Brentford-Manchester City,Brentford,75’,0:1,Mads Bidstrup,Frank Onyeka,substitute_in
+ENG-Premier League,2122,2021-12-29 Brentford-Manchester City,Brentford,82’,0:1,Saman Ghoddos,Dominic Thompson,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Crystal Palace,45’,0:0,Joachim Andersen,,yellow_card
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Leeds United,46’,0:0,Robin Koch,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Leeds United,50’,0:0,Daniel James,,yellow_card
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Crystal Palace,51’,0:0,Joel Ward,,yellow_card
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Leeds United,59’,0:0,Sam Greenwood,Daniel James,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Crystal Palace,67’,0:0,Michael Olise,Jordan Ayew,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Leeds United,74’,0:0,Joe Gelhardt,Rodrigo,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Leeds United,77’,0:0,Diego Llorente,,yellow_card
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Crystal Palace,79’,0:0,Jeffrey Schlupp,Eberechi Eze,substitute_in
+ENG-Premier League,2122,2022-04-25 Crystal Palace-Leeds United,Crystal Palace,84’,0:0,Christian Benteke,Jean-Philippe Mateta,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,44’,2:0,Douglas Luiz,Philippe Coutinho,goal
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Southampton,46’,2:0,Yan Valery,Mohamed Elyounoussi,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,52’,3:0,Philippe Coutinho,Danny Ings,goal
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,54’,4:0,Danny Ings,Matty Cash,goal
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Southampton,58’,4:0,Kyle Walker-Peters,Romain Perraud,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Southampton,68’,4:0,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,71’,4:0,Morgan Sanson,Danny Ings,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,74’,4:0,Ollie Watkins,,yellow_card
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,77’,4:0,Leon Bailey,Jacob Ramsey,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Southampton,77’,4:0,Ibrahima Diallo,Oriol Romeu,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,81’,4:0,Emi Buendía,Philippe Coutinho,substitute_in
+ENG-Premier League,2122,2022-03-05 Aston Villa-Southampton,Aston Villa,9’,1:0,Ollie Watkins,Danny Ings,goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,10’,1:0,Dominic Calvert-Lewin,Richarlison,goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,10’,1:0,Mads Bech Sørensen,,yellow_card
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,18’,1:0,Jarrad Branthwaite,,red_card
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,27’,1:0,Christian Nørgaard,,yellow_card
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,37’,1:1,Séamus Coleman,,own_goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,40’,1:1,Kristoffer Ajer,,yellow_card
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,45+2’,2:1,Richarlison,,penalty_goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,46’,2:1,Vitaly Janelt,Mads Bech Sørensen,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,59’,2:1,Josh Dasilva,Kristoffer Ajer,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,62’,2:2,Yoane Wissa,Christian Eriksen,goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,64’,2:3,Rico Henry,Christian Nørgaard,goal
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,72’,2:3,Demarai Gray,Anthony Gordon,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,72’,2:3,Jonjoe Kenny,André Gomes,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Brentford,75’,2:3,Mads Roerslev,Yoane Wissa,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,84’,2:3,Salomón Rondón,Séamus Coleman,substitute_in
+ENG-Premier League,2122,2022-05-15 Everton-Brentford,Everton,88’,2:3,Salomón Rondón,,red_card
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,32’,2:0,Cristiano Ronaldo,Alex Telles,goal
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Norwich City,45+1’,2:1,Kieran Dowell,Teemu Pukki,goal
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Norwich City,52’,2:2,Teemu Pukki,Kieran Dowell,goal
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,63’,2:2,Nemanja Matić,Jesse Lingard,substitute_in
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Norwich City,73’,2:2,Billy Gilmour,Kenny McLean,substitute_in
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,74’,2:2,Juan Mata,Paul Pogba,substitute_in
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,74’,2:2,Marcus Rashford,Alex Telles,substitute_in
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Norwich City,74’,2:2,Przemysław Płacheta,Kieran Dowell,substitute_in
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,76’,3:2,Cristiano Ronaldo,,goal
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Manchester United,7’,1:0,Cristiano Ronaldo,Anthony Elanga,goal
+ENG-Premier League,2122,2022-04-16 Manchester Utd-Norwich City,Norwich City,82’,3:2,Jonathan Rowe,Pierre Lees-Melou,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,23’,0:0,Sam Greenwood,Patrick Bamford,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,25’,0:0,Francisco Trincão,Rúben Neves,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,26’,1:0,Jonny Castro,Francisco Trincão,goal
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,40’,1:0,Robin Koch,Diego Llorente,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,43’,1:0,Raúl Jiménez,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,45+10’,1:0,Pascal Struijk,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,45+11’,2:0,Francisco Trincão,Daniel Podence,goal
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,45+9’,1:0,Charlie Cresswell,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,53’,2:0,Raúl Jiménez,,yellow_red_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,55’,2:0,Kristoffer Klaesson,Illan Meslier,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,63’,2:1,Jack Harrison,,goal
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,66’,2:2,Rodrigo,Sam Greenwood,goal
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,68’,2:2,Rodrigo,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,6’,0:0,Willy Boly,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,74’,2:2,Charlie Cresswell,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,78’,2:2,Hwang Hee-chan,Daniel Podence,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,90+1’,2:3,Luke Ayling,,goal
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,90+2’,2:3,Fábio Silva,Jonny Castro,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Wolverhampton Wanderers,90+2’,2:3,Chiquinho,Leander Dendoncker,substitute_in
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,90+3’,2:3,Nohan Kenneh,,yellow_card
+ENG-Premier League,2122,2022-03-18 Wolves-Leeds United,Leeds United,90+4’,2:3,Adam Forshaw,,yellow_card
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,21’,0:1,Danny Welbeck,Yves Bissouma,goal
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,62’,0:1,Adam Webster,Solly March,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,65’,0:1,Moisés Caicedo,,yellow_card
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,68’,0:1,Jamie Shackleton,Robin Koch,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,71’,0:1,Junior Firpo,,yellow_card
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,74’,0:1,Adam Lallana,Moisés Caicedo,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,81’,0:1,Rodrigo,,yellow_card
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,83’,0:1,Sam Greenwood,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,83’,0:1,Pascal Struijk,Junior Firpo,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,84’,0:1,Liam Cooper,,yellow_card
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,87’,0:1,Tariq Lamptey,Leandro Trossard,substitute_in
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Leeds United,90+2’,1:1,Pascal Struijk,Joe Gelhardt,goal
+ENG-Premier League,2122,2022-05-15 Leeds United-Brighton,Brighton & Hove Albion,90+2’,0:1,Tariq Lamptey,,yellow_card
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,26’,1:0,Pablo Fornals,Saïd Benrahma,goal
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,40’,1:0,Ayoze Pérez,,red_card
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,56’,2:0,Saïd Benrahma,Michail Antonio,goal
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,64’,2:0,Patson Daka,Harvey Barnes,substitute_in
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,69’,2:1,Youri Tielemans,,goal
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,71’,2:1,Ricardo Pereira,,yellow_card
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,80’,3:1,Michail Antonio,Declan Rice,goal
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,81’,3:1,Kelechi Iheanacho,Jamie Vardy,substitute_in
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,Leicester City,81’,3:1,Boubakary Soumaré,James Maddison,substitute_in
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,84’,4:1,Michail Antonio,Vladimír Coufal,goal
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,88’,4:1,Mark Noble,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-08-23 West Ham United-Leicester City,West Ham United,89’,4:1,Andriy Yarmolenko,Michail Antonio,substitute_in
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Burnley,27’,0:0,Connor Roberts,,yellow_card
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,45+8’,1:0,Harry Kane,,penalty_goal
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Burnley,45+8’,1:0,Nick Pope,,yellow_card
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,49’,1:0,Lucas Moura,,yellow_card
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Burnley,78’,1:0,Wout Weghorst,Ashley Barnes,substitute_in
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Burnley,78’,1:0,Aaron Lennon,Matthew Lowton,substitute_in
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,79’,1:0,Dejan Kulusevski,Lucas Moura,substitute_in
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,86’,1:0,Hugo Lloris,,yellow_card
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,90+4’,1:0,Dejan Kulusevski,,yellow_card
+ENG-Premier League,2122,2022-05-15 Tottenham Hotspur-Burnley,Tottenham Hotspur,90’,1:0,Joe Rodon,Emerson,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leicester City,53’,0:0,Wilfred Ndidi,,yellow_card
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leicester City,61’,0:0,Kelechi Iheanacho,Jamie Vardy,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leicester City,61’,0:0,Ademola Lookman,Hamza Choudhury,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leeds United,63’,0:0,Joe Gelhardt,Rodrigo,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leicester City,67’,1:0,Harvey Barnes,Kelechi Iheanacho,goal
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leeds United,70’,1:0,Adam Forshaw,Mateusz Klich,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leeds United,71’,1:0,Adam Forshaw,,yellow_card
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leicester City,76’,1:0,Nampalys Mendy,Wilfred Ndidi,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leeds United,76’,1:0,Tyler Roberts,Jack Harrison,substitute_in
+ENG-Premier League,2122,2022-03-05 Leicester City-Leeds United,Leeds United,9’,0:0,Pascal Struijk,,yellow_card
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,34’,1:0,Leandro Trossard,Enock Mwepu,goal
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,38’,1:0,Mads Bech Sørensen,,yellow_card
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,41’,1:0,Yoane Wissa,Bryan Mbeumo,substitute_in
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,42’,2:0,Neal Maupay,Jakub Moder,goal
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,45’,2:0,Christian Nørgaard,,yellow_card
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,46’,2:0,Danny Welbeck,Leandro Trossard,substitute_in
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,46’,2:0,Frank Onyeka,Mathias Jensen,substitute_in
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,59’,2:0,Adam Webster,,yellow_card
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,66’,2:0,Saman Ghoddos,Dominic Thompson,substitute_in
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brentford,77’,2:0,Ivan Toney,,yellow_card
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,85’,2:0,Pascal Groß,Adam Lallana,substitute_in
+ENG-Premier League,2122,2021-12-26 Brighton-Brentford,Brighton & Hove Albion,85’,2:0,Steven Alzate,Alexis Mac Allister,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,Brighton & Hove Albion,13’,1:0,Solly March,Jeremy Sarmiento,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,Brighton & Hove Albion,36’,1:0,Shane Duffy,Adam Webster,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,West Ham United,5’,1:0,Tomáš Souček,Pablo Fornals,goal
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,Brighton & Hove Albion,70’,1:0,Tariq Lamptey,Joël Veltman,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,West Ham United,76’,1:0,Manuel Lanzini,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,West Ham United,77’,1:0,Arthur Masuaku,Pablo Fornals,substitute_in
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,Brighton & Hove Albion,89’,1:1,Neal Maupay,Tariq Lamptey,goal
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,West Ham United,90+6’,1:1,Michail Antonio,,yellow_card
+ENG-Premier League,2122,2021-12-01 West Ham United-Brighton,Brighton & Hove Albion,90’,1:1,Neal Maupay,,yellow_card
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Manchester United,34’,0:0,Mason Greenwood,,yellow_card
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Manchester United,43’,1:0,Anthony Martial,Bruno Fernandes,goal
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Manchester United,57’,1:0,Jadon Sancho,Anthony Martial,substitute_in
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Manchester United,57’,1:0,Cristiano Ronaldo,Edinson Cavani,substitute_in
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Everton,65’,1:1,Andros Townsend,Abdoulaye Doucouré,goal
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Manchester United,70’,1:1,Paul Pogba,Fred,substitute_in
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Everton,72’,1:1,Tom Davies,Anthony Gordon,substitute_in
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Everton,76’,1:1,Abdoulaye Doucouré,,yellow_card
+ENG-Premier League,2122,2021-10-02 Manchester Utd-Everton,Everton,90+2’,1:1,Lewis Dobbin,Demarai Gray,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,12’,0:0,Sergio Reguilón,,yellow_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,26’,0:0,Fabian Delph,,yellow_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,60’,0:0,Tom Davies,Fabian Delph,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,69’,0:0,Richarlison,,yellow_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,69’,0:0,Cristian Romero,,yellow_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,71’,0:0,Giovani Lo Celso,Lucas Moura,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,71’,0:0,Matt Doherty,Sergio Reguilón,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,82’,0:0,Mason Holgate,Allan,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,85’,0:0,Tanguy Ndombele,Son Heung-min,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,87’,0:0,Tanguy Ndombele,,yellow_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,90+2’,0:0,Mason Holgate,,red_card
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Everton,90+3’,0:0,Jean-Philippe Gbamin,Demarai Gray,substitute_in
+ENG-Premier League,2122,2021-11-07 Everton-Tottenham Hotspur,Tottenham Hotspur,90+4’,0:0,Oliver Skipp,,yellow_card
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Norwich City,1’,1:0,Teemu Pukki,Adam Idah,goal
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Norwich City,53’,1:0,Brandon Williams,,yellow_card
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,60’,1:1,Wilfried Zaha,Michael Olise,goal
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,63’,1:1,Wilfried Zaha,,penalty_miss
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Norwich City,64’,1:1,Billy Gilmour,Przemysław Płacheta,substitute_in
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,70’,1:1,Jordan Ayew,Michael Olise,substitute_in
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Norwich City,74’,1:1,Mathias Normann,Pierre Lees-Melou,substitute_in
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,75’,1:1,Jean-Philippe Mateta,,yellow_card
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,80’,1:1,Eberechi Eze,Jeffrey Schlupp,substitute_in
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,80’,1:1,Odsonne Édouard,Jean-Philippe Mateta,substitute_in
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Crystal Palace,83’,1:1,Conor Gallagher,,yellow_card
+ENG-Premier League,2122,2022-02-09 Norwich City-Crystal Palace,Norwich City,84’,1:1,Jonathan Rowe,Adam Idah,substitute_in
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,26’,0:0,Rúben Dias,,yellow_card
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,42’,0:0,James Milner,,yellow_card
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,56’,0:0,João Cancelo,,yellow_card
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,59’,1:0,Sadio Mané,Mohamed Salah,goal
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,65’,1:0,Diogo Jota,,yellow_card
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,66’,1:0,Raheem Sterling,Jack Grealish,substitute_in
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,68’,1:0,Roberto Firmino,Diogo Jota,substitute_in
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,69’,1:1,Phil Foden,Gabriel Jesus,goal
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,76’,2:1,Mohamed Salah,Curtis Jones,goal
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,77’,2:1,Bernardo Silva,,yellow_card
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,78’,2:1,Joe Gomez,James Milner,substitute_in
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Manchester City,81’,2:2,Kevin De Bruyne,,goal
+ENG-Premier League,2122,2021-10-03 Liverpool-Manchester City,Liverpool,83’,2:2,Fabinho,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,38’,0:1,Japhet Tanganga,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,44’,0:1,Oliver Skipp,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Wolverhampton Wanderers,57’,0:1,Raúl Jiménez,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,67’,0:1,Giovani Lo Celso,Lucas Moura,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Wolverhampton Wanderers,72’,0:1,Leander Dendoncker,João Moutinho,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,72’,0:1,Harry Kane,Son Heung-min,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Wolverhampton Wanderers,84’,0:1,Rayan Aït-Nouri,Francisco Trincão,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Wolverhampton Wanderers,84’,0:1,Fábio Silva,Romain Saïss,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,85’,0:1,Pierre Højbjerg,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,90+1’,0:1,Harry Winks,Steven Bergwijn,substitute_in
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,90+1’,0:1,Harry Kane,,yellow_card
+ENG-Premier League,2122,2021-08-22 Wolves-Tottenham Hotspur,Tottenham Hotspur,9’,0:1,Dele Alli,,penalty_goal
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,22’,1:0,Harry Kane,Son Heung-min,goal
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,26’,1:0,Ben Davies,,yellow_card
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,48’,1:0,Marc Albrighton,,yellow_card
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,55’,1:0,Dejan Kulusevski,Lucas Moura,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,58’,1:0,Rodrigo Bentancur,,yellow_card
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,60’,2:0,Son Heung-min,Dejan Kulusevski,goal
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,63’,2:0,Daniel Amartey,,yellow_card
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,66’,2:0,Luke Thomas,,yellow_card
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,67’,2:0,Lewis Brunt,Boubakary Soumaré,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,67’,2:0,Jamie Vardy,Patson Daka,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,76’,2:0,Youri Tielemans,Ayoze Pérez,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,79’,3:0,Son Heung-min,Dejan Kulusevski,goal
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,82’,3:0,Harry Winks,Rodrigo Bentancur,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Tottenham Hotspur,82’,3:0,Steven Bergwijn,Son Heung-min,substitute_in
+ENG-Premier League,2122,2022-05-01 Tottenham Hotspur-Leicester City,Leicester City,90+1’,3:1,Kelechi Iheanacho,Youri Tielemans,goal
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,29’,1:0,Armando Broja,Nathan Redmond,goal
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,45’,1:0,Shane Duffy,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,55’,1:0,Aaron Connolly,Pascal Groß,substitute_in
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,63’,1:0,Solly March,Tariq Lamptey,substitute_in
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,69’,1:0,Nathan Tella,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,74’,1:0,Yves Bissouma,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,78’,1:0,Jakub Moder,Joël Veltman,substitute_in
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,80’,1:0,Mohammed Salisu,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,81’,1:0,Adam Armstrong,Armando Broja,substitute_in
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,84’,1:0,Mohamed Elyounoussi,Nathan Tella,substitute_in
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,90+4’,1:0,Mohamed Elyounoussi,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Southampton,90+7’,1:0,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2021-12-04 Southampton-Brighton,Brighton & Hove Albion,90+8’,1:1,Neal Maupay,Jakub Moder,goal
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,24’,1:0,Ivan Toney,,penalty_goal
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Everton,38’,1:0,Andros Townsend,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,43’,1:0,Frank Onyeka,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,51’,1:0,Sergi Canós,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,66’,1:0,Pontus Jansson,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Everton,66’,1:0,Salomón Rondón,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,70’,1:0,Shandon Baptiste,Christian Nørgaard,substitute_in
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Everton,70’,1:0,Demarai Gray,Andros Townsend,substitute_in
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,77’,1:0,Mads Roerslev,Rico Henry,substitute_in
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Everton,80’,1:0,Ben Godfrey,,yellow_card
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,87’,1:0,Yoane Wissa,Sergi Canós,substitute_in
+ENG-Premier League,2122,2021-11-28 Brentford-Everton,Brentford,90+2’,1:0,Bryan Mbeumo,,yellow_card
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Aston Villa,57’,0:0,Matty Cash,,yellow_card
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Aston Villa,58’,0:0,Ollie Watkins,Douglas Luiz,substitute_in
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Aston Villa,65’,0:0,Ashley Young,Matty Cash,substitute_in
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,66’,0:0,Ismaila Sarr,,yellow_card
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Aston Villa,71’,0:0,Leon Bailey,Emi Buendía,substitute_in
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,78’,0:1,Emmanuel Dennis,Ismaila Sarr,goal
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,82’,0:1,Hassane Kamara,,yellow_card
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,86’,0:1,Ken Sema,Emmanuel Dennis,substitute_in
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,90+3’,0:1,Cucho,Ismaila Sarr,substitute_in
+ENG-Premier League,2122,2022-02-19 Aston Villa-Watford,Watford,90+3’,0:1,Christian Kabasele,Samir Santos,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,24’,0:0,Thiago Silva,,yellow_card
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Tottenham Hotspur,37’,0:0,Japhet Tanganga,,yellow_card
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,42’,0:0,Jorginho,,yellow_card
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,47’,1:0,Hakim Ziyech,Callum Hudson-Odoi,goal
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,55’,2:0,Thiago Silva,Mason Mount,goal
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Tottenham Hotspur,56’,2:0,Oliver Skipp,Japhet Tanganga,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Tottenham Hotspur,56’,2:0,Lucas Moura,Ryan Sessegnon,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,73’,2:0,N'Golo Kanté,Jorginho,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,87’,2:0,Marcos Alonso,Callum Hudson-Odoi,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Tottenham Hotspur,89’,2:0,Bryan Gil,Harry Winks,substitute_in
+ENG-Premier League,2122,2022-01-23 Chelsea-Tottenham Hotspur,Chelsea,90+1’,2:0,Saúl Ñíguez,Hakim Ziyech,substitute_in
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Leicester City,46’,0:0,Nampalys Mendy,Ademola Lookman,substitute_in
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Leicester City,54’,1:0,Jamie Vardy,Harvey Barnes,goal
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Norwich City,58’,1:0,Jakob Sørensen,Lukas Rupp,substitute_in
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Leicester City,62’,2:0,Jamie Vardy,Harvey Barnes,goal
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Norwich City,67’,2:0,Przemysław Płacheta,Tony Springett,substitute_in
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Norwich City,67’,2:0,Jonathan Rowe,Milot Rashica,substitute_in
+ENG-Premier League,2122,2022-05-11 Leicester City-Norwich City,Leicester City,70’,3:0,James Maddison,,goal
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,14’,0:1,Cucho,,goal
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,34’,0:2,Cucho,Juraj Kucka,goal
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,45’,1:2,Mohamed Elyounoussi,Che Adams,goal
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,46’,1:2,Armando Broja,William Smallbone,substitute_in
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,48’,1:2,Romain Perraud,,yellow_card
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,60’,1:2,Cucho,,yellow_card
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,65’,1:2,Oriol Romeu,,yellow_card
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,74’,1:2,Nathan Redmond,Oriol Romeu,substitute_in
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,76’,1:2,Jan Bednarek,,yellow_card
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,86’,1:2,Moussa Sissoko,,yellow_card
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,87’,1:2,Joshua King,Emmanuel Dennis,substitute_in
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,90+1’,1:2,Craig Cathcart,Kiko Femenía,substitute_in
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Southampton,90+4’,1:2,Shane Long,Armando Broja,substitute_in
+ENG-Premier League,2122,2022-03-13 Southampton-Watford,Watford,90+7’,1:2,Ken Sema,Cucho,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,37’,0:2,Roberto Firmino,James Milner,goal
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Watford,46’,0:2,Tom Cleverley,Adam Masina,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,52’,0:3,Roberto Firmino,,goal
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,54’,0:4,Mohamed Salah,Roberto Firmino,goal
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Watford,56’,0:4,Jeremy Ngakia,Kiko Femenía,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,64’,0:4,Kostas Tsimikas,Andrew Robertson,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,65’,0:4,Alex Oxlade-Chamberlain,Trent Alexander-Arnold,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Watford,69’,0:4,João Pedro,Emmanuel Dennis,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,83’,0:4,Neco Williams,James Milner,substitute_in
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,90+1’,0:5,Roberto Firmino,Neco Williams,goal
+ENG-Premier League,2122,2021-10-16 Watford-Liverpool,Liverpool,9’,0:1,Sadio Mané,Mohamed Salah,goal
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,12’,0:1,Jamie Vardy,,own_goal
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,37’,1:1,Jamie Vardy,Youri Tielemans,goal
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,40’,1:2,Maxwel Cornet,Matěj Vydra,goal
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,45+2’,1:2,Jóhann Berg Guðmundsson,Maxwel Cornet,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,45+2’,1:2,Maxwel Cornet,,yellow_card
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,46’,1:2,Timothy Castagne,Ricardo Pereira,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,5’,0:0,Jannik Vestergaard,,yellow_card
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,60’,1:2,Ashley Westwood,,yellow_card
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,62’,1:2,Kelechi Iheanacho,Boubakary Soumaré,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,68’,1:2,Jóhann Berg Guðmundsson,,yellow_card
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,75’,1:2,Ashley Barnes,Matěj Vydra,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,77’,1:2,Harvey Barnes,,yellow_card
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,78’,1:2,James Maddison,Ademola Lookman,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Leicester City,85’,2:2,Jamie Vardy,Kelechi Iheanacho,goal
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,87’,2:2,Aaron Lennon,Dwight McNeil,substitute_in
+ENG-Premier League,2122,2021-09-25 Leicester City-Burnley,Burnley,90+2’,2:2,James Tarkowski,,yellow_card
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,16’,0:0,Jacob Murphy,,yellow_card
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Southampton,25’,1:0,Stuart Armstrong,,goal
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,32’,1:1,Chris Wood,Jonjo Shelvey,goal
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,52’,1:2,Bruno Guimarães,Dan Burn,goal
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,67’,1:2,Sean Longstaff,Bruno Guimarães,substitute_in
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Southampton,72’,1:2,Jan Bednarek,,yellow_card
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Southampton,73’,1:2,Adam Armstrong,Armando Broja,substitute_in
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Southampton,79’,1:2,Shane Long,Oriol Romeu,substitute_in
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Southampton,85’,1:2,Moussa Djenepo,Mohamed Elyounoussi,substitute_in
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,85’,1:2,Miguel Almirón,Ryan Fraser,substitute_in
+ENG-Premier League,2122,2022-03-10 Southampton-Newcastle United,Newcastle United,90+1’,1:2,Javier Manquillo,Emil Krafth,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,West Ham United,30’,1:0,Saïd Benrahma,Jarrod Bowen,goal
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,Manchester United,35’,1:1,Cristiano Ronaldo,,goal
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,West Ham United,68’,1:1,Andriy Yarmolenko,Nikola Vlašić,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,Manchester United,73’,1:1,Jadon Sancho,Mason Greenwood,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,Manchester United,73’,1:1,Jesse Lingard,Paul Pogba,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,West Ham United,88’,1:1,Manuel Lanzini,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,Manchester United,88’,1:1,Nemanja Matić,Fred,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,Manchester United,89’,1:2,Jesse Lingard,Nemanja Matić,goal
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,West Ham United,90+4’,1:2,Mark Noble,Jarrod Bowen,substitute_in
+ENG-Premier League,2122,2021-09-19 West Ham United-Manchester Utd,West Ham United,90+5’,1:2,Mark Noble,David de Gea,penalty_miss
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester United,22’,1:1,Jadon Sancho,Paul Pogba,goal
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester City,28’,2:1,Kevin De Bruyne,,goal
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester City,5’,1:0,Kevin De Bruyne,Bernardo Silva,goal
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester United,63’,2:1,Harry Maguire,,yellow_card
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester United,64’,2:1,Jesse Lingard,Anthony Elanga,substitute_in
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester United,64’,2:1,Marcus Rashford,Paul Pogba,substitute_in
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester City,68’,3:1,Riyad Mahrez,Kevin De Bruyne,goal
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester City,80’,3:1,İlkay Gündoğan,Kevin De Bruyne,substitute_in
+ENG-Premier League,2122,2022-03-06 Manchester City-Manchester Utd,Manchester City,90+1’,4:1,Riyad Mahrez,İlkay Gündoğan,goal
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,19’,0:0,Josh Brownhill,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,28’,0:0,Ashley Barnes,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,38’,0:0,Kalvin Phillips,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,45+1’,0:0,Ben Mee,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,53’,0:0,Rodrigo,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,61’,1:0,Chris Wood,Matthew Lowton,goal
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,63’,1:0,Aaron Lennon,Jóhann Berg Guðmundsson,substitute_in
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,65’,1:0,Jamie Shackleton,Diego Llorente,substitute_in
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,73’,1:0,Tyler Roberts,Rodrigo,substitute_in
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,79’,1:0,Matěj Vydra,Ashley Barnes,substitute_in
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,81’,1:0,Pascal Struijk,,yellow_card
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Leeds United,86’,1:1,Patrick Bamford,,goal
+ENG-Premier League,2122,2021-08-29 Burnley-Leeds United,Burnley,90+1’,1:1,Aaron Lennon,,yellow_card
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,14’,0:1,Antonio Rüdiger,Ben Chilwell,goal
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,28’,0:2,N'Golo Kanté,Reece James,goal
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,40’,0:2,Daniel Amartey,,yellow_card
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,45’,0:2,Kasper Schmeichel,,yellow_card
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,45’,0:2,Jonny Evans,,yellow_card
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,46’,0:2,James Maddison,Harvey Barnes,substitute_in
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,46’,0:2,Kelechi Iheanacho,Ademola Lookman,substitute_in
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,62’,0:2,Hakim Ziyech,Mason Mount,substitute_in
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,62’,0:2,Christian Pulisic,Kai Havertz,substitute_in
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,65’,0:2,Edouard Mendy,,yellow_card
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,71’,0:3,Christian Pulisic,Hakim Ziyech,goal
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Leicester City,75’,0:3,Kiernan Dewsbury-Hall,Boubakary Soumaré,substitute_in
+ENG-Premier League,2122,2021-11-20 Leicester City-Chelsea,Chelsea,77’,0:3,Ruben Loftus-Cheek,Jorginho,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Chelsea,33’,1:0,Kai Havertz,Reece James,goal
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,61’,1:0,Jay Rodriguez,Chris Wood,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,68’,1:0,Ashley Westwood,,yellow_card
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,70’,1:0,Matěj Vydra,Jóhann Berg Guðmundsson,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Chelsea,73’,1:0,Ruben Loftus-Cheek,Ross Barkley,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Chelsea,76’,1:0,Reece James,,yellow_card
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,76’,1:0,Maxwel Cornet,,yellow_card
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,79’,1:1,Matěj Vydra,Jay Rodriguez,goal
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,84’,1:1,James Tarkowski,,yellow_card
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Chelsea,85’,1:1,Christian Pulisic,Callum Hudson-Odoi,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Chelsea,85’,1:1,Mason Mount,N'Golo Kanté,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,88’,1:1,Erik Pieters,Maxwel Cornet,substitute_in
+ENG-Premier League,2122,2021-11-06 Chelsea-Burnley,Burnley,90’,1:1,Josh Brownhill,,yellow_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,11’,0:0,Ismaila Sarr,David de Gea,penalty_miss
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,19’,0:0,Scott McTominay,,yellow_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,28’,1:0,Joshua King,Emmanuel Dennis,goal
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,44’,2:0,Ismaila Sarr,Kiko Femenía,goal
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,45’,2:0,Imran Louza,,yellow_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,46’,2:0,Donny van de Beek,Scott McTominay,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,46’,2:0,Anthony Martial,Marcus Rashford,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,50’,2:1,Donny van de Beek,Cristiano Ronaldo,goal
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,62’,2:1,Harry Maguire,,yellow_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,64’,2:1,William Troost-Ekong,Nicolas Nkoulou,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,68’,2:1,Cucho,Ismaila Sarr,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,69’,2:1,Harry Maguire,,yellow_red_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,77’,2:1,João Pedro,Imran Louza,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,85’,2:1,Diogo Dalot,Luke Shaw,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Manchester United,90+1’,2:1,Jesse Lingard,Jadon Sancho,substitute_in
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,90+2’,3:1,João Pedro,Emmanuel Dennis,goal
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,90+6’,4:1,Emmanuel Dennis,,yellow_card
+ENG-Premier League,2122,2021-11-20 Watford-Manchester Utd,Watford,90+6’,4:1,Emmanuel Dennis,Ben Foster,goal
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,13’,1:0,Ashley Young,Lucas Digne,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,25’,1:0,Conor Coady,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,36’,2:0,Ashley Young,,own_goal
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,38’,2:0,John McGinn,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,66’,2:0,Jonny Castro,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,68’,2:0,Hwang Hee-chan,Daniel Podence,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,72’,2:0,Douglas Luiz,Morgan Sanson,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,74’,2:0,Emi Buendía,Philippe Coutinho,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,75’,2:0,Pedro Neto,Francisco Trincão,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,7’,1:0,Jonny Castro,,goal
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,86’,2:1,Ollie Watkins,,penalty_goal
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,90+1’,2:1,Chiquinho,Fábio Silva,substitute_in
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,90+2’,2:1,Fernando Marçal,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Wolverhampton Wanderers,90+3’,2:1,Pedro Neto,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,90+3’,2:1,Ashley Young,,yellow_card
+ENG-Premier League,2122,2022-04-02 Wolves-Aston Villa,Aston Villa,90+4’,2:1,Ezri Konsa,,yellow_card
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,2’,1:0,Danny Welbeck,,goal
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Southampton,37’,1:0,Romain Perraud,Valentino Livramento,substitute_in
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,44’,2:0,Mohammed Salisu,,own_goal
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,45+3’,2:0,Marc Cucurella,,yellow_card
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Southampton,45+4’,2:1,James Ward-Prowse,,goal
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Southampton,54’,2:2,James Ward-Prowse,Oriol Romeu,goal
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,61’,2:2,Pascal Groß,Adam Webster,substitute_in
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,61’,2:2,Solly March,Enock Mwepu,substitute_in
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Southampton,66’,2:2,Stuart Armstrong,Nathan Tella,substitute_in
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Southampton,79’,2:2,Armando Broja,Shane Long,substitute_in
+ENG-Premier League,2122,2022-04-24 Brighton-Southampton,Brighton & Hove Albion,85’,2:2,Jeremy Sarmiento,Neal Maupay,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,30’,1:0,Fred,,own_goal
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,31’,1:0,Bruno Fernandes,,yellow_card
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,46’,1:0,Jan Bednarek,Theo Walcott,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,51’,1:0,Moussa Djenepo,,yellow_card
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,55’,1:1,Mason Greenwood,Paul Pogba,goal
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,59’,1:1,Jadon Sancho,Anthony Martial,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,70’,1:1,Ibrahima Diallo,Moussa Djenepo,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,76’,1:1,Harry Maguire,,yellow_card
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,76’,1:1,Scott McTominay,Fred,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,79’,1:1,Kyle Walker-Peters,Romain Perraud,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,86’,1:1,Jesse Lingard,Nemanja Matić,substitute_in
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Manchester United,90+1’,1:1,Paul Pogba,,yellow_card
+ENG-Premier League,2122,2021-08-22 Southampton-Manchester Utd,Southampton,90+2’,1:1,Jack Stephens,,yellow_card
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Chelsea,17’,0:1,Christian Pulisic,,yellow_card
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,1’,0:0,Sadio Mané,,yellow_card
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,26’,0:2,Mohamed Salah,Trent Alexander-Arnold,goal
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Chelsea,42’,1:2,Mateo Kovačić,,goal
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Chelsea,45+1’,2:2,Christian Pulisic,N'Golo Kanté,goal
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,69’,2:2,Alex Oxlade-Chamberlain,Diogo Jota,substitute_in
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,69’,2:2,Naby Keïta,James Milner,substitute_in
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Chelsea,70’,2:2,Jorginho,Trevoh Chalobah,substitute_in
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Chelsea,79’,2:2,Callum Hudson-Odoi,Kai Havertz,substitute_in
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,83’,2:2,Ibrahima Konaté,,yellow_card
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,90’,2:2,Curtis Jones,Sadio Mané,substitute_in
+ENG-Premier League,2122,2022-01-02 Chelsea-Liverpool,Liverpool,9’,0:1,Sadio Mané,,goal
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,46’,0:0,Rúben Dias,Nathan Aké,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,53’,1:0,Riyad Mahrez,,goal
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,61’,1:0,Adam Webster,Tariq Lamptey,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,65’,2:0,Phil Foden,Riyad Mahrez,goal
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,73’,2:0,Jeremy Sarmiento,Moisés Caicedo,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,77’,2:0,Oleksandr Zinchenko,John Stones,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,77’,2:0,Neal Maupay,Danny Welbeck,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,79’,2:0,Alexis Mac Allister,,yellow_card
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,81’,2:0,Adam Webster,,yellow_card
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,82’,3:0,Bernardo Silva,Kevin De Bruyne,goal
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Manchester City,83’,3:0,Gabriel Jesus,Kevin De Bruyne,substitute_in
+ENG-Premier League,2122,2022-04-20 Manchester City-Brighton,Brighton & Hove Albion,89’,3:0,Lewis Dunk,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,34’,0:1,Declan Rice,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,46’,0:1,Manuel Lanzini,Pablo Fornals,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,46’,0:1,Michail Antonio,Nikola Vlašić,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,49’,1:1,Michail Antonio,Craig Dawson,goal
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,60’,1:1,Craig Dawson,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,61’,1:2,James Ward-Prowse,,penalty_goal
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,64’,2:2,Saïd Benrahma,Jarrod Bowen,goal
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,66’,2:2,Armando Broja,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,68’,2:2,Jarrod Bowen,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,70’,2:3,Jan Bednarek,James Ward-Prowse,goal
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,West Ham United,81’,2:3,Andriy Yarmolenko,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,81’,2:3,Che Adams,Armando Broja,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,85’,2:3,Jan Bednarek,,yellow_card
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,89’,2:3,Stuart Armstrong,Theo Walcott,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,8’,0:1,Mohamed Elyounoussi,Kyle Walker-Peters,goal
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,90+3’,2:3,Ibrahima Diallo,Oriol Romeu,substitute_in
+ENG-Premier League,2122,2021-12-26 West Ham United-Southampton,Southampton,90+6’,2:3,Kyle Walker-Peters,,yellow_card
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,West Ham United,60’,0:0,Manuel Lanzini,Saïd Benrahma,substitute_in
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,West Ham United,68’,1:0,Jarrod Bowen,Manuel Lanzini,goal
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,Watford,77’,1:0,João Pedro,Tom Cleverley,substitute_in
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,Watford,77’,1:0,Imran Louza,Edo Kayembe,substitute_in
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,Watford,78’,1:0,Jeremy Ngakia,Kiko Femenía,substitute_in
+ENG-Premier League,2122,2022-02-08 West Ham United-Watford,West Ham United,83’,1:0,Vladimír Coufal,,yellow_card
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Wolverhampton Wanderers,26’,0:0,Leander Dendoncker,,yellow_card
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,62’,0:0,Fabinho,,yellow_card
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,66’,0:0,Andrew Robertson,,yellow_card
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,68’,0:0,Divock Origi,Jordan Henderson,substitute_in
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Wolverhampton Wanderers,79’,0:0,João Moutinho,Hwang Hee-chan,substitute_in
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,82’,0:0,Alex Oxlade-Chamberlain,Diogo Jota,substitute_in
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Wolverhampton Wanderers,88’,0:0,Raúl Jiménez,,yellow_card
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Wolverhampton Wanderers,89’,0:0,Francisco Trincão,Adama Traoré,substitute_in
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Wolverhampton Wanderers,90+2’,0:0,Ki-Jana Hoever,Rayan Aït-Nouri,substitute_in
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,90+4’,0:1,Divock Origi,Mohamed Salah,goal
+ENG-Premier League,2122,2021-12-04 Wolves-Liverpool,Liverpool,90+6’,0:1,James Milner,Mohamed Salah,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,28’,0:1,Leandro Trossard,Enock Mwepu,goal
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,35’,0:1,Yves Bissouma,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,39’,0:1,Martin Ødegaard,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,40’,0:1,Pascal Groß,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,50’,0:1,Bukayo Saka,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,52’,0:1,Moisés Caicedo,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,62’,0:1,Eddie Nketiah,Emile Smith Rowe,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,66’,0:2,Enock Mwepu,Moisés Caicedo,goal
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,74’,0:2,Nicolas Pépé,Gabriel Martinelli,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,74’,0:2,Adam Lallana,Yves Bissouma,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,77’,0:2,Tariq Lamptey,Enock Mwepu,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,82’,0:2,Albert Sambi Lokonga,,yellow_card
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,85’,0:2,Adam Webster,Leandro Trossard,substitute_in
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Arsenal,89’,1:2,Martin Ødegaard,Granit Xhaka,goal
+ENG-Premier League,2122,2022-04-09 Arsenal-Brighton,Brighton & Hove Albion,90+1’,1:2,Robert Sánchez,,yellow_card

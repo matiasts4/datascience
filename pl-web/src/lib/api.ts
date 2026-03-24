@@ -101,20 +101,65 @@ export const mapAPIMatchToMockMatch = (m: APIMatch) => {
   const away = Object.values(teamsData).find(t => t.name === m.awayTeam) || 
     { id: m.awayTeam, name: m.awayTeam, shortName: m.awayTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
 
+  // Derive real probabilities from actual result
+  const isHomeWin = m.homeGoals > m.awayGoals;
+  const isAwayWin = m.awayGoals > m.homeGoals;
+  const isDraw    = m.homeGoals === m.awayGoals;
+  const prediction = {
+    homeWin: isHomeWin ? 1.0 : 0.0,
+    draw:    isDraw    ? 1.0 : 0.0,
+    awayWin: isAwayWin ? 1.0 : 0.0,
+  };
+
+  const totalGoals = m.homeGoals + m.awayGoals;
+  const btts = m.homeGoals > 0 && m.awayGoals > 0;
+
+  // Build markets with correct category keys + real outcomes
+  const markets: any[] = [
+    {
+      category: "match-odds",
+      name: "Ganador del Partido",
+      prediction: isHomeWin
+        ? `${m.homeTeam} ganó`
+        : isAwayWin ? `${m.awayTeam} ganó` : "Empate",
+      odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0,
+      result: "pending" as any,
+    },
+    {
+      category: "goals",
+      name: `Total de Goles: ${totalGoals}`,
+      prediction: totalGoals > 2.5 ? "Más de 2.5 ✓" : "Menos de 2.5 ✓",
+      odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0,
+    },
+    {
+      category: "goals",
+      name: "Ambos Marcan (BTTS)",
+      prediction: btts ? "Sí ✓" : "No ✓",
+      odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0,
+    },
+  ];
+
+  if (m.totalCards > 0) {
+    markets.push({
+      category: "cards-corners",
+      name: "Total Tarjetas",
+      prediction: `${m.totalCards} tarjeta${m.totalCards !== 1 ? "s" : ""} en el partido`,
+      odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0,
+    });
+  }
+
   return {
     id: m.id,
     homeTeam: home as any,
     awayTeam: away as any,
     date: m.date,
-    time: "FT", // Past matches are Full Time
+    time: "FT",
     stadium: "Premier League",
     refereeId: m.referee,
-    prediction: { homeWin: 0.45, draw: 0.25, awayWin: 0.30 }, // Dummy since it's past
-    markets: [
-      { category: "Match Result", name: "Score", prediction: `${m.homeGoals} - ${m.awayGoals}`, odds: 1.0, fairOdds: 1.0, confidence: 100, edge: 0 }
-    ] as any[],
+    prediction,
+    markets,
     status: "completed" as any,
-    score: { home: m.homeGoals, away: m.awayGoals }
+    score: { home: m.homeGoals, away: m.awayGoals },
   };
 };
 
@@ -122,7 +167,7 @@ export const useAPIStats = () => {
   return useQuery({
     queryKey: ["stats"],
     queryFn: fetchStats,
-    staleTime: 60000,
+    staleTime: 10 * 60 * 1000, // 10 minutes — historical stats rarely change
   });
 };
 
@@ -174,7 +219,10 @@ export const useAPIUpcomingMatches = () => {
   return useQuery({
     queryKey: ["matches_upcoming"],
     queryFn: fetchUpcomingMatches,
-    staleTime: 300000, // 5 mins cache for scraped data
+    staleTime: 30 * 60 * 1000,   // 30 minutes — scraper data is stable
+    gcTime: 60 * 60 * 1000,      // keep in cache for 60 minutes after unmount
+    refetchOnWindowFocus: false,  // don't re-trigger scraper on tab switch
+    retry: 1,
   });
 };
 
