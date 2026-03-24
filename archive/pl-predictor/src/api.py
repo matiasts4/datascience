@@ -21,10 +21,10 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 # Paths
 # ─────────────────────────────────────────────────────────────────────────────
-BASE_DIR      = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR      = r"/home/matias/datascience/archive/pl-predictor"
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
-FRONTEND_DIR   = r"c:\Users\PC\DataScience\pl-web\dist"
+FRONTEND_DIR   = r"/home/matias/datascience/pl-web/dist"
 
 # No static_folder here — we serve the SPA manually via the catch-all route
 app = Flask(__name__)
@@ -269,6 +269,104 @@ def upcoming_matches():
     return jsonify(results)
 
 
+@app.route('/api/seasons', methods=['GET'])
+def get_seasons():
+    """Returns per-season stats computed from real CSV data."""
+    df = get_df()
+    if 'season' not in df.columns:
+        return jsonify([])
+
+    result = []
+    for szn in sorted(df['season'].dropna().unique()):
+        s = df[df['season'] == szn].copy()
+        s = s[s['home_goals'].notna()]
+        if s.empty:
+            continue
+
+        total = len(s)
+        home_wins = int((s['result_1x2'] == 2).sum())
+        draws     = int((s['result_1x2'] == 1).sum())
+        away_wins = int((s['result_1x2'] == 0).sum())
+
+        # Group by month for monthly breakdown
+        s['month_key'] = s['date'].dt.to_period('M')
+        monthly = []
+        for period, grp in sorted(s.groupby('month_key'), key=lambda x: x[0]):
+            monthly.append({
+                'month':   period.strftime('%b %y'),
+                'matches': len(grp),
+                'homeWins': int((grp['result_1x2'] == 2).sum()),
+                'draws':    int((grp['result_1x2'] == 1).sum()),
+                'awayWins': int((grp['result_1x2'] == 0).sum()),
+                'avgGoals': round(float(grp['total_goals'].mean()), 2) if 'total_goals' in grp else 0,
+            })
+
+        # Season label e.g. 1718 -> "2017/18"
+        szn_int = int(szn)
+        start_y = 2000 + (szn_int // 100)
+        end_y   = 2000 + (szn_int % 100)
+        label = f"{start_y}/{str(end_y)[-2:]}"
+
+        result.append({
+            'season':    szn_int,
+            'label':     label,
+            'matches':   total,
+            'homeWins':  home_wins,
+            'draws':     draws,
+            'awayWins':  away_wins,
+            'homeWinPct': round(home_wins / total * 100, 1) if total else 0,
+            'drawPct':    round(draws / total * 100, 1) if total else 0,
+            'awayWinPct': round(away_wins / total * 100, 1) if total else 0,
+            'avgGoals':  round(float(s['total_goals'].mean()), 2) if 'total_goals' in s.columns else 0,
+            'teams':     len(set(s['home_team'].unique().tolist() + s['away_team'].unique().tolist())),
+            'monthly':   monthly,
+        })
+
+    result.sort(key=lambda x: x['season'], reverse=True)
+    return jsonify(result)
+
+
+@app.route('/api/history', methods=['GET'])
+def get_history():
+    """Returns last N completed matches for the history/log view."""
+    n = request.args.get('n', 50, type=int)
+    season = request.args.get('season', None)
+    df = get_df()
+    completed = df[df['home_goals'].notna()].copy()
+
+    if season and season != 'all' and 'season' in completed.columns:
+        try:
+            completed = completed[completed['season'] == int(season)]
+        except Exception:
+            pass
+
+    rows = completed.sort_values('date').tail(n)
+    result = []
+    for _, row in rows.iterrows():
+        hg = int(row['home_goals'])
+        ag = int(row['away_goals'])
+        if hg > ag:
+            outcome = 'home_win'
+        elif hg < ag:
+            outcome = 'away_win'
+        else:
+            outcome = 'draw'
+        result.append({
+            'date':      row['date'].strftime('%Y-%m-%d'),
+            'homeTeam':  row['home_team'],
+            'awayTeam':  row['away_team'],
+            'homeGoals': hg,
+            'awayGoals': ag,
+            'outcome':   outcome,
+            'referee':   str(row.get('referee', '')) if pd.notna(row.get('referee')) else '',
+            'totalCards': int(row.get('total_cards', 0)) if pd.notna(row.get('total_cards')) else 0,
+            'season':    int(row['season']) if 'season' in row and pd.notna(row.get('season')) else None,
+        })
+    result.reverse()  # newest first
+    return jsonify(result)
+
+
+
 @app.route('/api/performance', methods=['GET'])
 def get_performance():
     """Financial Backtesting endpoint returning ROI evaluation on the last 60 matches."""
@@ -354,6 +452,8 @@ def predict():
         'away_elo':              round(elo_map.get(away, 1500), 1),
         'h_missing_key_player':  h_miss,
         'a_missing_key_player':  a_miss,
+        'home_rest':             7,
+        'away_rest':             7,
         'h_l5_pts':              h_form.get('pts', 0),
         'h_l5_sh':               h_form.get('sh', 0),
         'h_l5_sot':              h_form.get('sot', 0),

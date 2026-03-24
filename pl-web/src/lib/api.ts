@@ -319,3 +319,59 @@ export const fetchSimulation = async (params: APISimulateParams): Promise<APISim
   if (!res.ok) throw new Error("Error fetching simulation data");
   return res.json();
 };
+
+export interface APISeasonMonthly {
+  month: string;
+  matches: number;
+  homeWins: number;
+  draws: number;
+  awayWins: number;
+  avgGoals: number;
+}
+
+export interface APISeasonData {
+  season: number;
+  label: string;
+  matches: number;
+  homeWins: number;
+  draws: number;
+  awayWins: number;
+  homeWinPct: number;
+  drawPct: number;
+  awayWinPct: number;
+  avgGoals: number;
+  teams: number;
+  monthly: APISeasonMonthly[];
+}
+
+export const fetchSeasons = async (): Promise<APISeasonData[]> => {
+  const res = await fetch("/api/seasons");
+  if (!res.ok) throw new Error("Error fetching seasons");
+  return res.json();
+};
+
+export const useAPISeasons = () =>
+  useQuery({ queryKey: ["seasons"], queryFn: fetchSeasons, staleTime: 120000 });
+
+export interface APIHistoryMatch {
+  date: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeGoals: number;
+  awayGoals: number;
+  outcome: "home_win" | "away_win" | "draw";
+  referee: string;
+  totalCards: number;
+  season: number | null;
+}
+
+export const fetchHistoryMatches = async (n: number = 50, season?: number | null): Promise<APIHistoryMatch[]> => {
+  const url = season ? `/api/history?n=${n}&season=${season}` : `/api/history?n=${n}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Error fetching history");
+  return res.json();
+};
+
+export const useAPIHistoryMatches = (n: number = 50, season?: number | null) =>
+  useQuery({ queryKey: ["history", n, season ?? "all"], queryFn: () => fetchHistoryMatches(n, season), staleTime: 60000 });
+

@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 # Config
 # ─────────────────────────────────────────────────────────────────────────────
-BASE_DIR      = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR      = r"/home/matias/datascience/archive/pl-predictor"
 FEATURES_PATH = os.path.join(BASE_DIR, "data", "historical", "all_match_features_v2.csv")
 FBREF_URL     = "https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures"
 CONFIDENCE_THRESHOLD = 0.70   # Only show bets with >= 70% confidence
@@ -76,8 +76,8 @@ def fetch_upcoming_fixtures():
         print("  ⚠ No upcoming fixtures found (or all played). Falling back to manual.")
         return manual_fixture_input()
 
-    # Keep next 7 days
-    upcoming = upcoming[upcoming['date_parsed'] <= today + timedelta(days=7)]
+    # Keep next 30 days
+    upcoming = upcoming[upcoming['date_parsed'] <= today + timedelta(days=30)]
     result = upcoming[['date_parsed', home_col, away_col]].rename(
         columns={'date_parsed': 'date', home_col: 'home_team', away_col: 'away_team'}).reset_index(drop=True)
 

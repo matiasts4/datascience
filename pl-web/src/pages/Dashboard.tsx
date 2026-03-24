@@ -1,5 +1,5 @@
-import { TrendingUp, Target, DollarSign, Zap, Flame, Loader2 } from "lucide-react";
-import { hotPicks, teamsData, botStats } from "@/data/mockData";
+import { TrendingUp, Target, Activity, Flame, Loader2, BarChart3, Zap } from "lucide-react";
+import { hotPicks } from "@/data/mockData";
 import { StatCard } from "@/components/StatCard";
 import { MatchCard } from "@/components/MatchCard";
 import { ConfidenceBadge } from "@/components/ConfidenceBadge";
@@ -16,28 +16,45 @@ const Dashboard = () => {
       <div className="animate-fade-in">
         <h1 className="text-2xl font-bold text-foreground mb-1 tracking-tight">Panel de Control</h1>
         <p className="text-sm text-muted-foreground mb-6">Insights de apuestas de la Premier League con IA</p>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          <StatCard 
-            label="TASA DE ACIERTO" 
-            value={`${botStats.winRate}%`} 
-            change="+2.1% esta s." icon={Target} positive 
-          />
-          <StatCard 
-            label="ROI" 
-            value={`${botStats.roi}%`} 
-            change="+1.4%" icon={TrendingUp} positive 
-          />
-          <StatCard 
-            label="BENEFICIO TOTAL" 
-            value={`£${botStats.totalProfit}`} 
-            change="+£73 hoy" icon={DollarSign} positive 
-          />
-          <StatCard 
-            label="RACHA GANADORA" 
-            value={botStats.streak.toString()} 
-            icon={Zap} 
-          />
-        </div>
+        {statsLoading ? (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="glass-card p-4 h-24 flex items-center justify-center">
+                <Loader2 className="h-5 w-5 animate-spin text-primary opacity-50" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <StatCard
+              label="TASA DE ACIERTO"
+              value={stats ? `${stats.accuracy_pct.toFixed(1)}%` : "—"}
+              change="Modelo ML real"
+              icon={Target}
+              positive
+            />
+            <StatCard
+              label="MERCADOS ACTIVOS"
+              value={stats ? stats.markets_tracked.toString() : "—"}
+              change="Mercados evaluados"
+              icon={Zap}
+            />
+            <StatCard
+              label="PARTIDOS TOTALES"
+              value={stats ? stats.totalMatches.toLocaleString() : "—"}
+              change="En la base histórica"
+              icon={Activity}
+              positive
+            />
+            <StatCard
+              label="TEMPORADAS"
+              value={stats ? stats.seasons.toString() : "—"}
+              change="Temporadas de la PL"
+              icon={TrendingUp}
+              positive
+            />
+          </div>
+        )}
       </div>
 
       {/* Hot Picks */}
@@ -70,18 +87,32 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Recent Matches */}
+      {/* Upcoming Matches */}
       <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-        <h2 className="text-lg font-semibold text-foreground mb-4 tracking-tight">Próximos Partidos</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <BarChart3 className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-semibold text-foreground tracking-tight">Próximos Partidos</h2>
+          {matches && (
+            <span className="text-xs text-muted-foreground ml-auto">
+              {matches.length} partido{matches.length !== 1 ? "s" : ""} encontrado{matches.length !== 1 ? "s" : ""}
+            </span>
+          )}
+        </div>
         {matchesLoading ? (
           <div className="flex items-center justify-center p-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
-        ) : (
+        ) : matches && matches.length > 0 ? (
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {matches?.slice(0, 9).map((m) => (
+            {matches.slice(0, 9).map((m) => (
               <MatchCard key={m.id} match={mapAPIUpcomingToMockMatch(m)} />
             ))}
+          </div>
+        ) : (
+          <div className="glass-card p-10 flex flex-col items-center justify-center text-center text-muted-foreground gap-2">
+            <BarChart3 className="h-10 w-10 opacity-20 mb-1" />
+            <p className="text-sm font-medium">No hay partidos próximos disponibles</p>
+            <p className="text-xs opacity-60">El scraper no encontró fixtures en los próximos 30 días</p>
           </div>
         )}
       </div>

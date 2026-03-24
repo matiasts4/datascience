@@ -77,8 +77,8 @@ def fetch_upcoming_fixtures():
     else:
         upcoming = fixtures[fixtures['date_parsed'] >= today]
 
-    # Limit to next 7 days
-    upcoming = upcoming[upcoming['date_parsed'] <= today + timedelta(days=7)]
+    # Limit to next 30 days
+    upcoming = upcoming[upcoming['date_parsed'] <= today + timedelta(days=30)]
     result = upcoming[['date_parsed', home_col, away_col]].rename(
         columns={'date_parsed': 'date', home_col: 'home_team', away_col: 'away_team'}
     ).reset_index(drop=True)
@@ -118,6 +118,8 @@ def get_upcoming_predictions(df, selector, build_team_last5):
             'away_elo':              round(elo_map.get(away, 1500), 1),
             'h_missing_key_player':  0,
             'a_missing_key_player':  0,
+            'home_rest':             7,
+            'away_rest':             7,
             'h_l5_pts':              h_form.get('pts', 0),
             'h_l5_sh':               h_form.get('sh', 0),
             'h_l5_sot':              h_form.get('sot', 0),

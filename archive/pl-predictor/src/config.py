@@ -1,6 +1,6 @@
 import os
 
-BASE_DIR = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR = r"/home/matias/datascience/archive/pl-predictor"
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
 MODELS_DIR = os.path.join(BASE_DIR, "artifacts", "models")
