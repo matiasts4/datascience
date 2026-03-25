@@ -25,16 +25,18 @@ def _download_and_save_with_browser(
     """Download file at url to filepath using a real browser to bypass Cloudflare. Overwrites if filepath exists."""
     for i in range(5):
         try:
-            # Let undetected-chromedriver do the heavy lifting
-            driver = BrowserClient.get_page()
+            # Use the injected browser_client or the legacy global one
+            if hasattr(self, 'browser_client') and self.browser_client:
+                client = self.browser_client
+            else:
+                from scraper.browser_client import BrowserClient
+                # Fallback to a default client if none injected (for backward compatibility)
+                if not hasattr(self, '_default_client'):
+                    self._default_client = BrowserClient()
+                client = self._default_client
             
             logger.debug(f"Página con navegador: {url}")
-            driver.get(url)
-            
-            # Additional Cloudflare Challenge Check
-            BrowserClient._wait_for_cloudflare(timeout=120)
-                
-            time.sleep(3) # Wait for JS to render stats tables
+            payload = client.get_html(url)
             
             if var is not None:
                 if isinstance(var, str):
@@ -42,14 +44,12 @@ def _download_and_save_with_browser(
                 var_names = "|".join(var)
                 template_understat = rb"(%b)+[\s\t]*=[\s\t]*JSON\.parse\('(.*)'\)"
                 pattern_understat = template_understat % bytes(var_names, encoding="utf-8")
-                results = re.findall(pattern_understat, driver.page_source.encode('utf-8'))
+                results = re.findall(pattern_understat, payload)
                 data = {
                     key.decode("unicode_escape"): json.loads(value.decode("unicode_escape"))
                     for key, value in results
                 }
                 payload = json.dumps(data).encode("utf-8")
-            else:
-                payload = driver.page_source.encode("utf-8")
             
             if not self.no_store and filepath is not None:
                 # Create parent dirs if they don't exist
@@ -91,12 +91,16 @@ def _patched_parse_table(html_table: html.HtmlElement) -> pd.DataFrame:
         if parent is not None:
             parent.remove(elem)
     # parse HTML to dataframe
-    (df_table,) = pd.read_html(html.tostring(html_table), flavor="lxml")
-    return df_table.convert_dtypes()
+    try:
+        (df_table,) = pd.read_html(html.tostring(html_table), flavor="lxml")
+        return df_table.convert_dtypes()
+    except Exception as e:
+        logger.warning(f"Error parsing table with pandas: {e}")
+        return pd.DataFrame()
 
 soccerdata.fbref._parse_table = _patched_parse_table
 
-def get_fbref(season: int):
+def get_fbref(season: int, browser_client: BrowserClient = None):
     # We don't necessarily need injecting these anymore since the real browser handles state,
     # but we can leave it mapping just in case sd tries to use it somewhere else.
     cookie = os.getenv("STATHEAD_COOKIE")
@@ -107,7 +111,10 @@ def get_fbref(season: int):
     if ua:
         soccerdata.fbref.FBREF_HEADERS["User-Agent"] = ua
 
-    return sd.FBref(
+    fbref_obj = sd.FBref(
         leagues=LEAGUE,
         seasons=[season]
     )
+    # Inject the specific browser client into the object
+    fbref_obj.browser_client = browser_client
+    return fbref_obj

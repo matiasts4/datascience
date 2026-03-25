@@ -33,16 +33,23 @@ def _get_html_with_browser(url: str) -> str:
         html = driver.page_source
         return html
     finally:
-        driver.quit()
-
+        try:
+            driver.quit()
+        except:
+            pass
 
 def fetch_upcoming_fixtures():
-    """Scrapes FBref for the next 7 days of Premier League fixtures using a real browser."""
+    """Scrapes FBref for the next 7-30 days of Premier League fixtures using a real browser."""
+    print(f"📡 Iniciando extracción de próximos partidos desde: {FBREF_URL}")
     try:
-        html = _get_html_with_browser(FBREF_URL)
-        all_tables = pd.read_html(html)
+        html_content = _get_html_with_browser(FBREF_URL)
+        if not html_content or len(html_content) < 1000:
+            print("  ❌ Error: El HTML obtenido es demasiado corto o está vacío. Posible bloqueo de Cloudflare.")
+            return pd.DataFrame()
+            
+        all_tables = pd.read_html(html_content)
     except Exception as e:
-        print(f"Warning: No se pudo obtener fixtures de FBref ({e}). Retornando vacío.")
+        print(f"  ❌ Error fatal durante el scraping: {e}")
         return pd.DataFrame()
 
     # Find the schedule table — it's the one that contains 'Home' and 'Away' columns
@@ -55,7 +62,9 @@ def fetch_upcoming_fixtures():
             break
 
     if fixtures is None:
-        print(f"Warning: No se encontró la tabla de fixtures. Tablas disponibles: {len(all_tables)}")
+        print(f"  ⚠️ Advertencia: No se encontró la tabla de fixtures con columnas 'Home'/'Away'. Tablas detectadas: {len(all_tables)}")
+        if len(all_tables) > 0:
+            print(f"  Columnas de la primera tabla: {list(all_tables[0].columns)}")
         return pd.DataFrame()
 
     score_col = next((c for c in fixtures.columns if 'Score' in c), None)
@@ -64,7 +73,7 @@ def fetch_upcoming_fixtures():
     date_col  = next((c for c in fixtures.columns if c == 'Date'), None)
 
     if not all([home_col, away_col, date_col]):
-        print(f"Warning: Columnas clave no encontradas. Disponibles: {list(fixtures.columns)}")
+        print(f"  ❌ Error: No se pudieron mapear las columnas necesarias (Home, Away, Date). Encontradas: {list(fixtures.columns)}")
         return pd.DataFrame()
 
     fixtures['date_parsed'] = pd.to_datetime(fixtures[date_col], errors='coerce')

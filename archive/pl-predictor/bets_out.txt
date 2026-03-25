@@ -1,0 +1,41 @@
+Loading Master Bet Selector...
+Loading recent matches for evaluation...
+
+==================================================
+🏆 MASTER BET PREDICTIONS FOR UPCOMING/RECENT MATCHES 🏆
+==================================================
+
+⚽ Match: Sheffield United vs Tottenham Hotspur (2024-05-19 00:00:00)
+  ⭐ BEST BET: Double Chance X2 (Away or Draw) -> 70.7% probability
+  Other top options:
+    - 1X2 (Match Winner): 56.2%
+    - Over 2.5 Goals: 54.6%
+    - BTTS (Both Teams To Score): 52.4%
+
+⚽ Match: Chelsea vs Bournemouth (2024-05-19 00:00:00)
+  ⭐ BEST BET: Double Chance 1X (Home or Draw) -> 80.4% probability
+  Other top options:
+    - 1X2 (Match Winner): 64.3%
+    - Over 2.5 Goals: 56.0%
+    - BTTS (Both Teams To Score): 54.2%
+
+⚽ Match: Arsenal vs Everton (2024-05-19 00:00:00)
+  ⭐ BEST BET: Double Chance 1X (Home or Draw) -> 80.4% probability
+  Other top options:
+    - 1X2 (Match Winner): 67.4%
+    - BTTS - No: 53.1%
+    - Over 2.5 Goals: 51.4%
+
+⚽ Match: Brighton vs Manchester Utd (2024-05-19 00:00:00)
+  ⭐ BEST BET: Double Chance X2 (Away or Draw) -> 74.9% probability
+  Other top options:
+    - BTTS (Both Teams To Score): 59.5%
+    - Double Chance 1X (Home or Draw): 55.1%
+    - Over 2.5 Goals: 52.0%
+
+⚽ Match: Burnley vs Nottingham Forest (2024-05-19 00:00:00)
+  ⭐ BEST BET: Double Chance 1X (Home or Draw) -> 66.7% probability
+  Other top options:
+    - Double Chance X2 (Away or Draw): 65.6%
+    - Over 2.5 Goals: 52.7%
+    - BTTS (Both Teams To Score): 52.3%

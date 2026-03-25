@@ -4,8 +4,6 @@ from pathlib import Path
 from datetime import datetime
 from loguru import logger
 
-CHECKPOINT_FILE = Path("checkpoint.json")
-
 # Estructura base del checkpoint
 DEFAULT_STATE = {
     "version": 1,
@@ -14,7 +12,9 @@ DEFAULT_STATE = {
 }
 
 class CheckpointManager:
-    def __init__(self):
+    def __init__(self, season=None):
+        self.season = season
+        self.filename = Path(f"checkpoint_{season}.json") if season else Path("checkpoint.json")
         self.state = self._load()
         self._stop_requested = False
         # Captura Ctrl+C para pausar limpiamente
@@ -25,17 +25,17 @@ class CheckpointManager:
         self._stop_requested = True
 
     def _load(self):
-        if CHECKPOINT_FILE.exists():
-            with open(CHECKPOINT_FILE) as f:
+        if self.filename.exists():
+            with open(self.filename) as f:
                 data = json.load(f)
-            logger.info(f"📂 Checkpoint cargado — último update: {data.get('last_updated')}")
+            logger.info(f"📂 Checkpoint cargado [{self.filename}] — último update: {data.get('last_updated')}")
             return data
-        logger.info("🆕 No hay checkpoint previo, iniciando desde cero")
+        logger.info(f"🆕 No hay checkpoint previo [{self.filename}], iniciando desde cero")
         return DEFAULT_STATE.copy()
 
     def save(self):
         self.state["last_updated"] = datetime.now().isoformat()
-        with open(CHECKPOINT_FILE, "w") as f:
+        with open(self.filename, "w") as f:
             json.dump(self.state, f, indent=2)
 
     def should_stop(self) -> bool:
