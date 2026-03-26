@@ -20,6 +20,7 @@ from pipeline import run_season
 
 # Ordered by priority (most work first, then stats-only)
 ORDERED_SEASONS = [
+    "2025",  # Current season
     "2122",  # 296 matches + all 6 stats
     "2024",  # 353 matches + all 6 stats
     "2022",  # 376 matches + all 6 stats

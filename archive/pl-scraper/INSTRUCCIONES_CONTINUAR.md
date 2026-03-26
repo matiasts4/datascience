@@ -8,20 +8,20 @@ Este documento describe el estado exacto en el que se detuvo el scraper y los pa
 
 Se avanzó significativamente. Las temporadas más pesadas ya descargaron todos sus datos partido a partido. Aquí está el progreso exacto:
 
-| Temporada | Alineaciones | Eventos | Tiros (Shots) | Stats Jugadores | Estado General |
-|-----------|--------------|---------|----------------|-----------------|----------------|
-| **2024** | 380/380 | 380/380 | 380/380 | 2 de 6 | ✅ Partidos Completos |
-| **21/22** | 373/380 | 380/380 | 380/380 | 0 de 6 | ✅ Partidos Completos |
-| **2023** | 380/380 | 380/380 | 380/380 | 2 de 6 | ✅ Partidos Completos |
-| **2022** | 380/380 | 380/380 | 380/380 | 2 de 6 | ✅ Partidos Completos |
-| **2020** | 380/380 | 380/380 | 380/380 | 2 de 6 | ✅ Partidos Completos |
-| **2019** | 380/380 | 380/380 | 380/380 | 2 de 6 | ✅ Partidos Completos |
-| **2018** | 380/380 | 380/380 | **66/380** | 1 de 6 | ⏳ **EN PROGRESO** (Faltan tiros) |
-| **2017** | 380/380 | 380/380 | **0/380** | 1 de 6 | ⏳ **PENDIENTE** (Faltan tiros) |
+| Temporada | Alineaciones | Eventos | Tiros (Shots) | Stats Jug. | Capacidad para MÁS datos (Advanced Stats) |
+|-----------|--------------|---------|----------------|------------|-----------------------------------------|
+| **2024** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Alta**: FBref tiene data extensa (Passing/Defense) actual |
+| **2023** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Alta**: FBref tiene data extensa (Passing/Defense) actual |
+| **2022** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Alta**: FBref tiene data extensa (Passing/Defense) actual |
+| **21/22** | 380/380 | 380/380 | 🚫 Inexistente | 0 de 6 | **Alta**: Faltan stats básicos pero FBref los provee |
+| **2020** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Media**: Empieza a haber registro Opta/StatsBomb |
+| **2019** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Media**: Empieza a haber registro Opta/StatsBomb |
+| **2018** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Baja**: Primer año con ciertas métricas faltantes |
+| **2017** | 380/380 | 380/380 | 🚫 Inexistente | 2 de 6 | **Baja**: FBref histórico tiene registros muy limitados |
 
-### ¿Qué falta para igualar todas las temporadas?
-1. **Tiros (Shots):** Solo restan descargar los datos de tiros de los partidos de la temporada **2018** (faltan ~314 partidos) y la **2017** (faltan 380 partidos).
-2. **Estadísticas Generales:** A casi todas las temporadas les faltan 4 o 6 categorías (Passing, Defense, Possession, Misc, etc.). Estas descargas son a nivel de temporada entera, no partido a partido, por lo que tardarán solo un par de minutos por temporada en completarse.
+### 🛠 Consideraciones sobre el Estado Real y Verificado:
+1. **Métricas Faltantes (`shot_events.csv`, 4 de 6 stats):** La tabla anterior (2025/2026) reportaba erróneamente que había descargas pendientes de tiros. En realidad FBref impidió/bloqueó el acceso a través de las APIs actuales de la librería, provocando descargas de tablas vacías. Todos los tiros han sido ignorados exitosamente para no colapsar / ensuciar el simulador.
+2. **Obtención de Más Datos:** Solo disponemos de los resúmenes genéricos de los jugadores y arqueros. Para las temporadas desde 2021 a 2024 es **altamente posible** mejorar el scrapeo extrayendo datos avanzados (Defensa, Posesión, Pases), ya que constan de registros óptimos por Opta; no obstante, las de 2017 y 2018 poseen muchas de éstas carentes.
 
 ---
 
