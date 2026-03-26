@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 # Paths
 # ─────────────────────────────────────────────────────────────────────────────
-BASE_DIR      = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
 FRONTEND_DIR   = os.path.join(BASE_DIR, "..", "pl-web", "dist")
@@ -440,6 +440,7 @@ def simulate():
     strategy = body.get('strategy', 'fixed')
     season = body.get('season', 'all')
     min_odds = float(body.get('minOdds', 1.0))
+    compare_model = body.get('compareModel', 'none')
     
     from src.backtester import run_interactive_simulation
     df = get_df()
@@ -451,7 +452,8 @@ def simulate():
         stake=stake,
         strategy=strategy,
         season=season,
-        min_odds=min_odds
+        min_odds=min_odds,
+        compare_model=compare_model
     )
     return jsonify(results)
 

@@ -1,0 +1,17 @@
+Match_ID,Date,Match,AI_Decision,AI_Market,AI_Pick,AI_Stake_CLP,Simulated_Odds,Result,Profit_CLP,Running_Bankroll_CLP,AI_Reasoning
+3,2026-01-01,Sunderland vs Manchester City,BET,1X2 (Match Winner),1,8000,1.25,Won,2000.0,102000.0,Liverpool in Anfield against Leeds is very safe
+4,2026-01-03,Aston Villa vs Nottingham Forest,BET,1X2 (Match Winner),2,12000,1.25,Won,3000.0,105000.0,City way superior to Sunderland
+6,2026-01-03,Brighton vs Burnley,BET,1X2 (Match Winner),2,10000,1.25,Lost,-10000.0,95000.0,Arsenal superior to Bournemouth
+10,2026-01-04,Tottenham Hotspur vs Sunderland,BET,1X2 (Match Winner),1,5000,1.65,Won,3250.0,98250.0,City over Chelsea at Etihad
+17,2026-01-07,Fulham vs Chelsea,BET,1X2 (Match Winner),1,5000,1.65,Won,3250.0,101500.0,City safe against Brighton
+21,2026-01-07,Brentford vs Sunderland,BET,1X2 (Match Winner),2,3000,1.65,Won,1950.0,103450.0,United better than Burnley
+24,2026-01-17,Chelsea vs Brentford,BET,BTTS (Both Teams To Score),1,3000,1.7,Lost,-3000.0,100450.0,Arsenal vs Liverpool will definitely have goals
+30,2026-01-17,Liverpool vs Burnley,BET,BTTS (Both Teams To Score),1,3000,1.7,Won,2100.0,102550.0,Manchester Derby usually has goals
+31,2026-01-18,Aston Villa vs Everton,BET,1X2 (Match Winner),1,12000,1.45,Won,5400.0,107950.0,"Liverpool vs Burnley at Anfield, easiest bet"
+42,2026-01-25,Brentford vs Nottingham Forest,BET,1X2 (Match Winner),1,7000,1.65,Won,4550.0,112500.0,Arsenal at home should beat United
+48,2026-01-31,Leeds United vs Arsenal,BET,1X2 (Match Winner),1,4000,1.25,Lost,-4000.0,108500.0,Liverpool at home against Newcastle
+49,2026-02-01,Tottenham Hotspur vs Manchester City,BET,1X2 (Match Winner),2,4000,1.25,Lost,-4000.0,104500.0,Arsenal superior to Leeds
+74,2026-02-18,Wolves vs Arsenal,BET,1X2 (Match Winner),2,4000,1.25,Won,1000.0,105500.0,Arsenal over Brentford
+84,2026-02-23,Everton vs Manchester Utd,BET,1X2 (Match Winner),2,4000,1.65,Won,2600.0,108100.0,Liverpool over Forest
+107,2026-03-14,Sunderland vs Brighton,BET,1X2 (Match Winner),1,10000,1.65,Lost,-10000.0,98100.0,Arsenal at home over Everton
+112,2026-03-15,Manchester Utd vs Aston Villa,BET,1X2 (Match Winner),1,6000,1.65,Lost,-6000.0,92100.0,Liverpool at home over Spurs

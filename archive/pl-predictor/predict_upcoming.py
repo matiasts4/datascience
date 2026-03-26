@@ -21,7 +21,7 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 # Config
 # ─────────────────────────────────────────────────────────────────────────────
-BASE_DIR      = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
 FEATURES_PATH = os.path.join(BASE_DIR, "data", "historical", "all_match_features_v2.csv")
 FBREF_URL     = "https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures"
 CONFIDENCE_THRESHOLD = 0.70   # Only show bets with >= 70% confidence

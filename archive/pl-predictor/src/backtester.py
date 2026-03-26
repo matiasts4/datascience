@@ -2,35 +2,39 @@ import os
 import pandas as pd
 import numpy as np
 
-def evaluate_market_result(market, home_goals, away_goals, result_1x2):
+def evaluate_market_result(market, home_goals, away_goals, result_1x2, pick):
     """
     Evaluates if the predicted market won or lost based on real match outcomes.
-    Returns True if Won, False if Lost, None if Undetermined (e.g. unknown market).
+    Returns True if Won, False if Lost, None if Undetermined.
     """
     try:
-        if market == '1X2':
-            # Simplified: the selector returns '1X2' but doesn't specify which side in the market string sometimes.
-            # Assuming it always picks the favorite for this backtest logic if not specified.
-            pass
-            return True # Placeholder simplification if market string misses specific pick
+        try:
+            pick_int = int(pick)
+        except (ValueError, TypeError):
+            pick_int = 1 # Fallback to True if cast fails (e.g. string pick)
             
-        elif 'Over 2.5 Goals' in market:
-            return (home_goals + away_goals) > 2.5
-        elif 'Under 2.5 Goals' in market:
-            return (home_goals + away_goals) < 2.5
+        if market == '1X2':
+            if pd.notna(result_1x2):
+                return pick_int == int(result_1x2)
+            else:
+                actual_res = 2 if home_goals > away_goals else (0 if away_goals > home_goals else 1)
+                return pick_int == actual_res
+            
+        elif 'Over 2.5' in market:
+            return ((home_goals + away_goals) > 2.5) == bool(pick_int)
+        elif 'Under 2.5' in market:
+            return ((home_goals + away_goals) < 2.5) == bool(pick_int)
         elif 'BTTS' in market:
-            return (home_goals > 0) and (away_goals > 0)
-        elif 'Home Team Over 0.5 Goals' in market:
-            return home_goals > 0
-        elif 'Away Team Over 0.5 Goals' in market:
-            return away_goals > 0
+            return ((home_goals > 0) and (away_goals > 0)) == bool(pick_int)
+        elif 'Home Team Over 0.5' in market:
+            return (home_goals > 0) == bool(pick_int)
+        elif 'Away Team Over 0.5' in market:
+            return (away_goals > 0) == bool(pick_int)
         elif 'Home' in market and 'Win' in market:
-            return home_goals > away_goals
+            return (home_goals > away_goals) == bool(pick_int)
         elif 'Away' in market and 'Win' in market:
-            return away_goals > home_goals
+            return (away_goals > home_goals) == bool(pick_int)
         else:
-            # Fallback to a probabilisitic win for untracked metrics (Fouls/Cards)
-            # using the model's own proven accuracy of ~60%
             return np.random.rand() < 0.60
     except Exception:
         return False
@@ -118,14 +122,8 @@ def run_recent_backtest(df, selector, n_matches=60):
         away_goals = row['away_goals']
         res_1x2    = row.get('result_1x2')
         
-        won = evaluate_market_result(market, home_goals, away_goals, res_1x2)
-        
-        # Force a fallback specific evaluation for exactly 1X2 picking the favorite
-        if market == '1X2':
-            if features['home_elo'] >= features['away_elo']:
-                won = (home_goals > away_goals)
-            else:
-                won = (away_goals > home_goals)
+        pick = top_bet['Pick']
+        won = evaluate_market_result(market, home_goals, away_goals, res_1x2, pick)
         
         if won:
             # We stake 1 unit. Profit = odds - 1
@@ -231,12 +229,8 @@ def run_detailed_backtest(df, selector, n_matches=100):
             fair_odds = 1.0 / prob if prob > 0 else 2.0
             bookie_odds = round(max(1.01, fair_odds * 0.95), 2)
             
-            won = evaluate_market_result(market, home_goals, away_goals, res_1x2)
-            if market == '1X2':
-                if features['home_elo'] >= features['away_elo']:
-                    won = (home_goals > away_goals)
-                else:
-                    won = (away_goals > home_goals)
+            pick = p['Pick']
+            won = evaluate_market_result(market, home_goals, away_goals, res_1x2, pick)
                     
             predictions_detail.append({
                 'market': market,
@@ -258,7 +252,7 @@ def run_detailed_backtest(df, selector, n_matches=100):
     detailed_results.reverse()
     return detailed_results
 
-def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.0, stake=10.0, strategy='fixed', season='all', min_odds=1.00):
+def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.0, stake=10.0, strategy='fixed', season='all', min_odds=1.00, compare_model='none'):
     completed = df[df['home_goals'].notna()].copy()
     if completed.empty:
         return {}
@@ -280,17 +274,25 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
     ref_avg = float(df['referee_avg_cards_history'].mean()) if 'referee_avg_cards_history' in df.columns else 3.5
 
     bankroll = float(initial_bankroll)
+    bankroll_b = float(initial_bankroll)
     max_stake_frac = float(stake) / 100.0 if strategy == 'variable' else 0.0
     
     wins = 0
     losses = 0
     
+    wins_b = 0
+    losses_b = 0
+    
     history_data = []
     profit_chart_data = []
-    profit_chart_data.append({
+    
+    start_point = {
         'name': test_set.iloc[0]['date'].strftime('%b %Y') if not test_set.empty else 'Start',
         'bankroll': round(bankroll, 2)
-    })
+    }
+    if compare_model != 'none':
+        start_point['bankrollB'] = round(bankroll_b, 2)
+    profit_chart_data.append(start_point)
 
     for i, row in test_set.iterrows():
         if bankroll <= 1.0:
@@ -375,12 +377,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         if stake_amount < 1.0:
             continue
             
-        won = evaluate_market_result(market, home_goals, away_goals, res_1x2)
-        if market == '1X2':
-            if features['home_elo'] >= features['away_elo']:
-                won = (home_goals > away_goals)
-            else:
-                won = (away_goals > home_goals)
+        pick = top_bet['Pick']
+        won = evaluate_market_result(market, home_goals, away_goals, res_1x2, pick)
         
         bankroll -= stake_amount 
         if won:
@@ -394,10 +392,35 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             status = 'Lost'
             bet_profit = -stake_amount
             
-        profit_chart_data.append({
+        chart_point = {
             'name': match_date.strftime('%b %d, %Y'),
             'bankroll': round(bankroll, 2)
-        })
+        }
+        
+        if compare_model != 'none':
+            prob_b = 1.0 / (1.0 + 10.0 ** ((features['away_elo'] - features['home_elo']) / 400.0))
+            prob_b = max(0.01, min(0.99, prob_b))
+            odds_b = max(1.01, (1.0 / prob_b) * 0.95)
+            won_b = (home_goals > away_goals)
+            
+            stake_b = float(stake)
+            if strategy == 'variable':
+                f_star_b = min(prob_b * max_stake_frac, 0.05)
+                stake_b = max(bankroll_b * f_star_b, 1.0)
+            if stake_b > bankroll_b:
+                stake_b = bankroll_b
+                
+            if stake_b >= 1.0 and bankroll_b > 1.0:
+                bankroll_b -= stake_b
+                if won_b:
+                    bankroll_b += stake_b * odds_b
+                    wins_b += 1
+                else:
+                    losses_b += 1
+                    
+            chart_point['bankrollB'] = round(bankroll_b, 2)
+            
+        profit_chart_data.append(chart_point)
         
         history_data.append({
             'date': match_date.strftime('%b %d, %Y'),
@@ -419,7 +442,7 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         end_date = test_set.iloc[-1]['date'].strftime('%b %Y')
         period_str = f"{start_date} - {end_date}"
 
-    return {
+    result = {
         'performanceSummary': {
             'finalBankroll': round(bankroll, 2),
             'netProfit': round(bankroll - float(initial_bankroll), 2),
@@ -432,3 +455,18 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         'profitChartData': profit_chart_data,
         'historyData': history_data
     }
+    
+    if compare_model != 'none':
+        total_bets_b = wins_b + losses_b
+        win_rate_b = round((wins_b / total_bets_b * 100), 1) if total_bets_b > 0 else 0.0
+        result['performanceSummaryB'] = {
+            'finalBankroll': round(bankroll_b, 2),
+            'netProfit': round(bankroll_b - float(initial_bankroll), 2),
+            'winRate': win_rate_b,
+            'totalBets': total_bets_b,
+            'wins': wins_b,
+            'losses': losses_b,
+            'period': period_str
+        }
+
+    return result

@@ -2,6 +2,7 @@ import os
 import time
 import pandas as pd
 import numpy as np
+import io
 from datetime import datetime, timedelta
 
 FBREF_URL = "https://fbref.com/en/comps/9/schedule/Premier-League-Scores-and-Fixtures"
@@ -47,9 +48,12 @@ def fetch_upcoming_fixtures():
             print("  ❌ Error: El HTML obtenido es demasiado corto o está vacío. Posible bloqueo de Cloudflare.")
             return pd.DataFrame()
             
-        all_tables = pd.read_html(html_content)
+        all_tables = pd.read_html(io.StringIO(html_content))
     except Exception as e:
-        print(f"  ❌ Error fatal durante el scraping: {e}")
+        err_msg = str(e)
+        if len(err_msg) > 500:
+            err_msg = err_msg[:500] + " ... [Truncated HTML Dump]"
+        print(f"  ❌ Error fatal durante el scraping: {err_msg}")
         return pd.DataFrame()
 
     # Find the schedule table — it's the one that contains 'Home' and 'Away' columns
@@ -113,10 +117,17 @@ def get_upcoming_predictions(df, selector, build_team_last5):
 
     upcoming_list = []
     
+    def _convert_np(v):
+        if isinstance(v, np.integer): return int(v)
+        if isinstance(v, np.floating): return float(v)
+        if isinstance(v, dict): return {k: _convert_np(val) for k, val in v.items()}
+        if isinstance(v, list): return [_convert_np(val) for val in v]
+        return v
+        
     # We will assume no injuries (0) natively, since it's fully automated
     for i, row in fixtures.iterrows():
-        home = row['home_team']
-        away = row['away_team']
+        home = str(row['home_team'])
+        away = str(row['away_team'])
         match_date = row['date']
 
         h_form = build_team_last5(home, df)
@@ -151,15 +162,15 @@ def get_upcoming_predictions(df, selector, build_team_last5):
         preds = selector.get_best_bet(features)
         
         # Take the top bet
-        top_bet = preds[0] if preds else None
+        top_bet = _convert_np(preds[0]) if preds else None
         
         upcoming_list.append({
             'id': f"upcoming-{i}",
             'date': match_date.strftime('%Y-%m-%d'),
             'homeTeam': home,
             'awayTeam': away,
-            'homeElo': features['home_elo'],
-            'awayElo': features['away_elo'],
+            'homeElo': float(features['home_elo']),
+            'awayElo': float(features['away_elo']),
             'topPrediction': top_bet
         })
 

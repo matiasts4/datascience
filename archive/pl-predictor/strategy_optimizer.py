@@ -9,6 +9,7 @@ from itertools import product
 from src.config import FEATURES_PATH
 from src.models.selector import MasterBetSelector
 from src.backtester import evaluate_market_result
+import os
 
 ### SETTINGS ###
 TARGET_MARKET     = 'Over 2.5 Goals'
@@ -109,27 +110,60 @@ def main():
     print(f'💳 Initial Bankroll: ${INITIAL_BANKROLL}')
     
     all_results = []
+    processed = set()
+    ckpt_path = 'strategy_optimization_results_checkpoint.csv'
+    
+    if os.path.exists(ckpt_path):
+        print(f'🔄 Loading checkpoint from {ckpt_path}...')
+        try:
+            ckpt_df = pd.read_csv(ckpt_path)
+            all_results = ckpt_df.to_dict('records')
+            for r in all_results:
+                val = r['stake'] if r['strategy'] == 'flat' else r['kelly_frac']
+                processed.add((r['conf'], r['strategy'], val, r['vig'], r['min_odds']))
+            print(f'✅ Loaded {len(processed)} previous results. Resuming...')
+        except Exception as e:
+            print(f'⚠️ Error loading checkpoint: {e}. Starting fresh.')
+            all_results = []
+            processed = set()
+
     total_runs = (len(CONF_THRESHOLDS) * len(STAKE_AMOUNTS) * len(VIG_LEVELS) * len(MIN_ODDS)) + \
                  (len(CONF_THRESHOLDS) * len(KELLY_FRACS) * len(VIG_LEVELS) * len(MIN_ODDS))
     
     print(f'\n🔁 Running {total_runs} simulations...\n')
     
-    run_idx = 0
+    run_idx = len(processed)
+    
     # Flat strategy grid
     for conf, stake, vig, min_odd in product(CONF_THRESHOLDS, STAKE_AMOUNTS, VIG_LEVELS, MIN_ODDS):
+        if (conf, 'flat', stake, vig, min_odd) in processed:
+            continue
+            
         run_idx += 1
         res = simulate(completed, selector, conf, stake, 'flat', 0.05, vig, min_odd)
         all_results.append(res)
+        
         if run_idx % 50 == 0:
-            print(f'  [{run_idx}/{total_runs}] Best profit so far: ${max(r["net_profit"] for r in all_results):.2f}')
-    
+            if len(all_results) > 0:
+                print(f'  [{run_idx}/{total_runs}] Best profit so far: ${max(r["net_profit"] for r in all_results):.2f}')
+                pd.DataFrame(all_results).to_csv(ckpt_path, index=False)
+            
     # Kelly strategy grid
     for conf, kelly_frac, vig, min_odd in product(CONF_THRESHOLDS, KELLY_FRACS, VIG_LEVELS, MIN_ODDS):
+        if (conf, 'kelly', kelly_frac, vig, min_odd) in processed:
+            continue
+            
         run_idx += 1
         res = simulate(completed, selector, conf, 20, 'kelly', kelly_frac, vig, min_odd)
         all_results.append(res)
+        
         if run_idx % 50 == 0:
-            print(f'  [{run_idx}/{total_runs}] Best profit so far: ${max(r["net_profit"] for r in all_results):.2f}')
+            if len(all_results) > 0:
+                print(f'  [{run_idx}/{total_runs}] Best profit so far: ${max(r["net_profit"] for r in all_results):.2f}')
+                pd.DataFrame(all_results).to_csv(ckpt_path, index=False)
+
+    if len(all_results) > 0:
+        pd.DataFrame(all_results).to_csv(ckpt_path, index=False)
     
     # Convert to DataFrame and sort by net profit
     results_df = pd.DataFrame(all_results)
@@ -168,7 +202,7 @@ def main():
     print(f"  Sharpe Ratio:      {best['sharpe']:.4f}")
     
     # Save full results CSV
-    out_path = r'c:\Users\PC\DataScience\archive\pl-predictor\strategy_optimization_results.csv'
+    out_path = 'strategy_optimization_results.csv'
     results_df.sort_values('net_profit', ascending=False).to_csv(out_path, index=False)
     print(f'\n📊 Full results saved to: {out_path}')
     
