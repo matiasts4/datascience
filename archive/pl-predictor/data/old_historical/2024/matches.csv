@@ -1,0 +1,381 @@
+league,season,game,week,day,date,time,home_team,score,away_team,attendance,venue,referee,match_report,notes,game_id
+ENG-Premier League,2425,2024-08-16 Manchester United-Fulham,1,Fri,2024-08-16,20:00,Manchester United,1–0,Fulham,,Old Trafford,Robert Jones,,,kaggle_1
+ENG-Premier League,2425,2024-08-17 Ipswich Town-Liverpool,1,Sat,2024-08-17,12:30,Ipswich Town,0–2,Liverpool,,Portman Road Stadium,Tim Robinson,,,kaggle_2
+ENG-Premier League,2425,2024-08-17 Newcastle United-Southampton,1,Sat,2024-08-17,15:00,Newcastle United,1–0,Southampton,,St James' Park,Craig Pawson,,,kaggle_3
+ENG-Premier League,2425,2024-08-17 Everton-Brighton,1,Sat,2024-08-17,15:00,Everton,0–3,Brighton,,Goodison Park,Simon Hooper,,,kaggle_4
+ENG-Premier League,2425,2024-08-17 Nottingham Forest-Bournemouth,1,Sat,2024-08-17,15:00,Nottingham Forest,1–1,Bournemouth,,The City Ground,Michael Oliver,,,kaggle_5
+ENG-Premier League,2425,2024-08-17 Arsenal-Wolverhampton Wanderers,1,Sat,2024-08-17,15:00,Arsenal,2–0,Wolverhampton Wanderers,,Emirates Stadium,Jarred Gillett,,,kaggle_6
+ENG-Premier League,2425,2024-08-17 West Ham-Aston Villa,1,Sat,2024-08-17,17:30,West Ham,1–2,Aston Villa,,London Stadium,Tony Harrington,,,kaggle_7
+ENG-Premier League,2425,2024-08-18 Brentford-Crystal Palace,1,Sun,2024-08-18,14:00,Brentford,2–1,Crystal Palace,,Gtech Community Stadium,Samuel Barrott,,,kaggle_8
+ENG-Premier League,2425,2024-08-18 Chelsea-Manchester City,1,Sun,2024-08-18,16:30,Chelsea,0–2,Manchester City,,Stamford Bridge,Anthony Taylor,,,kaggle_9
+ENG-Premier League,2425,2024-08-19 Leicester City-Tottenham,1,Mon,2024-08-19,20:00,Leicester City,1–1,Tottenham,,King Power Stadium,Chris Kavanagh,,,kaggle_10
+ENG-Premier League,2425,2024-08-24 Brighton-Manchester United,2,Sat,2024-08-24,12:30,Brighton,2–1,Manchester United,,The American Express Stadium,Craig Pawson,,,kaggle_11
+ENG-Premier League,2425,2024-08-24 Manchester City-Ipswich Town,2,Sat,2024-08-24,15:00,Manchester City,4–1,Ipswich Town,,Etihad Stadium,Samuel Allison,,,kaggle_12
+ENG-Premier League,2425,2024-08-24 Southampton-Nottingham Forest,2,Sat,2024-08-24,15:00,Southampton,0–1,Nottingham Forest,,St Mary's Stadium,Samuel Barrott,,,kaggle_13
+ENG-Premier League,2425,2024-08-24 Tottenham-Everton,2,Sat,2024-08-24,15:00,Tottenham,4–0,Everton,,Tottenham Hotspur Stadium,Anthony Taylor,,,kaggle_14
+ENG-Premier League,2425,2024-08-24 Fulham-Leicester City,2,Sat,2024-08-24,15:00,Fulham,2–1,Leicester City,,Craven Cottage,Darren Bond,,,kaggle_15
+ENG-Premier League,2425,2024-08-24 Crystal Palace-West Ham,2,Sat,2024-08-24,15:00,Crystal Palace,0–2,West Ham,,Selhurst Park,Robert Jones,,,kaggle_16
+ENG-Premier League,2425,2024-08-24 Aston Villa-Arsenal,2,Sat,2024-08-24,17:30,Aston Villa,0–2,Arsenal,,Villa Park,Michael Oliver,,,kaggle_17
+ENG-Premier League,2425,2024-08-25 Wolverhampton Wanderers-Chelsea,2,Sun,2024-08-25,14:00,Wolverhampton Wanderers,2–6,Chelsea,,Molineux Stadium,Darren England,,,kaggle_18
+ENG-Premier League,2425,2024-08-25 Bournemouth-Newcastle United,2,Sun,2024-08-25,14:00,Bournemouth,1–1,Newcastle United,,Vitality Stadium,David Coote,,,kaggle_19
+ENG-Premier League,2425,2024-08-25 Liverpool-Brentford,2,Sun,2024-08-25,16:30,Liverpool,2–0,Brentford,,Anfield,Stuart Attwell,,,kaggle_20
+ENG-Premier League,2425,2024-08-31 Arsenal-Brighton,3,Sat,2024-08-31,12:30,Arsenal,1–1,Brighton,,Emirates Stadium,Chris Kavanagh,,,kaggle_21
+ENG-Premier League,2425,2024-08-31 Ipswich Town-Fulham,3,Sat,2024-08-31,15:00,Ipswich Town,1–1,Fulham,,Portman Road Stadium,Lewis Smith,,,kaggle_22
+ENG-Premier League,2425,2024-08-31 Nottingham Forest-Wolverhampton Wanderers,3,Sat,2024-08-31,15:00,Nottingham Forest,1–1,Wolverhampton Wanderers,,The City Ground,Simon Hooper,,,kaggle_23
+ENG-Premier League,2425,2024-08-31 Brentford-Southampton,3,Sat,2024-08-31,15:00,Brentford,3–1,Southampton,,Gtech Community Stadium,Joshua Smith,,,kaggle_24
+ENG-Premier League,2425,2024-08-31 Leicester City-Aston Villa,3,Sat,2024-08-31,15:00,Leicester City,1–2,Aston Villa,,King Power Stadium,David Coote,,,kaggle_25
+ENG-Premier League,2425,2024-08-31 Everton-Bournemouth,3,Sat,2024-08-31,15:00,Everton,2–3,Bournemouth,,Goodison Park,Stuart Attwell,,,kaggle_26
+ENG-Premier League,2425,2024-08-31 West Ham-Manchester City,3,Sat,2024-08-31,17:30,West Ham,1–3,Manchester City,,London Stadium,Michael Oliver,,,kaggle_27
+ENG-Premier League,2425,2024-09-01 Newcastle United-Tottenham,3,Sun,2024-09-01,13:30,Newcastle United,2–1,Tottenham,,St James' Park,Robert Jones,,,kaggle_28
+ENG-Premier League,2425,2024-09-01 Chelsea-Crystal Palace,3,Sun,2024-09-01,13:30,Chelsea,1–1,Crystal Palace,,Stamford Bridge,Jarred Gillett,,,kaggle_29
+ENG-Premier League,2425,2024-09-01 Manchester United-Liverpool,3,Sun,2024-09-01,16:00,Manchester United,0–3,Liverpool,,Old Trafford,Anthony Taylor,,,kaggle_30
+ENG-Premier League,2425,2024-09-14 Southampton-Manchester United,4,Sat,2024-09-14,12:30,Southampton,0–3,Manchester United,,St Mary's Stadium,Stuart Attwell,,,kaggle_31
+ENG-Premier League,2425,2024-09-14 Manchester City-Brentford,4,Sat,2024-09-14,15:00,Manchester City,2–1,Brentford,,Etihad Stadium,Darren Bond,,,kaggle_32
+ENG-Premier League,2425,2024-09-14 Liverpool-Nottingham Forest,4,Sat,2024-09-14,15:00,Liverpool,0–1,Nottingham Forest,,Anfield,Michael Oliver,,,kaggle_33
+ENG-Premier League,2425,2024-09-14 Crystal Palace-Leicester City,4,Sat,2024-09-14,15:00,Crystal Palace,2–2,Leicester City,,Selhurst Park,Tony Harrington,,,kaggle_34
+ENG-Premier League,2425,2024-09-14 Fulham-West Ham,4,Sat,2024-09-14,15:00,Fulham,1–1,West Ham,,Craven Cottage,Tim Robinson,,,kaggle_35
+ENG-Premier League,2425,2024-09-14 Brighton-Ipswich Town,4,Sat,2024-09-14,15:00,Brighton,0–0,Ipswich Town,,The American Express Stadium,Samuel Barrott,,,kaggle_36
+ENG-Premier League,2425,2024-09-14 Aston Villa-Everton,4,Sat,2024-09-14,17:30,Aston Villa,3–2,Everton,,Villa Park,Craig Pawson,,,kaggle_37
+ENG-Premier League,2425,2024-09-14 Bournemouth-Chelsea,4,Sat,2024-09-14,20:00,Bournemouth,0–1,Chelsea,,Vitality Stadium,Anthony Taylor,,,kaggle_38
+ENG-Premier League,2425,2024-09-15 Tottenham-Arsenal,4,Sun,2024-09-15,14:00,Tottenham,0–1,Arsenal,,Tottenham Hotspur Stadium,Jarred Gillett,,,kaggle_39
+ENG-Premier League,2425,2024-09-15 Wolverhampton Wanderers-Newcastle United,4,Sun,2024-09-15,16:30,Wolverhampton Wanderers,1–2,Newcastle United,,Molineux Stadium,Chris Kavanagh,,,kaggle_40
+ENG-Premier League,2425,2024-09-21 West Ham-Chelsea,5,Sat,2024-09-21,12:30,West Ham,0–3,Chelsea,,London Stadium,Samuel Barrott,,,kaggle_41
+ENG-Premier League,2425,2024-09-21 Tottenham-Brentford,5,Sat,2024-09-21,15:00,Tottenham,3–1,Brentford,,Tottenham Hotspur Stadium,John Brooks,,,kaggle_42
+ENG-Premier League,2425,2024-09-21 Aston Villa-Wolverhampton Wanderers,5,Sat,2024-09-21,15:00,Aston Villa,3–1,Wolverhampton Wanderers,,Villa Park,Tim Robinson,,,kaggle_43
+ENG-Premier League,2425,2024-09-21 Fulham-Newcastle United,5,Sat,2024-09-21,15:00,Fulham,3–1,Newcastle United,,Craven Cottage,Peter Bankes,,,kaggle_44
+ENG-Premier League,2425,2024-09-21 Southampton-Ipswich Town,5,Sat,2024-09-21,15:00,Southampton,1–1,Ipswich Town,,St Mary's Stadium,Samuel Allison,,,kaggle_45
+ENG-Premier League,2425,2024-09-21 Leicester City-Everton,5,Sat,2024-09-21,15:00,Leicester City,1–1,Everton,,King Power Stadium,Darren England,,,kaggle_46
+ENG-Premier League,2425,2024-09-21 Liverpool-Bournemouth,5,Sat,2024-09-21,15:00,Liverpool,3–0,Bournemouth,,Anfield,Tony Harrington,,,kaggle_47
+ENG-Premier League,2425,2024-09-21 Crystal Palace-Manchester United,5,Sat,2024-09-21,17:30,Crystal Palace,0–0,Manchester United,,Selhurst Park,David Coote,,,kaggle_48
+ENG-Premier League,2425,2024-09-22 Brighton-Nottingham Forest,5,Sun,2024-09-22,14:00,Brighton,2–2,Nottingham Forest,,The American Express Stadium,Robert Jones,,,kaggle_49
+ENG-Premier League,2425,2024-09-22 Manchester City-Arsenal,5,Sun,2024-09-22,16:30,Manchester City,2–2,Arsenal,,Etihad Stadium,Michael Oliver,,,kaggle_50
+ENG-Premier League,2425,2024-09-28 Newcastle United-Manchester City,6,Sat,2024-09-28,12:30,Newcastle United,1–1,Manchester City,,St James' Park,Jarred Gillett,,,kaggle_51
+ENG-Premier League,2425,2024-09-28 Brentford-West Ham,6,Sat,2024-09-28,15:00,Brentford,1–1,West Ham,,Gtech Community Stadium,Simon Hooper,,,kaggle_52
+ENG-Premier League,2425,2024-09-28 Everton-Crystal Palace,6,Sat,2024-09-28,15:00,Everton,2–1,Crystal Palace,,Goodison Park,Andy Madley,,,kaggle_53
+ENG-Premier League,2425,2024-09-28 Arsenal-Leicester City,6,Sat,2024-09-28,15:00,Arsenal,4–2,Leicester City,,Emirates Stadium,Samuel Barrott,,,kaggle_54
+ENG-Premier League,2425,2024-09-28 Chelsea-Brighton,6,Sat,2024-09-28,15:00,Chelsea,4–2,Brighton,,Stamford Bridge,Peter Bankes,,,kaggle_55
+ENG-Premier League,2425,2024-09-28 Nottingham Forest-Fulham,6,Sat,2024-09-28,15:00,Nottingham Forest,0–1,Fulham,,The City Ground,Joshua Smith,,,kaggle_56
+ENG-Premier League,2425,2024-09-28 Wolverhampton Wanderers-Liverpool,6,Sat,2024-09-28,17:30,Wolverhampton Wanderers,1–2,Liverpool,,Molineux Stadium,Anthony Taylor,,,kaggle_57
+ENG-Premier League,2425,2024-09-29 Ipswich Town-Aston Villa,6,Sun,2024-09-29,14:00,Ipswich Town,2–2,Aston Villa,,Portman Road Stadium,Stuart Attwell,,,kaggle_58
+ENG-Premier League,2425,2024-09-29 Manchester United-Tottenham,6,Sun,2024-09-29,16:30,Manchester United,0–3,Tottenham,,Old Trafford,Chris Kavanagh,,,kaggle_59
+ENG-Premier League,2425,2024-09-30 Bournemouth-Southampton,6,Mon,2024-09-30,20:00,Bournemouth,3–1,Southampton,,Vitality Stadium,Michael Oliver,,,kaggle_60
+ENG-Premier League,2425,2024-10-05 Crystal Palace-Liverpool,7,Sat,2024-10-05,12:30,Crystal Palace,0–1,Liverpool,,Selhurst Park,Simon Hooper,,,kaggle_61
+ENG-Premier League,2425,2024-10-05 Brentford-Wolverhampton Wanderers,7,Sat,2024-10-05,15:00,Brentford,5–3,Wolverhampton Wanderers,,Gtech Community Stadium,Andy Madley,,,kaggle_62
+ENG-Premier League,2425,2024-10-05 Leicester City-Bournemouth,7,Sat,2024-10-05,15:00,Leicester City,1–0,Bournemouth,,King Power Stadium,Darren Bond,,,kaggle_63
+ENG-Premier League,2425,2024-10-05 Manchester City-Fulham,7,Sat,2024-10-05,15:00,Manchester City,3–2,Fulham,,Etihad Stadium,Peter Bankes,,,kaggle_64
+ENG-Premier League,2425,2024-10-05 West Ham-Ipswich Town,7,Sat,2024-10-05,15:00,West Ham,4–1,Ipswich Town,,London Stadium,Anthony Taylor,,,kaggle_65
+ENG-Premier League,2425,2024-10-05 Arsenal-Southampton,7,Sat,2024-10-05,15:00,Arsenal,3–1,Southampton,,Emirates Stadium,Tony Harrington,,,kaggle_66
+ENG-Premier League,2425,2024-10-05 Everton-Newcastle United,7,Sat,2024-10-05,17:30,Everton,0–0,Newcastle United,,Goodison Park,Craig Pawson,,,kaggle_67
+ENG-Premier League,2425,2024-10-06 Aston Villa-Manchester United,7,Sun,2024-10-06,14:00,Aston Villa,0–0,Manchester United,,Villa Park,Robert Jones,,,kaggle_68
+ENG-Premier League,2425,2024-10-06 Chelsea-Nottingham Forest,7,Sun,2024-10-06,14:00,Chelsea,1–1,Nottingham Forest,,Stamford Bridge,Chris Kavanagh,,,kaggle_69
+ENG-Premier League,2425,2024-10-06 Brighton-Tottenham,7,Sun,2024-10-06,16:30,Brighton,3–2,Tottenham,,The American Express Stadium,David Coote,,,kaggle_70
+ENG-Premier League,2425,2024-10-19 Tottenham-West Ham,8,Sat,2024-10-19,12:30,Tottenham,4–1,West Ham,,Tottenham Hotspur Stadium,Andy Madley,,,kaggle_71
+ENG-Premier League,2425,2024-10-19 Fulham-Aston Villa,8,Sat,2024-10-19,15:00,Fulham,1–3,Aston Villa,,Craven Cottage,Darren England,,,kaggle_72
+ENG-Premier League,2425,2024-10-19 Ipswich Town-Everton,8,Sat,2024-10-19,15:00,Ipswich Town,0–2,Everton,,Portman Road Stadium,Michael Oliver,,,kaggle_73
+ENG-Premier League,2425,2024-10-19 Southampton-Leicester City,8,Sat,2024-10-19,15:00,Southampton,2–3,Leicester City,,St Mary's Stadium,Anthony Taylor,,,kaggle_74
+ENG-Premier League,2425,2024-10-19 Manchester United-Brentford,8,Sat,2024-10-19,15:00,Manchester United,2–1,Brentford,,Old Trafford,Samuel Barrott,,,kaggle_75
+ENG-Premier League,2425,2024-10-19 Newcastle United-Brighton,8,Sat,2024-10-19,15:00,Newcastle United,0–1,Brighton,,St James' Park,Peter Bankes,,,kaggle_76
+ENG-Premier League,2425,2024-10-19 Bournemouth-Arsenal,8,Sat,2024-10-19,17:30,Bournemouth,2–0,Arsenal,,Vitality Stadium,Robert Jones,,,kaggle_77
+ENG-Premier League,2425,2024-10-20 Wolverhampton Wanderers-Manchester City,8,Sun,2024-10-20,14:00,Wolverhampton Wanderers,1–2,Manchester City,,Molineux Stadium,Chris Kavanagh,,,kaggle_78
+ENG-Premier League,2425,2024-10-20 Liverpool-Chelsea,8,Sun,2024-10-20,16:30,Liverpool,2–1,Chelsea,,Anfield,John Brooks,,,kaggle_79
+ENG-Premier League,2425,2024-10-21 Nottingham Forest-Crystal Palace,8,Mon,2024-10-21,20:00,Nottingham Forest,1–0,Crystal Palace,,The City Ground,Tim Robinson,,,kaggle_80
+ENG-Premier League,2425,2024-10-25 Leicester City-Nottingham Forest,9,Fri,2024-10-25,20:00,Leicester City,1–3,Nottingham Forest,,King Power Stadium,Craig Pawson,,,kaggle_81
+ENG-Premier League,2425,2024-10-26 Brighton-Wolverhampton Wanderers,9,Sat,2024-10-26,15:00,Brighton,2–2,Wolverhampton Wanderers,,The American Express Stadium,Michael Oliver,,,kaggle_82
+ENG-Premier League,2425,2024-10-26 Manchester City-Southampton,9,Sat,2024-10-26,15:00,Manchester City,1–0,Southampton,,Etihad Stadium,Tony Harrington,,,kaggle_83
+ENG-Premier League,2425,2024-10-26 Brentford-Ipswich Town,9,Sat,2024-10-26,15:00,Brentford,4–3,Ipswich Town,,Gtech Community Stadium,Lewis Smith,,,kaggle_84
+ENG-Premier League,2425,2024-10-26 Aston Villa-Bournemouth,9,Sat,2024-10-26,15:00,Aston Villa,1–1,Bournemouth,,Villa Park,Chris Kavanagh,,,kaggle_85
+ENG-Premier League,2425,2024-10-26 Everton-Fulham,9,Sat,2024-10-26,17:30,Everton,1–1,Fulham,,Goodison Park,John Brooks,,,kaggle_86
+ENG-Premier League,2425,2024-10-27 West Ham-Manchester United,9,Sun,2024-10-27,14:00,West Ham,2–1,Manchester United,,London Stadium,David Coote,,,kaggle_87
+ENG-Premier League,2425,2024-10-27 Chelsea-Newcastle United,9,Sun,2024-10-27,14:00,Chelsea,2–1,Newcastle United,,Stamford Bridge,Simon Hooper,,,kaggle_88
+ENG-Premier League,2425,2024-10-27 Crystal Palace-Tottenham,9,Sun,2024-10-27,14:00,Crystal Palace,1–0,Tottenham,,Selhurst Park,Darren Bond,,,kaggle_89
+ENG-Premier League,2425,2024-10-27 Arsenal-Liverpool,9,Sun,2024-10-27,16:30,Arsenal,2–2,Liverpool,,Emirates Stadium,Anthony Taylor,,,kaggle_90
+ENG-Premier League,2425,2024-11-02 Newcastle United-Arsenal,10,Sat,2024-11-02,12:30,Newcastle United,1–0,Arsenal,,St James' Park,John Brooks,,,kaggle_91
+ENG-Premier League,2425,2024-11-02 Liverpool-Brighton,10,Sat,2024-11-02,15:00,Liverpool,2–1,Brighton,,Anfield,Tony Harrington,,,kaggle_92
+ENG-Premier League,2425,2024-11-02 Southampton-Everton,10,Sat,2024-11-02,15:00,Southampton,1–0,Everton,,St Mary's Stadium,Andy Madley,,,kaggle_93
+ENG-Premier League,2425,2024-11-02 Nottingham Forest-West Ham,10,Sat,2024-11-02,15:00,Nottingham Forest,3–0,West Ham,,The City Ground,Peter Bankes,,,kaggle_94
+ENG-Premier League,2425,2024-11-02 Ipswich Town-Leicester City,10,Sat,2024-11-02,15:00,Ipswich Town,1–1,Leicester City,,Portman Road Stadium,Tim Robinson,,,kaggle_95
+ENG-Premier League,2425,2024-11-02 Bournemouth-Manchester City,10,Sat,2024-11-02,15:00,Bournemouth,2–1,Manchester City,,Vitality Stadium,Michael Oliver,,,kaggle_96
+ENG-Premier League,2425,2024-11-02 Wolverhampton Wanderers-Crystal Palace,10,Sat,2024-11-02,17:30,Wolverhampton Wanderers,2–2,Crystal Palace,,Molineux Stadium,Anthony Taylor,,,kaggle_97
+ENG-Premier League,2425,2024-11-03 Tottenham-Aston Villa,10,Sun,2024-11-03,14:00,Tottenham,4–1,Aston Villa,,Tottenham Hotspur Stadium,Craig Pawson,,,kaggle_98
+ENG-Premier League,2425,2024-11-03 Manchester United-Chelsea,10,Sun,2024-11-03,16:30,Manchester United,1–1,Chelsea,,Old Trafford,Robert Jones,,,kaggle_99
+ENG-Premier League,2425,2024-11-04 Fulham-Brentford,10,Mon,2024-11-04,20:00,Fulham,2–1,Brentford,,Craven Cottage,Stuart Attwell,,,kaggle_100
+ENG-Premier League,2425,2024-11-09 West Ham-Everton,11,Sat,2024-11-09,15:00,West Ham,0–0,Everton,,London Stadium,Stuart Attwell,,,kaggle_101
+ENG-Premier League,2425,2024-11-09 Crystal Palace-Fulham,11,Sat,2024-11-09,15:00,Crystal Palace,0–2,Fulham,,Selhurst Park,Michael Salisbury,,,kaggle_102
+ENG-Premier League,2425,2024-11-09 Wolverhampton Wanderers-Southampton,11,Sat,2024-11-09,15:00,Wolverhampton Wanderers,2–0,Southampton,,Molineux Stadium,Thomas Bramall,,,kaggle_103
+ENG-Premier League,2425,2024-11-09 Brentford-Bournemouth,11,Sat,2024-11-09,15:00,Brentford,3–2,Bournemouth,,Gtech Community Stadium,Darren Bond,,,kaggle_104
+ENG-Premier League,2425,2024-11-09 Brighton-Manchester City,11,Sat,2024-11-09,17:30,Brighton,2–1,Manchester City,,The American Express Stadium,Samuel Barrott,,,kaggle_105
+ENG-Premier League,2425,2024-11-09 Liverpool-Aston Villa,11,Sat,2024-11-09,20:00,Liverpool,2–0,Aston Villa,,Anfield,David Coote,,,kaggle_106
+ENG-Premier League,2425,2024-11-10 Tottenham-Ipswich Town,11,Sun,2024-11-10,14:00,Tottenham,1–2,Ipswich Town,,Tottenham Hotspur Stadium,Darren England,,,kaggle_107
+ENG-Premier League,2425,2024-11-10 Nottingham Forest-Newcastle United,11,Sun,2024-11-10,14:00,Nottingham Forest,1–3,Newcastle United,,The City Ground,Anthony Taylor,,,kaggle_108
+ENG-Premier League,2425,2024-11-10 Manchester United-Leicester City,11,Sun,2024-11-10,14:00,Manchester United,3–0,Leicester City,,Old Trafford,Peter Bankes,,,kaggle_109
+ENG-Premier League,2425,2024-11-10 Chelsea-Arsenal,11,Sun,2024-11-10,16:30,Chelsea,1–1,Arsenal,,Stamford Bridge,Michael Oliver,,,kaggle_110
+ENG-Premier League,2425,2024-11-23 Leicester City-Chelsea,12,Sat,2024-11-23,12:30,Leicester City,1–2,Chelsea,,King Power Stadium,Andy Madley,,,kaggle_111
+ENG-Premier League,2425,2024-11-23 Aston Villa-Crystal Palace,12,Sat,2024-11-23,15:00,Aston Villa,2–2,Crystal Palace,,Villa Park,Tim Robinson,,,kaggle_112
+ENG-Premier League,2425,2024-11-23 Fulham-Wolverhampton Wanderers,12,Sat,2024-11-23,15:00,Fulham,1–4,Wolverhampton Wanderers,,Craven Cottage,Robert Jones,,,kaggle_113
+ENG-Premier League,2425,2024-11-23 Bournemouth-Brighton,12,Sat,2024-11-23,15:00,Bournemouth,1–2,Brighton,,Vitality Stadium,Stuart Attwell,,,kaggle_114
+ENG-Premier League,2425,2024-11-23 Arsenal-Nottingham Forest,12,Sat,2024-11-23,15:00,Arsenal,3–0,Nottingham Forest,,Emirates Stadium,Simon Hooper,,,kaggle_115
+ENG-Premier League,2425,2024-11-23 Everton-Brentford,12,Sat,2024-11-23,15:00,Everton,0–0,Brentford,,Goodison Park,Chris Kavanagh,,,kaggle_116
+ENG-Premier League,2425,2024-11-23 Manchester City-Tottenham,12,Sat,2024-11-23,17:30,Manchester City,0–4,Tottenham,,Etihad Stadium,John Brooks,,,kaggle_117
+ENG-Premier League,2425,2024-11-24 Southampton-Liverpool,12,Sun,2024-11-24,14:00,Southampton,2–3,Liverpool,,St Mary's Stadium,Samuel Barrott,,,kaggle_118
+ENG-Premier League,2425,2024-11-24 Ipswich Town-Manchester United,12,Sun,2024-11-24,16:30,Ipswich Town,1–1,Manchester United,,Portman Road Stadium,Anthony Taylor,,,kaggle_119
+ENG-Premier League,2425,2024-11-25 Newcastle United-West Ham,12,Mon,2024-11-25,20:00,Newcastle United,0–2,West Ham,,St James' Park,Craig Pawson,,,kaggle_120
+ENG-Premier League,2425,2024-11-29 Brighton-Southampton,13,Fri,2024-11-29,20:00,Brighton,1–1,Southampton,,The American Express Stadium,Robert Jones,,,kaggle_121
+ENG-Premier League,2425,2024-11-30 Wolverhampton Wanderers-Bournemouth,13,Sat,2024-11-30,15:00,Wolverhampton Wanderers,2–4,Bournemouth,,Molineux Stadium,Peter Bankes,,,kaggle_122
+ENG-Premier League,2425,2024-11-30 Nottingham Forest-Ipswich Town,13,Sat,2024-11-30,15:00,Nottingham Forest,1–0,Ipswich Town,,The City Ground,Tony Harrington,,,kaggle_123
+ENG-Premier League,2425,2024-11-30 Brentford-Leicester City,13,Sat,2024-11-30,15:00,Brentford,4–1,Leicester City,,Gtech Community Stadium,Michael Oliver,,,kaggle_124
+ENG-Premier League,2425,2024-11-30 Crystal Palace-Newcastle United,13,Sat,2024-11-30,15:00,Crystal Palace,1–1,Newcastle United,,Selhurst Park,Darren England,,,kaggle_125
+ENG-Premier League,2425,2024-11-30 West Ham-Arsenal,13,Sat,2024-11-30,17:30,West Ham,2–5,Arsenal,,London Stadium,Anthony Taylor,,,kaggle_126
+ENG-Premier League,2425,2024-12-01 Manchester United-Everton,13,Sun,2024-12-01,13:30,Manchester United,4–0,Everton,,Old Trafford,John Brooks,,,kaggle_127
+ENG-Premier League,2425,2024-12-01 Tottenham-Fulham,13,Sun,2024-12-01,13:30,Tottenham,1–1,Fulham,,Tottenham Hotspur Stadium,Darren Bond,,,kaggle_128
+ENG-Premier League,2425,2024-12-01 Chelsea-Aston Villa,13,Sun,2024-12-01,13:30,Chelsea,3–0,Aston Villa,,Stamford Bridge,Stuart Attwell,,,kaggle_129
+ENG-Premier League,2425,2024-12-01 Liverpool-Manchester City,13,Sun,2024-12-01,16:00,Liverpool,2–0,Manchester City,,Anfield,Chris Kavanagh,,,kaggle_130
+ENG-Premier League,2425,2024-12-03 Ipswich Town-Crystal Palace,14,Tue,2024-12-03,19:30,Ipswich Town,0–1,Crystal Palace,,Portman Road Stadium,Craig Pawson,,,kaggle_131
+ENG-Premier League,2425,2024-12-03 Leicester City-West Ham,14,Tue,2024-12-03,20:15,Leicester City,3–1,West Ham,,King Power Stadium,Joshua Smith,,,kaggle_132
+ENG-Premier League,2425,2024-12-04 Newcastle United-Liverpool,14,Wed,2024-12-04,19:30,Newcastle United,3–3,Liverpool,,St James' Park,Andy Madley,,,kaggle_133
+ENG-Premier League,2425,2024-12-04 Everton-Wolverhampton Wanderers,14,Wed,2024-12-04,19:30,Everton,4–0,Wolverhampton Wanderers,,Goodison Park,Michael Salisbury,,,kaggle_134
+ENG-Premier League,2425,2024-12-04 Manchester City-Nottingham Forest,14,Wed,2024-12-04,19:30,Manchester City,3–0,Nottingham Forest,,Etihad Stadium,Michael Oliver,,,kaggle_135
+ENG-Premier League,2425,2024-12-04 Southampton-Chelsea,14,Wed,2024-12-04,19:30,Southampton,1–5,Chelsea,,St Mary's Stadium,Tony Harrington,,,kaggle_136
+ENG-Premier League,2425,2024-12-04 Arsenal-Manchester United,14,Wed,2024-12-04,20:15,Arsenal,2–0,Manchester United,,Emirates Stadium,Samuel Barrott,,,kaggle_137
+ENG-Premier League,2425,2024-12-04 Aston Villa-Brentford,14,Wed,2024-12-04,20:15,Aston Villa,3–1,Brentford,,Villa Park,Lewis Smith,,,kaggle_138
+ENG-Premier League,2425,2024-12-05 Fulham-Brighton,14,Thu,2024-12-05,19:30,Fulham,3–1,Brighton,,Craven Cottage,Peter Bankes,,,kaggle_139
+ENG-Premier League,2425,2024-12-05 Bournemouth-Tottenham,14,Thu,2024-12-05,20:15,Bournemouth,1–0,Tottenham,,Vitality Stadium,Simon Hooper,,,kaggle_140
+ENG-Premier League,2425,2024-12-07 Aston Villa-Southampton,15,Sat,2024-12-07,15:00,Aston Villa,1–0,Southampton,,Villa Park,Darren Bond,,,kaggle_141
+ENG-Premier League,2425,2024-12-07 Crystal Palace-Manchester City,15,Sat,2024-12-07,15:00,Crystal Palace,2–2,Manchester City,,Selhurst Park,Robert Jones,,,kaggle_142
+ENG-Premier League,2425,2024-12-07 Brentford-Newcastle United,15,Sat,2024-12-07,15:00,Brentford,4–2,Newcastle United,,Gtech Community Stadium,Simon Hooper,,,kaggle_143
+ENG-Premier League,2425,2024-12-07 Manchester United-Nottingham Forest,15,Sat,2024-12-07,17:30,Manchester United,2–3,Nottingham Forest,,Old Trafford,Darren England,,,kaggle_144
+ENG-Premier League,2425,2024-12-08 Leicester City-Brighton,15,Sun,2024-12-08,14:00,Leicester City,2–2,Brighton,,King Power Stadium,Stuart Attwell,,,kaggle_145
+ENG-Premier League,2425,2024-12-08 Ipswich Town-Bournemouth,15,Sun,2024-12-08,14:00,Ipswich Town,1–2,Bournemouth,,Portman Road Stadium,Michael Salisbury,,,kaggle_146
+ENG-Premier League,2425,2024-12-08 Fulham-Arsenal,15,Sun,2024-12-08,14:00,Fulham,1–1,Arsenal,,Craven Cottage,Chris Kavanagh,,,kaggle_147
+ENG-Premier League,2425,2024-12-08 Tottenham-Chelsea,15,Sun,2024-12-08,16:30,Tottenham,3–4,Chelsea,,Tottenham Hotspur Stadium,Anthony Taylor,,,kaggle_148
+ENG-Premier League,2425,2024-12-09 West Ham-Wolverhampton Wanderers,15,Mon,2024-12-09,20:00,West Ham,2–1,Wolverhampton Wanderers,,London Stadium,John Brooks,,,kaggle_149
+ENG-Premier League,2425,2024-12-14 Liverpool-Fulham,16,Sat,2024-12-14,15:00,Liverpool,2–2,Fulham,,Anfield,Tony Harrington,,,kaggle_150
+ENG-Premier League,2425,2024-12-14 Wolverhampton Wanderers-Ipswich Town,16,Sat,2024-12-14,15:00,Wolverhampton Wanderers,1–2,Ipswich Town,,Molineux Stadium,Simon Hooper,,,kaggle_151
+ENG-Premier League,2425,2024-12-14 Newcastle United-Leicester City,16,Sat,2024-12-14,15:00,Newcastle United,4–0,Leicester City,,St James' Park,Thomas Bramall,,,kaggle_152
+ENG-Premier League,2425,2024-12-14 Arsenal-Everton,16,Sat,2024-12-14,15:00,Arsenal,0–0,Everton,,Emirates Stadium,Craig Pawson,,,kaggle_153
+ENG-Premier League,2425,2024-12-14 Nottingham Forest-Aston Villa,16,Sat,2024-12-14,17:30,Nottingham Forest,2–1,Aston Villa,,The City Ground,Samuel Barrott,,,kaggle_154
+ENG-Premier League,2425,2024-12-15 Brighton-Crystal Palace,16,Sun,2024-12-15,14:00,Brighton,1–3,Crystal Palace,,The American Express Stadium,Michael Oliver,,,kaggle_155
+ENG-Premier League,2425,2024-12-15 Manchester City-Manchester United,16,Sun,2024-12-15,16:30,Manchester City,1–2,Manchester United,,Etihad Stadium,Anthony Taylor,,,kaggle_156
+ENG-Premier League,2425,2024-12-15 Southampton-Tottenham,16,Sun,2024-12-15,19:00,Southampton,0–5,Tottenham,,St Mary's Stadium,Darren England,,,kaggle_157
+ENG-Premier League,2425,2024-12-15 Chelsea-Brentford,16,Sun,2024-12-15,19:00,Chelsea,2–1,Brentford,,Stamford Bridge,Peter Bankes,,,kaggle_158
+ENG-Premier League,2425,2024-12-16 Bournemouth-West Ham,16,Mon,2024-12-16,20:00,Bournemouth,1–1,West Ham,,Vitality Stadium,Chris Kavanagh,,,kaggle_159
+ENG-Premier League,2425,2024-12-21 Aston Villa-Manchester City,17,Sat,2024-12-21,12:30,Aston Villa,2–1,Manchester City,,Villa Park,Peter Bankes,,,kaggle_160
+ENG-Premier League,2425,2024-12-21 Ipswich Town-Newcastle United,17,Sat,2024-12-21,15:00,Ipswich Town,0–4,Newcastle United,,Portman Road Stadium,Stuart Attwell,,,kaggle_161
+ENG-Premier League,2425,2024-12-21 Brentford-Nottingham Forest,17,Sat,2024-12-21,15:00,Brentford,0–2,Nottingham Forest,,Gtech Community Stadium,Michael Oliver,,,kaggle_162
+ENG-Premier League,2425,2024-12-21 West Ham-Brighton,17,Sat,2024-12-21,15:00,West Ham,1–1,Brighton,,London Stadium,Robert Jones,,,kaggle_163
+ENG-Premier League,2425,2024-12-21 Crystal Palace-Arsenal,17,Sat,2024-12-21,17:30,Crystal Palace,1–5,Arsenal,,Selhurst Park,Simon Hooper,,,kaggle_164
+ENG-Premier League,2425,2024-12-22 Manchester United-Bournemouth,17,Sun,2024-12-22,14:00,Manchester United,0–3,Bournemouth,,Old Trafford,Craig Pawson,,,kaggle_165
+ENG-Premier League,2425,2024-12-22 Leicester City-Wolverhampton Wanderers,17,Sun,2024-12-22,14:00,Leicester City,0–3,Wolverhampton Wanderers,,King Power Stadium,Anthony Taylor,,,kaggle_166
+ENG-Premier League,2425,2024-12-22 Everton-Chelsea,17,Sun,2024-12-22,14:00,Everton,0–0,Chelsea,,Goodison Park,Chris Kavanagh,,,kaggle_167
+ENG-Premier League,2425,2024-12-22 Fulham-Southampton,17,Sun,2024-12-22,14:00,Fulham,0–0,Southampton,,Craven Cottage,Tim Robinson,,,kaggle_168
+ENG-Premier League,2425,2024-12-22 Tottenham-Liverpool,17,Sun,2024-12-22,16:30,Tottenham,3–6,Liverpool,,Tottenham Hotspur Stadium,Samuel Barrott,,,kaggle_169
+ENG-Premier League,2425,2024-12-26 Manchester City-Everton,18,Thu,2024-12-26,12:30,Manchester City,1–1,Everton,,Etihad Stadium,Simon Hooper,,,kaggle_170
+ENG-Premier League,2425,2024-12-26 Southampton-West Ham,18,Thu,2024-12-26,15:00,Southampton,0–1,West Ham,,St Mary's Stadium,Lewis Smith,,,kaggle_171
+ENG-Premier League,2425,2024-12-26 Newcastle United-Aston Villa,18,Thu,2024-12-26,15:00,Newcastle United,3–0,Aston Villa,,St James' Park,Anthony Taylor,,,kaggle_172
+ENG-Premier League,2425,2024-12-26 Nottingham Forest-Tottenham,18,Thu,2024-12-26,15:00,Nottingham Forest,1–0,Tottenham,,The City Ground,Craig Pawson,,,kaggle_173
+ENG-Premier League,2425,2024-12-26 Bournemouth-Crystal Palace,18,Thu,2024-12-26,15:00,Bournemouth,0–0,Crystal Palace,,Vitality Stadium,Thomas Bramall,,,kaggle_174
+ENG-Premier League,2425,2024-12-26 Chelsea-Fulham,18,Thu,2024-12-26,15:00,Chelsea,1–2,Fulham,,Stamford Bridge,Samuel Barrott,,,kaggle_175
+ENG-Premier League,2425,2024-12-26 Wolverhampton Wanderers-Manchester United,18,Thu,2024-12-26,17:30,Wolverhampton Wanderers,2–0,Manchester United,,Molineux Stadium,Tony Harrington,,,kaggle_176
+ENG-Premier League,2425,2024-12-26 Liverpool-Leicester City,18,Thu,2024-12-26,20:00,Liverpool,3–1,Leicester City,,Anfield,Darren Bond,,,kaggle_177
+ENG-Premier League,2425,2024-12-27 Brighton-Brentford,18,Fri,2024-12-27,19:30,Brighton,0–0,Brentford,,The American Express Stadium,Andy Madley,,,kaggle_178
+ENG-Premier League,2425,2024-12-27 Arsenal-Ipswich Town,18,Fri,2024-12-27,20:15,Arsenal,1–0,Ipswich Town,,Emirates Stadium,Darren England,,,kaggle_179
+ENG-Premier League,2425,2024-12-29 Leicester City-Manchester City,19,Sun,2024-12-29,14:30,Leicester City,0–2,Manchester City,,King Power Stadium,Michael Oliver,,,kaggle_180
+ENG-Premier League,2425,2024-12-29 Everton-Nottingham Forest,19,Sun,2024-12-29,15:00,Everton,0–2,Nottingham Forest,,Goodison Park,Tony Harrington,,,kaggle_181
+ENG-Premier League,2425,2024-12-29 Tottenham-Wolverhampton Wanderers,19,Sun,2024-12-29,15:00,Tottenham,2–2,Wolverhampton Wanderers,,Tottenham Hotspur Stadium,Chris Kavanagh,,,kaggle_182
+ENG-Premier League,2425,2024-12-29 Fulham-Bournemouth,19,Sun,2024-12-29,15:00,Fulham,2–2,Bournemouth,,Craven Cottage,Robert Jones,,,kaggle_183
+ENG-Premier League,2425,2024-12-29 Crystal Palace-Southampton,19,Sun,2024-12-29,15:00,Crystal Palace,2–1,Southampton,,Selhurst Park,Michael Salisbury,,,kaggle_184
+ENG-Premier League,2425,2024-12-29 West Ham-Liverpool,19,Sun,2024-12-29,17:15,West Ham,0–5,Liverpool,,London Stadium,Anthony Taylor,,,kaggle_185
+ENG-Premier League,2425,2024-12-30 Aston Villa-Brighton,19,Mon,2024-12-30,19:45,Aston Villa,2–2,Brighton,,Villa Park,Craig Pawson,,,kaggle_186
+ENG-Premier League,2425,2024-12-30 Ipswich Town-Chelsea,19,Mon,2024-12-30,19:45,Ipswich Town,2–0,Chelsea,,Portman Road Stadium,John Brooks,,,kaggle_187
+ENG-Premier League,2425,2024-12-30 Manchester United-Newcastle United,19,Mon,2024-12-30,20:00,Manchester United,0–2,Newcastle United,,Old Trafford,Simon Hooper,,,kaggle_188
+ENG-Premier League,2425,2025-01-01 Brentford-Arsenal,19,Wed,2025-01-01,17:30,Brentford,1–3,Arsenal,,Gtech Community Stadium,Peter Bankes,,,kaggle_189
+ENG-Premier League,2425,2025-01-04 Tottenham-Newcastle United,20,Sat,2025-01-04,12:30,Tottenham,1–2,Newcastle United,,Tottenham Hotspur Stadium,Andy Madley,,,kaggle_190
+ENG-Premier League,2425,2025-01-04 Aston Villa-Leicester City,20,Sat,2025-01-04,15:00,Aston Villa,2–1,Leicester City,,Villa Park,Jarred Gillett,,,kaggle_191
+ENG-Premier League,2425,2025-01-04 Bournemouth-Everton,20,Sat,2025-01-04,15:00,Bournemouth,1–0,Everton,,Vitality Stadium,John Brooks,,,kaggle_192
+ENG-Premier League,2425,2025-01-04 Crystal Palace-Chelsea,20,Sat,2025-01-04,15:00,Crystal Palace,1–1,Chelsea,,Selhurst Park,Tim Robinson,,,kaggle_193
+ENG-Premier League,2425,2025-01-04 Southampton-Brentford,20,Sat,2025-01-04,15:00,Southampton,0–5,Brentford,,St Mary's Stadium,Stuart Attwell,,,kaggle_194
+ENG-Premier League,2425,2025-01-04 Manchester City-West Ham,20,Sat,2025-01-04,15:00,Manchester City,4–1,West Ham,,Etihad Stadium,Michael Salisbury,,,kaggle_195
+ENG-Premier League,2425,2025-01-04 Brighton-Arsenal,20,Sat,2025-01-04,17:30,Brighton,1–1,Arsenal,,The American Express Stadium,Anthony Taylor,,,kaggle_196
+ENG-Premier League,2425,2025-01-05 Fulham-Ipswich Town,20,Sun,2025-01-05,14:00,Fulham,2–2,Ipswich Town,,Craven Cottage,Darren Bond,,,kaggle_197
+ENG-Premier League,2425,2025-01-05 Liverpool-Manchester United,20,Sun,2025-01-05,16:30,Liverpool,2–2,Manchester United,,Anfield,Michael Oliver,,,kaggle_198
+ENG-Premier League,2425,2025-01-06 Wolverhampton Wanderers-Nottingham Forest,20,Mon,2025-01-06,20:00,Wolverhampton Wanderers,0–3,Nottingham Forest,,Molineux Stadium,Peter Bankes,,,kaggle_199
+ENG-Premier League,2425,2025-01-14 West Ham-Fulham,21,Tue,2025-01-14,19:30,West Ham,3–2,Fulham,,London Stadium,Craig Pawson,,,kaggle_200
+ENG-Premier League,2425,2025-01-14 Chelsea-Bournemouth,21,Tue,2025-01-14,19:30,Chelsea,2–2,Bournemouth,,Stamford Bridge,Robert Jones,,,kaggle_201
+ENG-Premier League,2425,2025-01-14 Brentford-Manchester City,21,Tue,2025-01-14,19:30,Brentford,2–2,Manchester City,,Gtech Community Stadium,Anthony Taylor,,,kaggle_202
+ENG-Premier League,2425,2025-01-14 Nottingham Forest-Liverpool,21,Tue,2025-01-14,20:00,Nottingham Forest,1–1,Liverpool,,The City Ground,Chris Kavanagh,,,kaggle_203
+ENG-Premier League,2425,2025-01-15 Leicester City-Crystal Palace,21,Wed,2025-01-15,19:30,Leicester City,0–2,Crystal Palace,,King Power Stadium,Andy Madley,,,kaggle_204
+ENG-Premier League,2425,2025-01-15 Everton-Aston Villa,21,Wed,2025-01-15,19:30,Everton,0–1,Aston Villa,,Goodison Park,Samuel Barrott,,,kaggle_205
+ENG-Premier League,2425,2025-01-15 Newcastle United-Wolverhampton Wanderers,21,Wed,2025-01-15,19:30,Newcastle United,3–0,Wolverhampton Wanderers,,St James' Park,Darren England,,,kaggle_206
+ENG-Premier League,2425,2025-01-15 Arsenal-Tottenham,21,Wed,2025-01-15,20:00,Arsenal,2–1,Tottenham,,Emirates Stadium,Simon Hooper,,,kaggle_207
+ENG-Premier League,2425,2025-01-16 Ipswich Town-Brighton,21,Thu,2025-01-16,19:30,Ipswich Town,0–2,Brighton,,Portman Road Stadium,Tony Harrington,,,kaggle_208
+ENG-Premier League,2425,2025-01-16 Manchester United-Southampton,21,Thu,2025-01-16,20:00,Manchester United,3–1,Southampton,,Old Trafford,John Brooks,,,kaggle_209
+ENG-Premier League,2425,2025-01-18 Newcastle United-Bournemouth,22,Sat,2025-01-18,12:30,Newcastle United,1–4,Bournemouth,,St James' Park,Stuart Attwell,,,kaggle_210
+ENG-Premier League,2425,2025-01-18 Leicester City-Fulham,22,Sat,2025-01-18,15:00,Leicester City,0–2,Fulham,,King Power Stadium,Michael Salisbury,,,kaggle_211
+ENG-Premier League,2425,2025-01-18 West Ham-Crystal Palace,22,Sat,2025-01-18,15:00,West Ham,0–2,Crystal Palace,,London Stadium,Thomas Bramall,,,kaggle_212
+ENG-Premier League,2425,2025-01-18 Brentford-Liverpool,22,Sat,2025-01-18,15:00,Brentford,0–2,Liverpool,,Gtech Community Stadium,Andy Madley,,,kaggle_213
+ENG-Premier League,2425,2025-01-18 Arsenal-Aston Villa,22,Sat,2025-01-18,17:30,Arsenal,2–2,Aston Villa,,Emirates Stadium,Chris Kavanagh,,,kaggle_214
+ENG-Premier League,2425,2025-01-19 Everton-Tottenham,22,Sun,2025-01-19,14:00,Everton,3–2,Tottenham,,Goodison Park,Darren England,,,kaggle_215
+ENG-Premier League,2425,2025-01-19 Manchester United-Brighton,22,Sun,2025-01-19,14:00,Manchester United,1–3,Brighton,,Old Trafford,Peter Bankes,,,kaggle_216
+ENG-Premier League,2425,2025-01-19 Nottingham Forest-Southampton,22,Sun,2025-01-19,14:00,Nottingham Forest,3–2,Southampton,,The City Ground,Anthony Taylor,,,kaggle_217
+ENG-Premier League,2425,2025-01-19 Ipswich Town-Manchester City,22,Sun,2025-01-19,16:30,Ipswich Town,0–6,Manchester City,,Portman Road Stadium,Samuel Barrott,,,kaggle_218
+ENG-Premier League,2425,2025-01-20 Chelsea-Wolverhampton Wanderers,22,Mon,2025-01-20,20:00,Chelsea,3–1,Wolverhampton Wanderers,,Stamford Bridge,Simon Hooper,,,kaggle_219
+ENG-Premier League,2425,2025-01-25 Southampton-Newcastle United,23,Sat,2025-01-25,15:00,Southampton,1–3,Newcastle United,,St Mary's Stadium,Samuel Barrott,,,kaggle_220
+ENG-Premier League,2425,2025-01-25 Brighton-Everton,23,Sat,2025-01-25,15:00,Brighton,0–1,Everton,,The American Express Stadium,Tim Robinson,,,kaggle_221
+ENG-Premier League,2425,2025-01-25 Liverpool-Ipswich Town,23,Sat,2025-01-25,15:00,Liverpool,4–1,Ipswich Town,,Anfield,Michael Salisbury,,,kaggle_222
+ENG-Premier League,2425,2025-01-25 Bournemouth-Nottingham Forest,23,Sat,2025-01-25,15:00,Bournemouth,5–0,Nottingham Forest,,Vitality Stadium,Craig Pawson,,,kaggle_223
+ENG-Premier League,2425,2025-01-25 Wolverhampton Wanderers-Arsenal,23,Sat,2025-01-25,15:00,Wolverhampton Wanderers,0–1,Arsenal,,Molineux Stadium,Michael Oliver,,,kaggle_224
+ENG-Premier League,2425,2025-01-25 Manchester City-Chelsea,23,Sat,2025-01-25,17:30,Manchester City,3–1,Chelsea,,Etihad Stadium,John Brooks,,,kaggle_225
+ENG-Premier League,2425,2025-01-26 Crystal Palace-Brentford,23,Sun,2025-01-26,14:00,Crystal Palace,1–2,Brentford,,Selhurst Park,Tony Harrington,,,kaggle_226
+ENG-Premier League,2425,2025-01-26 Tottenham-Leicester City,23,Sun,2025-01-26,14:00,Tottenham,1–2,Leicester City,,Tottenham Hotspur Stadium,Robert Jones,,,kaggle_227
+ENG-Premier League,2425,2025-01-26 Aston Villa-West Ham,23,Sun,2025-01-26,16:30,Aston Villa,1–1,West Ham,,Villa Park,Peter Bankes,,,kaggle_228
+ENG-Premier League,2425,2025-01-26 Fulham-Manchester United,23,Sun,2025-01-26,19:00,Fulham,0–1,Manchester United,,Craven Cottage,Anthony Taylor,,,kaggle_229
+ENG-Premier League,2425,2025-02-01 Nottingham Forest-Brighton,24,Sat,2025-02-01,12:30,Nottingham Forest,7–0,Brighton,,The City Ground,Simon Hooper,,,kaggle_230
+ENG-Premier League,2425,2025-02-01 Everton-Leicester City,24,Sat,2025-02-01,15:00,Everton,4–0,Leicester City,,Goodison Park,Darren Bond,,,kaggle_231
+ENG-Premier League,2425,2025-02-01 Newcastle United-Fulham,24,Sat,2025-02-01,15:00,Newcastle United,1–2,Fulham,,St James' Park,Chris Kavanagh,,,kaggle_232
+ENG-Premier League,2425,2025-02-01 Bournemouth-Liverpool,24,Sat,2025-02-01,15:00,Bournemouth,0–2,Liverpool,,Vitality Stadium,Darren England,,,kaggle_233
+ENG-Premier League,2425,2025-02-01 Ipswich Town-Southampton,24,Sat,2025-02-01,15:00,Ipswich Town,1–2,Southampton,,Portman Road Stadium,Michael Oliver,,,kaggle_234
+ENG-Premier League,2425,2025-02-01 Wolverhampton Wanderers-Aston Villa,24,Sat,2025-02-01,17:30,Wolverhampton Wanderers,2–0,Aston Villa,,Molineux Stadium,Andy Madley,,,kaggle_235
+ENG-Premier League,2425,2025-02-02 Manchester United-Crystal Palace,24,Sun,2025-02-02,14:00,Manchester United,0–2,Crystal Palace,,Old Trafford,John Brooks,,,kaggle_236
+ENG-Premier League,2425,2025-02-02 Brentford-Tottenham,24,Sun,2025-02-02,14:00,Brentford,0–2,Tottenham,,Gtech Community Stadium,Jarred Gillett,,,kaggle_237
+ENG-Premier League,2425,2025-02-02 Arsenal-Manchester City,24,Sun,2025-02-02,16:30,Arsenal,5–1,Manchester City,,Emirates Stadium,Peter Bankes,,,kaggle_238
+ENG-Premier League,2425,2025-02-03 Chelsea-West Ham,24,Mon,2025-02-03,20:00,Chelsea,2–1,West Ham,,Stamford Bridge,Stuart Attwell,,,kaggle_239
+ENG-Premier League,2425,2025-02-12 Everton-Liverpool,15,Wed,2025-02-12,19:30,Everton,2–2,Liverpool,,Goodison Park,Michael Oliver,,,kaggle_240
+ENG-Premier League,2425,2025-02-14 Brighton-Chelsea,25,Fri,2025-02-14,20:00,Brighton,3–0,Chelsea,,The American Express Stadium,Chris Kavanagh,,,kaggle_241
+ENG-Premier League,2425,2025-02-15 Leicester City-Arsenal,25,Sat,2025-02-15,12:30,Leicester City,0–2,Arsenal,,King Power Stadium,Samuel Barrott,,,kaggle_242
+ENG-Premier League,2425,2025-02-15 Fulham-Nottingham Forest,25,Sat,2025-02-15,15:00,Fulham,2–1,Nottingham Forest,,Craven Cottage,Thomas Bramall,,,kaggle_243
+ENG-Premier League,2425,2025-02-15 Manchester City-Newcastle United,25,Sat,2025-02-15,15:00,Manchester City,4–0,Newcastle United,,Etihad Stadium,Andy Madley,,,kaggle_244
+ENG-Premier League,2425,2025-02-15 Southampton-Bournemouth,25,Sat,2025-02-15,15:00,Southampton,1–3,Bournemouth,,St Mary's Stadium,Jarred Gillett,,,kaggle_245
+ENG-Premier League,2425,2025-02-15 Aston Villa-Ipswich Town,25,Sat,2025-02-15,15:00,Aston Villa,1–1,Ipswich Town,,Villa Park,Robert Jones,,,kaggle_246
+ENG-Premier League,2425,2025-02-15 West Ham-Brentford,25,Sat,2025-02-15,15:00,West Ham,0–1,Brentford,,London Stadium,Darren England,,,kaggle_247
+ENG-Premier League,2425,2025-02-15 Crystal Palace-Everton,25,Sat,2025-02-15,17:30,Crystal Palace,1–2,Everton,,Selhurst Park,Anthony Taylor,,,kaggle_248
+ENG-Premier League,2425,2025-02-16 Liverpool-Wolverhampton Wanderers,25,Sun,2025-02-16,14:00,Liverpool,2–1,Wolverhampton Wanderers,,Anfield,Simon Hooper,,,kaggle_249
+ENG-Premier League,2425,2025-02-16 Tottenham-Manchester United,25,Sun,2025-02-16,16:30,Tottenham,1–0,Manchester United,,Tottenham Hotspur Stadium,Peter Bankes,,,kaggle_250
+ENG-Premier League,2425,2025-02-19 Aston Villa-Liverpool,29,Wed,2025-02-19,19:30,Aston Villa,2–2,Liverpool,,Villa Park,Craig Pawson,,,kaggle_251
+ENG-Premier League,2425,2025-02-21 Leicester City-Brentford,26,Fri,2025-02-21,20:00,Leicester City,0–4,Brentford,,King Power Stadium,Tony Harrington,,,kaggle_252
+ENG-Premier League,2425,2025-02-22 Everton-Manchester United,26,Sat,2025-02-22,12:30,Everton,2–2,Manchester United,,Goodison Park,Andy Madley,,,kaggle_253
+ENG-Premier League,2425,2025-02-22 Fulham-Crystal Palace,26,Sat,2025-02-22,15:00,Fulham,0–2,Crystal Palace,,Craven Cottage,Robert Jones,,,kaggle_254
+ENG-Premier League,2425,2025-02-22 Bournemouth-Wolverhampton Wanderers,26,Sat,2025-02-22,15:00,Bournemouth,0–1,Wolverhampton Wanderers,,Vitality Stadium,Michael Salisbury,,,kaggle_255
+ENG-Premier League,2425,2025-02-22 Ipswich Town-Tottenham,26,Sat,2025-02-22,15:00,Ipswich Town,1–4,Tottenham,,Portman Road Stadium,Tim Robinson,,,kaggle_256
+ENG-Premier League,2425,2025-02-22 Arsenal-West Ham,26,Sat,2025-02-22,15:00,Arsenal,0–1,West Ham,,Emirates Stadium,Craig Pawson,,,kaggle_257
+ENG-Premier League,2425,2025-02-22 Southampton-Brighton,26,Sat,2025-02-22,15:00,Southampton,0–4,Brighton,,St Mary's Stadium,Darren Bond,,,kaggle_258
+ENG-Premier League,2425,2025-02-22 Aston Villa-Chelsea,26,Sat,2025-02-22,17:30,Aston Villa,2–1,Chelsea,,Villa Park,Michael Oliver,,,kaggle_259
+ENG-Premier League,2425,2025-02-23 Newcastle United-Nottingham Forest,26,Sun,2025-02-23,14:00,Newcastle United,4–3,Nottingham Forest,,St James' Park,Jarred Gillett,,,kaggle_260
+ENG-Premier League,2425,2025-02-23 Manchester City-Liverpool,26,Sun,2025-02-23,16:30,Manchester City,0–2,Liverpool,,Etihad Stadium,Anthony Taylor,,,kaggle_261
+ENG-Premier League,2425,2025-02-25 Brighton-Bournemouth,27,Tue,2025-02-25,19:30,Brighton,2–1,Bournemouth,,The American Express Stadium,Michael Oliver,,,kaggle_262
+ENG-Premier League,2425,2025-02-25 Crystal Palace-Aston Villa,27,Tue,2025-02-25,19:30,Crystal Palace,4–1,Aston Villa,,Selhurst Park,Samuel Barrott,,,kaggle_263
+ENG-Premier League,2425,2025-02-25 Wolverhampton Wanderers-Fulham,27,Tue,2025-02-25,19:30,Wolverhampton Wanderers,1–2,Fulham,,Molineux Stadium,Peter Bankes,,,kaggle_264
+ENG-Premier League,2425,2025-02-25 Chelsea-Southampton,27,Tue,2025-02-25,20:15,Chelsea,4–0,Southampton,,Stamford Bridge,Thomas Bramall,,,kaggle_265
+ENG-Premier League,2425,2025-02-26 Tottenham-Manchester City,27,Wed,2025-02-26,19:30,Tottenham,0–1,Manchester City,,Tottenham Hotspur Stadium,Jarred Gillett,,,kaggle_266
+ENG-Premier League,2425,2025-02-26 Nottingham Forest-Arsenal,27,Wed,2025-02-26,19:30,Nottingham Forest,0–0,Arsenal,,The City Ground,Andy Madley,,,kaggle_267
+ENG-Premier League,2425,2025-02-26 Manchester United-Ipswich Town,27,Wed,2025-02-26,19:30,Manchester United,3–2,Ipswich Town,,Old Trafford,Darren England,,,kaggle_268
+ENG-Premier League,2425,2025-02-26 Brentford-Everton,27,Wed,2025-02-26,19:30,Brentford,1–1,Everton,,Gtech Community Stadium,Simon Hooper,,,kaggle_269
+ENG-Premier League,2425,2025-02-26 Liverpool-Newcastle United,27,Wed,2025-02-26,20:15,Liverpool,2–0,Newcastle United,,Anfield,Stuart Attwell,,,kaggle_270
+ENG-Premier League,2425,2025-02-27 West Ham-Leicester City,27,Thu,2025-02-27,20:00,West Ham,2–0,Leicester City,,London Stadium,Anthony Taylor,,,kaggle_271
+ENG-Premier League,2425,2025-03-08 Nottingham Forest-Manchester City,28,Sat,2025-03-08,12:30,Nottingham Forest,1–0,Manchester City,,The City Ground,Chris Kavanagh,,,kaggle_272
+ENG-Premier League,2425,2025-03-08 Liverpool-Southampton,28,Sat,2025-03-08,15:00,Liverpool,3–1,Southampton,,Anfield,Lewis Smith,,,kaggle_273
+ENG-Premier League,2425,2025-03-08 Brighton-Fulham,28,Sat,2025-03-08,15:00,Brighton,2–1,Fulham,,The American Express Stadium,Samuel Barrott,,,kaggle_274
+ENG-Premier League,2425,2025-03-08 Crystal Palace-Ipswich Town,28,Sat,2025-03-08,15:00,Crystal Palace,1–0,Ipswich Town,,Selhurst Park,Simon Hooper,,,kaggle_275
+ENG-Premier League,2425,2025-03-08 Brentford-Aston Villa,28,Sat,2025-03-08,17:30,Brentford,0–1,Aston Villa,,Gtech Community Stadium,Jarred Gillett,,,kaggle_276
+ENG-Premier League,2425,2025-03-08 Wolverhampton Wanderers-Everton,28,Sat,2025-03-08,20:00,Wolverhampton Wanderers,1–1,Everton,,Molineux Stadium,Stuart Attwell,,,kaggle_277
+ENG-Premier League,2425,2025-03-09 Chelsea-Leicester City,28,Sun,2025-03-09,14:00,Chelsea,1–0,Leicester City,,Stamford Bridge,Tim Robinson,,,kaggle_278
+ENG-Premier League,2425,2025-03-09 Tottenham-Bournemouth,28,Sun,2025-03-09,14:00,Tottenham,2–2,Bournemouth,,Tottenham Hotspur Stadium,John Brooks,,,kaggle_279
+ENG-Premier League,2425,2025-03-09 Manchester United-Arsenal,28,Sun,2025-03-09,16:30,Manchester United,1–1,Arsenal,,Old Trafford,Anthony Taylor,,,kaggle_280
+ENG-Premier League,2425,2025-03-10 West Ham-Newcastle United,28,Mon,2025-03-10,20:00,West Ham,0–1,Newcastle United,,London Stadium,Michael Salisbury,,,kaggle_281
+ENG-Premier League,2425,2025-03-15 Everton-West Ham,29,Sat,2025-03-15,15:00,Everton,1–1,West Ham,,Goodison Park,Darren Bond,,,kaggle_282
+ENG-Premier League,2425,2025-03-15 Southampton-Wolverhampton Wanderers,29,Sat,2025-03-15,15:00,Southampton,1–2,Wolverhampton Wanderers,,St Mary's Stadium,Robert Jones,,,kaggle_283
+ENG-Premier League,2425,2025-03-15 Ipswich Town-Nottingham Forest,29,Sat,2025-03-15,15:00,Ipswich Town,2–4,Nottingham Forest,,Portman Road Stadium,Michael Salisbury,,,kaggle_284
+ENG-Premier League,2425,2025-03-15 Manchester City-Brighton,29,Sat,2025-03-15,15:00,Manchester City,2–2,Brighton,,Etihad Stadium,Simon Hooper,,,kaggle_285
+ENG-Premier League,2425,2025-03-15 Bournemouth-Brentford,29,Sat,2025-03-15,17:30,Bournemouth,1–2,Brentford,,Vitality Stadium,Craig Pawson,,,kaggle_286
+ENG-Premier League,2425,2025-03-16 Arsenal-Chelsea,29,Sun,2025-03-16,13:30,Arsenal,1–0,Chelsea,,Emirates Stadium,Chris Kavanagh,,,kaggle_287
+ENG-Premier League,2425,2025-03-16 Fulham-Tottenham,29,Sun,2025-03-16,13:30,Fulham,2–0,Tottenham,,Craven Cottage,Andy Madley,,,kaggle_288
+ENG-Premier League,2425,2025-03-16 Leicester City-Manchester United,29,Sun,2025-03-16,19:00,Leicester City,0–3,Manchester United,,King Power Stadium,Thomas Bramall,,,kaggle_289
+ENG-Premier League,2425,2025-04-01 Arsenal-Fulham,30,Tue,2025-04-01,19:45,Arsenal,2–1,Fulham,,Emirates Stadium,John Brooks,,,kaggle_290
+ENG-Premier League,2425,2025-04-01 Wolverhampton Wanderers-West Ham,30,Tue,2025-04-01,19:45,Wolverhampton Wanderers,1–0,West Ham,,Molineux Stadium,Tony Harrington,,,kaggle_291
+ENG-Premier League,2425,2025-04-01 Nottingham Forest-Manchester United,30,Tue,2025-04-01,20:00,Nottingham Forest,1–0,Manchester United,,The City Ground,Jarred Gillett,,,kaggle_292
+ENG-Premier League,2425,2025-04-02 Newcastle United-Brentford,30,Wed,2025-04-02,19:45,Newcastle United,2–1,Brentford,,St James' Park,Peter Bankes,,,kaggle_293
+ENG-Premier League,2425,2025-04-02 Manchester City-Leicester City,30,Wed,2025-04-02,19:45,Manchester City,2–0,Leicester City,,Etihad Stadium,Darren England,,,kaggle_294
+ENG-Premier League,2425,2025-04-02 Southampton-Crystal Palace,30,Wed,2025-04-02,19:45,Southampton,1–1,Crystal Palace,,St Mary's Stadium,Andy Madley,,,kaggle_295
+ENG-Premier League,2425,2025-04-02 Bournemouth-Ipswich Town,30,Wed,2025-04-02,19:45,Bournemouth,1–2,Ipswich Town,,Vitality Stadium,Robert Jones,,,kaggle_296
+ENG-Premier League,2425,2025-04-02 Brighton-Aston Villa,30,Wed,2025-04-02,19:45,Brighton,0–3,Aston Villa,,The American Express Stadium,Stuart Attwell,,,kaggle_297
+ENG-Premier League,2425,2025-04-02 Liverpool-Everton,30,Wed,2025-04-02,20:00,Liverpool,1–0,Everton,,Anfield,Samuel Barrott,,,kaggle_298
+ENG-Premier League,2425,2025-04-03 Chelsea-Tottenham,30,Thu,2025-04-03,20:00,Chelsea,1–0,Tottenham,,Stamford Bridge,Craig Pawson,,,kaggle_299
+ENG-Premier League,2425,2025-04-05 Everton-Arsenal,31,Sat,2025-04-05,12:30,Everton,1–1,Arsenal,,Goodison Park,Darren England,,,kaggle_300
+ENG-Premier League,2425,2025-04-05 Crystal Palace-Brighton,31,Sat,2025-04-05,15:00,Crystal Palace,2–1,Brighton,,Selhurst Park,Anthony Taylor,,,kaggle_301
+ENG-Premier League,2425,2025-04-05 Ipswich Town-Wolverhampton Wanderers,31,Sat,2025-04-05,15:00,Ipswich Town,1–2,Wolverhampton Wanderers,,Portman Road Stadium,Peter Bankes,,,kaggle_302
+ENG-Premier League,2425,2025-04-05 West Ham-Bournemouth,31,Sat,2025-04-05,15:00,West Ham,2–2,Bournemouth,,London Stadium,Tim Robinson,,,kaggle_303
+ENG-Premier League,2425,2025-04-05 Aston Villa-Nottingham Forest,31,Sat,2025-04-05,17:30,Aston Villa,2–1,Nottingham Forest,,Villa Park,Simon Hooper,,,kaggle_304
+ENG-Premier League,2425,2025-04-06 Fulham-Liverpool,31,Sun,2025-04-06,14:00,Fulham,3–2,Liverpool,,Craven Cottage,Chris Kavanagh,,,kaggle_305
+ENG-Premier League,2425,2025-04-06 Brentford-Chelsea,31,Sun,2025-04-06,14:00,Brentford,0–0,Chelsea,,Gtech Community Stadium,Michael Oliver,,,kaggle_306
+ENG-Premier League,2425,2025-04-06 Tottenham-Southampton,31,Sun,2025-04-06,14:00,Tottenham,3–1,Southampton,,Tottenham Hotspur Stadium,Michael Salisbury,,,kaggle_307
+ENG-Premier League,2425,2025-04-06 Manchester United-Manchester City,31,Sun,2025-04-06,16:30,Manchester United,0–0,Manchester City,,Old Trafford,John Brooks,,,kaggle_308
+ENG-Premier League,2425,2025-04-07 Leicester City-Newcastle United,31,Mon,2025-04-07,20:00,Leicester City,0–3,Newcastle United,,King Power Stadium,Robert Jones,,,kaggle_309
+ENG-Premier League,2425,2025-04-12 Manchester City-Crystal Palace,32,Sat,2025-04-12,12:30,Manchester City,5–2,Crystal Palace,,Etihad Stadium,Jarred Gillett,,,kaggle_310
+ENG-Premier League,2425,2025-04-12 Brighton-Leicester City,32,Sat,2025-04-12,15:00,Brighton,2–2,Leicester City,,The American Express Stadium,Darren Bond,,,kaggle_311
+ENG-Premier League,2425,2025-04-12 Southampton-Aston Villa,32,Sat,2025-04-12,15:00,Southampton,0–3,Aston Villa,,St Mary's Stadium,Thomas Bramall,,,kaggle_312
+ENG-Premier League,2425,2025-04-12 Nottingham Forest-Everton,32,Sat,2025-04-12,15:00,Nottingham Forest,0–1,Everton,,The City Ground,Craig Pawson,,,kaggle_313
+ENG-Premier League,2425,2025-04-12 Arsenal-Brentford,32,Sat,2025-04-12,17:30,Arsenal,1–1,Brentford,,Emirates Stadium,Simon Hooper,,,kaggle_314
+ENG-Premier League,2425,2025-04-13 Liverpool-West Ham,32,Sun,2025-04-13,14:00,Liverpool,2–1,West Ham,,Anfield,Andy Madley,,,kaggle_315
+ENG-Premier League,2425,2025-04-13 Chelsea-Ipswich Town,32,Sun,2025-04-13,14:00,Chelsea,2–2,Ipswich Town,,Stamford Bridge,Stuart Attwell,,,kaggle_316
+ENG-Premier League,2425,2025-04-13 Wolverhampton Wanderers-Tottenham,32,Sun,2025-04-13,14:00,Wolverhampton Wanderers,4–2,Tottenham,,Molineux Stadium,Anthony Taylor,,,kaggle_317
+ENG-Premier League,2425,2025-04-13 Newcastle United-Manchester United,32,Sun,2025-04-13,16:30,Newcastle United,4–1,Manchester United,,St James' Park,Chris Kavanagh,,,kaggle_318
+ENG-Premier League,2425,2025-04-14 Bournemouth-Fulham,32,Mon,2025-04-14,20:00,Bournemouth,1–0,Fulham,,Vitality Stadium,Michael Oliver,,,kaggle_319
+ENG-Premier League,2425,2025-04-16 Newcastle United-Crystal Palace,29,Wed,2025-04-16,19:30,Newcastle United,5–0,Crystal Palace,,St James' Park,Darren England,,,kaggle_320
+ENG-Premier League,2425,2025-04-19 Everton-Manchester City,33,Sat,2025-04-19,15:00,Everton,0–2,Manchester City,,Goodison Park,Simon Hooper,,,kaggle_321
+ENG-Premier League,2425,2025-04-19 West Ham-Southampton,33,Sat,2025-04-19,15:00,West Ham,1–1,Southampton,,London Stadium,Andrew Kitchen,,,kaggle_322
+ENG-Premier League,2425,2025-04-19 Crystal Palace-Bournemouth,33,Sat,2025-04-19,15:00,Crystal Palace,0–0,Bournemouth,,Selhurst Park,Samuel Barrott,,,kaggle_323
+ENG-Premier League,2425,2025-04-19 Brentford-Brighton,33,Sat,2025-04-19,15:00,Brentford,4–2,Brighton,,Gtech Community Stadium,Tim Robinson,,,kaggle_324
+ENG-Premier League,2425,2025-04-19 Aston Villa-Newcastle United,33,Sat,2025-04-19,17:30,Aston Villa,4–1,Newcastle United,,Villa Park,Jarred Gillett,,,kaggle_325
+ENG-Premier League,2425,2025-04-20 Fulham-Chelsea,33,Sun,2025-04-20,14:00,Fulham,1–2,Chelsea,,Craven Cottage,Anthony Taylor,,,kaggle_326
+ENG-Premier League,2425,2025-04-20 Ipswich Town-Arsenal,33,Sun,2025-04-20,14:00,Ipswich Town,0–4,Arsenal,,Portman Road Stadium,Chris Kavanagh,,,kaggle_327
+ENG-Premier League,2425,2025-04-20 Manchester United-Wolverhampton Wanderers,33,Sun,2025-04-20,14:00,Manchester United,0–1,Wolverhampton Wanderers,,Old Trafford,Robert Jones,,,kaggle_328
+ENG-Premier League,2425,2025-04-20 Leicester City-Liverpool,33,Sun,2025-04-20,16:30,Leicester City,0–1,Liverpool,,King Power Stadium,Stuart Attwell,,,kaggle_329
+ENG-Premier League,2425,2025-04-21 Tottenham-Nottingham Forest,33,Mon,2025-04-21,20:00,Tottenham,1–2,Nottingham Forest,,Tottenham Hotspur Stadium,Peter Bankes,,,kaggle_330
+ENG-Premier League,2425,2025-04-22 Manchester City-Aston Villa,34,Tue,2025-04-22,20:00,Manchester City,2–1,Aston Villa,,Etihad Stadium,Craig Pawson,,,kaggle_331
+ENG-Premier League,2425,2025-04-23 Arsenal-Crystal Palace,34,Wed,2025-04-23,20:00,Arsenal,2–2,Crystal Palace,,Emirates Stadium,Michael Salisbury,,,kaggle_332
+ENG-Premier League,2425,2025-04-26 Chelsea-Everton,34,Sat,2025-04-26,12:30,Chelsea,1–0,Everton,,Stamford Bridge,Chris Kavanagh,,,kaggle_333
+ENG-Premier League,2425,2025-04-26 Brighton-West Ham,34,Sat,2025-04-26,15:00,Brighton,3–2,West Ham,,The American Express Stadium,Darren England,,,kaggle_334
+ENG-Premier League,2425,2025-04-26 Wolverhampton Wanderers-Leicester City,34,Sat,2025-04-26,15:00,Wolverhampton Wanderers,3–0,Leicester City,,Molineux Stadium,Samuel Barrott,,,kaggle_335
+ENG-Premier League,2425,2025-04-26 Southampton-Fulham,34,Sat,2025-04-26,15:00,Southampton,1–2,Fulham,,St Mary's Stadium,Tony Harrington,,,kaggle_336
+ENG-Premier League,2425,2025-04-26 Newcastle United-Ipswich Town,34,Sat,2025-04-26,15:00,Newcastle United,3–0,Ipswich Town,,St James' Park,Michael Salisbury,,,kaggle_337
+ENG-Premier League,2425,2025-04-27 Bournemouth-Manchester United,34,Sun,2025-04-27,14:00,Bournemouth,1–1,Manchester United,,Vitality Stadium,Peter Bankes,,,kaggle_338
+ENG-Premier League,2425,2025-04-27 Liverpool-Tottenham,34,Sun,2025-04-27,16:30,Liverpool,5–1,Tottenham,,Anfield,Thomas Bramall,,,kaggle_339
+ENG-Premier League,2425,2025-05-01 Nottingham Forest-Brentford,34,Thu,2025-05-01,19:30,Nottingham Forest,0–2,Brentford,,The City Ground,Darren England,,,kaggle_340
+ENG-Premier League,2425,2025-05-02 Manchester City-Wolverhampton Wanderers,35,Fri,2025-05-02,20:00,Manchester City,1–0,Wolverhampton Wanderers,,Etihad Stadium,Peter Bankes,,,kaggle_341
+ENG-Premier League,2425,2025-05-03 Aston Villa-Fulham,35,Sat,2025-05-03,12:30,Aston Villa,1–0,Fulham,,Villa Park,Robert Jones,,,kaggle_342
+ENG-Premier League,2425,2025-05-03 Leicester City-Southampton,35,Sat,2025-05-03,15:00,Leicester City,2–0,Southampton,,King Power Stadium,David Webb,,,kaggle_343
+ENG-Premier League,2425,2025-05-03 Everton-Ipswich Town,35,Sat,2025-05-03,15:00,Everton,2–2,Ipswich Town,,Goodison Park,Lewis Smith,,,kaggle_344
+ENG-Premier League,2425,2025-05-03 Arsenal-Bournemouth,35,Sat,2025-05-03,17:30,Arsenal,1–2,Bournemouth,,Emirates Stadium,Jarred Gillett,,,kaggle_345
+ENG-Premier League,2425,2025-05-04 Brighton-Newcastle United,35,Sun,2025-05-04,14:00,Brighton,1–1,Newcastle United,,The American Express Stadium,Craig Pawson,,,kaggle_346
+ENG-Premier League,2425,2025-05-04 West Ham-Tottenham,35,Sun,2025-05-04,14:00,West Ham,1–1,Tottenham,,London Stadium,Michael Oliver,,,kaggle_347
+ENG-Premier League,2425,2025-05-04 Brentford-Manchester United,35,Sun,2025-05-04,14:00,Brentford,4–3,Manchester United,,Gtech Community Stadium,Anthony Taylor,,,kaggle_348
+ENG-Premier League,2425,2025-05-04 Chelsea-Liverpool,35,Sun,2025-05-04,16:30,Chelsea,3–1,Liverpool,,Stamford Bridge,Simon Hooper,,,kaggle_349
+ENG-Premier League,2425,2025-05-05 Crystal Palace-Nottingham Forest,35,Mon,2025-05-05,20:00,Crystal Palace,1–1,Nottingham Forest,,Selhurst Park,Andy Madley,,,kaggle_350
+ENG-Premier League,2425,2025-05-10 Ipswich Town-Brentford,36,Sat,2025-05-10,15:00,Ipswich Town,0–1,Brentford,,Portman Road Stadium,Samuel Barrott,,,kaggle_351
+ENG-Premier League,2425,2025-05-10 Fulham-Everton,36,Sat,2025-05-10,15:00,Fulham,1–3,Everton,,Craven Cottage,Darren England,,,kaggle_352
+ENG-Premier League,2425,2025-05-10 Wolverhampton Wanderers-Brighton,36,Sat,2025-05-10,15:00,Wolverhampton Wanderers,0–2,Brighton,,Molineux Stadium,Michael Oliver,,,kaggle_353
+ENG-Premier League,2425,2025-05-10 Southampton-Manchester City,36,Sat,2025-05-10,15:00,Southampton,0–0,Manchester City,,St Mary's Stadium,Tim Robinson,,,kaggle_354
+ENG-Premier League,2425,2025-05-10 Bournemouth-Aston Villa,36,Sat,2025-05-10,17:30,Bournemouth,0–1,Aston Villa,,Vitality Stadium,Stuart Attwell,,,kaggle_355
+ENG-Premier League,2425,2025-05-11 Newcastle United-Chelsea,36,Sun,2025-05-11,12:00,Newcastle United,2–0,Chelsea,,St James' Park,John Brooks,,,kaggle_356
+ENG-Premier League,2425,2025-05-11 Nottingham Forest-Leicester City,36,Sun,2025-05-11,14:15,Nottingham Forest,2–2,Leicester City,,The City Ground,Tony Harrington,,,kaggle_357
+ENG-Premier League,2425,2025-05-11 Tottenham-Crystal Palace,36,Sun,2025-05-11,14:15,Tottenham,0–2,Crystal Palace,,Tottenham Hotspur Stadium,Chris Kavanagh,,,kaggle_358
+ENG-Premier League,2425,2025-05-11 Manchester United-West Ham,36,Sun,2025-05-11,14:15,Manchester United,0–2,West Ham,,Old Trafford,Jarred Gillett,,,kaggle_359
+ENG-Premier League,2425,2025-05-11 Liverpool-Arsenal,36,Sun,2025-05-11,16:30,Liverpool,2–2,Arsenal,,Anfield,Anthony Taylor,,,kaggle_360
+ENG-Premier League,2425,2025-05-16 Aston Villa-Tottenham,37,Fri,2025-05-16,19:30,Aston Villa,2–0,Tottenham,,Villa Park,Peter Bankes,,,kaggle_361
+ENG-Premier League,2425,2025-05-16 Chelsea-Manchester United,37,Fri,2025-05-16,20:15,Chelsea,1–0,Manchester United,,Stamford Bridge,Chris Kavanagh,,,kaggle_362
+ENG-Premier League,2425,2025-05-18 Everton-Southampton,37,Sun,2025-05-18,12:00,Everton,2–0,Southampton,,Goodison Park,Michael Oliver,,,kaggle_363
+ENG-Premier League,2425,2025-05-18 West Ham-Nottingham Forest,37,Sun,2025-05-18,14:15,West Ham,1–2,Nottingham Forest,,London Stadium,Samuel Barrott,,,kaggle_364
+ENG-Premier League,2425,2025-05-18 Brentford-Fulham,37,Sun,2025-05-18,15:00,Brentford,2–3,Fulham,,Gtech Community Stadium,Jarred Gillett,,,kaggle_365
+ENG-Premier League,2425,2025-05-18 Leicester City-Ipswich Town,37,Sun,2025-05-18,15:00,Leicester City,2–0,Ipswich Town,,King Power Stadium,Andrew Kitchen,,,kaggle_366
+ENG-Premier League,2425,2025-05-18 Arsenal-Newcastle United,37,Sun,2025-05-18,16:30,Arsenal,1–0,Newcastle United,,Emirates Stadium,Simon Hooper,,,kaggle_367
+ENG-Premier League,2425,2025-05-19 Brighton-Liverpool,37,Mon,2025-05-19,20:00,Brighton,3–2,Liverpool,,The American Express Stadium,Andy Madley,,,kaggle_368
+ENG-Premier League,2425,2025-05-20 Manchester City-Bournemouth,37,Tue,2025-05-20,20:00,Manchester City,3–1,Bournemouth,,Etihad Stadium,Thomas Bramall,,,kaggle_369
+ENG-Premier League,2425,2025-05-20 Crystal Palace-Wolverhampton Wanderers,37,Tue,2025-05-20,20:00,Crystal Palace,4–2,Wolverhampton Wanderers,,Selhurst Park,David Webb,,,kaggle_370
+ENG-Premier League,2425,2025-05-25 Manchester United-Aston Villa,38,Sun,2025-05-25,16:00,Manchester United,2–0,Aston Villa,,Old Trafford,Thomas Bramall,,,kaggle_371
+ENG-Premier League,2425,2025-05-25 Ipswich Town-West Ham,38,Sun,2025-05-25,16:00,Ipswich Town,1–3,West Ham,,Portman Road Stadium,Tim Robinson,,,kaggle_372
+ENG-Premier League,2425,2025-05-25 Wolverhampton Wanderers-Brentford,38,Sun,2025-05-25,16:00,Wolverhampton Wanderers,1–1,Brentford,,Molineux Stadium,Craig Pawson,,,kaggle_373
+ENG-Premier League,2425,2025-05-25 Southampton-Arsenal,38,Sun,2025-05-25,16:00,Southampton,1–2,Arsenal,,St Mary's Stadium,Darren Bond,,,kaggle_374
+ENG-Premier League,2425,2025-05-25 Liverpool-Crystal Palace,38,Sun,2025-05-25,16:00,Liverpool,1–1,Crystal Palace,,Anfield,Darren England,,,kaggle_375
+ENG-Premier League,2425,2025-05-25 Nottingham Forest-Chelsea,38,Sun,2025-05-25,16:00,Nottingham Forest,0–1,Chelsea,,The City Ground,Anthony Taylor,,,kaggle_376
+ENG-Premier League,2425,2025-05-25 Fulham-Manchester City,38,Sun,2025-05-25,16:00,Fulham,0–2,Manchester City,,Craven Cottage,Andy Madley,,,kaggle_377
+ENG-Premier League,2425,2025-05-25 Newcastle United-Everton,38,Sun,2025-05-25,16:00,Newcastle United,0–1,Everton,,St James' Park,Tony Harrington,,,kaggle_378
+ENG-Premier League,2425,2025-05-25 Bournemouth-Leicester City,38,Sun,2025-05-25,16:00,Bournemouth,2–0,Leicester City,,Vitality Stadium,Lewis Smith,,,kaggle_379
+ENG-Premier League,2425,2025-05-25 Tottenham-Brighton,38,Sun,2025-05-25,16:00,Tottenham,1–4,Brighton,,Tottenham Hotspur Stadium,Robert Jones,,,kaggle_380

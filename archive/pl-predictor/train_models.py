@@ -23,9 +23,9 @@ def evaluate_models(X_train, X_test, y_train, y_test, target_name):
     X_test_scaled = scaler.transform(X_test)
     
     models = {
-        "Logistic Regression": LogisticRegression(max_iter=2000),
-        "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
-        "HistGradientBoosting": HistGradientBoostingClassifier(random_state=42),
+        "Logistic Regression": LogisticRegression(max_iter=2000, solver='lbfgs', penalty='l2', C=0.01, random_state=42),
+        "Random Forest": RandomForestClassifier(n_estimators=200, min_samples_split=10, min_samples_leaf=1, max_depth=5, random_state=42),
+        "HistGradientBoosting": HistGradientBoostingClassifier(learning_rate=0.01, max_iter=100, max_depth=10, l2_regularization=10.0, random_state=42),
         "AdaBoost": AdaBoostClassifier(random_state=42),
         "Neural Network (MLP)": MLPClassifier(max_iter=500, random_state=42),
         "Naive Bayes": GaussianNB()

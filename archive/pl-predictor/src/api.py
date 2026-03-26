@@ -21,10 +21,10 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 # Paths
 # ─────────────────────────────────────────────────────────────────────────────
-BASE_DIR      = r"/home/matias/datascience/archive/pl-predictor"
+BASE_DIR      = r"c:\Users\PC\DataScience\archive\pl-predictor"
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_seasons_unified.csv")
-FRONTEND_DIR   = r"/home/matias/datascience/pl-web/dist"
+FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
+FRONTEND_DIR   = os.path.join(BASE_DIR, "..", "pl-web", "dist")
 
 # No static_folder here — we serve the SPA manually via the catch-all route
 app = Flask(__name__)

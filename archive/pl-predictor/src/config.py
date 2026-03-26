@@ -1,9 +1,9 @@
 import os
 
-BASE_DIR = r"/home/matias/datascience/archive/pl-predictor"
+BASE_DIR = r"c:\Users\PC\DataScience\archive\pl-predictor"
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
-MODELS_DIR = os.path.join(BASE_DIR, "artifacts", "models")
+MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # ACTIVE MARKETS — Cuota esperada realista ≥ 1.50 con EV potencialmente positivo
@@ -34,9 +34,7 @@ TARGETS = {
 
 FEATURES = [
     'home_elo', 'away_elo',
-    'h_missing_key_player', 'a_missing_key_player',
-    'home_rest', 'away_rest',
-    'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls', 'h_l5_conv',
-    'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls', 'a_l5_conv',
+    'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls',
+    'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls',
     'referee_avg_cards_history'
 ]

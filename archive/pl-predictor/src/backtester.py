@@ -102,8 +102,13 @@ def run_recent_backtest(df, selector, n_matches=60):
             continue
             
         top_bet = preds[0]
-        market = top_bet['Market']
         prob = top_bet['Probability']
+        
+        # CONFIDENCE THRESHOLD
+        if prob < 0.55:
+            continue
+            
+        market = top_bet['Market']
         
         # Simulate bookmaker odds (assuming 5% margin over fair probability)
         fair_odds = 1.0 / prob if prob > 0 else 2.0
@@ -337,7 +342,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             # Simulating bookie odds with a 5% margin
             simulated_odds = round(max(1.01, f_odds * 0.95), 2)
             
-            if simulated_odds >= min_odds:
+            # CONFIDENCE THRESHOLD
+            if simulated_odds >= min_odds and prob >= 0.55:
                 top_bet = p
                 bookie_odds = simulated_odds
                 break
@@ -357,6 +363,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             # Un Kelly estricto siempre hallará edge negativo aquí. 
             # Por lo que la apuesta variable será simplemente proporcional a la probabilidad bruta.
             f_star = prob * max_stake_frac
+            # KELLY FRACTIONAL CAP: No bet exceeds 5% of bankroll for deep safety
+            f_star = min(f_star, 0.05)
             stake_amount = max(bankroll * f_star, 1.0)
         else:
             stake_amount = float(stake)

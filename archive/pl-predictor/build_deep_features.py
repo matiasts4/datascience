@@ -65,7 +65,7 @@ def build_deep_features():
     pstats_df = pd.concat(all_pstats, ignore_index=True)
     events_df = pd.concat(all_events, ignore_index=True)
     
-    matches_df['date'] = pd.to_datetime(matches_df['date'])
+    matches_df['date'] = pd.to_datetime(matches_df['date'], format='mixed', dayfirst=False, errors='coerce')
     matches_df = matches_df.sort_values(by=['date', 'time']).reset_index(drop=True)
     
     print("Extracting Goals and 1X2...")

@@ -10,8 +10,8 @@ class MasterBetSelector:
         self.scaler = joblib.load(os.path.join(MODELS_DIR, 'scaler.pkl'))
         self.models = {}
         for target_name in TARGETS.keys():
-            safe_name = target_name.replace(" ", "_").replace("(", "").replace(")", "").replace(".", "_")
-            model_path = os.path.join(MODELS_DIR, f"model_{safe_name}.pkl")
+            target_slug = target_name.replace(' ', '_').replace('(', '').replace(')', '').lower()
+            model_path = os.path.join(MODELS_DIR, 'optimized', f"best_{target_slug}.pkl")
             if os.path.exists(model_path):
                 self.models[target_name] = joblib.load(model_path)
     
@@ -30,14 +30,19 @@ class MasterBetSelector:
                 if len(model.classes_) == 2 and 1 in model.classes_:
                     idx = list(model.classes_).index(1)
                     prob = model.predict_proba(X_scaled)[0][idx]
+                    pick = 1
                 else:
-                    # For 1X2 (multiclass) get max probability
-                    prob = max(model.predict_proba(X_scaled)[0])
+                    # For 1X2 (multiclass) get max probability and its class
+                    probs = model.predict_proba(X_scaled)[0]
+                    max_idx = np.argmax(probs)
+                    prob = probs[max_idx]
+                    pick = model.classes_[max_idx]
                     
                 predictions.append({
                     "Market": target_name,
                     "Probability": prob,
-                    "Confidence": f"{prob*100:.1f}%"
+                    "Confidence": f"{prob*100:.1f}%",
+                    "Pick": pick
                 })
             except Exception as e:
                 pass

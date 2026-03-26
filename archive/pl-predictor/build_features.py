@@ -29,7 +29,7 @@ def build_advanced_features():
     matches_df = pd.concat(all_matches, ignore_index=True)
     events_df = pd.concat(all_events, ignore_index=True)
     
-    matches_df['date'] = pd.to_datetime(matches_df['date'])
+    matches_df['date'] = pd.to_datetime(matches_df['date'], format='mixed', dayfirst=False, errors='coerce')
     matches_df = matches_df.sort_values(by=['date', 'time']).reset_index(drop=True)
     
     print("1. Extracting Match Goals and Results...")
