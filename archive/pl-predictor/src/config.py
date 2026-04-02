@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
+FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v3.csv")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -37,5 +37,6 @@ FEATURES = [
     'h_missing_key_player', 'a_missing_key_player',
     'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls', 'h_l5_atk', 'h_l5_def',
     'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls', 'a_l5_atk', 'a_l5_def',
-    'referee_avg_cards_history', 'team_home_win_pct', 'team_away_win_pct', 'h2h_home_pts_avg'
+    'referee_avg_cards_history', 'team_home_win_pct', 'team_away_win_pct', 'h2h_home_pts_avg',
+    'B365H', 'B365D', 'B365A'
 ]

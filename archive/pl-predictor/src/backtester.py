@@ -336,6 +336,9 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'team_home_win_pct':     row.get('team_home_win_pct', 0.5),
             'team_away_win_pct':     row.get('team_away_win_pct', 0.5),
             'h2h_home_pts_avg':      row.get('h2h_home_pts_avg', 1.0),
+            'B365H':                 row.get('B365H', 2.5),
+            'B365D':                 row.get('B365D', 3.2),
+            'B365A':                 row.get('B365A', 2.5),
         }
 
         preds = selector.get_best_bet(features)
