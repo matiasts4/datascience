@@ -34,7 +34,8 @@ TARGETS = {
 
 FEATURES = [
     'home_elo', 'away_elo',
-    'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls',
-    'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls',
-    'referee_avg_cards_history'
+    'h_missing_key_player', 'a_missing_key_player',
+    'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls', 'h_l5_atk', 'h_l5_def',
+    'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls', 'a_l5_atk', 'a_l5_def',
+    'referee_avg_cards_history', 'team_home_win_pct', 'team_away_win_pct', 'h2h_home_pts_avg'
 ]

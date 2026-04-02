@@ -10,8 +10,8 @@ class MasterBetSelector:
         self.scaler = joblib.load(os.path.join(MODELS_DIR, 'scaler.pkl'))
         self.models = {}
         for target_name in TARGETS.keys():
-            target_slug = target_name.replace(' ', '_').replace('(', '').replace(')', '').lower()
-            model_path = os.path.join(MODELS_DIR, 'optimized', f"best_{target_slug}.pkl")
+            safe_name = target_name.replace(" ", "_").replace("(", "").replace(")", "").replace(".", "_")
+            model_path = os.path.join(MODELS_DIR, f"model_{safe_name}.pkl")
             if os.path.exists(model_path):
                 self.models[target_name] = joblib.load(model_path)
     

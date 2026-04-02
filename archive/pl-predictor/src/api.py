@@ -33,7 +33,8 @@ CORS(app)
 # ─────────────────────────────────────────────────────────────────────────────
 # Lazy-load data so the server starts fast
 # ─────────────────────────────────────────────────────────────────────────────
-_df: pd.DataFrame | None = None
+from typing import Optional
+_df: Optional[pd.DataFrame] = None
 
 # ─────────────────────────────────────────────────────────────────────────────
 # In-memory cache for scraped upcoming fixtures (avoids hitting FBref every request)
@@ -108,14 +109,14 @@ def compute_elo_map(df: pd.DataFrame, cutoff_date=None, k=20) -> dict:
 
 def build_team_last5(team: str, df: pd.DataFrame, cutoff=None) -> dict:
     src = df if cutoff is None else df[df['date'] < cutoff]
-    home_m = src[src['home_team'] == team][['date','home_goals','away_goals','h_l5_pts','h_l5_gf','h_l5_ga','h_l5_sh','h_l5_sot','h_l5_fls','h_l5_conv']].tail(5)
-    away_m = src[src['away_team'] == team][['date','away_goals','home_goals','a_l5_pts','a_l5_gf','a_l5_ga','a_l5_sh','a_l5_sot','a_l5_fls','a_l5_conv']].tail(5)
-    home_m = home_m.rename(columns={'h_l5_pts':'pts','h_l5_gf':'gf','h_l5_ga':'ga','h_l5_sh':'sh','h_l5_sot':'sot','h_l5_fls':'fls','h_l5_conv':'conv'})
-    away_m = away_m.rename(columns={'a_l5_pts':'pts','a_l5_gf':'gf','a_l5_ga':'ga','a_l5_sh':'sh','a_l5_sot':'sot','a_l5_fls':'fls','a_l5_conv':'conv'})
+    home_m = src[src['home_team'] == team][['date','home_goals','away_goals','h_l5_pts','h_l5_gf','h_l5_ga','h_l5_sh','h_l5_sot','h_l5_fls','h_l5_conv','h_l5_atk','h_l5_def']].tail(5)
+    away_m = src[src['away_team'] == team][['date','away_goals','home_goals','a_l5_pts','a_l5_gf','a_l5_ga','a_l5_sh','a_l5_sot','a_l5_fls','a_l5_conv','a_l5_atk','a_l5_def']].tail(5)
+    home_m = home_m.rename(columns={'h_l5_pts':'pts','h_l5_gf':'gf','h_l5_ga':'ga','h_l5_sh':'sh','h_l5_sot':'sot','h_l5_fls':'fls','h_l5_conv':'conv','h_l5_atk':'atk','h_l5_def':'def'})
+    away_m = away_m.rename(columns={'a_l5_pts':'pts','a_l5_gf':'gf','a_l5_ga':'ga','a_l5_sh':'sh','a_l5_sot':'sot','a_l5_fls':'fls','a_l5_conv':'conv','a_l5_atk':'atk','a_l5_def':'def'})
     combined = pd.concat([home_m, away_m]).sort_values('date').tail(5)
     if combined.empty:
-        return {k: 0 for k in ['pts','gf','ga','sh','sot','fls','conv']}
-    return {col: round(float(combined[col].mean()), 3) for col in ['pts','gf','ga','sh','sot','fls','conv'] if col in combined}
+        return {k: 0 for k in ['pts','gf','ga','sh','sot','fls','conv','atk','def']}
+    return {col: round(float(combined[col].mean()), 3) for col in ['pts','gf','ga','sh','sot','fls','conv','atk','def'] if col in combined}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -504,6 +505,8 @@ def predict():
         'h_l5_ga':               h_form.get('ga', 0),
         'h_l5_fls':              h_form.get('fls', 0),
         'h_l5_conv':             h_form.get('conv', 0),
+        'h_l5_atk':              h_form.get('atk', 0),
+        'h_l5_def':              h_form.get('def', 0),
         'a_l5_pts':              a_form.get('pts', 0),
         'a_l5_sh':               a_form.get('sh', 0),
         'a_l5_sot':              a_form.get('sot', 0),
@@ -512,6 +515,8 @@ def predict():
         'a_l5_ga':               a_form.get('ga', 0),
         'a_l5_fls':              a_form.get('fls', 0),
         'a_l5_conv':             a_form.get('conv', 0),
+        'a_l5_atk':              a_form.get('atk', 0),
+        'a_l5_def':              a_form.get('def', 0),
         'referee_avg_cards_history': ref_avg,
     }
 

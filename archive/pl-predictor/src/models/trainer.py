@@ -4,8 +4,6 @@ import os
 import joblib
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
-from xgboost import XGBClassifier
-from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
@@ -15,19 +13,6 @@ from src.config import FEATURES_PATH, TARGETS, FEATURES, MODELS_DIR
 
 def train_best_model_for_target(X_train, y_train, target_name):
     models = {
-        "XGBoost": (XGBClassifier(eval_metric='logloss', random_state=42), {
-            'n_estimators': [50, 100],
-            'max_depth': [3, 5],
-            'learning_rate': [0.05, 0.1]
-        }),
-        "LightGBM": (LGBMClassifier(random_state=42, verbose=-1), {
-            'n_estimators': [50, 100],
-            'max_depth': [3, -1],
-            'learning_rate': [0.05, 0.1]
-        }),
-        "Logistic Regression": (LogisticRegression(max_iter=1000, random_state=42), {
-            'C': [0.1, 1.0, 10.0]
-        }),
         "Random Forest": (RandomForestClassifier(random_state=42), {
             'n_estimators': [50, 100],
             'max_depth': [5, 10]
@@ -52,7 +37,7 @@ def train_best_model_for_target(X_train, y_train, target_name):
     
     # Isotonic Calibration to output true statistically grounded probabilities
     # We use cv=3 so it cross-validates to prevent overfitting during calibration
-    calibrated_model = CalibratedClassifierCV(best_overall_model, method='sigmoid', cv=3)
+    calibrated_model = CalibratedClassifierCV(best_overall_model, method='isotonic', cv=3)
     calibrated_model.fit(X_train, y_train)
     
     return calibrated_model

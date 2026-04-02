@@ -320,6 +320,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'h_l5_ga':               h_form.get('ga', 0),
             'h_l5_fls':              h_form.get('fls', 0),
             'h_l5_conv':             h_form.get('conv', 0),
+            'h_l5_atk':              h_form.get('atk', 0),
+            'h_l5_def':              h_form.get('def', 0),
             'a_l5_pts':              a_form.get('pts', 0),
             'a_l5_sh':               a_form.get('sh', 0),
             'a_l5_sot':              a_form.get('sot', 0),
@@ -328,7 +330,12 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'a_l5_ga':               a_form.get('ga', 0),
             'a_l5_fls':              a_form.get('fls', 0),
             'a_l5_conv':             a_form.get('conv', 0),
+            'a_l5_atk':              a_form.get('atk', 0),
+            'a_l5_def':              a_form.get('def', 0),
             'referee_avg_cards_history': ref_avg,
+            'team_home_win_pct':     row.get('team_home_win_pct', 0.5),
+            'team_away_win_pct':     row.get('team_away_win_pct', 0.5),
+            'h2h_home_pts_avg':      row.get('h2h_home_pts_avg', 1.0),
         }
 
         preds = selector.get_best_bet(features)

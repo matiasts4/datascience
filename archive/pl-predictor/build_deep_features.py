@@ -4,7 +4,7 @@ import os
 import glob
 
 # Define paths
-BASE_DIR = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 OUTPUT_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
 
@@ -85,27 +85,33 @@ def build_deep_features():
     print("Finding Missing Key Players...")
     # Clean pstats cols
     print("  cleaning pstats...")
-    for col in ['Performance_Sh', 'Performance_SoT', 'Performance_Fls', 'Performance_Gls', 'min']:
+    for col in ['Performance_Sh', 'Performance_SoT', 'Performance_Fls', 'Performance_Gls', 'min', 'Performance_TklW', 'Performance_Int', 'Performance_Ast']:
         pstats_df[col] = pd.to_numeric(pstats_df[col], errors='coerce').fillna(0)
     
     print("  grouping team pstats...")
-    team_pstats = pstats_df.groupby(['game', 'team'])[['Performance_Sh', 'Performance_SoT', 'Performance_Fls']].sum().reset_index()
-    team_pstats.columns = ['game', 'team', 'shots', 'sot', 'fouls']
+    pstats_df['atk_idx'] = pstats_df['Performance_SoT'] + pstats_df['Performance_Gls'] * 2 + pstats_df['Performance_Ast'] * 1.5
+    pstats_df['def_idx'] = pstats_df['Performance_TklW'] + pstats_df['Performance_Int']
+
+    team_pstats = pstats_df.groupby(['game', 'team'])[['Performance_Sh', 'Performance_SoT', 'Performance_Fls', 'atk_idx', 'def_idx']].sum().reset_index()
+    team_pstats.columns = ['game', 'team', 'shots', 'sot', 'fouls', 'atk_rating', 'def_rating']
     
     print("  evaluating key players...")
-    # Evaluate key players
-    player_totals = pstats_df.groupby(['team', 'player'])['Performance_Gls'].sum().reset_index()
+    # Evaluate key players based on total minutes played, not just goals
+    player_totals = pstats_df.groupby(['team', 'player'])['min'].sum().reset_index()
     print("  sorting players...")
-    top_players = player_totals.sort_values(['team', 'Performance_Gls'], ascending=[True, False]).groupby('team').head(2)
+    # Top 5 core players with the most minutes for the team
+    top_players = player_totals.sort_values(['team', 'min'], ascending=[True, False]).groupby('team').head(5)
     print("  merging key pstats...")
     key_pstats = pstats_df.merge(top_players[['team', 'player']], on=['team', 'player'])
     print("  grouping key played...")
-    key_played = key_pstats[key_pstats['min'] > 0].groupby(['game', 'team']).size().reset_index(name='key_players_active')
+    # If a core player is playing more than 45 mins, he's fully available
+    key_played = key_pstats[key_pstats['min'] > 45].groupby(['game', 'team']).size().reset_index(name='key_players_active')
     
     print("  merging back to team_pstats...")
     team_pstats = pd.merge(team_pstats, key_played, on=['game', 'team'], how='left')
     team_pstats['key_players_active'] = team_pstats['key_players_active'].fillna(0)
-    team_pstats['missing_key_player'] = (team_pstats['key_players_active'] < 2).astype(int)
+    # the missing key players out of 5
+    team_pstats['missing_key_player'] = (5 - team_pstats['key_players_active']).astype(int)
     
     print("Extracting Form and Rolling Advanced Stats...")
     home_perf = matches_df[['game', 'date', 'home_team', 'away_team', 'home_goals', 'away_goals', 'result_1x2', 'away_elo']].copy()
@@ -120,7 +126,7 @@ def build_deep_features():
     perf = pd.merge(perf, team_pstats, on=['game', 'team'], how='left')
     
     # Now get opponent shots and sot to calculate "shots conceded"
-    opp_pstats = team_pstats[['game', 'team', 'shots', 'sot', 'fouls']].rename(columns={'team': 'opponent', 'shots': 'shots_conceded', 'sot': 'sot_conceded', 'fouls':'fouls_drawn'})
+    opp_pstats = team_pstats[['game', 'team', 'shots', 'sot', 'fouls', 'atk_rating', 'def_rating']].rename(columns={'team': 'opponent', 'shots': 'shots_conceded', 'sot': 'sot_conceded', 'fouls':'fouls_drawn', 'atk_rating':'opp_atk_rating', 'def_rating':'opp_def_rating'})
     perf = pd.merge(perf, opp_pstats, on=['game', 'opponent'], how='left')
     
     perf = perf.sort_values(by='date').reset_index(drop=True)
@@ -153,13 +159,15 @@ def build_deep_features():
     perf['last5_ga']    = groups['adj_ga'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
     perf['last5_fouls'] = groups['fouls'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
     perf['last5_conv']  = groups['conv_rate'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last5_atk_rating'] = groups['atk_rating'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last5_def_rating'] = groups['def_rating'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
     
     # Split back to home and away
-    home_features = perf[['game', 'team', 'fouls', 'rest_days', 'missing_key_player', 'last5_pts', 'last5_shots', 'last5_sot', 'last5_sot_c', 'last5_gf', 'last5_ga', 'last5_fouls', 'last5_conv']].rename(
-        columns={'team':'home_team', 'fouls':'home_match_fouls', 'rest_days':'home_rest', 'missing_key_player':'h_missing_key_player', 'last5_pts':'h_l5_pts', 'last5_shots':'h_l5_sh', 'last5_sot':'h_l5_sot', 'last5_sot_c':'h_l5_sot_c', 'last5_gf':'h_l5_gf', 'last5_ga':'h_l5_ga', 'last5_fouls':'h_l5_fls', 'last5_conv':'h_l5_conv'}
+    home_features = perf[['game', 'team', 'fouls', 'rest_days', 'missing_key_player', 'last5_pts', 'last5_shots', 'last5_sot', 'last5_sot_c', 'last5_gf', 'last5_ga', 'last5_fouls', 'last5_conv', 'last5_atk_rating', 'last5_def_rating']].rename(
+        columns={'team':'home_team', 'fouls':'home_match_fouls', 'rest_days':'home_rest', 'missing_key_player':'h_missing_key_player', 'last5_pts':'h_l5_pts', 'last5_shots':'h_l5_sh', 'last5_sot':'h_l5_sot', 'last5_sot_c':'h_l5_sot_c', 'last5_gf':'h_l5_gf', 'last5_ga':'h_l5_ga', 'last5_fouls':'h_l5_fls', 'last5_conv':'h_l5_conv', 'last5_atk_rating':'h_l5_atk', 'last5_def_rating':'h_l5_def'}
     )
-    away_features = perf[['game', 'team', 'fouls', 'rest_days', 'missing_key_player', 'last5_pts', 'last5_shots', 'last5_sot', 'last5_sot_c', 'last5_gf', 'last5_ga', 'last5_fouls', 'last5_conv']].rename(
-        columns={'team':'away_team', 'fouls':'away_match_fouls', 'rest_days':'away_rest', 'missing_key_player':'a_missing_key_player', 'last5_pts':'a_l5_pts', 'last5_shots':'a_l5_sh', 'last5_sot':'a_l5_sot', 'last5_sot_c':'a_l5_sot_c', 'last5_gf':'a_l5_gf', 'last5_ga':'a_l5_ga', 'last5_fouls':'a_l5_fls', 'last5_conv':'a_l5_conv'}
+    away_features = perf[['game', 'team', 'fouls', 'rest_days', 'missing_key_player', 'last5_pts', 'last5_shots', 'last5_sot', 'last5_sot_c', 'last5_gf', 'last5_ga', 'last5_fouls', 'last5_conv', 'last5_atk_rating', 'last5_def_rating']].rename(
+        columns={'team':'away_team', 'fouls':'away_match_fouls', 'rest_days':'away_rest', 'missing_key_player':'a_missing_key_player', 'last5_pts':'a_l5_pts', 'last5_shots':'a_l5_sh', 'last5_sot':'a_l5_sot', 'last5_sot_c':'a_l5_sot_c', 'last5_gf':'a_l5_gf', 'last5_ga':'a_l5_ga', 'last5_fouls':'a_l5_fls', 'last5_conv':'a_l5_conv', 'last5_atk_rating':'a_l5_atk', 'last5_def_rating':'a_l5_def'}
     )
     
     matches_df = pd.merge(matches_df, home_features, on=['game', 'home_team'], how='left')
@@ -174,6 +182,22 @@ def build_deep_features():
     # Referee history
     matches_df['referee_avg_cards_history'] = matches_df.groupby('referee')['total_cards'].transform(lambda x: x.shift(1).expanding().mean())
     matches_df['referee_avg_cards_history'] = matches_df['referee_avg_cards_history'].fillna(matches_df['total_cards'].mean())
+    
+    print("Calculating Stadium Edge and H2H (Head-to-Head)...")
+    matches_df['home_win_flag'] = (matches_df['result_1x2'] == 2).astype(int)
+    matches_df['away_win_flag'] = (matches_df['result_1x2'] == 0).astype(int)
+    matches_df['team_home_win_pct'] = matches_df.groupby('home_team')['home_win_flag'].transform(lambda x: x.shift(1).expanding().mean())
+    matches_df['team_away_win_pct'] = matches_df.groupby('away_team')['away_win_flag'].transform(lambda x: x.shift(1).expanding().mean())
+    
+    def calc_h2h_pts(x):
+        if x == 2: return 3
+        if x == 1: return 1
+        return 0
+    matches_df['h2h_pts'] = matches_df['result_1x2'].apply(calc_h2h_pts)
+    matches_df['h2h_home_pts_avg'] = matches_df.groupby(['home_team', 'away_team'])['h2h_pts'].transform(lambda x: x.shift(1).expanding().mean())
+    
+    # Drop intermediate columns
+    matches_df = matches_df.drop(columns=['home_win_flag', 'away_win_flag', 'h2h_pts'])
     
     # Fill remaining NaNs from first matches of teams
     matches_df = matches_df.fillna(0)
