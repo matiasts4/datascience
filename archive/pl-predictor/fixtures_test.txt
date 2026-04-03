@@ -1,0 +1,8 @@
+   Div        Date   Time    HomeTeam  ... AvgCAHH AvgCAHA  BFECAHH  BFECAHA
+0  SP2  02/04/2026  18:00  Las Palmas  ...     NaN     NaN      NaN      NaN
+1  SP2  02/04/2026  19:00   Castellon  ...     NaN     NaN      NaN      NaN
+2  SP2  02/04/2026  19:00  Sociedad B  ...     NaN     NaN      NaN      NaN
+3  SP2  02/04/2026  20:30     Leganes  ...     NaN     NaN      NaN      NaN
+4   E2  02/04/2026  19:45       Wigan  ...     NaN     NaN      NaN      NaN
+
+[5 rows x 114 columns]
