@@ -6,38 +6,30 @@ from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import VotingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.calibration import CalibratedClassifierCV
 
 from src.config import FEATURES_PATH, TARGETS, FEATURES, MODELS_DIR
 
 def train_best_model_for_target(X_train, y_train, target_name):
-    models = {
-        "Random Forest": (RandomForestClassifier(random_state=42), {
-            'n_estimators': [50, 100],
-            'max_depth': [5, 10]
-        })
-    }
+    print(f"  [{target_name}] Tuning Random Forest...")
+    rf = RandomForestClassifier(random_state=42)
+    rf_params = {'n_estimators': [50, 100], 'max_depth': [5, 10]}
+    search_rf = RandomizedSearchCV(rf, rf_params, n_iter=2, cv=3, scoring='accuracy', random_state=42, n_jobs=-1)
+    search_rf.fit(X_train, y_train)
+    best_rf = search_rf.best_estimator_
+
+    print(f"  [{target_name}] Best RF CV Acc: {search_rf.best_score_:.4f}")
+
+    lr = LogisticRegression(max_iter=1000, random_state=42, C=0.5)
+
+    ensemble = VotingClassifier(
+        estimators=[('rf', best_rf), ('lr', lr)],
+        voting='soft'
+    )
     
-    best_overall_model = None
-    best_overall_score = 0
-    best_model_name = ""
-    
-    for name, (model, params) in models.items():
-        print(f"  [{target_name}] Tuning {name}...")
-        search = RandomizedSearchCV(model, params, n_iter=2, cv=3, scoring='accuracy', random_state=42, n_jobs=-1)
-        search.fit(X_train, y_train)
-        
-        if search.best_score_ > best_overall_score:
-            best_overall_score = search.best_score_
-            best_overall_model = search.best_estimator_
-            best_model_name = name
-            
-    print(f"  [{target_name}] Best base model: {best_model_name} (CV Acc: {best_overall_score:.4f})")
-    
-    # Isotonic Calibration to output true statistically grounded probabilities
-    # We use cv=3 so it cross-validates to prevent overfitting during calibration
-    calibrated_model = CalibratedClassifierCV(best_overall_model, method='isotonic', cv=3)
+    calibrated_model = CalibratedClassifierCV(ensemble, method='isotonic', cv=3)
     calibrated_model.fit(X_train, y_train)
     
     return calibrated_model

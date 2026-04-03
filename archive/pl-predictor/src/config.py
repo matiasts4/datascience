@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v6.csv")
+FEATURES_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v7.csv")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -41,5 +41,7 @@ FEATURES = [
     'B365H', 'B365D', 'B365A',
     'h_match_xg', 'a_match_xg', 'xg_diff', 'h_l5_xg', 'a_l5_xg',
     'precipitation_mm', 'temp_max_c', 'is_raining', 'is_cold',
-    'poisson_home_win', 'poisson_draw', 'poisson_away_win', 'poisson_over25', 'poisson_clean_sheet'
+    'poisson_home_win', 'poisson_draw', 'poisson_away_win', 'poisson_over25', 'poisson_clean_sheet',
+    'h_win_streak', 'h_loss_streak', 'h_unbeaten_streak',
+    'a_win_streak', 'a_loss_streak', 'a_unbeaten_streak'
 ]
