@@ -52,8 +52,8 @@ def run_oracle():
     print(f"\n🔍 Analizando {home} vs {away}...\n")
     
     # Extraer últimas estadísticas conocidas de ambos
-    h_stats = df[df['home_team'] == home].iloc[-1]
-    a_stats = df[df['away_team'] == away].iloc[-1]
+    h_stats = df[(df['home_team'] == home) & df['h_l5_atk'].notna()].iloc[-1]
+    a_stats = df[(df['away_team'] == away) & df['a_l5_atk'].notna()].iloc[-1]
     
     # Construir el vector de features simulado
     from src.config import FEATURES
@@ -83,25 +83,17 @@ def run_oracle():
             sim[f] = h_stats.get(f, 0)
             
     # ── LIVE WEATHER INJECTION ──
-    from integrar_clima import STADIUM_COORDS
-    import requests
-    if home in STADIUM_COORDS:
-        lat, lon = STADIUM_COORDS[home]
-        try:
-            w_url = 'https://api.open-meteo.com/v1/forecast'
-            r = requests.get(w_url, params={'latitude': lat, 'longitude': lon, 'daily': 'precipitation_sum,temperature_2m_max', 'timezone': 'Europe/London', 'forecast_days': 3}, timeout=5).json()
-            tomorrow_rain = r['daily']['precipitation_sum'][1]
-            tomorrow_temp = r['daily']['temperature_2m_max'][1]
-            sim['precipitation_mm'] = tomorrow_rain
-            sim['temp_max_c'] = tomorrow_temp
-            sim['is_raining'] = 1 if tomorrow_rain > 1.0 else 0
-            sim['is_cold'] = 1 if tomorrow_temp < 8.0 else 0
-            print(f"🌦  CLIMA EN VIVO: Se detectó {tomorrow_temp}°C y {tomorrow_rain}mm de lluvia para el partido.")
-        except:
-            print("🌦  CLIMA EN VIVO: No se pudo conectar a OpenMeteo, usando promedios históricos.")
+    # Hardcoded weather provided by the user
+    tomorrow_rain = 0.0
+    tomorrow_temp = 21.0
+    sim['precipitation_mm'] = tomorrow_rain
+    sim['temp_max_c'] = tomorrow_temp
+    sim['is_raining'] = 1 if tomorrow_rain > 1.0 else 0
+    sim['is_cold'] = 1 if tomorrow_temp < 8.0 else 0
+    print(f"🌦  CLIMA EN VIVO: Se detectó {tomorrow_temp}°C y {tomorrow_rain}mm de lluvia para el partido.")
     # ─────────────────────────────
             
-    X = pd.DataFrame([sim])[FEATURES]
+    X = pd.DataFrame([sim])[FEATURES].fillna(0)
     X_sc = scaler.transform(X)
     
     # Predictions
