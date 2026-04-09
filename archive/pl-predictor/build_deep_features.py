@@ -4,7 +4,7 @@ import os
 import glob
 
 # Define paths
-BASE_DIR = r"c:\Users\PC\DataScience\archive\pl-predictor"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
 OUTPUT_PATH = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
 
@@ -55,8 +55,9 @@ def build_deep_features():
             p_file = os.path.join(season_path, "player_stats_summary.csv")
             e_file = os.path.join(season_path, "match_events.csv")
             
-            if os.path.exists(m_file) and os.path.exists(p_file):
+            if os.path.exists(m_file):
                 all_matches.append(pd.read_csv(m_file))
+            if os.path.exists(p_file):
                 all_pstats.append(pd.read_csv(p_file))
             if os.path.exists(e_file):
                 all_events.append(pd.read_csv(e_file))
@@ -164,6 +165,34 @@ def build_deep_features():
     
     matches_df = pd.merge(matches_df, home_features, on=['game', 'home_team'], how='left')
     matches_df = pd.merge(matches_df, away_features, on=['game', 'away_team'], how='left')
+
+    print("Extracting Psychological & Context Flags...")
+    # Banderas Psicológicas (Derbis y Presión)
+    london_teams = ['Arsenal', 'Chelsea', 'Tottenham Hotspur', 'West Ham United', 'Crystal Palace', 'Fulham', 'Brentford', 'QPR', 'Charlton Athletic']
+    manchester_teams = ['Manchester City', 'Manchester Utd']
+    merseyside_teams = ['Liverpool', 'Everton']
+    birmingham_teams = ['Aston Villa', 'Birmingham City', 'West Brom']
+
+    def is_derby(home, away):
+        for group in [london_teams, manchester_teams, merseyside_teams, birmingham_teams]:
+            if home in group and away in group:
+                return 1
+        return 0
+
+    matches_df['is_derby'] = matches_df.apply(lambda row: is_derby(row['home_team'], row['away_team']), axis=1)
+
+    # Relegation pressure (Meses criticos + bajos puntos)
+    # Suponiendo que meses 2,3,4,5 son criticos de fin de temporada en Premier y puntos bajos (ej: < 1.0 por partido) significa riesgo.
+    matches_df['month'] = matches_df['date'].dt.month
+    def calc_relegation_pressure(row):
+        is_critical_month = row['month'] in [2, 3, 4, 5]
+        # Puntos historicos l5 es un indicador de si estan urgidos
+        home_urgency = 1 if is_critical_month and row['h_l5_pts'] < 1.2 else 0
+        away_urgency = 1 if is_critical_month and row['a_l5_pts'] < 1.2 else 0
+        return max(home_urgency, away_urgency)
+
+    matches_df['relegation_pressure'] = matches_df.apply(calc_relegation_pressure, axis=1)
+
 
     print("Extracting Cards Data...")
     cards_df = events_df[events_df['event_type'].isin(['yellow_card', 'red_card', 'second_yellow_card'])]

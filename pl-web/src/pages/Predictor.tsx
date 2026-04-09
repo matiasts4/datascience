@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAPITeamList, fetchPrediction, APIPredictResponse } from "@/lib/api";
-import { Loader2, Zap, Brain, Activity, ShieldAlert, CheckCircle2, Bot, AlertTriangle } from "lucide-react";
+import { Loader2, Zap, Brain, Activity, ShieldAlert, CheckCircle2, Bot, AlertTriangle, TrendingUp, DollarSign, BarChart2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ConfidenceBadge } from "@/components/ConfidenceBadge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -260,6 +260,53 @@ const Predictor = () => {
                   </div>
                 )}
               </div>
+
+              {/* Kelly Financial Recommendation */}
+              {(() => {
+                const top = prediction.predictions[0];
+                if (!top) return null;
+                const ev = top.ExpectedValue ?? 0;
+                const stakePct = top.RecommendedStakePct ?? 0;
+                const fairOdds = top.FairOdds ?? 0;
+                return (
+                  <div className={cn(
+                    "rounded-lg border p-4 space-y-3",
+                    ev > 0 ? "bg-success/5 border-success/30" : "bg-destructive/5 border-destructive/20"
+                  )}>
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                      <DollarSign className="h-4 w-4 text-success" /> Recomendación Financiera (Kelly)
+                    </h3>
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="text-center">
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">EV</p>
+                        <p className={cn("text-lg font-bold", ev > 0 ? "text-success" : "text-destructive")}>
+                          {ev > 0 ? "+" : ""}{(ev * 100).toFixed(1)}%
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Cuota Justa</p>
+                        <p className="text-lg font-bold text-foreground">{fairOdds.toFixed(2)}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Stake Kelly</p>
+                        <p className={cn("text-lg font-bold", stakePct > 0 ? "text-primary" : "text-muted-foreground")}>
+                          {stakePct > 0 ? `${stakePct.toFixed(1)}%` : "—"}
+                        </p>
+                      </div>
+                    </div>
+                    {ev <= 0 && (
+                      <p className="text-xs text-destructive/80 flex items-center gap-1">
+                        <ShieldAlert className="h-3 w-3" /> EV negativo — Kelly no recomienda apostar en este mercado.
+                      </p>
+                    )}
+                    {ev > 0 && stakePct > 0 && (
+                      <p className="text-xs text-success/80 flex items-center gap-1">
+                        <BarChart2 className="h-3 w-3" /> Apostar el {stakePct.toFixed(1)}% del bankroll maximiza el crecimiento esperado.
+                      </p>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-8 opacity-50 space-y-4">

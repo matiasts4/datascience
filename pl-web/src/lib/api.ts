@@ -54,6 +54,10 @@ export interface APIPredictResponse {
     Market: string;
     Probability: number;
     Confidence: string;
+    ExpectedValue: number;
+    RecommendedStakePct: number;
+    FairOdds: number;
+    Pick: number;
   }[];
 }
 
@@ -372,6 +376,9 @@ export interface APISimulateResponse {
     result: string;
     profit: number;
     balance: number;
+    ev?: number;
+    stakePct?: number;
+    stakeAmount?: number;
   }[];
   profitByOddsData: {
     oddsRange: string;
@@ -402,7 +409,8 @@ export const fetchSimulation = async (params: APISimulateParams): Promise<APISim
   });
 
   const yieldPct = totalStaked > 0 ? (data.performanceSummary.netProfit / totalStaked) * 100 : 0;
-  const avgEV = 4.5; 
+  // avgEV viene del backend (calculado sobre EV real de Kelly). Fallback 0 si no existe.
+  const avgEV = typeof data.performanceSummary.avgEV === 'number' ? data.performanceSummary.avgEV : 0;
 
   const ranges = { "1.0-1.5": {p:0, b:0}, "1.5-2.0": {p:0, b:0}, "2.0-3.0": {p:0, b:0}, "3.0+": {p:0, b:0} };
   data.historyData.forEach((row: any) => {

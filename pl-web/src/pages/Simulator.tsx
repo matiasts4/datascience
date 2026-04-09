@@ -369,6 +369,12 @@ const Simulator = () => {
                         <th className="text-left p-4 font-medium">Partido</th>
                         <th className="text-left p-4 font-medium">Predicción</th>
                         <th className="text-right p-4 font-medium">Cuota</th>
+                        {params.strategy === "variable" && (
+                          <>
+                            <th className="text-right p-4 font-medium">EV</th>
+                            <th className="text-right p-4 font-medium">Stake</th>
+                          </>
+                        )}
                         <th className="text-center p-4 font-medium">Status</th>
                         <th className="text-right p-4 font-medium">P/L ($)</th>
                       </tr>
@@ -380,6 +386,18 @@ const Simulator = () => {
                           <td className="p-4 font-medium text-foreground">{row.match}</td>
                           <td className="p-4 text-primary">{row.prediction}</td>
                           <td className="p-4 text-right tabular-nums">{row.odds.toFixed(2)}</td>
+                          {params.strategy === "variable" && (
+                            <>
+                              <td className={`p-4 text-right tabular-nums text-xs font-semibold ${
+                                (row.ev ?? 0) > 0 ? 'text-success' : 'text-destructive'
+                              }`}>
+                                {(row.ev ?? 0) > 0 ? '+' : ''}{((row.ev ?? 0) * 100).toFixed(1)}%
+                              </td>
+                              <td className="p-4 text-right tabular-nums text-xs text-muted-foreground">
+                                {row.stakeAmount != null ? `$${row.stakeAmount.toLocaleString(undefined, {maximumFractionDigits: 0})}` : '—'}
+                              </td>
+                            </>
+                          )}
                           <td className="p-4 text-center">
                             <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                               row.result === "Won" ? "bg-success/20 text-success" : "bg-destructive/20 text-destructive"

@@ -71,34 +71,34 @@ def run_recent_backtest(df, selector, n_matches=60):
         away = row['away_team']
         match_date = row['date']
         
-        # Build features
-        h_form = build_team_last5(home, df, cutoff=match_date)
-        a_form = build_team_last5(away, df, cutoff=match_date)
-
         features = {
-            'home_elo':              round(elo_map.get(home, 1500), 1),
-            'away_elo':              round(elo_map.get(away, 1500), 1),
-            'h_missing_key_player':  0,
-            'a_missing_key_player':  0,
-            'home_rest':             7,
-            'away_rest':             7,
-            'h_l5_pts':              h_form.get('pts', 0),
-            'h_l5_sh':               h_form.get('sh', 0),
-            'h_l5_sot':              h_form.get('sot', 0),
-            'h_l5_sot_c':            0.0,
-            'h_l5_gf':               h_form.get('gf', 0),
-            'h_l5_ga':               h_form.get('ga', 0),
-            'h_l5_fls':              h_form.get('fls', 0),
-            'h_l5_conv':             h_form.get('conv', 0),
-            'a_l5_pts':              a_form.get('pts', 0),
-            'a_l5_sh':               a_form.get('sh', 0),
-            'a_l5_sot':              a_form.get('sot', 0),
-            'a_l5_sot_c':            0.0,
-            'a_l5_gf':               a_form.get('gf', 0),
-            'a_l5_ga':               a_form.get('ga', 0),
-            'a_l5_fls':              a_form.get('fls', 0),
-            'a_l5_conv':             a_form.get('conv', 0),
-            'referee_avg_cards_history': ref_avg,
+            'home_elo':              row.get('home_elo', 0.0),
+            'away_elo':              row.get('away_elo', 0.0),
+            'home_rest':             row.get('home_rest', 7.0),
+            'away_rest':             row.get('away_rest', 7.0),
+            'h_l5_pts':              row.get('h_l5_pts', 0.0),
+            'h_l5_sh':               row.get('h_l5_sh', 0.0),
+            'h_l5_sot':              row.get('h_l5_sot', 0.0),
+            'h_l5_sot_c':            row.get('h_l5_sot_c', 0.0),
+            'h_l5_gf':               row.get('h_l5_gf', 0.0),
+            'h_l5_ga':               row.get('h_l5_ga', 0.0),
+            'h_l5_fls':              row.get('h_l5_fls', 0.0),
+            'h_l5_conv':             row.get('h_l5_conv', 0.0),
+            'h_l5_xg':               row.get('h_l5_xg', 0.0),
+            'h_l5_xga':              row.get('h_l5_xga', 0.0),
+            'a_l5_pts':              row.get('a_l5_pts', 0.0),
+            'a_l5_sh':               row.get('a_l5_sh', 0.0),
+            'a_l5_sot':              row.get('a_l5_sot', 0.0),
+            'a_l5_sot_c':            row.get('a_l5_sot_c', 0.0),
+            'a_l5_gf':               row.get('a_l5_gf', 0.0),
+            'a_l5_ga':               row.get('a_l5_ga', 0.0),
+            'a_l5_fls':              row.get('a_l5_fls', 0.0),
+            'a_l5_conv':             row.get('a_l5_conv', 0.0),
+            'a_l5_xg':               row.get('a_l5_xg', 0.0),
+            'a_l5_xga':              row.get('a_l5_xga', 0.0),
+            'referee_avg_cards_history': row.get('referee_avg_cards_history', ref_avg),
+            'is_derby':              row.get('is_derby', 0),
+            'relegation_pressure':   row.get('relegation_pressure', 0),
         }
 
         preds = selector.get_best_bet(features)
@@ -194,31 +194,32 @@ def run_detailed_backtest(df, selector, n_matches=100):
         away_goals = row['away_goals']
         res_1x2    = row.get('result_1x2')
         
-        h_form = build_team_last5(home, df, cutoff=match_date)
-        a_form = build_team_last5(away, df, cutoff=match_date)
-
         features = {
-            'home_elo':              round(elo_map.get(home, 1500), 1),
-            'away_elo':              round(elo_map.get(away, 1500), 1),
-            'h_missing_key_player':  0,
-            'a_missing_key_player':  0,
-            'h_l5_pts':              h_form.get('pts', 0),
-            'h_l5_sh':               h_form.get('sh', 0),
-            'h_l5_sot':              h_form.get('sot', 0),
-            'h_l5_sot_c':            0.0,
-            'h_l5_gf':               h_form.get('gf', 0),
-            'h_l5_ga':               h_form.get('ga', 0),
-            'h_l5_fls':              h_form.get('fls', 0),
-            'h_l5_conv':             h_form.get('conv', 0),
-            'a_l5_pts':              a_form.get('pts', 0),
-            'a_l5_sh':               a_form.get('sh', 0),
-            'a_l5_sot':              a_form.get('sot', 0),
-            'a_l5_sot_c':            0.0,
-            'a_l5_gf':               a_form.get('gf', 0),
-            'a_l5_ga':               a_form.get('ga', 0),
-            'a_l5_fls':              a_form.get('fls', 0),
-            'a_l5_conv':             a_form.get('conv', 0),
-            'referee_avg_cards_history': ref_avg,
+            'home_elo':              row.get('home_elo', 0.0),
+            'away_elo':              row.get('away_elo', 0.0),
+            'home_rest':             row.get('home_rest', 7.0),
+            'away_rest':             row.get('away_rest', 7.0),
+            'h_l5_pts':              row.get('h_l5_pts', 0.0),
+            'h_l5_sh':               row.get('h_l5_sh', 0.0),
+            'h_l5_sot':              row.get('h_l5_sot', 0.0),
+            'h_l5_sot_c':            row.get('h_l5_sot_c', 0.0),
+            'h_l5_gf':               row.get('h_l5_gf', 0.0),
+            'h_l5_ga':               row.get('h_l5_ga', 0.0),
+            'h_l5_fls':              row.get('h_l5_fls', 0.0),
+            'h_l5_conv':             row.get('h_l5_conv', 0.0),
+            'h_l5_xg':               row.get('h_l5_xg', 0.0),
+            'h_l5_xga':              row.get('h_l5_xga', 0.0),
+            'a_l5_pts':              row.get('a_l5_pts', 0.0),
+            'a_l5_sh':               row.get('a_l5_sh', 0.0),
+            'a_l5_sot':              row.get('a_l5_sot', 0.0),
+            'a_l5_sot_c':            row.get('a_l5_sot_c', 0.0),
+            'a_l5_gf':               row.get('a_l5_gf', 0.0),
+            'a_l5_ga':               row.get('a_l5_ga', 0.0),
+            'a_l5_fls':              row.get('a_l5_fls', 0.0),
+            'a_l5_conv':             row.get('a_l5_conv', 0.0),
+            'a_l5_xg':               row.get('a_l5_xg', 0.0),
+            'a_l5_xga':              row.get('a_l5_xga', 0.0),
+            'referee_avg_cards_history': row.get('referee_avg_cards_history', ref_avg),
         }
 
         preds = selector.get_best_bet(features)
@@ -279,6 +280,7 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
     
     wins = 0
     losses = 0
+    total_ev = 0.0
     
     wins_b = 0
     losses_b = 0
@@ -302,33 +304,32 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         away = row['away_team']
         match_date = row['date']
         
-        h_form = build_team_last5(home, df, cutoff=match_date)
-        a_form = build_team_last5(away, df, cutoff=match_date)
-
         features = {
-            'home_elo':              round(elo_map.get(home, 1500), 1),
-            'away_elo':              round(elo_map.get(away, 1500), 1),
-            'h_missing_key_player':  0,
-            'a_missing_key_player':  0,
-            'home_rest':             7,
-            'away_rest':             7,
-            'h_l5_pts':              h_form.get('pts', 0),
-            'h_l5_sh':               h_form.get('sh', 0),
-            'h_l5_sot':              h_form.get('sot', 0),
-            'h_l5_sot_c':            0.0,
-            'h_l5_gf':               h_form.get('gf', 0),
-            'h_l5_ga':               h_form.get('ga', 0),
-            'h_l5_fls':              h_form.get('fls', 0),
-            'h_l5_conv':             h_form.get('conv', 0),
-            'a_l5_pts':              a_form.get('pts', 0),
-            'a_l5_sh':               a_form.get('sh', 0),
-            'a_l5_sot':              a_form.get('sot', 0),
-            'a_l5_sot_c':            0.0,
-            'a_l5_gf':               a_form.get('gf', 0),
-            'a_l5_ga':               a_form.get('ga', 0),
-            'a_l5_fls':              a_form.get('fls', 0),
-            'a_l5_conv':             a_form.get('conv', 0),
-            'referee_avg_cards_history': ref_avg,
+            'home_elo':              row.get('home_elo', 0.0),
+            'away_elo':              row.get('away_elo', 0.0),
+            'home_rest':             row.get('home_rest', 7.0),
+            'away_rest':             row.get('away_rest', 7.0),
+            'h_l5_pts':              row.get('h_l5_pts', 0.0),
+            'h_l5_sh':               row.get('h_l5_sh', 0.0),
+            'h_l5_sot':              row.get('h_l5_sot', 0.0),
+            'h_l5_sot_c':            row.get('h_l5_sot_c', 0.0),
+            'h_l5_gf':               row.get('h_l5_gf', 0.0),
+            'h_l5_ga':               row.get('h_l5_ga', 0.0),
+            'h_l5_fls':              row.get('h_l5_fls', 0.0),
+            'h_l5_conv':             row.get('h_l5_conv', 0.0),
+            'h_l5_xg':               row.get('h_l5_xg', 0.0),
+            'h_l5_xga':              row.get('h_l5_xga', 0.0),
+            'a_l5_pts':              row.get('a_l5_pts', 0.0),
+            'a_l5_sh':               row.get('a_l5_sh', 0.0),
+            'a_l5_sot':              row.get('a_l5_sot', 0.0),
+            'a_l5_sot_c':            row.get('a_l5_sot_c', 0.0),
+            'a_l5_gf':               row.get('a_l5_gf', 0.0),
+            'a_l5_ga':               row.get('a_l5_ga', 0.0),
+            'a_l5_fls':              row.get('a_l5_fls', 0.0),
+            'a_l5_conv':             row.get('a_l5_conv', 0.0),
+            'a_l5_xg':               row.get('a_l5_xg', 0.0),
+            'a_l5_xga':              row.get('a_l5_xga', 0.0),
+            'referee_avg_cards_history': row.get('referee_avg_cards_history', ref_avg),
         }
 
         preds = selector.get_best_bet(features)
@@ -338,11 +339,43 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         top_bet = None
         bookie_odds = 0.0
         
+        # Calculate "Public" probability based purely on Elo to simulate real Bookie Odds
+        prob_public = 1.0 / (1.0 + 10.0 ** ((features['away_elo'] - features['home_elo']) / 400.0))
+        prob_public = max(0.01, min(0.99, prob_public))
+        
         for p in preds:
             prob = p['Probability']
-            f_odds = 1.0 / prob if prob > 0 else 2.0
-            # Simulating bookie odds with a 5% margin
+            market = p['Market']
+            
+            # Map Public Probability to the specific market roughly
+            if market == '1X2':
+                base_prob = prob_public * 0.9  # Draw absorbs 10-25% IRL, rough approx
+            elif '1X' in market or 'X2' in market:
+                base_prob = prob_public + 0.15 # Higher for double chance
+                base_prob = min(0.99, base_prob)
+            else:
+                # For totals/cards, bookie baseline is somewhat rigid. Let's add noise.
+                base_prob = prob + np.random.uniform(-0.10, 0.10)
+                base_prob = max(0.01, min(0.99, base_prob))
+                
+            f_odds = 1.0 / base_prob
+            
+            # Simulating Market-offered odds based on Public consensus + 5% Vig
             simulated_odds = round(max(1.01, f_odds * 0.95), 2)
+            
+            # Inject Bookie Odds temporarily so Kelly Recalculates dynamically!
+            p['FairOdds'] = round(1.0 / prob if prob > 0 else 100.0, 2)
+            ev = (prob * simulated_odds) - 1.0 
+            p['ExpectedValue'] = round(ev, 3) 
+            
+            if simulated_odds > 1.0:
+                b = simulated_odds - 1.0
+                q = 1.0 - prob
+                kelly_f = (b * prob - q) / b
+            else:
+                kelly_f = -1.0
+                
+            p['RecommendedStakePct'] = round(min(kelly_f * 0.25, 0.10) * 100, 2) if kelly_f > 0 else 0.0
             
             # CONFIDENCE THRESHOLD
             if simulated_odds >= min_odds and prob >= 0.55:
@@ -355,18 +388,24 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             
         market = top_bet['Market']
         prob = top_bet['Probability']
+        ev_val = top_bet.get('ExpectedValue', 0.0)
+        stake_pct = top_bet.get('RecommendedStakePct', 0.0)
+        total_ev += ev_val
         
         home_goals = row['home_goals']
         away_goals = row['away_goals']
         res_1x2    = row.get('result_1x2')
         
         if strategy == 'variable':
-            # La casa de apuestas simulada tiene un vig perfecto sobre nuestra propia probabilidad.
-            # Un Kelly estricto siempre hallará edge negativo aquí. 
-            # Por lo que la apuesta variable será simplemente proporcional a la probabilidad bruta.
-            f_star = prob * max_stake_frac
-            # KELLY FRACTIONAL CAP: No bet exceeds 5% of bankroll for deep safety
-            f_star = min(f_star, 0.05)
+            # Utilizar el recomendador de Kelly dinámico del Oráculo
+            recommended_pct = stake_pct
+            if recommended_pct <= 0:
+                continue # Kelly says EV is negative, DO NOT bet.
+                
+            f_star = recommended_pct / 100.0
+            
+            # Additional bounds check (should be protected by Oráculo already, but safety first)
+            f_star = min(f_star, 0.10)
             stake_amount = max(bankroll * f_star, 1.0)
         else:
             stake_amount = float(stake)
@@ -429,7 +468,10 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'odds': bookie_odds,
             'result': status,
             'profit': round(bet_profit, 2),
-            'balance': round(bankroll, 2)
+            'balance': round(bankroll, 2),
+            'ev': round(ev_val, 3),
+            'stakePct': round(stake_pct, 2),
+            'stakeAmount': round(stake_amount, 2)
         })
 
     total_bets = wins + losses
@@ -442,6 +484,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
         end_date = test_set.iloc[-1]['date'].strftime('%b %Y')
         period_str = f"{start_date} - {end_date}"
 
+    avg_ev = round((total_ev / total_bets) * 100, 2) if total_bets > 0 else 0.0
+
     result = {
         'performanceSummary': {
             'finalBankroll': round(bankroll, 2),
@@ -450,7 +494,8 @@ def run_interactive_simulation(df, selector, n_matches=60, initial_bankroll=100.
             'totalBets': total_bets,
             'wins': wins,
             'losses': losses,
-            'period': period_str
+            'period': period_str,
+            'avgEV': avg_ev
         },
         'profitChartData': profit_chart_data,
         'historyData': history_data

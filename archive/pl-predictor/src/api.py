@@ -23,8 +23,8 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 BASE_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "all_match_features_v2.csv")
-FRONTEND_DIR   = os.path.join(BASE_DIR, "..", "pl-web", "dist")
+FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "historical_sanitized_v6.csv")
+FRONTEND_DIR   = os.path.join(os.path.dirname(BASE_DIR), "..", "pl-web", "dist")
 
 # No static_folder here — we serve the SPA manually via the catch-all route
 app = Flask(__name__)
@@ -91,31 +91,31 @@ def compute_elo_map(df: pd.DataFrame, cutoff_date=None, k=20) -> dict:
     if cutoff_date:
         df = df[df['date'] < cutoff_date]
     teams_elo: dict = {}
-    for _, row in df.iterrows():
-        h, a = row['home_team'], row['away_team']
-        he = teams_elo.get(h, 1500)
-        ae = teams_elo.get(a, 1500)
-        r  = row.get('result_1x2', np.nan)
-        if pd.notna(r):
-            he_exp = 1 / (1 + 10 ** ((ae - he) / 400))
-            if r == 2:   ha, aa = 1, 0
-            elif r == 1: ha, aa = 0.5, 0.5
-            else:        ha, aa = 0, 1
-            teams_elo[h] = he + k * (ha - he_exp)
-            teams_elo[a] = ae + k * (aa - (1 - he_exp))
+    for team in all_teams(df):
+        tm = df[(df['home_team'] == team) | (df['away_team'] == team)].tail(1)
+        if not tm.empty:
+            row = tm.iloc[0]
+            if row['home_team'] == team:
+                teams_elo[team] = float(row['home_elo'])
+            else:
+                teams_elo[team] = float(row['away_elo'])
     return teams_elo
 
 
 def build_team_last5(team: str, df: pd.DataFrame, cutoff=None) -> dict:
     src = df if cutoff is None else df[df['date'] < cutoff]
-    home_m = src[src['home_team'] == team][['date','home_goals','away_goals','h_l5_pts','h_l5_gf','h_l5_ga','h_l5_sh','h_l5_sot','h_l5_fls','h_l5_conv']].tail(5)
-    away_m = src[src['away_team'] == team][['date','away_goals','home_goals','a_l5_pts','a_l5_gf','a_l5_ga','a_l5_sh','a_l5_sot','a_l5_fls','a_l5_conv']].tail(5)
-    home_m = home_m.rename(columns={'h_l5_pts':'pts','h_l5_gf':'gf','h_l5_ga':'ga','h_l5_sh':'sh','h_l5_sot':'sot','h_l5_fls':'fls','h_l5_conv':'conv'})
-    away_m = away_m.rename(columns={'a_l5_pts':'pts','a_l5_gf':'gf','a_l5_ga':'ga','a_l5_sh':'sh','a_l5_sot':'sot','a_l5_fls':'fls','a_l5_conv':'conv'})
-    combined = pd.concat([home_m, away_m]).sort_values('date').tail(5)
-    if combined.empty:
-        return {k: 0 for k in ['pts','gf','ga','sh','sot','fls','conv']}
-    return {col: round(float(combined[col].mean()), 3) for col in ['pts','gf','ga','sh','sot','fls','conv'] if col in combined}
+    tm = src[(src['home_team'] == team) | (src['away_team'] == team)].tail(1)
+    if not tm.empty:
+        row = tm.iloc[0]
+        if row['home_team'] == team:
+            return {'pts': float(row['h_l5_pts']), 'gf': float(row['h_l5_gf']), 'ga': float(row['h_l5_ga']),
+                    'sh': float(row['h_l5_sh']), 'sot': float(row['h_l5_sot']), 'fls': float(row['h_l5_fls']), 'conv': float(row['h_l5_conv']),
+                    'xg': float(row.get('h_l5_xg', 0.0)), 'xga': float(row.get('h_l5_xga', 0.0))}
+        else:
+            return {'pts': float(row['a_l5_pts']), 'gf': float(row['a_l5_gf']), 'ga': float(row['a_l5_ga']),
+                    'sh': float(row['a_l5_sh']), 'sot': float(row['a_l5_sot']), 'fls': float(row['a_l5_fls']), 'conv': float(row['a_l5_conv']),
+                    'xg': float(row.get('a_l5_xg', 0.0)), 'xga': float(row.get('a_l5_xga', 0.0))}
+    return {k: 0.0 for k in ['pts','gf','ga','sh','sot','fls','conv','xg','xga']}
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -133,9 +133,9 @@ def bot_stats():
         'totalMatches':    total,
         'seasons':         int(df['season'].nunique()) if 'season' in df.columns else 0,
         'teams':           len(all_teams(df)),
-        'accuracy_pct':    64.1,        # from evaluate_improvement.py
+        'accuracy_pct':    56.0,        # updated from formal TSCV validation
         'brier_score':     0.19,
-        'markets_tracked': 16,
+        'markets_tracked': 8,
     })
 
 
@@ -504,6 +504,8 @@ def predict():
         'h_l5_ga':               h_form.get('ga', 0),
         'h_l5_fls':              h_form.get('fls', 0),
         'h_l5_conv':             h_form.get('conv', 0),
+        'h_l5_xg':               h_form.get('xg', 0),
+        'h_l5_xga':              h_form.get('xga', 0),
         'a_l5_pts':              a_form.get('pts', 0),
         'a_l5_sh':               a_form.get('sh', 0),
         'a_l5_sot':              a_form.get('sot', 0),
@@ -512,7 +514,11 @@ def predict():
         'a_l5_ga':               a_form.get('ga', 0),
         'a_l5_fls':              a_form.get('fls', 0),
         'a_l5_conv':             a_form.get('conv', 0),
+        'a_l5_xg':               a_form.get('xg', 0),
+        'a_l5_xga':              a_form.get('xga', 0),
         'referee_avg_cards_history': ref_avg,
+        'is_derby':              0, # Fallback, could calculate
+        'relegation_pressure':   0, # Fallback, could calculate
     }
 
     selector = get_selector()
