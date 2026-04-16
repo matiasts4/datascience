@@ -14,11 +14,11 @@ scaler = joblib.load(os.path.join(MODELS_DIR, 'scaler.pkl'))
 m_1x2 = joblib.load(os.path.join(MODELS_DIR, 'model_1X2_Match_Winner.pkl'))
 m_dc1x = joblib.load(os.path.join(MODELS_DIR, 'model_Double_Chance_1X_Home_or_Draw.pkl'))
 
-home = "West Ham United"
-away = "Wolves"
-odds_h = 1.83
-odds_d = 3.75
-odds_a = 4.20
+home = "Brentford"
+away = "Everton"
+odds_h = 2.25
+odds_d = 3.4
+odds_a = 3.4
 
 h_stats = df[df['home_team'] == home].iloc[-1]
 a_stats = df[df['away_team'] == away].iloc[-1]
