@@ -160,6 +160,9 @@ def main():
             'a_l5_gf':   a_form['l5_gf'], 'a_l5_ga':   a_form['l5_ga'],
             'a_l5_fls':  a_form['l5_fls'], 'a_l5_conv': a_form['l5_conv'],
             'referee_avg_cards_history': ref_cards,
+            'h_l5_xg': np.nan, 'h_l5_xga': np.nan,
+            'a_l5_xg': np.nan, 'a_l5_xga': np.nan,
+            'is_derby': 0, 'relegation_pressure': 0
         }
 
         predictions = selector.get_best_bet(features)

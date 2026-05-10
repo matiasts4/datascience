@@ -7,7 +7,7 @@ from src.config import MODELS_DIR, TARGETS, FEATURES
 
 class MasterBetSelector:
     def __init__(self):
-        # NOTA: Dataset v5 ya está escalado nativamente.
+        # Cargar Modelos Entrenados (Ahora son Pipelines que incluyen Imputer y Scaler)
         self.models = {}
         for target_name in TARGETS.keys():
             target_slug = target_name.replace(' ', '_').replace('(', '').replace(')', '').replace('.', '_')
@@ -22,7 +22,7 @@ class MasterBetSelector:
         df = pd.DataFrame([match_features_dict])
         
         # Ensure correct order
-        X = df[FEATURES]
+        X = df[FEATURES].copy()
         
         predictions = []
         for target_name, model in self.models.items():

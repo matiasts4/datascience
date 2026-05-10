@@ -23,7 +23,7 @@ warnings.filterwarnings('ignore')
 # ─────────────────────────────────────────────────────────────────────────────
 BASE_DIR       = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "historical_sanitized_v6.csv")
+FEATURES_PATH  = os.path.join(HISTORICAL_DIR, "historical_sanitized_v7.csv")
 FRONTEND_DIR   = os.path.join(os.path.dirname(BASE_DIR), "..", "pl-web", "dist")
 
 # No static_folder here — we serve the SPA manually via the catch-all route
