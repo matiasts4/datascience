@@ -1,21 +1,41 @@
 Date,Match,Market,Confidence,Pick,Estimated_Value_Odds,Recommended_Stake
-2026-04-11,Arsenal vs Bournemouth,1X2 (Match Winner),77.2%,2,1.23,50.0
-2026-04-11,Arsenal vs Bournemouth,Over 2.5 Goals,67.3%,1,1.41,50.0
-2026-04-11,Liverpool vs Fulham,1X2 (Match Winner),68.0%,2,1.4,50.0
-2026-04-11,Liverpool vs Fulham,Over 2.5 Goals,61.3%,1,1.55,50.0
-2026-04-12,Sunderland vs Tottenham Hotspur,1X2 (Match Winner),58.6%,2,1.62,50.0
-2026-04-12,Crystal Palace vs Newcastle United,Over 2.5 Goals,62.1%,1,1.53,50.0
-2026-04-13,Manchester Utd vs Leeds United,1X2 (Match Winner),62.9%,2,1.51,50.0
-2026-04-18,Brentford vs Fulham,Over 2.5 Goals,57.8%,1,1.64,50.0
-2026-04-18,Newcastle United vs Bournemouth,1X2 (Match Winner),59.5%,2,1.6,50.0
-2026-04-19,Everton vs Liverpool,Over 2.5 Goals,60.2%,1,1.58,50.0
-2026-04-19,Nottingham Forest vs Burnley,1X2 (Match Winner),59.9%,2,1.59,50.0
-2026-04-19,Aston Villa vs Sunderland,1X2 (Match Winner),63.6%,2,1.49,50.0
-2026-04-19,Manchester City vs Arsenal,Over 2.5 Goals,61.6%,1,1.54,50.0
-2026-04-19,Manchester City vs Arsenal,BTTS (Both Teams To Score),58.1%,1,1.64,50.0
-2026-04-20,Crystal Palace vs West Ham United,1X2 (Match Winner),62.5%,2,1.52,50.0
-2026-04-25,Bournemouth vs Leeds United,1X2 (Match Winner),58.4%,2,1.63,50.0
-2026-04-25,Liverpool vs Crystal Palace,1X2 (Match Winner),65.2%,2,1.46,50.0
-2026-04-25,Liverpool vs Crystal Palace,Over 2.5 Goals,59.8%,1,1.59,50.0
-2026-04-25,Arsenal vs Newcastle United,1X2 (Match Winner),72.8%,2,1.3,50.0
-2026-04-25,Arsenal vs Newcastle United,Over 2.5 Goals,69.8%,1,1.36,50.0
+2026-05-09,Liverpool vs Chelsea,Double Chance 1X (Home or Draw),65.7%,1,1.45,50.0
+2026-05-09,Brighton vs Wolves,Double Chance 1X (Home or Draw),70.9%,1,1.34,50.0
+2026-05-09,Sunderland vs Manchester Utd,Double Chance X2 (Away or Draw),67.1%,1,1.42,50.0
+2026-05-09,Fulham vs Bournemouth,Double Chance X2 (Away or Draw),60.5%,1,1.57,50.0
+2026-05-09,Fulham vs Bournemouth,Double Chance 1X (Home or Draw),58.7%,1,1.62,50.0
+2026-05-09,Manchester City vs Brentford,Double Chance 1X (Home or Draw),75.2%,1,1.26,50.0
+2026-05-10,Burnley vs Aston Villa,Double Chance X2 (Away or Draw),78.6%,1,1.21,50.0
+2026-05-10,Nottingham Forest vs Newcastle United,Double Chance X2 (Away or Draw),66.4%,1,1.43,50.0
+2026-05-10,Crystal Palace vs Everton,Double Chance 1X (Home or Draw),60.5%,1,1.57,50.0
+2026-05-10,Crystal Palace vs Everton,Over 2.5 Goals,59.1%,1,1.61,50.0
+2026-05-10,Crystal Palace vs Everton,Double Chance X2 (Away or Draw),57.9%,1,1.64,50.0
+2026-05-10,West Ham United vs Arsenal,Double Chance X2 (Away or Draw),81.9%,1,1.16,50.0
+2026-05-10,West Ham United vs Arsenal,Over 2.5 Goals,57.1%,1,1.67,50.0
+2026-05-11,Tottenham Hotspur vs Leeds United,Double Chance X2 (Away or Draw),67.6%,1,1.41,50.0
+2026-05-13,Manchester City vs Crystal Palace,Double Chance 1X (Home or Draw),76.6%,1,1.24,50.0
+2026-05-13,Manchester City vs Crystal Palace,Over 2.5 Goals,57.9%,1,1.64,50.0
+2026-05-17,Aston Villa vs Liverpool,Double Chance X2 (Away or Draw),58.9%,1,1.61,50.0
+2026-05-17,Aston Villa vs Liverpool,Over 2.5 Goals,57.6%,1,1.65,50.0
+2026-05-17,Manchester Utd vs Nottingham Forest,Double Chance 1X (Home or Draw),66.7%,1,1.42,50.0
+2026-05-17,Leeds United vs Brighton,Double Chance X2 (Away or Draw),69.1%,1,1.38,50.0
+2026-05-17,Everton vs Sunderland,Double Chance 1X (Home or Draw),66.2%,1,1.43,50.0
+2026-05-17,Everton vs Sunderland,Double Chance X2 (Away or Draw),57.9%,1,1.64,50.0
+2026-05-17,Brentford vs Crystal Palace,Double Chance X2 (Away or Draw),58.2%,1,1.63,50.0
+2026-05-17,Wolves vs Fulham,Double Chance X2 (Away or Draw),71.4%,1,1.33,50.0
+2026-05-17,Newcastle United vs West Ham United,Double Chance 1X (Home or Draw),72.2%,1,1.32,50.0
+2026-05-19,Bournemouth vs Manchester City,Double Chance X2 (Away or Draw),71.4%,1,1.33,50.0
+2026-05-19,Bournemouth vs Manchester City,Over 2.5 Goals,57.3%,1,1.66,50.0
+2026-05-19,Chelsea vs Tottenham Hotspur,Double Chance 1X (Home or Draw),78.9%,1,1.2,50.0
+2026-05-24,Burnley vs Wolves,Double Chance X2 (Away or Draw),69.1%,1,1.38,50.0
+2026-05-24,Liverpool vs Brentford,Double Chance 1X (Home or Draw),67.8%,1,1.4,50.0
+2026-05-24,West Ham United vs Leeds United,Double Chance X2 (Away or Draw),69.6%,1,1.36,50.0
+2026-05-24,Nottingham Forest vs Bournemouth,Double Chance X2 (Away or Draw),65.4%,1,1.45,50.0
+2026-05-24,Sunderland vs Chelsea,Double Chance X2 (Away or Draw),69.6%,1,1.37,50.0
+2026-05-24,Fulham vs Newcastle United,Double Chance X2 (Away or Draw),57.9%,1,1.64,50.0
+2026-05-24,Brighton vs Manchester Utd,Double Chance X2 (Away or Draw),60.4%,1,1.57,50.0
+2026-05-24,Brighton vs Manchester Utd,Double Chance 1X (Home or Draw),58.5%,1,1.63,50.0
+2026-05-24,Manchester City vs Aston Villa,Double Chance 1X (Home or Draw),72.4%,1,1.31,50.0
+2026-05-24,Crystal Palace vs Arsenal,Double Chance X2 (Away or Draw),75.7%,1,1.26,50.0
+2026-05-24,Crystal Palace vs Arsenal,Over 2.5 Goals,60.9%,1,1.56,50.0
+2026-05-24,Tottenham Hotspur vs Everton,Double Chance X2 (Away or Draw),77.8%,1,1.22,50.0

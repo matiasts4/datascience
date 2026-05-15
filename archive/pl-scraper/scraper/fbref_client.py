@@ -75,6 +75,7 @@ BaseRequestsReader._download_and_save = _download_and_save_with_browser
 
 # MONKEY PATCH 2: Override _parse_table to prevent NoneType errors on Selenium HTML
 def _patched_parse_table(html_table: html.HtmlElement) -> pd.DataFrame:
+    from io import StringIO
     # remove icons (use .// to search inside the table only, not the whole doc)
     for elem in html_table.xpath(".//span[contains(@class, 'f-i')]"):
         parent = elem.getparent()
@@ -92,13 +93,123 @@ def _patched_parse_table(html_table: html.HtmlElement) -> pd.DataFrame:
             parent.remove(elem)
     # parse HTML to dataframe
     try:
-        (df_table,) = pd.read_html(html.tostring(html_table), flavor="lxml")
+        html_str = html.tostring(html_table, encoding="unicode")
+        (df_table,) = pd.read_html(StringIO(html_str), flavor="lxml")
         return df_table.convert_dtypes()
     except Exception as e:
         logger.warning(f"Error parsing table with pandas: {e}")
         return pd.DataFrame()
 
 soccerdata.fbref._parse_table = _patched_parse_table
+
+# MONKEY PATCH 3: Override read_schedule to bypass broken read_leagues/read_seasons
+# FBref changed their HTML structure and soccerdata's _translate_league fails with KeyError: 'league'
+def _patched_read_schedule(self, force_cache=False):
+    """Direct schedule parser that bypasses soccerdata's broken read_leagues pipeline."""
+    if hasattr(self, "_cached_schedule") and not force_cache:
+        return self._cached_schedule.copy()
+        
+    from io import StringIO
+
+    # Build the FBref schedule URL
+    # self.seasons[0] is the raw season identifier (e.g., "2025" or 2025)
+    # FBref uses format like "2025-2026" in URLs
+    season_raw = self.seasons[0]
+    try:
+        s_int = int(season_raw)
+        season_code = f"{s_int}-{s_int + 1}"
+    except (ValueError, TypeError):
+        season_code = str(season_raw)
+    url = f"https://fbref.com/en/comps/9/{season_code}/schedule/{season_code}-Premier-League-Scores-and-Fixtures"
+    
+    logger.info(f"[PATCHED] Descargando schedule desde: {url}")
+    
+    # Download using the browser-patched method
+    raw_bytes = self._download_and_save(url)
+    raw_html = raw_bytes.read()
+    
+    # Parse HTML
+    doc = html.fromstring(raw_html)
+    
+    # Find schedule table
+    tables = doc.xpath("//table[contains(@id, 'sched')]")
+    if not tables:
+        tables = doc.xpath("//table[contains(@class, 'stats_table')]")
+    
+    schedule_table = None
+    for t in tables:
+        caption = t.xpath(".//caption/text()")
+        if caption and ("scores" in caption[0].lower() or "fixtures" in caption[0].lower()):
+            schedule_table = t
+            break
+    if schedule_table is None and tables:
+        schedule_table = tables[0]
+    
+    if schedule_table is None:
+        raise ValueError("No se encontro tabla de schedule en FBref")
+    
+    # Parse table to DataFrame
+    table_html_str = html.tostring(schedule_table, encoding="unicode")
+    dfs = pd.read_html(StringIO(table_html_str))
+    df = dfs[0]
+    
+    # Clean: remove repeated header rows and spacer rows
+    if "Wk" in df.columns:
+        df = df[df["Wk"].notna() & (df["Wk"] != "Wk")].copy()
+    
+    # Extract game_ids from match report links
+    rows = schedule_table.xpath(
+        ".//tbody/tr[not(contains(@class, 'spacer')) and not(contains(@class, 'thead'))]"
+    )
+    game_ids = []
+    for row in rows:
+        report_link = row.xpath(".//td[@data-stat='match_report']//a/@href")
+        if report_link:
+            match = re.search(r'/matches/([a-f0-9]+)/', report_link[0])
+            game_ids.append(match.group(1) if match else None)
+        else:
+            game_ids.append(None)
+    
+    # Align game_ids with cleaned DataFrame
+    if len(game_ids) == len(df):
+        df["game_id"] = game_ids
+    else:
+        logger.warning(f"game_ids ({len(game_ids)}) != rows ({len(df)}), attempting alignment by position")
+        # Try to align by filtering out spacer/thead rows from our count
+        df["game_id"] = (game_ids[:len(df)] if len(game_ids) >= len(df) 
+                         else game_ids + [None] * (len(df) - len(game_ids)))
+    
+    # Rename columns to match soccerdata convention
+    col_map = {
+        "Home": "home_team", "Away": "away_team", "Score": "score",
+        "Date": "date", "Time": "time", "Wk": "week", "Day": "day",
+        "Venue": "venue", "Referee": "referee", "Attendance": "attendance",
+        "Match Report": "match_report", "Notes": "notes"
+    }
+    df = df.rename(columns={k: v for k, v in col_map.items() if k in df.columns})
+    
+    df["league"] = "ENG-Premier League"
+    df["season"] = self.seasons[0]
+    
+    # Fix types and index to match soccerdata format
+    df["date"] = pd.to_datetime(df["date"]).ffill()
+    
+    def _make_game_id(row):
+        if pd.isna(row["date"]):
+            return f"TBD {row['home_team']}-{row['away_team']}"
+        return f"{row['date'].strftime('%Y-%m-%d')} {row['home_team']}-{row['away_team']}"
+        
+    df["game"] = df.apply(_make_game_id, axis=1)
+    df = df.set_index(["league", "season", "game"]).sort_index()
+    
+    # For game_id to work like soccerdata, it needs to be available
+    logger.success(f"[PATCHED] Schedule: {len(df)} partidos, {df['game_id'].notna().sum()} con game_id")
+    
+    self._cached_schedule = df
+    return df
+
+# Apply patch
+sd.FBref.read_schedule = _patched_read_schedule
 
 def get_fbref(season: int, browser_client: BrowserClient = None):
     # We don't necessarily need injecting these anymore since the real browser handles state,

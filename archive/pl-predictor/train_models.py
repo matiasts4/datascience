@@ -26,6 +26,35 @@ def prepare_targets(df):
     df_out['target_home_clean_sheet'] = (df_out['away_goals'] == 0).astype(int)
     return df_out
 
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, PowerTransformer
+from sklearn.impute import KNNImputer
+
+def create_pipeline(classifier):
+    skewed_features = ['away_xg', 'referee_avg_cards_history', 'B365H', 'B365D', 'B365A', 'h_l5_fls', 'a_l5_fls', 'h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
+    skewed_in_features = [f for f in skewed_features if f in FEATURES]
+    standard_in_features = [f for f in FEATURES if f not in skewed_in_features]
+    
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('skewed', Pipeline([
+                ('imputer', KNNImputer(n_neighbors=5, weights='distance')),
+                ('yeo_johnson', PowerTransformer(method='yeo-johnson', standardize=True))
+            ]), skewed_in_features),
+            ('standard', Pipeline([
+                ('imputer', KNNImputer(n_neighbors=5, weights='distance')),
+                ('scaler', StandardScaler())
+            ]), standard_in_features)
+        ],
+        remainder='passthrough'
+    )
+    
+    return Pipeline([
+        ('preprocessor', preprocessor),
+        ('classifier', classifier)
+    ])
+
 def evaluate_models_tscv(df, target_name, target_col):
     print(f"\n{'='*65}")
     print(f"EVALUANDO MODELOS CON TimeSeriesSplit PARA: {target_name}")
@@ -67,10 +96,10 @@ def evaluate_models_tscv(df, target_name, target_col):
         hgb = HistGradientBoostingClassifier(learning_rate=0.03, max_iter=200, max_depth=5, l2_regularization=5.0, random_state=42)
 
     models = {
-        "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
-        "Random Forest": rf,
-        "HistGradientBoosting": hgb,
-        "XGBoost": xgb.XGBClassifier(eval_metric='logloss', random_state=42, max_depth=4, learning_rate=0.05, n_estimators=150)
+        "Logistic Regression": create_pipeline(LogisticRegression(max_iter=1000, random_state=42)),
+        "Random Forest": create_pipeline(rf),
+        "HistGradientBoosting": create_pipeline(hgb),
+        "XGBoost": create_pipeline(xgb.XGBClassifier(eval_metric='logloss', random_state=42, max_depth=4, learning_rate=0.05, n_estimators=150))
     }
     
     tscv = TimeSeriesSplit(n_splits=5)

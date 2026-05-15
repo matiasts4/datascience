@@ -20,6 +20,12 @@ def run_sanitization():
     print(f"[1/6] Cargando datos crudos desde {raw_path}")
     df = pd.read_csv(raw_path)
     
+    # 💥 BUGFIX CRÍTICO: Forzar game_id a string para que "0" no se convierta en 0.0 (float)
+    if 'game_id' in df.columns:
+        df['game_id'] = df['game_id'].astype(str)
+        # Limpiar '.0' si pandas lo leyó temporalmente como float en algún momento previo
+        df['game_id'] = df['game_id'].apply(lambda x: x[:-2] if str(x).endswith('.0') else str(x))
+    
     # 2. Eliminar Varianza Cero (Variables inútiles)
     print("[2/6] Eliminando variables de varianza cero y ruido algorítmico")
     drop_vars = ['league', 'notes', 'match_report'] 
@@ -62,20 +68,9 @@ def run_sanitization():
     ignore_for_math = target_cols + ['date', 'game_id', 'home_team', 'away_team', 'venue']
     features_df = df.drop(columns=[c for c in ignore_for_math if c in df.columns])
     
-    # 4. Imputación Avanzada (KNN) para Nulos MAR/MNAR (Ej: xG o cuotas perdidas)
-    print("[4/6] Imputación con algoritmos de vecindario (KNNImputer)")
-    imputer = KNNImputer(n_neighbors=5, weights='distance')
-    
-    num_features = features_df.select_dtypes(include=[np.number]).columns.tolist()
-    
-    # Rellenamos basándonos en partidos algebraicamente similares.
-    imputed_matrix = imputer.fit_transform(features_df[num_features])
-    features_df[num_features] = imputed_matrix
-    
+    # 4. Inyección de Filtros Cuantitativos (Rachas xG Moviles)
     # =========================================================
-    # 4.5 Inyección de Filtros Cuantitativos (Rachas xG Moviles)
-    # =========================================================
-    print("[4.5] Diseñando Características Cuantitativas (EWMA xG)")
+    print("[4/6] Diseñando Características Cuantitativas (EWMA xG)")
     meta_cols = [c for c in ['game_id', 'date', 'home_team', 'away_team', 'venue'] if c in df.columns]
     
     # Reconstruimos temporalmente para usar operaciones de grupo cronológicas
@@ -105,46 +100,22 @@ def run_sanitization():
     
     new_cols = ['h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
     for col in new_cols:
-        temp_df[col] = temp_df[col].fillna(temp_df[col].mean())
+        # Aquí permitimos NaN porque el Pipeline se encargará de imputarlos en train_models.py
         features_df[col] = temp_df[col]
-        num_features.append(col)
     
-    
-    # 5. Transformaciones Gausianas y Escalamiento Matemático
-    print("[5/6] Moldeado de distribuciones y Escalamiento (Yeo-Johnson & Standard)")
-    # Detectados en el test Kolmogorov-Smirnov como logarítmicos o ladeados
-    skewed_features = ['away_xg', 'referee_avg_cards_history', 'B365H', 'B365D', 'B365A', 'h_l5_fls', 'a_l5_fls', 'h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
-    skewed_features = [f for f in skewed_features if f in num_features]
-    
-    if skewed_features:
-        # Yeo-Johnson moldea asimetrías cerriles y devuelve datos centrados y dimensionados
-        pt = PowerTransformer(method='yeo-johnson', standardize=True)
-        transformed_skewed = pt.fit_transform(features_df[skewed_features])
-        features_df[skewed_features] = transformed_skewed
-    
-    # El resto sufre un escalamiento StandardScaler convencional
-    standard_features = [f for f in num_features if f not in skewed_features]
-    if standard_features:
-        scaler = StandardScaler()
-        scaled_standard = scaler.fit_transform(features_df[standard_features])
-        features_df[standard_features] = scaled_standard
-    
-    # 6. Reconstrucción Final de la Matrix
-    print("[6/6] Ensamblando base final y exportando parquet/csv")
+    # 5. Reconstrucción Final de la Matrix
+    print("[5/6] Ensamblando base final PURE (sin transformaciones numéricas) y exportando csv")
     meta_cols = [c for c in ['game_id', 'date', 'home_team', 'away_team', 'venue'] if c in df.columns]
     
     # Concatenamos de vuelta para no perder los IDs, pero solo features ya pulidos
     final_df = pd.concat([df[meta_cols], targets_df, features_df], axis=1)
     
-    # Descartar filas que por concatenación sufrieron NaNs extraños
-    final_df.dropna(inplace=True)
-    
-    export_path = "archive/pl-predictor/data/historical/historical_sanitized_v6.csv"
+    export_path = "archive/pl-predictor/data/historical/historical_sanitized_v8.csv"
     final_df.to_csv(export_path, index=False)
     
-    print(f"✅ ¡Sanitización Completada con éxito! Dataset de oro generado en: {export_path}")
+    print(f"✅ ¡Sanitización Pura Completada con éxito! Dataset base generado en: {export_path}")
     print(f"📉 Dimensión final obtenida: {final_df.shape}")
-    print(f"🔍 Validando nulos finales (debe ser estrictamente 0): {final_df.isnull().sum().sum()}")
+    print(f"🔍 Atención: Este dataset contiene valores nulos. La imputación y el escalamiento deben hacerse dentro de un scikit-learn Pipeline.")
 
 if __name__ == "__main__":
     run_sanitization()

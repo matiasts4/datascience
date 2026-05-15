@@ -29,8 +29,7 @@ def _upsert_df_csv(df, season, table_name, conflict_cols):
 
 def upsert_matches(df, season):
     logger.info(f"Saving matches for season {season}")
-    # soccerdata fbref matches uses Match ID in index if not reset
-    _upsert_df_csv(df, season, "matches", ["game_id" if "game_id" in df.index.names else "match_id"])
+    _upsert_df_csv(df, season, "matches", ["home_team", "away_team"])
     
 def upsert_lineups(df, season):
     logger.info(f"Saving lineups for season {season}")
