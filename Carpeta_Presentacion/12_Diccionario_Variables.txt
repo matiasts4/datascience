@@ -1,0 +1,56 @@
+======================================================
+DICCIONARIO DE LAS 27 VARIABLES (FEATURES) DEL MODELO
+======================================================
+Este documento contiene la explicación en lenguaje sencillo de las 27 variables independientes que nuestra IA utiliza para predecir los partidos. Ninguna otra variable (ni nombres, ni goles actuales, ni cuotas) entra al modelo.
+
+------------------------------------------------------
+A. CONTEXTO Y JERARQUÍA ESTRUCTURAL (6 Variables)
+------------------------------------------------------
+1. home_elo: El 'Elo Rating' matemático actual del equipo Local. Mide su fuerza y jerarquía estructural basado en años de historial y plantel.
+2. away_elo: El 'Elo Rating' matemático actual del equipo Visitante.
+3. home_rest: Días exactos de descanso que ha tenido el equipo Local desde su último partido oficial (capta la fatiga por jugar Champions/Copas).
+4. away_rest: Días exactos de descanso del equipo Visitante.
+5. is_derby: Variable binaria. Vale 1 si el partido es un clásico o derbi regional (ej. Arsenal vs Tottenham), 0 si es un partido normal. Los derbis suelen ser más trabados.
+6. relegation_pressure: "Presión de Descenso". Es un multiplicador matemático que se enciende en las últimas fechas de la liga si un equipo está cerca de los últimos puestos. Capta la "desesperación" por no descender.
+
+------------------------------------------------------
+B. FACTOR ARBITRAL (1 Variable)
+------------------------------------------------------
+7. referee_avg_cards_history: El promedio histórico de tarjetas que suele sacar el árbitro designado para este partido. Vital para predecir si el partido será fluido o interrumpido.
+
+------------------------------------------------------
+C. ESTADO DE FORMA DEL LOCAL (10 Variables)
+"Rachas" (Promedios calculados exclusivamente sobre sus últimos 5 partidos)
+------------------------------------------------------
+8. h_l5_pts: Puntos obtenidos (mide la racha de victorias/derrotas).
+9. h_l5_sh: Promedio de Tiros Totales realizados (mide volumen ofensivo general).
+10. h_l5_sot: Promedio de Tiros al Arco / On Target (mide volumen ofensivo peligroso).
+11. h_l5_sot_c: Promedio de Tiros al Arco Concedidos al rival (mide cuántas veces le patean a su propio arquero).
+12. h_l5_gf: Promedio de Goles a Favor reales anotados.
+13. h_l5_ga: Promedio de Goles en Contra reales recibidos.
+14. h_l5_fls: Promedio de Faltas cometidas (mide la agresividad o destrucción de juego).
+15. h_l5_conv: Tasa de Conversión (Qué porcentaje de sus tiros terminan en gol. Mide la puntería o letalidad del delantero).
+16. h_l5_xg: Promedio de Expected Goals Generados (Mide la CALIDAD matemática de las ocasiones de peligro que crea, más allá de la suerte).
+17. h_l5_xga: Promedio de Expected Goals Concedidos (Mide la FRAGILIDAD de su defensa, cuántas ocasiones de peligro real permite).
+
+------------------------------------------------------
+D. ESTADO DE FORMA DEL VISITANTE (10 Variables)
+Las mismas métricas de racha, pero aplicadas al rival.
+------------------------------------------------------
+18. a_l5_pts: Puntos obtenidos (últimos 5 partidos).
+19. a_l5_sh: Tiros Totales.
+20. a_l5_sot: Tiros al Arco.
+21. a_l5_sot_c: Tiros al Arco Concedidos al rival.
+22. a_l5_gf: Goles a Favor.
+23. a_l5_ga: Goles en Contra.
+24. a_l5_fls: Faltas cometidas.
+25. a_l5_conv: Tasa de Conversión (Puntería).
+26. a_l5_xg: Expected Goals Generados (Peligro ofensivo real).
+27. a_l5_xga: Expected Goals Concedidos (Fragilidad defensiva).
+
+======================================================
+Nota para la Defensa: Las siglas significan lo siguiente:
+- h_ = Home (Local)
+- a_ = Away (Visitante)
+- l5_ = Last 5 (Promedio de los Últimos 5 partidos móviles)
+======================================================
