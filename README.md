@@ -34,22 +34,36 @@ Si vas a levantar un modelo hoy o probar el pipeline de preprocesamiento, esto e
 - **¿Qué es?:** Es el dataset base final obtenido por proceso de web-scraping y apilamiento (Ej. historiales L5, variables ELO y Expected Goals xG). **VERIFICADO: Contiene todas las 3420 filas recuperadas (2017 a 2026)** sorteando errores previos de unificación.
 - **ESTADO:** **Materia Prima.** Contiene fugas de información, asimetrías severas y outliers que rompen cualquier entrenamiento ML standard. Jamás debe inyectarse a un modelo predictivo directamente.
 
-#### 💎 Output Definitivo (Data Sanitizada y Estandarizada)
-📍 **Ruta Recomendada:** `archive/pl-predictor/data/historical/historical_sanitized_v5.csv`
-- **ESTADO: 100% LISTO PARA MODELADO (SANITIZADO).** 
-- **¿Qué es?:** El hijo matriz del pipeline `sanitizer_pipeline.py`. Operado sobre todas las 3,420 instancias unificadas. Ha pasado por los rigurosos estándares metodológicos formalizados en `sanitizacion.md`:
-  - **Dropeo de Fugas de Información:** Libre de features post-partido engañosos.
-  - **Imputación Inteligente:** Ausencias en `xG` y cuotas recobradas algorítmicamente mediante `KNNImputer(k=5)`.
-  - **Domesticación de Distribuciones:** Todas las variables log-normales asimétricas (tarjetas, cuotas, xg) están convertidas por modelo de potencia `Yeo-Johnson`.
-  - **Escalamiento Total:** El bloque completo de predictores numéricos curado con `StandardScaler`.
-  - **Nulos Activos:** 0.
+#### 💎 Output Definitivo (Data Sanitizada Base)
+📍 **Ruta Recomendada:** `archive/pl-predictor/data/historical/historical_sanitized_v8.csv`
+- **ESTADO: 100% LISTO PARA MODELADO (RAW SANITIZADO).** 
+- **¿Qué es?:** El hijo matriz del pipeline `sanitizer_pipeline.py`. Ha pasado por los rigurosos estándares metodológicos formalizados en `sanitizacion.md`, pero de forma "inteligente":
+  - **Dropeo de Fugas de Información:** Se eliminaron las cuotas de apuestas de las métricas de entrenamiento para evitar el sesgo del Bookmaker, y se eliminaron los goles reales previos por alta colinealidad.
+  - **Data Leakage Cero:** El dataset `v8` NO tiene aplicada la normalización ni la imputación de manera global. Se guarda "crudo pero limpio" para que las transformaciones se aprendan estrictamente dentro del *Train Split* usando `sklearn.pipeline.Pipeline`.
   
   > ⚠️ **¡ADVERTENCIA DE INTEGRIDAD ML (Fixtures Futuros)!** 
-  > El dataset `v5` abarca de 2017 a **Mayo de 2026**. Contiene explícitamente los calendarios pre-cargados de partidos aún no jugados de la actual temporada 2025/26 (fecha posterior a Abril de 2026). Para no romper el cruce, la sanitización inyectó `0.0` a sus métricas objetivo (goles y cuotas). 
-  > **Es CRÍTICO para los scripts analíticos de modelamiento** removerlos antes del training/split aplicando la regla: `df[df['game_id'] != 0]` (o filtrando las fechas futuras) para evitar evaluar a los modelos frente a partidos fantasma.
+  > El dataset `v8` abarca hasta la temporada 2025/26. Contiene explícitamente los calendarios pre-cargados de partidos aún no jugados. Los modelos utilizan `dropna(subset=['result_1x2'])` para entrenar solo con el pasado, y usan los nulos para inferir el futuro.
 
 ---
 
-## 🛠️ ¿Cómo iniciar o continuar?
-1. Revisar los scripts analíticos de modelamiento (ej. `eval_models_pro.py`).
-2. Apuntar el dataset de lectura a `historical_sanitized_v5.csv`.
+## 🏗️ La Matriz de 27 Features (El Cerebro del Modelo)
+Tras exhaustivos análisis de Multicolinealidad y EDA, el modelo ignora los nombres de los equipos y utiliza una matriz exacta de 27 variables continuas:
+1. **Jerarquía (6):** `home_elo`, `away_elo`, `home_rest`, `away_rest`, `is_derby`, `relegation_pressure`.
+2. **Árbitro (1):** `referee_avg_cards_history`.
+3. **Racha Ofensiva/Defensiva Local (10):** Puntos, Tiros, Tiros al arco, Goles, Faltas, xG a favor y en contra (media móvil de 5 partidos).
+4. **Racha Ofensiva/Defensiva Visita (10):** Lo mismo aplicado al visitante.
+
+---
+
+## 🛠️ ¿Cómo iniciar o ejecutar el proyecto?
+
+**1. Entrenamiento y Backtesting:**
+Para entrenar los 8 modelos base (RandomForest) sobre los mercados (1X2, BTTS, O2.5) y ver el rendimiento financiero:
+`python archive/pl-predictor/train_models.py`
+
+**2. Predicción en Vivo (Apuestas Reales):**
+Para escrapear la jornada actual, pasar por el pipeline matemático y obtener recomendaciones de Positive EV:
+`python archive/pl-predictor/predict_upcoming_bets.py`
+
+**3. Generación de Gráficos de Presentación:**
+Los scripts `generate_pres.py`, `generate_pres_part2.py`, etc., en la raíz, re-entrenan modelos a nivel visual para exportar PNGs analíticos a la `Carpeta_Presentacion`.
