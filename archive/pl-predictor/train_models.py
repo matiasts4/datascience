@@ -9,6 +9,8 @@ from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassif
 from sklearn.linear_model import LogisticRegression
 import xgboost as xgb
 from src.config import FEATURES_PATH, TARGETS, FEATURES, MODELS_DIR
+from src.models_neural import PyTorchMLPClassifier
+
 
 warnings.filterwarnings("ignore")
 
@@ -95,12 +97,20 @@ def evaluate_models_tscv(df, target_name, target_col):
         rf = RandomForestClassifier(n_estimators=150, max_depth=6, min_samples_split=10, random_state=42, n_jobs=-1)
         hgb = HistGradientBoostingClassifier(learning_rate=0.03, max_iter=200, max_depth=5, l2_regularization=5.0, random_state=42)
 
+    # Activar Early Stopping para regularizar el crecimiento de árboles en HistGradientBoosting
+    hgb.set_params(early_stopping=True, validation_fraction=0.1, n_iter_no_change=10)
+
+    # Regularizar estructuralmente Random Forest para prevenir sobreajuste en hojas pequeñas
+    rf.set_params(min_samples_leaf=4)
+
     models = {
-        "Logistic Regression": create_pipeline(LogisticRegression(max_iter=1000, random_state=42)),
+        "Logistic Regression (Elastic Net)": create_pipeline(LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=0.5, C=0.1, max_iter=5000, random_state=42)),
         "Random Forest": create_pipeline(rf),
-        "HistGradientBoosting": create_pipeline(hgb),
-        "XGBoost": create_pipeline(xgb.XGBClassifier(eval_metric='logloss', random_state=42, max_depth=4, learning_rate=0.05, n_estimators=150))
+        "HistGradientBoosting (Early Stopping)": create_pipeline(hgb),
+        "XGBoost (L1/L2 Regularized)": create_pipeline(xgb.XGBClassifier(eval_metric='logloss', random_state=42, max_depth=4, learning_rate=0.05, n_estimators=150, reg_lambda=3.0, reg_alpha=0.5)),
+        "Neural Network (Dropout)": create_pipeline(PyTorchMLPClassifier(input_dim=len(FEATURES), hidden_dim=64, dropout_rate=0.3, lr=0.01, epochs=80, batch_size=64, random_state=42))
     }
+
     
     tscv = TimeSeriesSplit(n_splits=5)
     
