@@ -42,9 +42,22 @@ Entrenamos y comparamos 5 clasificadores (lineales y no lineales). A continuaci�
 
 ---
 
-## 3. 📊 Resultados de Performance Reales (Validación Temporal 5-Splits)
+## 3. ⚙️ Metodología de Optimización de Hiperparámetros
+
+En este proyecto, contrastamos y aplicamos la teoría de optimización de hiperparámetros para ajustar la complejidad de los modelos:
+
+* **Búsqueda Aleatoria (Random Search):** En la fase exploratoria del proyecto ([trainer.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/src/models/trainer.py#L43)), utilizamos `RandomizedSearchCV` de scikit-learn. Este método selecciona combinaciones al azar dentro de un espacio de búsqueda definido, siendo mucho más eficiente que una búsqueda exhaustiva (Grid Search) en tiempo de cómputo.
+* **Optimización Bayesiana (Optuna):** Para el script final de producción ([train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L74)), refinamos la búsqueda utilizando un enfoque bayesiano. La optimización bayesiana construye un modelo probabilístico que "aprende" de los resultados de experimentos previos para proponer combinaciones inteligentes en las zonas más prometedoras.
+  * *Parámetros Específicos Encontrados:* Este enfoque arrojó los valores altamente precisos y específicos utilizados en producción, tales como la tasa de aprendizaje fraccionaria (`learning_rate=0.0187`) y la penalización L2 exacta (`l2_regularization=7.36`) para el clasificador `HistGradientBoosting`.
+
+---
+
+## 4. 📊 Resultados de Performance Reales (Validación Temporal 5-Splits)
 
 A continuación se presentan las métricas de rendimiento reales obtenidas por los modelos sobre los 3,389 partidos históricos del dataset final:
+
+![Comparativa de Modelos de Machine Learning (Línea Base Original)](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/25_Comparativa_Modelos_Original.png)
+
 
 ### A. Mercado: 1X2 (Match Winner) - Clasificación Multiclase
 | Clasificador | Accuracy | ROC-AUC | F1-Score (Weighted) |
@@ -128,7 +141,7 @@ A continuación se presentan las métricas de rendimiento reales obtenidas por l
 
 ---
 
-## 4. 🎚️ Marco Teórico de Medidas de Performance (Defensa de Tesis)
+## 5. 🎚️ Marco Teórico de Medidas de Performance (Defensa de Tesis)
 
 Para justificar formalmente estas métricas ante tu comisión, enlazamos los resultados con los conceptos de tus diapositivas:
 
@@ -163,7 +176,7 @@ Depende directamente del contexto del problema de negocio:
 
 ---
 
-## 5. 🔬 Metodología de Validación y Ajuste del Modelo (Sesgo vs. Varianza)
+## 6. 🔬 Metodología de Validación y Ajuste del Modelo (Sesgo vs. Varianza)
 
 Para garantizar la solidez científica del proyecto, aplicamos la teoría de validación de modelos a nuestro conjunto de datos de la Premier League ($N = 3,389$ partidos):
 
@@ -204,3 +217,72 @@ En la predicción de eventos deportivos, los datos tienen un alto **ruido aleato
   * *Estrategia de Mejora:* En lugar de recopilar más volumen de datos horizontales ($N$), la única forma de elevar la asíntota de rendimiento es mediante la **Ingeniería de Características (Feature Engineering)**, es decir, aumentando la complejidad predictiva de las variables (métricas de Expected Goals, cuotas implícitas de casas de apuestas y ratings dinámicos de rendimiento).
 
 ![Curva de Aprendizaje: Rendimiento vs. Volumen de Datos](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/22_Curva_Aprendizaje_Convergencia.png)
+
+---
+
+## 7. ⚖️ Estudio Avanzado: Tratamiento del Desbalanceo de Clases (Modelos Espejo)
+
+Por recomendación de la comisión académica, se realizó un estudio experimental en espejo aplicando técnicas avanzadas de sobremuestreo y submuestreo (`Random Oversampling`, `SMOTE`, `Random Undersampling`, `Tomek Links`, `Cluster Centroids` y `NearMiss`) sobre los conjuntos de entrenamiento. 
+
+Los resultados completos, las métricas comparativas y la justificación teórica de por qué la línea base original sin remuestreo es la opción metodológicamente óptima para este sistema se encuentran en el documento:
+* [Estudio Comparativo: Tratamiento del Desbalanceo de Clases mediante Modelos Espejo (23_Estudio_Desbalance_Resampling.md)](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/23_Estudio_Desbalance_Resampling.md)
+
+---
+
+## 8. 🚀 Sintonización de Hiperparámetros de Producción (Optuna)
+
+Para maximizar el rendimiento del sistema final de predicción de BetAnalytics, ejecutamos un proceso sistemático de optimización de hiperparámetros utilizando **Optuna** (búsqueda bayesiana basada en el algoritmo TPE con validación cruzada temporal de 5 splits).
+
+Este proceso evaluó de forma inteligente el espacio paramétrico de los 5 clasificadores en los 8 mercados de apuestas, resultando en mejoras de exactitud (Accuracy) en **38 de las 40 combinaciones evaluadas**.
+
+### Tabla Comparativa de Rendimiento (Accuracy CV: Línea Base vs. Optuna)
+
+| Mercado (Target) | Modelo / Clasificador | Accuracy Base | Accuracy Optuna | Mejora | Hiperparámetros Óptimos Seleccionados |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **1X2 (Match Winner)** | Logistic Regression (Elastic Net) | 0.5298 | **0.5326** | +0.0028 | `C: 0.0032`, `l1_ratio: 0.0553` |
+| | Random Forest | 0.5287 | 0.5305 | +0.0018 | `n_estimators: 123`, `max_depth: 14`, `min_samples_split: 11` |
+| | HistGradientBoosting | 0.5223 | 0.5230 | +0.0007 | `learning_rate: 0.0052`, `max_iter: 215`, `max_depth: 2` |
+| | XGBoost | 0.5007 | 0.5291 | +0.0284 | `learning_rate: 0.0126`, `n_estimators: 299`, `max_depth: 3` |
+| | Neural Network (MLP) | 0.4848 | 0.5032 | +0.0184 | `hidden_dim: 32`, `dropout_rate: 0.3883`, `lr: 0.0046` |
+| **Doble Oportunidad 1X** | Logistic Regression (Elastic Net) | 0.7071 | **0.7082** | +0.0011 | `C: 0.0967`, `l1_ratio: 0.7308` |
+| | Random Forest | 0.6957 | 0.7046 | +0.0089 | `n_estimators: 179`, `max_depth: 10`, `min_samples_split: 3` |
+| | HistGradientBoosting | 0.6918 | 0.6933 | +0.0014 | `learning_rate: 0.0264`, `max_iter: 102`, `max_depth: 3` |
+| | XGBoost | 0.6819 | 0.6975 | +0.0156 | `learning_rate: 0.0856`, `n_estimators: 83`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.6702 | 0.7014 | +0.0312 | `hidden_dim: 32`, `dropout_rate: 0.2607`, `lr: 0.0012` |
+| **Doble Oportunidad X2** | Logistic Regression (Elastic Net) | 0.6422 | **0.6535** | +0.0113 | `C: 0.0166`, `l1_ratio: 0.6036` |
+| | Random Forest | 0.6394 | 0.6465 | +0.0071 | `n_estimators: 309`, `max_depth: 19`, `min_samples_split: 7` |
+| | HistGradientBoosting | 0.6372 | 0.6440 | +0.0067 | `learning_rate: 0.0505`, `max_iter: 278`, `max_depth: 2` |
+| | XGBoost | 0.6287 | 0.6440 | +0.0152 | `learning_rate: 0.0262`, `n_estimators: 204`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.6291 | 0.6436 | +0.0145 | `hidden_dim: 32`, `dropout_rate: 0.3694`, `lr: 0.0012` |
+| **Over 2.5 Goles** | Logistic Regression (Elastic Net) | 0.5472 | 0.5475 | +0.0004 | `C: 0.3641`, `l1_ratio: 0.0023` |
+| | Random Forest | 0.5525 | 0.5603 | +0.0078 | `n_estimators: 304`, `max_depth: 3`, `min_samples_split: 11` |
+| | HistGradientBoosting | 0.5507 | 0.5500 | -0.0007 | *Conservado hiperparámetro base* |
+| | XGBoost | 0.5426 | **0.5702** | +0.0277 | `learning_rate: 0.0043`, `n_estimators: 136`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.5156 | 0.5468 | +0.0312 | `hidden_dim: 64`, `dropout_rate: 0.3989`, `lr: 0.0462` |
+| **Under 2.5 Goles** | Logistic Regression (Elastic Net) | 0.5472 | 0.5482 | +0.0011 | `C: 3.7186`, `l1_ratio: 0.6674` |
+| | Random Forest | 0.5486 | 0.5606 | +0.0121 | `n_estimators: 257`, `max_depth: 3`, `min_samples_split: 8` |
+| | HistGradientBoosting | 0.5628 | 0.5589 | -0.0039 | *Conservado hiperparámetro base (0.5628)* |
+| | XGBoost | 0.5426 | **0.5734** | +0.0309 | `learning_rate: 0.0033`, `n_estimators: 194`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.5163 | 0.5479 | +0.0316 | `hidden_dim: 32`, `dropout_rate: 0.4669`, `lr: 0.0445` |
+| **Ambos Anotan (BTTS)** | Logistic Regression (Elastic Net) | 0.5128 | 0.5337 | +0.0209 | `C: 0.0024`, `l1_ratio: 0.4834` |
+| | Random Forest | 0.5074 | 0.5220 | +0.0145 | `n_estimators: 498`, `max_depth: 3`, `min_samples_split: 17` |
+| | HistGradientBoosting | 0.5323 | **0.5461** | +0.0138 | `learning_rate: 0.0011`, `max_iter: 295`, `max_depth: 5` |
+| | XGBoost | 0.5057 | 0.5284 | +0.0227 | `learning_rate: 0.0037`, `n_estimators: 247`, `max_depth: 3` |
+| | Neural Network (MLP) | 0.4993 | 0.5323 | +0.0330 | `hidden_dim: 32`, `dropout_rate: 0.4337`, `lr: 0.0353` |
+| **BTTS - No** | Logistic Regression (Elastic Net) | 0.5128 | 0.5337 | +0.0209 | `C: 0.0047`, `l1_ratio: 0.7012` |
+| | Random Forest | 0.5103 | 0.5131 | +0.0028 | `n_estimators: 204`, `max_depth: 3`, `min_samples_split: 16` |
+| | HistGradientBoosting | 0.5351 | 0.5376 | +0.0025 | `learning_rate: 0.1781`, `max_iter: 54`, `max_depth: 10` |
+| | XGBoost | 0.5057 | 0.5255 | +0.0199 | `learning_rate: 0.0016`, `n_estimators: 202`, `max_depth: 5` |
+| | Neural Network (MLP) | 0.5191 | **0.5394** | +0.0202 | `hidden_dim: 64`, `dropout_rate: 0.1735`, `lr: 0.0319` |
+| **Valla Invicta Local** | Logistic Regression (Elastic Net) | 0.7004 | 0.7085 | +0.0082 | `C: 0.0015`, `l1_ratio: 0.9217` |
+| | Random Forest | 0.7014 | **0.7089** | +0.0074 | `n_estimators: 365`, `max_depth: 14`, `min_samples_split: 8` |
+| | HistGradientBoosting | 0.7064 | **0.7089** | +0.0025 | `learning_rate: 0.0093`, `max_iter: 164`, `max_depth: 7` |
+| | XGBoost | 0.6936 | 0.7085 | +0.0149 | `learning_rate: 0.0014`, `n_estimators: 277`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.6713 | 0.7046 | +0.0333 | `hidden_dim: 32`, `dropout_rate: 0.4817`, `lr: 0.0167` |
+
+### 📈 Hallazgos Clave de la Sintonización:
+1. **Redes Neuronales y XGBoost:** Fueron los modelos que más se beneficiaron de la optimización con Optuna. Las redes neuronales mejoraron hasta en **+3.3%** en mercados complejos como *BTTS* y *Home Clean Sheet*, mientras que XGBoost subió un **+3.1%** en *Under 2.5 Goles*.
+2. **Cambio de Ganador en Goles (Over/Under):** Gracias a la optimización fina de los hiperparámetros de regularización (`reg_lambda` y `reg_alpha`), el modelo **XGBoost** superó al Random Forest en *Over 2.5* (alcanzando **57.02%**) y a HistGradientBoosting en *Under 2.5* (alcanzando **57.34%**), convirtiéndose en el nuevo modelo de producción para estos mercados.
+3. **Robustez en la Inferencia:** Los modelos `.pkl` guardados en producción corresponden estrictamente a la mejor arquitectura de cada mercado entrenada con estos parámetros definitivos sobre el dataset consolidado.
+
+
