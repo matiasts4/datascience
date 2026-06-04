@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 def main():
     csv_path = "models/mirrors/mirror_comparison_results.csv"
     if not os.path.exists(csv_path):
-        print(f"❌ Error: No se encontró el archivo de resultados {csv_path}.")
+        print(f"[Error] Error: No se encontró el archivo de resultados {csv_path}.")
         return
         
     df = pd.read_csv(csv_path)
-    print(f"✅ Cargados {len(df)} registros para la visualización total.")
+    print(f"[OK] Cargados {len(df)} registros para la visualización total.")
     
     # 7 Configuraciones ordenadas
     configs = [
@@ -92,7 +92,7 @@ def main():
     output_acc = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/27_Comparativa_Completa_Accuracy.png'
     plt.savefig(output_acc, dpi=300)
     plt.close()
-    print(f"  ✅ Guardado: {output_acc}")
+    print(f"  [OK] Guardado: {output_acc}")
     
     # =================================================================
     # CHART 2: F1-SCORE (2x4 Grid)
@@ -129,7 +129,7 @@ def main():
     output_f1 = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/28_Comparativa_Completa_F1.png'
     plt.savefig(output_f1, dpi=300)
     plt.close()
-    print(f"  ✅ Guardado: {output_f1}")
+    print(f"  [OK] Guardado: {output_f1}")
     
     # =================================================================
     # CHART 3: ROC-AUC (2x4 Grid)
@@ -173,7 +173,7 @@ def main():
     output_auc = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/29_Comparativa_Completa_ROC_AUC.png'
     plt.savefig(output_auc, dpi=300)
     plt.close()
-    print(f"  ✅ Guardado: {output_auc}")
+    print(f"  [OK] Guardado: {output_auc}")
 
 if __name__ == "__main__":
     main()

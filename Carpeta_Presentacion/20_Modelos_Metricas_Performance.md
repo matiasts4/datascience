@@ -235,6 +235,12 @@ Para maximizar el rendimiento del sistema final de predicción de BetAnalytics, 
 
 Este proceso evaluó de forma inteligente el espacio paramétrico de los 5 clasificadores en los 8 mercados de apuestas, resultando en mejoras de exactitud (Accuracy) en **38 de las 40 combinaciones evaluadas**.
 
+Para un análisis visual exhaustivo del impacto de la sintonización bayesiana en las tres dimensiones de rendimiento críticas, se generaron las curvas comparativas Baseline vs. Optuna para todas las variables y clasificadores:
+
+* **Exactitud general:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - Accuracy](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png)
+* **Medida de balance:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - F1-Score](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png)
+* **Capacidad discriminativa:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - ROC-AUC](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png)
+
 ### Tabla Comparativa de Rendimiento (Accuracy CV: Línea Base vs. Optuna)
 
 | Mercado (Target) | Modelo / Clasificador | Accuracy Base | Accuracy Optuna | Mejora | Hiperparámetros Óptimos Seleccionados |

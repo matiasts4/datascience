@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 def main():
     csv_path = "models/mirrors/mirror_comparison_results.csv"
     if not os.path.exists(csv_path):
-        print(f"❌ Error: No se encontró el archivo de resultados {csv_path}.")
+        print(f"[Error] Error: No se encontró el archivo de resultados {csv_path}.")
         return
         
     df = pd.read_csv(csv_path)
-    print(f"✅ Cargados {len(df)} registros para la comparativa completa.")
+    print(f"[OK] Cargados {len(df)} registros para la comparativa completa.")
     
     # Definición ordenada de las técnicas de resampling
     configs = [
@@ -138,7 +138,7 @@ def main():
     output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/26_Comparativa_Completa_Modelos_Resampling.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
-    print(f"✅ Gráfico de comparativa cruzada completa guardado en: {output_path}")
+    print(f"[OK] Gráfico de comparativa cruzada completa guardado en: {output_path}")
 
 if __name__ == "__main__":
     main()

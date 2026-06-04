@@ -6,11 +6,11 @@ import matplotlib.pyplot as plt
 def main():
     csv_path = "models/mirrors/mirror_comparison_results.csv"
     if not os.path.exists(csv_path):
-        print(f"❌ Error: No se encontró el archivo de resultados {csv_path}. ¿Ya terminó el entrenamiento?")
+        print(f"[Error] Error: No se encontró el archivo de resultados {csv_path}. ¿Ya terminó el entrenamiento?")
         return
         
     df = pd.read_csv(csv_path)
-    print(f"✅ Cargados {len(df)} registros de resultados.")
+    print(f"[OK] Cargados {len(df)} registros de resultados.")
     
     # Obtener el máximo de cada métrica (el mejor modelo) por configuración y target
     best_per_config = df.groupby(['mirror_config', 'target_name']).agg({
@@ -175,7 +175,7 @@ def main():
     output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/24_Comparativa_Multimetrica_Resampling.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
-    print(f"✅ Gráfico comparativo multimétrica guardado en: {output_path}")
+    print(f"[OK] Gráfico comparativo multimétrica guardado en: {output_path}")
 
 if __name__ == "__main__":
     main()
