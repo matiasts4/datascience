@@ -2,57 +2,57 @@
     "1X2 (Match Winner)": {
         "Logistic Regression (Elastic Net)": {
             "best_params": {
-                "C": 0.003219802423208555,
-                "l1_ratio": 0.055335661445117146
+                "C": 0.06022056678559559,
+                "l1_ratio": 0.999336754135407
             },
-            "baseline_score": 0.5297872340425532,
-            "best_score": 0.5326241134751774,
+            "baseline_score": 0.523758865248227,
+            "best_score": 0.5283687943262411,
             "improved": true
         },
         "Random Forest": {
             "best_params": {
-                "n_estimators": 123,
-                "max_depth": 14,
-                "min_samples_split": 11,
-                "min_samples_leaf": 10
+                "n_estimators": 190,
+                "max_depth": 5,
+                "min_samples_split": 20,
+                "min_samples_leaf": 16
             },
-            "baseline_score": 0.528723404255319,
-            "best_score": 0.5304964539007092,
+            "baseline_score": 0.5209219858156028,
+            "best_score": 0.526241134751773,
             "improved": true
         },
         "HistGradientBoosting (Early Stopping)": {
             "best_params": {
-                "learning_rate": 0.005206009790451816,
-                "max_iter": 215,
+                "learning_rate": 0.04479008504296469,
+                "max_iter": 227,
                 "max_depth": 2,
-                "l2_regularization": 9.55088252819178
+                "l2_regularization": 0.00025514781146820773
             },
-            "baseline_score": 0.522340425531915,
-            "best_score": 0.5230496453900709,
-            "improved": true
+            "baseline_score": 0.5209219858156028,
+            "best_score": 0.5209219858156028,
+            "improved": false
         },
         "XGBoost (L1/L2 Regularized)": {
             "best_params": {
-                "learning_rate": 0.012637895457903364,
-                "n_estimators": 299,
-                "max_depth": 3,
-                "reg_lambda": 0.03183130121897769,
-                "reg_alpha": 8.170471726298468
+                "learning_rate": 0.016439824803972634,
+                "n_estimators": 161,
+                "max_depth": 2,
+                "reg_lambda": 0.3543779034442479,
+                "reg_alpha": 0.015635734965089586
             },
-            "baseline_score": 0.500709219858156,
-            "best_score": 0.5290780141843971,
+            "baseline_score": 0.499645390070922,
+            "best_score": 0.525177304964539,
             "improved": true
         },
         "Neural Network (Dropout)": {
             "best_params": {
                 "hidden_dim": 32,
-                "dropout_rate": 0.38825942277899184,
-                "lr": 0.0046110699883324365,
-                "epochs": 80,
-                "batch_size": 64
+                "dropout_rate": 0.484307449325578,
+                "lr": 0.0014776238956402028,
+                "epochs": 100,
+                "batch_size": 32
             },
-            "baseline_score": 0.48475177304964534,
-            "best_score": 0.5031914893617021,
+            "baseline_score": 0.4719858156028369,
+            "best_score": 0.5134751773049645,
             "improved": true
         }
     },
@@ -401,57 +401,57 @@
     "Home Clean Sheet": {
         "Logistic Regression (Elastic Net)": {
             "best_params": {
-                "C": 0.0014869901052911346,
-                "l1_ratio": 0.9217398618285565
+                "C": 0.0018251678272389765,
+                "l1_ratio": 0.2532042369371722
             },
-            "baseline_score": 0.700354609929078,
+            "baseline_score": 0.6836879432624114,
             "best_score": 0.7085106382978724,
             "improved": true
         },
         "Random Forest": {
             "best_params": {
-                "n_estimators": 365,
-                "max_depth": 14,
-                "min_samples_split": 8,
-                "min_samples_leaf": 17
+                "n_estimators": 289,
+                "max_depth": 3,
+                "min_samples_split": 11,
+                "min_samples_leaf": 5
             },
-            "baseline_score": 0.701418439716312,
-            "best_score": 0.7088652482269504,
+            "baseline_score": 0.6943262411347517,
+            "best_score": 0.7070921985815604,
             "improved": true
         },
         "HistGradientBoosting (Early Stopping)": {
             "best_params": {
-                "learning_rate": 0.009292958066889784,
-                "max_iter": 164,
-                "max_depth": 7,
-                "l2_regularization": 0.004168430236612555
+                "learning_rate": 0.005758204519894158,
+                "max_iter": 103,
+                "max_depth": 2,
+                "l2_regularization": 0.07331689188607811
             },
-            "baseline_score": 0.7063829787234044,
+            "baseline_score": 0.6932624113475176,
             "best_score": 0.7088652482269504,
             "improved": true
         },
         "XGBoost (L1/L2 Regularized)": {
             "best_params": {
-                "learning_rate": 0.001379787653971675,
-                "n_estimators": 277,
-                "max_depth": 2,
-                "reg_lambda": 0.003064491473666575,
-                "reg_alpha": 3.7445965299449777
+                "learning_rate": 0.0015774861245416046,
+                "n_estimators": 232,
+                "max_depth": 3,
+                "reg_lambda": 0.03175939202806781,
+                "reg_alpha": 0.25192996348026764
             },
-            "baseline_score": 0.6936170212765957,
+            "baseline_score": 0.6801418439716312,
             "best_score": 0.7085106382978724,
             "improved": true
         },
         "Neural Network (Dropout)": {
             "best_params": {
                 "hidden_dim": 32,
-                "dropout_rate": 0.48165875575083905,
-                "lr": 0.016730506130998208,
+                "dropout_rate": 0.3009962879735154,
+                "lr": 0.04656839875750122,
                 "epochs": 50,
-                "batch_size": 128
+                "batch_size": 32
             },
-            "baseline_score": 0.6712765957446809,
-            "best_score": 0.7046099290780141,
+            "baseline_score": 0.6375886524822695,
+            "best_score": 0.7099290780141845,
             "improved": true
         }
     }

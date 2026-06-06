@@ -245,11 +245,11 @@ Para un análisis visual exhaustivo del impacto de la sintonización bayesiana e
 
 | Mercado (Target) | Modelo / Clasificador | Accuracy Base | Accuracy Optuna | Mejora | Hiperparámetros Óptimos Seleccionados |
 | :--- | :--- | :---: | :---: | :---: | :--- |
-| **1X2 (Match Winner)** | Logistic Regression (Elastic Net) | 0.5298 | **0.5326** | +0.0028 | `C: 0.0032`, `l1_ratio: 0.0553` |
-| | Random Forest | 0.5287 | 0.5305 | +0.0018 | `n_estimators: 123`, `max_depth: 14`, `min_samples_split: 11` |
-| | HistGradientBoosting | 0.5223 | 0.5230 | +0.0007 | `learning_rate: 0.0052`, `max_iter: 215`, `max_depth: 2` |
-| | XGBoost | 0.5007 | 0.5291 | +0.0284 | `learning_rate: 0.0126`, `n_estimators: 299`, `max_depth: 3` |
-| | Neural Network (MLP) | 0.4848 | 0.5032 | +0.0184 | `hidden_dim: 32`, `dropout_rate: 0.3883`, `lr: 0.0046` |
+| **1X2 (Match Winner)** | Logistic Regression (Elastic Net) | 0.5238 | **0.5284** | +0.0046 | `C: 0.0602`, `l1_ratio: 0.9993` |
+| | Random Forest | 0.5209 | 0.5262 | +0.0053 | `n_estimators: 190`, `max_depth: 5`, `min_samples_split: 20` |
+| | HistGradientBoosting | 0.5209 | 0.5209 | +0.0000 | *Conservado hiperparámetro base* |
+| | XGBoost | 0.4996 | 0.5252 | +0.0255 | `learning_rate: 0.0164`, `n_estimators: 161`, `max_depth: 2` |
+| | Neural Network (MLP) | 0.4720 | 0.5135 | +0.0415 | `hidden_dim: 32`, `dropout_rate: 0.4843`, `lr: 0.0015` |
 | **Doble Oportunidad 1X** | Logistic Regression (Elastic Net) | 0.7071 | **0.7082** | +0.0011 | `C: 0.0967`, `l1_ratio: 0.7308` |
 | | Random Forest | 0.6957 | 0.7046 | +0.0089 | `n_estimators: 179`, `max_depth: 10`, `min_samples_split: 3` |
 | | HistGradientBoosting | 0.6918 | 0.6933 | +0.0014 | `learning_rate: 0.0264`, `max_iter: 102`, `max_depth: 3` |
@@ -280,15 +280,16 @@ Para un análisis visual exhaustivo del impacto de la sintonización bayesiana e
 | | HistGradientBoosting | 0.5351 | 0.5376 | +0.0025 | `learning_rate: 0.1781`, `max_iter: 54`, `max_depth: 10` |
 | | XGBoost | 0.5057 | 0.5255 | +0.0199 | `learning_rate: 0.0016`, `n_estimators: 202`, `max_depth: 5` |
 | | Neural Network (MLP) | 0.5191 | **0.5394** | +0.0202 | `hidden_dim: 64`, `dropout_rate: 0.1735`, `lr: 0.0319` |
-| **Valla Invicta Local** | Logistic Regression (Elastic Net) | 0.7004 | 0.7085 | +0.0082 | `C: 0.0015`, `l1_ratio: 0.9217` |
-| | Random Forest | 0.7014 | **0.7089** | +0.0074 | `n_estimators: 365`, `max_depth: 14`, `min_samples_split: 8` |
-| | HistGradientBoosting | 0.7064 | **0.7089** | +0.0025 | `learning_rate: 0.0093`, `max_iter: 164`, `max_depth: 7` |
-| | XGBoost | 0.6936 | 0.7085 | +0.0149 | `learning_rate: 0.0014`, `n_estimators: 277`, `max_depth: 2` |
-| | Neural Network (MLP) | 0.6713 | 0.7046 | +0.0333 | `hidden_dim: 32`, `dropout_rate: 0.4817`, `lr: 0.0167` |
+| **Valla Invicta Local** | Logistic Regression (Elastic Net) | 0.6837 | 0.7085 | +0.0248 | `C: 0.0018`, `l1_ratio: 0.2532` |
+| | Random Forest | 0.6943 | 0.7071 | +0.0128 | `n_estimators: 289`, `max_depth: 3`, `min_samples_split: 11` |
+| | HistGradientBoosting | 0.6933 | 0.7089 | +0.0156 | `learning_rate: 0.0058`, `max_iter: 103`, `max_depth: 2` |
+| | XGBoost | 0.6801 | 0.7085 | +0.0284 | `learning_rate: 0.0016`, `n_estimators: 232`, `max_depth: 3` |
+| | Neural Network (MLP) | 0.6376 | **0.7099** | +0.0723 | `hidden_dim: 32`, `dropout_rate: 0.3010`, `lr: 0.0466` |
 
 ### 📈 Hallazgos Clave de la Sintonización:
-1. **Redes Neuronales y XGBoost:** Fueron los modelos que más se beneficiaron de la optimización con Optuna. Las redes neuronales mejoraron hasta en **+3.3%** en mercados complejos como *BTTS* y *Home Clean Sheet*, mientras que XGBoost subió un **+3.1%** en *Under 2.5 Goles*.
-2. **Cambio de Ganador en Goles (Over/Under):** Gracias a la optimización fina de los hiperparámetros de regularización (`reg_lambda` y `reg_alpha`), el modelo **XGBoost** superó al Random Forest en *Over 2.5* (alcanzando **57.02%**) y a HistGradientBoosting en *Under 2.5* (alcanzando **57.34%**), convirtiéndose en el nuevo modelo de producción para estos mercados.
+1. **Redes Neuronales y XGBoost:** Fueron los modelos que más se beneficiaron de la optimización con Optuna. Las redes neuronales mejoraron hasta en **+7.2%** en mercados complejos como *Valla Invicta Local* (Home Clean Sheet), mientras que XGBoost subió un **+3.1%** en *Under 2.5 Goles*.
+2. **Cambio de Ganador en Valla Invicta Local:** Al aplicar el remuestreo híbrido con Tomek Links, la **Red Neuronal (MLP)** superó al Random Forest original y al HistGradientBoosting, alcanzando un **70.99%** de exactitud de validación cruzada. En *1X2 (Match Winner)*, la **Regresión Logística con Elastic Net** se mantiene como el modelo óptimo con **52.84%** de exactitud.
+3. **Cambio de Ganador en Goles (Over/Under):** Gracias a la optimización fina de los hiperparámetros de regularización (`reg_lambda` y `reg_alpha`), el modelo **XGBoost** superó al Random Forest en *Over 2.5* (alcanzando **57.02%**) y a HistGradientBoosting en *Under 2.5* (alcanzando **57.34%**), convirtiéndose en el nuevo modelo de producción para estos mercados.
 3. **Robustez en la Inferencia:** Los modelos `.pkl` guardados en producción corresponden estrictamente a la mejor arquitectura de cada mercado entrenada con estos parámetros definitivos sobre el dataset consolidado.
 
 

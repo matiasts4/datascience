@@ -36,7 +36,7 @@ def prepare_targets(df):
     df_out['target_home_clean_sheet'] = (df_out['away_goals'] == 0).astype(int)
     return df_out
 
-def create_pipeline(classifier):
+def create_pipeline(classifier, use_tomek=False):
     skewed_features = ['away_xg', 'referee_avg_cards_history', 'B365H', 'B365D', 'B365A', 'h_l5_fls', 'a_l5_fls', 'h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
     skewed_in_features = [f for f in skewed_features if f in FEATURES]
     standard_in_features = [f for f in FEATURES if f not in skewed_in_features]
@@ -55,10 +55,15 @@ def create_pipeline(classifier):
         remainder='passthrough'
     )
     
-    return Pipeline([
-        ('preprocessor', preprocessor),
-        ('classifier', classifier)
-    ])
+    from imblearn.pipeline import Pipeline as ImbPipeline
+    from imblearn.under_sampling import TomekLinks
+    
+    steps = [('preprocessor', preprocessor)]
+    if use_tomek:
+        steps.append(('sampler', TomekLinks()))
+    steps.append(('classifier', classifier))
+    
+    return ImbPipeline(steps)
 
 def get_baseline_classifier(model_name, target_name):
     if model_name == "Logistic Regression (Elastic Net)":
@@ -112,7 +117,8 @@ def get_baseline_classifier(model_name, target_name):
 
 def evaluate_baseline_score(X, y, tscv, model_name, target_name):
     clf = get_baseline_classifier(model_name, target_name)
-    pipe = create_pipeline(clf)
+    use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+    pipe = create_pipeline(clf, use_tomek=use_tomek)
     scores = []
     for train_idx, test_idx in tscv.split(X):
         X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
@@ -167,10 +173,21 @@ def main():
         "Neural Network (Dropout)"
     ]
     
-    optimized_params = {}
+    json_path = os.path.join(MODELS_DIR, "optimized_hyperparams.json")
+    if os.path.exists(json_path):
+        with open(json_path, 'r', encoding='utf-8') as f:
+            optimized_params = json.load(f)
+    else:
+        optimized_params = {}
+        
     tuning_reports = []
     
-    for target_name, target_col in TARGETS.items():
+    target_keys = ["1X2 (Match Winner)", "Home Clean Sheet"]
+    for target_name in target_keys:
+        if target_name not in TARGETS:
+            continue
+        target_col = TARGETS[target_name]
+        
         print(f"\n==================================================")
         print(f"SINTONIZANDO TARGET CON OPTUNA: {target_name.upper()}")
         print(f"==================================================")
@@ -178,6 +195,7 @@ def main():
         y = df[target_col]
         optimized_params[target_name] = {}
         
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
         for model_name in models_list:
             print(f"  > Optimizando {model_name}...")
             
@@ -224,7 +242,7 @@ def main():
                     clf = PyTorchMLPClassifier(input_dim=len(FEATURES), hidden_dim=hidden_dim, dropout_rate=dropout_rate,
                                                lr=lr, epochs=epochs, batch_size=batch_size, random_state=42)
                 
-                pipe = create_pipeline(clf)
+                pipe = create_pipeline(clf, use_tomek=use_tomek)
                 scores = []
                 for train_idx, test_idx in tscv.split(X):
                     X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]

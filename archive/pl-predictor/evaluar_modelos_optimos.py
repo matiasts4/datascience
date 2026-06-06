@@ -34,7 +34,7 @@ def prepare_targets(df):
     df_out['target_home_clean_sheet'] = (df_out['away_goals'] == 0).astype(int)
     return df_out
 
-def create_pipeline(classifier):
+def create_pipeline(classifier, use_tomek=False):
     skewed_features = ['away_xg', 'referee_avg_cards_history', 'B365H', 'B365D', 'B365A', 'h_l5_fls', 'a_l5_fls', 'h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
     skewed_in_features = [f for f in skewed_features if f in FEATURES]
     standard_in_features = [f for f in FEATURES if f not in skewed_in_features]
@@ -53,10 +53,15 @@ def create_pipeline(classifier):
         remainder='passthrough'
     )
     
-    return Pipeline([
-        ('preprocessor', preprocessor),
-        ('classifier', classifier)
-    ])
+    from imblearn.pipeline import Pipeline as ImbPipeline
+    from imblearn.under_sampling import TomekLinks
+    
+    steps = [('preprocessor', preprocessor)]
+    if use_tomek:
+        steps.append(('sampler', TomekLinks()))
+    steps.append(('classifier', classifier))
+    
+    return ImbPipeline(steps)
 
 def instantiate_classifier(model_name, params):
     clean_params = {}
@@ -118,15 +123,18 @@ def main():
     for target_name, target_col in TARGETS.items():
         y = df[target_col]
         is_multiclass = len(np.unique(y)) > 2
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
         
         print(f"\nTarget: {target_name}")
+        if use_tomek:
+            print("   -> Aplicando Tomek Links en CV...")
         
         for model_name in models_list:
             info = optimized_data[target_name][model_name]
             params = info["best_params"]
             
             clf = instantiate_classifier(model_name, params)
-            pipe = create_pipeline(clf)
+            pipe = create_pipeline(clf, use_tomek=use_tomek)
             
             accs = []
             f1s = []

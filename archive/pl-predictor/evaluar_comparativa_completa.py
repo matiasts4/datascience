@@ -34,7 +34,7 @@ def prepare_targets(df):
     df_out['target_home_clean_sheet'] = (df_out['away_goals'] == 0).astype(int)
     return df_out
 
-def create_pipeline(classifier):
+def create_pipeline(classifier, use_tomek=False):
     skewed_features = ['away_xg', 'referee_avg_cards_history', 'B365H', 'B365D', 'B365A', 'h_l5_fls', 'a_l5_fls', 'h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
     skewed_in_features = [f for f in skewed_features if f in FEATURES]
     standard_in_features = [f for f in FEATURES if f not in skewed_in_features]
@@ -53,10 +53,15 @@ def create_pipeline(classifier):
         remainder='passthrough'
     )
     
-    return Pipeline([
-        ('preprocessor', preprocessor),
-        ('classifier', classifier)
-    ])
+    from imblearn.pipeline import Pipeline as ImbPipeline
+    from imblearn.under_sampling import TomekLinks
+    
+    steps = [('preprocessor', preprocessor)]
+    if use_tomek:
+        steps.append(('sampler', TomekLinks()))
+    steps.append(('classifier', classifier))
+    
+    return ImbPipeline(steps)
 
 def get_baseline_classifier(model_name, target_name):
     if model_name == "Logistic Regression (Elastic Net)":
@@ -154,7 +159,7 @@ def evaluate_pipeline(pipe, X, y, tscv, is_multiclass):
             else:
                 f1s.append(f1_score(y_test, preds, average='weighted', zero_division=0))
                 aucs.append(0.0)
-        except Exception:
+        except Exception as e:
             accs.append(0.0)
             f1s.append(0.0)
             aucs.append(0.0)
@@ -200,14 +205,17 @@ def main():
     for target_name, target_col in TARGETS.items():
         y = df[target_col]
         is_multiclass = len(np.unique(y)) > 2
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
         
         print(f"\nProcesando Mercado: {target_name}")
+        if use_tomek:
+            print("   -> Aplicando Tomek Links para los modelos optimizados...")
         
         for model_name in models_list:
             # 1. Evaluar Baseline
             print(f"  -> Evaluando Baseline de {model_name}...")
             base_clf = get_baseline_classifier(model_name, target_name)
-            base_pipe = create_pipeline(base_clf)
+            base_pipe = create_pipeline(base_clf, use_tomek=use_tomek) # Baseline usa Tomek en los 2 mercados para consistencia
             base_acc, base_f1, base_auc = evaluate_pipeline(base_pipe, X, y, tscv, is_multiclass)
             
             # 2. Evaluar Optimizado
@@ -215,7 +223,7 @@ def main():
             opt_info = optimized_data[target_name][model_name]
             opt_params = opt_info["best_params"]
             opt_clf = instantiate_classifier(model_name, opt_params)
-            opt_pipe = create_pipeline(opt_clf)
+            opt_pipe = create_pipeline(opt_clf, use_tomek=use_tomek) # Optimizado usa Tomek en los 2 mercados
             opt_acc, opt_f1, opt_auc = evaluate_pipeline(opt_pipe, X, y, tscv, is_multiclass)
             
             records.append({
