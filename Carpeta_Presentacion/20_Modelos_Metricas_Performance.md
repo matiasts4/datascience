@@ -290,6 +290,4 @@ Para un análisis visual exhaustivo del impacto de la sintonización bayesiana e
 1. **Redes Neuronales y XGBoost:** Fueron los modelos que más se beneficiaron de la optimización con Optuna. Las redes neuronales mejoraron hasta en **+7.2%** en mercados complejos como *Valla Invicta Local* (Home Clean Sheet), mientras que XGBoost subió un **+3.1%** en *Under 2.5 Goles*.
 2. **Cambio de Ganador en Valla Invicta Local:** Al aplicar el remuestreo híbrido con Tomek Links, la **Red Neuronal (MLP)** superó al Random Forest original y al HistGradientBoosting, alcanzando un **70.99%** de exactitud de validación cruzada. En *1X2 (Match Winner)*, la **Regresión Logística con Elastic Net** se mantiene como el modelo óptimo con **52.84%** de exactitud.
 3. **Cambio de Ganador en Goles (Over/Under):** Gracias a la optimización fina de los hiperparámetros de regularización (`reg_lambda` y `reg_alpha`), el modelo **XGBoost** superó al Random Forest en *Over 2.5* (alcanzando **57.02%**) y a HistGradientBoosting en *Under 2.5* (alcanzando **57.34%**), convirtiéndose en el nuevo modelo de producción para estos mercados.
-3. **Robustez en la Inferencia:** Los modelos `.pkl` guardados en producción corresponden estrictamente a la mejor arquitectura de cada mercado entrenada con estos parámetros definitivos sobre el dataset consolidado.
-
-
+4. **Robustez en la Inferencia:** Los modelos `.pkl` guardados en producción corresponden estrictamente a la mejor arquitectura de cada mercado entrenada con estos parámetros definitivos sobre el dataset consolidado.
