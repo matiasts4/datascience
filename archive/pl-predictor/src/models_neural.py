@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.base import BaseEstimator, ClassifierMixin
 
-class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
+class PyTorchMLPClassifier(ClassifierMixin, BaseEstimator):
     def __init__(self, input_dim=27, hidden_dim=64, dropout_rate=0.3, lr=0.01, epochs=80, batch_size=64, random_state=42):
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim

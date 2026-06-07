@@ -16,9 +16,31 @@ from evaluar_comparativa_completa import create_pipeline, instantiate_classifier
 
 warnings.filterwarnings("ignore")
 
+def solve_lambda(p_under):
+    """
+    Resuelve numéricamente el parámetro de tasa Poisson (L) que satisface:
+    e^-L * (1 + L + L^2 / 2) = p_under
+    donde p_under es la probabilidad de que haya menos de 3 goles (Under 2.5).
+    """
+    if p_under <= 0.001:
+        return 10.0
+    if p_under >= 0.999:
+        return 0.1
+    low = 0.01
+    high = 15.0
+    for _ in range(20):
+        mid = (low + high) / 2.0
+        # Suma de probabilidades Poisson para k = 0, 1, 2
+        val = np.exp(-mid) * (1.0 + mid + 0.5 * mid**2)
+        if val > p_under:
+            low = mid
+        else:
+            high = mid
+    return mid
+
 def run_single_simulation(sim_df, market_type, initial_bankroll=1000.0, edge_threshold=0.05, staking_strategy='quarter', cal_mode='uncal'):
     """
-    Simula una estrategia de apuestas para un mercado específico (1x2, over, under, o portfolio)
+    Simula una estrategia de apuestas para un mercado específico o portafolio combinado
     utilizando una configuración de calibración dada ('uncal', 'iso', 'sig').
     """
     bankroll = initial_bankroll
@@ -32,7 +54,7 @@ def run_single_simulation(sim_df, market_type, initial_bankroll=1000.0, edge_thr
     for idx, row in sim_df.iterrows():
         evs = {}
         
-        # Obtener probabilidades correspondientes al modo de calibración
+        # Obtener probabilidades correspondientes al modo de calibración y armar las cuotas
         if market_type == '1x2':
             p_home = row[f'p_home_{cal_mode}']
             p_draw = row[f'p_draw_{cal_mode}']
@@ -47,6 +69,18 @@ def run_single_simulation(sim_df, market_type, initial_bankroll=1000.0, edge_thr
                 'draw': {'ev': ev_draw, 'odd': row['B365D'], 'prob': p_draw, 'win': (row['target_1x2'] == 1)},
                 'away': {'ev': ev_away, 'odd': row['B365A'], 'prob': p_away, 'win': (row['target_1x2'] == 0)}
             }
+        elif market_type == 'double_chance_1x':
+            p_dc1X = row[f'p_dc1X_{cal_mode}']
+            ev_dc1X = p_dc1X * row['B365_1X'] - 1
+            evs = {
+                'dc_1X': {'ev': ev_dc1X, 'odd': row['B365_1X'], 'prob': p_dc1X, 'win': (row['target_dc_1X'] == 1)}
+            }
+        elif market_type == 'double_chance_x2':
+            p_dcX2 = row[f'p_dcX2_{cal_mode}']
+            ev_dcX2 = p_dcX2 * row['B365_X2'] - 1
+            evs = {
+                'dc_X2': {'ev': ev_dcX2, 'odd': row['B365_X2'], 'prob': p_dcX2, 'win': (row['target_dc_X2'] == 1)}
+            }
         elif market_type == 'over':
             p_over = row[f'p_over_{cal_mode}']
             ev_over = p_over * row['B365>2.5'] - 1
@@ -59,25 +93,47 @@ def run_single_simulation(sim_df, market_type, initial_bankroll=1000.0, edge_thr
             evs = {
                 'under': {'ev': ev_under, 'odd': row['B365<2.5'], 'prob': p_under, 'win': (row['target_under_2_5_goals'] == 1)}
             }
+        elif market_type == 'btts':
+            p_btts = row[f'p_btts_{cal_mode}']
+            ev_btts = p_btts * row['B365_BTTS_Yes'] - 1
+            evs = {
+                'btts': {'ev': ev_btts, 'odd': row['B365_BTTS_Yes'], 'prob': p_btts, 'win': (row['target_btts'] == 1)}
+            }
+        elif market_type == 'btts_no':
+            p_bttsno = row[f'p_bttsno_{cal_mode}']
+            ev_bttsno = p_bttsno * row['B365_BTTS_No'] - 1
+            evs = {
+                'btts_no': {'ev': ev_bttsno, 'odd': row['B365_BTTS_No'], 'prob': p_bttsno, 'win': (row['target_btts_no'] == 1)}
+            }
+        elif market_type == 'home_clean_sheet':
+            p_hcs = row[f'p_hcs_{cal_mode}']
+            ev_hcs = p_hcs * row['B365_HCS'] - 1
+            evs = {
+                'hcs': {'ev': ev_hcs, 'odd': row['B365_HCS'], 'prob': p_hcs, 'win': (row['target_home_clean_sheet'] == 1)}
+            }
         elif market_type == 'portfolio':
             p_home = row[f'p_home_{cal_mode}']
             p_draw = row[f'p_draw_{cal_mode}']
             p_away = row[f'p_away_{cal_mode}']
+            p_dc1X = row[f'p_dc1X_{cal_mode}']
+            p_dcX2 = row[f'p_dcX2_{cal_mode}']
             p_over = row[f'p_over_{cal_mode}']
             p_under = row[f'p_under_{cal_mode}']
-            
-            ev_home = p_home * row['B365H'] - 1
-            ev_draw = p_draw * row['B365D'] - 1
-            ev_away = p_away * row['B365A'] - 1
-            ev_over = p_over * row['B365>2.5'] - 1
-            ev_under = p_under * row['B365<2.5'] - 1
+            p_btts = row[f'p_btts_{cal_mode}']
+            p_bttsno = row[f'p_bttsno_{cal_mode}']
+            p_hcs = row[f'p_hcs_{cal_mode}']
             
             evs = {
-                'home': {'ev': ev_home, 'odd': row['B365H'], 'prob': p_home, 'win': (row['target_1x2'] == 2)},
-                'draw': {'ev': ev_draw, 'odd': row['B365D'], 'prob': p_draw, 'win': (row['target_1x2'] == 1)},
-                'away': {'ev': ev_away, 'odd': row['B365A'], 'prob': p_away, 'win': (row['target_1x2'] == 0)},
-                'over': {'ev': ev_over, 'odd': row['B365>2.5'], 'prob': p_over, 'win': (row['target_over_2_5_goals'] == 1)},
-                'under': {'ev': ev_under, 'odd': row['B365<2.5'], 'prob': p_under, 'win': (row['target_under_2_5_goals'] == 1)}
+                'home': {'ev': p_home * row['B365H'] - 1, 'odd': row['B365H'], 'prob': p_home, 'win': (row['target_1x2'] == 2)},
+                'draw': {'ev': p_draw * row['B365D'] - 1, 'odd': row['B365D'], 'prob': p_draw, 'win': (row['target_1x2'] == 1)},
+                'away': {'ev': p_away * row['B365A'] - 1, 'odd': row['B365A'], 'prob': p_away, 'win': (row['target_1x2'] == 0)},
+                'dc_1X': {'ev': p_dc1X * row['B365_1X'] - 1, 'odd': row['B365_1X'], 'prob': p_dc1X, 'win': (row['target_dc_1X'] == 1)},
+                'dc_X2': {'ev': p_dcX2 * row['B365_X2'] - 1, 'odd': row['B365_X2'], 'prob': p_dcX2, 'win': (row['target_dc_X2'] == 1)},
+                'over': {'ev': p_over * row['B365>2.5'] - 1, 'odd': row['B365>2.5'], 'prob': p_over, 'win': (row['target_over_2_5_goals'] == 1)},
+                'under': {'ev': p_under * row['B365<2.5'] - 1, 'odd': row['B365<2.5'], 'prob': p_under, 'win': (row['target_under_2_5_goals'] == 1)},
+                'btts': {'ev': p_btts * row['B365_BTTS_Yes'] - 1, 'odd': row['B365_BTTS_Yes'], 'prob': p_btts, 'win': (row['target_btts'] == 1)},
+                'btts_no': {'ev': p_bttsno * row['B365_BTTS_No'] - 1, 'odd': row['B365_BTTS_No'], 'prob': p_bttsno, 'win': (row['target_btts_no'] == 1)},
+                'hcs': {'ev': p_hcs * row['B365_HCS'] - 1, 'odd': row['B365_HCS'], 'prob': p_hcs, 'win': (row['target_home_clean_sheet'] == 1)}
             }
             
         # Si no hay opciones, saltar
@@ -175,6 +231,53 @@ def main():
     df = df.sort_values('date').reset_index(drop=True)
     df = prepare_targets(df)
     
+    # ─────────────────────────────────────────────────────────────────────────
+    # Generar cuotas sintéticas basadas en arbitraje y Poisson
+    # ─────────────────────────────────────────────────────────────────────────
+    print("\nGenerando cuotas sintéticas para Double Chance, BTTS y Home Clean Sheet...")
+    # 1. Doble oportunidad
+    df['B365_1X'] = 1.0 / (1.0 / df['B365H'] + 1.0 / df['B365D']) * 0.98
+    df['B365_X2'] = 1.0 / (1.0 / df['B365D'] + 1.0 / df['B365A']) * 0.98
+    
+    # 2. BTTS y Clean Sheet usando Solver Poisson
+    btts_yes_odds = []
+    btts_no_odds = []
+    hcs_odds = []
+    
+    for idx, row in df.iterrows():
+        p_over = 1.0 / row['B365>2.5']
+        p_under = 1.0 / row['B365<2.5']
+        p_under_norm = p_under / (p_over + p_under)
+        
+        # Resolver tasa Poisson total de goles
+        L = solve_lambda(p_under_norm)
+        
+        # Distribución proporcional a las cuotas del ganador de partido
+        prob_h = 1.0 / row['B365H']
+        prob_a = 1.0 / row['B365A']
+        sum_p = prob_h + prob_a
+        
+        L_H = L * (prob_h / sum_p)
+        L_A = L * (prob_a / sum_p)
+        
+        # BTTS Yes: (1 - e^-L_H) * (1 - e^-L_A)
+        p_btts = (1.0 - np.exp(-L_H)) * (1.0 - np.exp(-L_A))
+        p_btts = min(max(p_btts, 0.05), 0.95)
+        
+        # Home Clean Sheet: e^-L_A
+        p_hcs = np.exp(-L_A)
+        p_hcs = min(max(p_hcs, 0.05), 0.95)
+        
+        # Convertir a cuotas con 5% de overround
+        btts_yes_odds.append((1.0 / p_btts) * 1.05)
+        btts_no_odds.append((1.0 / (1.0 - p_btts)) * 1.05)
+        hcs_odds.append((1.0 / p_hcs) * 1.05)
+        
+    df['B365_BTTS_Yes'] = btts_yes_odds
+    df['B365_BTTS_No'] = btts_no_odds
+    df['B365_HCS'] = hcs_odds
+    print("[OK] Cuotas de mercados adicionales calculadas con éxito.")
+    
     X = df[FEATURES]
     tscv = TimeSeriesSplit(n_splits=5)
     
@@ -184,29 +287,64 @@ def main():
     markets_to_simulate = {
         '1X2 (Match Winner)': {
             'target': 'target_1x2',
-            'model_name': 'Logistic Regression (Elastic Net)',
-            'use_tomek': True
+            'use_tomek': True,
+            'prob_cols': ['p_away', 'p_draw', 'p_home']
+        },
+        'Double Chance 1X (Home or Draw)': {
+            'target': 'target_dc_1X',
+            'use_tomek': False,
+            'prob_cols': ['p_dc1X']
+        },
+        'Double Chance X2 (Away or Draw)': {
+            'target': 'target_dc_X2',
+            'use_tomek': False,
+            'prob_cols': ['p_dcX2']
         },
         'Over 2.5 Goals': {
             'target': 'target_over_2_5_goals',
-            'model_name': 'XGBoost (L1/L2 Regularized)',
-            'use_tomek': False
+            'use_tomek': False,
+            'prob_cols': ['p_over']
         },
         'Under 2.5 Goals': {
             'target': 'target_under_2_5_goals',
-            'model_name': 'XGBoost (L1/L2 Regularized)',
-            'use_tomek': False
+            'use_tomek': False,
+            'prob_cols': ['p_under']
+        },
+        'BTTS (Both Teams To Score)': {
+            'target': 'target_btts',
+            'use_tomek': False,
+            'prob_cols': ['p_btts']
+        },
+        'BTTS - No': {
+            'target': 'target_btts_no',
+            'use_tomek': False,
+            'prob_cols': ['p_bttsno']
+        },
+        'Home Clean Sheet': {
+            'target': 'target_home_clean_sheet',
+            'use_tomek': True,
+            'prob_cols': ['p_hcs']
         }
     }
     
-    sim_df = df[['game_id', 'date', 'home_team', 'away_team', 'target_1x2', 'target_over_2_5_goals', 'target_under_2_5_goals', 'B365H', 'B365D', 'B365A', 'B365>2.5', 'B365<2.5']].copy()
+    sim_df = df[['game_id', 'date', 'home_team', 'away_team', 'target_1x2', 'target_dc_1X', 'target_dc_X2', 'target_over_2_5_goals', 'target_under_2_5_goals', 'target_btts', 'target_btts_no', 'target_home_clean_sheet', 'B365H', 'B365D', 'B365A', 'B365>2.5', 'B365<2.5', 'B365_1X', 'B365_X2', 'B365_BTTS_Yes', 'B365_BTTS_No', 'B365_HCS']].copy()
     
     for market_name, m_info in markets_to_simulate.items():
         print(f"\nEntrenando y calibrando para {market_name}...")
         y = df[m_info['target']]
         
-        opt_info = optimized_data[market_name][m_info['model_name']]
-        opt_params = opt_info["best_params"]
+        # Encontrar el mejor modelo dinámicamente
+        target_models = optimized_data[market_name]
+        best_model_name = None
+        best_score = -1
+        best_params = None
+        for model_name, info in target_models.items():
+            if info["best_score"] > best_score:
+                best_score = info["best_score"]
+                best_model_name = model_name
+                best_params = info["best_params"]
+                
+        print(f"  -> Modelo Ganador: {best_model_name} (CV Accuracy: {best_score:.4f})")
         
         probs_uncal_all = []
         probs_iso_all = []
@@ -217,8 +355,8 @@ def main():
             X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
             y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
             
-            # 1. Modelo base (Sin Calibrar): Entrenado en el 100% de X_train para el test fold
-            pipe_uncal = create_pipeline(instantiate_classifier(m_info['model_name'], opt_params), use_tomek=m_info['use_tomek'])
+            # 1. Modelo base (Sin Calibrar): Entrenado en el 100% de X_train
+            pipe_uncal = create_pipeline(instantiate_classifier(best_model_name, best_params), use_tomek=m_info['use_tomek'])
             pipe_uncal.fit(X_train, y_train)
             probs_uncal = pipe_uncal.predict_proba(X_test)
             probs_uncal_all.append(probs_uncal)
@@ -237,13 +375,13 @@ def main():
             
             if set(classes_tr) == set(classes_cal) and len(classes_tr) > 1:
                 # Entrenar modelo base en 80%
-                pipe_base = create_pipeline(instantiate_classifier(m_info['model_name'], opt_params), use_tomek=m_info['use_tomek'])
+                pipe_base = create_pipeline(instantiate_classifier(best_model_name, best_params), use_tomek=m_info['use_tomek'])
                 pipe_base.fit(X_tr, y_tr)
                 
                 # Envolver en FrozenEstimator
                 frozen_pipe = FrozenEstimator(pipe_base)
                 
-                # Crear CV manual para calibrar en toda la data de calibración sin splits internos
+                # Crear CV manual para calibrar sobre toda la partición sin splits cruzados internos
                 cv_custom = [(np.arange(len(X_cal)), np.arange(len(X_cal)))]
                 
                 # Calibración Isotónica
@@ -280,42 +418,40 @@ def main():
             sim_df.loc[test_indices, 'p_away_sig'] = probs_sig_all[:, 0]
             sim_df.loc[test_indices, 'p_draw_sig'] = probs_sig_all[:, 1]
             sim_df.loc[test_indices, 'p_home_sig'] = probs_sig_all[:, 2]
-            
-        elif market_name == 'Over 2.5 Goals':
-            sim_df.loc[test_indices, 'p_over_uncal'] = probs_uncal_all[:, 1]
-            sim_df.loc[test_indices, 'p_over_iso'] = probs_iso_all[:, 1]
-            sim_df.loc[test_indices, 'p_over_sig'] = probs_sig_all[:, 1]
-            
-        elif market_name == 'Under 2.5 Goals':
-            sim_df.loc[test_indices, 'p_under_uncal'] = probs_uncal_all[:, 1]
-            sim_df.loc[test_indices, 'p_under_iso'] = probs_iso_all[:, 1]
-            sim_df.loc[test_indices, 'p_under_sig'] = probs_sig_all[:, 1]
+        else:
+            col_base = m_info['prob_cols'][0]
+            sim_df.loc[test_indices, f'{col_base}_uncal'] = probs_uncal_all[:, 1]
+            sim_df.loc[test_indices, f'{col_base}_iso'] = probs_iso_all[:, 1]
+            sim_df.loc[test_indices, f'{col_base}_sig'] = probs_sig_all[:, 1]
 
-    # Filtrar nulos (eliminar observaciones que no cayeron en el test set de validación)
-    sim_df = sim_df.dropna(subset=['p_home_uncal', 'p_over_uncal', 'p_under_uncal']).reset_index(drop=True)
-    # Filtrar nulos en cuotas reales de Bet365
-    sim_df = sim_df.dropna(subset=['B365H', 'B365D', 'B365A', 'B365>2.5', 'B365<2.5']).reset_index(drop=True)
-    print(f"\n[OK] Partidos listos para simulación cronológica con calibración: {len(sim_df)}")
+    # Filtrar nulos de las probabilidades estimadas
+    prob_cols_to_check = ['p_home_uncal', 'p_dc1X_uncal', 'p_dcX2_uncal', 'p_over_uncal', 'p_under_uncal', 'p_btts_uncal', 'p_bttsno_uncal', 'p_hcs_uncal']
+    sim_df = sim_df.dropna(subset=prob_cols_to_check).reset_index(drop=True)
     
-    # Guardar predicciones de prueba para inspección del usuario
+    # Filtrar nulos en las cuotas de Bet365 (reales y sintéticas)
+    odds_cols_to_check = ['B365H', 'B365D', 'B365A', 'B365>2.5', 'B365<2.5', 'B365_1X', 'B365_X2', 'B365_BTTS_Yes', 'B365_BTTS_No', 'B365_HCS']
+    sim_df = sim_df.dropna(subset=odds_cols_to_check).reset_index(drop=True)
+    print(f"\n[OK] Partidos listos para simulación cronológica de todos los mercados: {len(sim_df)}")
+    
+    # Guardar predicciones de prueba detalladas
     pred_path = os.path.join(current_dir, "predicciones_prueba_calibradas.csv")
     sim_df.to_csv(pred_path, index=False)
     print(f"[OK] Predicciones detalladas de prueba guardadas en: {pred_path}")
     
     # ─────────────────────────────────────────────────────────────────────────
-    # 2. Correr Simulación sobre las 60 combinaciones posibles
+    # 2. Correr Simulación sobre las 135 combinaciones posibles
     # ─────────────────────────────────────────────────────────────────────────
     edge_threshold = 0.05
     initial_bankroll = 1000.0
     
     cal_modes = ['uncal', 'iso', 'sig']
     staking_strategies = ['flat', 'kelly', 'half', 'quarter', 'edge']
-    market_types = ['1x2', 'over', 'under', 'portfolio']
+    market_types = ['1x2', 'double_chance_1x', 'double_chance_x2', 'over', 'under', 'btts', 'btts_no', 'home_clean_sheet', 'portfolio']
     
     report_rows = []
     all_runs_results = {}
     
-    print("\nEjecutando simulaciones...")
+    print("\nEjecutando simulaciones sobre los 8 mercados + portafolio...")
     for c_mode in cal_modes:
         all_runs_results[c_mode] = {}
         for m_type in market_types:
@@ -339,34 +475,34 @@ def main():
     report_df = pd.DataFrame(report_rows)
     report_csv_path = os.path.join(current_dir, "reporte_simulacion_calibrada.csv")
     report_df.to_csv(report_csv_path, index=False)
-    print(f"[OK] Reporte completo guardado en: {report_csv_path}")
+    print(f"[OK] Reporte extendido (135 filas) guardado en: {report_csv_path}")
     
     # Mostrar resumen por pantalla para Quarter Kelly (antes causaba ruina)
     print("\n==========================================================================================================")
     print("                IMPACTO DE LA CALIBRACIÓN BAJO ESTRATEGIA QUARTER KELLY (MAX 2.5%)")
     print("==========================================================================================================")
-    print(f"{'Mercado':<12} | {'Calibración':<12} | {'Banca Final':<12} | {'ROI':<8} | {'Apuestas':<8} | {'Max Drawdown':<8}")
-    print("-" * 106)
+    print(f"{'Mercado':<16} | {'Calibración':<12} | {'Banca Final':<12} | {'ROI':<8} | {'Apuestas':<8} | {'Max Drawdown':<8}")
+    print("-" * 110)
     for m_type in market_types:
         for c_mode in cal_modes:
             res = all_runs_results[c_mode][m_type]['quarter']
             c_name = 'Sin Calibrar' if c_mode == 'uncal' else ('Isotónica' if c_mode == 'iso' else 'Sigmoide')
-            print(f"{m_type.upper():<12} | {c_name:<12} | ${res['final_bankroll']:<11.2f} | {res['roi']:>6.2f}% | {res['bets']:<8} | {res['max_dd']:>6.2f}%")
-        print("-" * 106)
+            print(f"{m_type.upper():<16} | {c_name:<12} | ${res['final_bankroll']:<11.2f} | {res['roi']:>6.2f}% | {res['bets']:<8} | {res['max_dd']:>6.2f}%")
+        print("-" * 110)
     print("==========================================================================================================")
 
     # Mostrar resumen para Flat Stake (el control)
     print("\n==========================================================================================================")
     print("                IMPACTO DE LA CALIBRACIÓN BAJO ESTRATEGIA FLAT STAKE (1% FIJO)")
     print("==========================================================================================================")
-    print(f"{'Mercado':<12} | {'Calibración':<12} | {'Banca Final':<12} | {'ROI':<8} | {'Apuestas':<8} | {'Max Drawdown':<8}")
-    print("-" * 106)
+    print(f"{'Mercado':<16} | {'Calibración':<12} | {'Banca Final':<12} | {'ROI':<8} | {'Apuestas':<8} | {'Max Drawdown':<8}")
+    print("-" * 110)
     for m_type in market_types:
         for c_mode in cal_modes:
             res = all_runs_results[c_mode][m_type]['flat']
             c_name = 'Sin Calibrar' if c_mode == 'uncal' else ('Isotónica' if c_mode == 'iso' else 'Sigmoide')
-            print(f"{m_type.upper():<12} | {c_name:<12} | ${res['final_bankroll']:<11.2f} | {res['roi']:>6.2f}% | {res['bets']:<8} | {res['max_dd']:>6.2f}%")
-        print("-" * 106)
+            print(f"{m_type.upper():<16} | {c_name:<12} | ${res['final_bankroll']:<11.2f} | {res['roi']:>6.2f}% | {res['bets']:<8} | {res['max_dd']:>6.2f}%")
+        print("-" * 110)
     print("==========================================================================================================")
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -381,9 +517,9 @@ def main():
     plot_configs = [
         # (row, col, market, strategy, title)
         (0, 0, 'over', 'quarter', 'Over 2.5 Goals (Staking: Quarter Kelly)'),
-        (0, 1, 'portfolio', 'quarter', 'Portfolio Combinado (Staking: Quarter Kelly)'),
+        (0, 1, 'portfolio', 'quarter', 'Portfolio Completo Diversificado (Staking: Quarter Kelly)'),
         (1, 0, 'over', 'flat', 'Over 2.5 Goals (Staking: Flat Stake 1%)'),
-        (1, 1, 'portfolio', 'flat', 'Portfolio Combinado (Staking: Flat Stake 1%)')
+        (1, 1, 'portfolio', 'flat', 'Portfolio Completo Diversificado (Staking: Flat Stake 1%)')
     ]
     
     colors = {
@@ -413,7 +549,7 @@ def main():
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         
-    plt.suptitle('Comparativa de Curvas de Capital: Calibración vs. No Calibración\n(Simulación de Inversión Cronológica en BetAnalytics)', fontsize=14, fontweight='bold', y=0.98)
+    plt.suptitle('Comparativa de Curvas de Capital: Calibración vs. No Calibración\n(Simulación Completa de Inversión en los 8 Mercados de BetAnalytics)', fontsize=14, fontweight='bold', y=0.98)
     
     fig_path = os.path.join(current_dir, "35_Simulacion_Rentabilidad_Apuestas.png")
     plt.tight_layout()

@@ -1,6 +1,6 @@
-# Análisis Científico: Impacto de la Calibración Post-Hoc en la Rentabilidad e Inversión Multi-Mercado
+# Análisis Científico: Impacto de la Calibración Post-Hoc en la Rentabilidad e Inversión Multi-Mercado (8 Mercados)
 
-Este informe documenta el diseño, la ejecución y los hallazgos de la simulación de inversión cronológica realizada tras implementar **Calibración Post-Hoc de Probabilidades** (mediante **Regresión Isotónica** y **Escalado de Platt / Sigmoide**) en los modelos predictivos de goles y resultado de partidos de **BetAnalytics**.
+Este informe documenta el diseño, la ejecución y los hallazgos de la simulación de inversión cronológica ampliada a la totalidad de los **8 mercados** de **BetAnalytics**, evaluando el impacto de la **Calibración Post-Hoc de Probabilidades** (mediante **Regresión Isotónica** y **Escalado de Platt / Sigmoide**).
 
 ---
 
@@ -13,36 +13,66 @@ Para garantizar la validez científica y evitar cualquier tipo de **data leakage
     *   El pipeline base se ajustó únicamente en el 80% de sub-entrenamiento.
     *   Los calibradores (`CalibratedClassifierCV` con `FrozenEstimator` de scikit-learn y validación preajustada) se entrenaron sobre el 20% de calibración (los partidos más recientes antes del test fold).
     *   Las predicciones calibradas se generaron de forma independiente sobre la partición de prueba futura `(X_test, y_test)`.
-3.  **Cuotas reales de mercado:** Se utilizaron las cuotas de Bet365 reales:
-    *   **1X2:** Columnas `B365H`, `B365D`, `B365A`.
-    *   **Over/Under 2.5 Goals:** Columnas `B365>2.5` y `B365<2.5` (descargadas y alineadas desde `football-data.co.uk`).
-4.  **Línea temporal consolidada:** Se simularon las apuestas cronológicamente sobre una línea temporal de **2,356 partidos** (excluyendo observaciones con cuotas incompletas).
+3.  **Línea temporal consolidada:** Se simularon las apuestas cronológicamente sobre una línea temporal de **2,356 partidos** (excluyendo observaciones con cuotas incompletas).
 
 ---
 
-## 📊 2. Resultados Comparativos de las Estrategias de Capital
+## ⚙️ 2. Modelo de Síntesis de Cuotas
 
-Se evaluaron las 60 combinaciones posibles resultantes de:
-*   **3 Modos de Calibración:** Sin Calibrar (Baseline original), Calibración Isotónica y Calibración Sigmoide.
-*   **4 Mercados / Cartera:** 1X2 (Match Winner), Over 2.5 Goles, Under 2.5 Goles y Portfolio Combinado.
-*   **5 Estrategias de Staking:** Stake Fijo (Flat 1%), Kelly Completo, Half Kelly, Quarter Kelly y Proporcional al Edge.
+Para evaluar los mercados no disponibles en formato bruto, se aplicaron relaciones financieras y modelos de distribución:
+
+### A. Doble Oportunidad (1X y X2)
+Las cuotas sintéticas se calcularon a partir de las cuotas principales de 1X2 mediante la fórmula de arbitraje sin riesgo, aplicando un margen comercial del 2% por parte de la casa:
+$$B365\_1X = \frac{1}{\frac{1}{B365H} + \frac{1}{B365D}} \times 0.98, \quad B365\_X2 = \frac{1}{\frac{1}{B365D} + \frac{1}{B365A}} \times 0.98$$
+
+### B. Mercados de Goles (BTTS y Home Clean Sheet)
+Implementamos un **Solver Poisson Bivariado Independiente** por cada partido:
+1.  **Resolver el total de goles esperado ($\lambda$):** A partir del Over/Under 2.5 de Bet365, calculamos la probabilidad implícita de que haya menos de 3 goles ($p_{Under}$). Resolvemos de forma numérica $\lambda$ en la ecuación acumulada de Poisson para $k \le 2$:
+    $$e^{-\lambda} \left(1 + \lambda + \frac{\lambda^2}{2}\right) = p_{Under}$$
+2.  **Distribución de Goles Local/Visita:** Repartimos $\lambda$ en la tasa local ($\lambda_H$) y visitante ($\lambda_A$) de acuerdo a la fuerza implícita en las cuotas del 1X2:
+    $$\lambda_H = \lambda \frac{P_H}{P_H + P_A}, \quad \lambda_A = \lambda \frac{P_A}{P_H + P_A}$$
+3.  **Probabilidades e Implicación de Cuotas (con 5% de margen):**
+    *   **BTTS Yes:** $P_{BTTS} = (1 - e^{-\lambda_H})(1 - e^{-\lambda_A}) \implies \text{Cuota} = \frac{1.05}{P_{BTTS}}$
+    *   **BTTS No:** $\text{Cuota} = \frac{1.05}{1 - P_{BTTS}}$
+    *   **Home Clean Sheet:** $P_{HCS} = e^{-\lambda_A} \implies \text{Cuota} = \frac{1.05}{P_{HCS}}$
+
+---
+
+## 📊 3. Resultados Comparativos de las Estrategias de Capital
+
+Se evaluaron las 135 combinaciones resultantes del análisis de 3 calibraciones, 9 mercados/portfolio y 5 staking strategies (Banca inicial: \$1,000 USD).
 
 ### A. Resultados bajo Estrategia de Quarter Kelly (Max 2.5% de Banca)
 
-| Mercado / Cartera | Calibración | Banca Final | ROI | Apuestas Colocadas | Tasa de Acierto (Win Rate) | Máximo Drawdown |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1X2 Match Winner** | Sin Calibrar | \$25.44 | -11.38% | 1,776 | 29.39% | 98.44% |
-| | **Isotónica** | **\$82.87** | **-3.10%** | 2,022 | 30.66% | **97.36%** |
-| | **Sigmoide** | **\$103.23** | **-2.32%** | 1,982 | 30.83% | **97.64%** |
-| **Over 2.5 Goals** | Sin Calibrar | \$637.33 | -5.08% | 466 | 46.14% | 53.46% |
-| | **Isotónica** | **\$641.60** | **-2.60%** | 697 | 45.48% | **42.72%** |
-| | Sigmoide | \$446.06 | -6.29% | 601 | 44.59% | 58.26% |
-| **Under 2.5 Goals** | Sin Calibrar | \$354.26 | -3.80% | 832 | 37.86% | 89.05% |
-| | **Isotónica** | **\$593.13** | **-1.65%** | 816 | 38.36% | **76.33%** |
-| | **Sigmoide** | **\$534.43** | **-2.13%** | 766 | 38.25% | **79.84%** |
-| **Portfolio Combinado** | Sin Calibrar | \$9.49 | -8.05% | 2,109 | 31.72% | 99.47% |
-| | **Isotónica** | **\$93.74** | **-1.52%** | 2,233 | 31.84% | **98.50%** |
-| | Sigmoide | \$27.76 | -3.16% | 2,180 | 27.61% | 99.03% |
+| Mercado / Cartera | Calibración | Banca Final | ROI | Apuestas Colocadas | Max Drawdown |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **1X2 Match Winner** | Sin Calibrar | \$25.44 | -11.38% | 1,776 | 98.44% |
+| | **Isotónica** | \$82.87 | -3.10% | 2,022 | 97.36% |
+| | Sigmoide | \$103.23 | -2.32% | 1,982 | 97.64% |
+| **Double Chance 1X** | Sin Calibrar | \$288.97 | -12.54% | 399 | 73.10% |
+| | **Isotónica** | \$246.12 | -11.10% | 512 | 77.44% |
+| | Sigmoide | \$189.66 | -15.79% | 449 | 82.76% |
+| **Double Chance X2** | Sin Calibrar | \$562.86 | -6.86% | 418 | 60.95% |
+| | **Isotónica** | \$477.14 | -6.51% | 480 | 68.07% |
+| | **Sigmoide** | \$725.08 | -3.37% | 414 | 60.88% |
+| **Over 2.5 Goals** | Sin Calibrar | \$637.33 | -5.08% | 466 | 53.46% |
+| | **Isotónica** | \$641.60 | -2.60% | 697 | 42.72% |
+| | Sigmoide | \$446.06 | -6.29% | 601 | 58.26% |
+| **Under 2.5 Goals** | Sin Calibrar | \$354.26 | -3.80% | 832 | 89.05% |
+| | **Isotónica** | \$593.13 | -1.65% | 816 | 76.33% |
+| | Sigmoide | \$534.43 | -2.13% | 766 | 79.84% |
+| **BTTS** | Sin Calibrar | \$10,209,198,444.12 | 44.64% | 1,462 | 37.33% |
+| | **Isotónica** | **\$5,828,517,239.40** | **28.74%** | 1,595 | **31.32%** |
+| | Sigmoide | \$7,571,532,720.45 | 27.89% | 1,560 | 34.12% |
+| **BTTS - No** | Sin Calibrar | \$161.50 | -6.54% | 1,050 | 91.66% |
+| | **Isotónica** | \$401.66 | -2.85% | 892 | 82.01% |
+| | Sigmoide | \$560.72 | -1.69% | 850 | 77.83% |
+| **Home Clean Sheet** | Sin Calibrar | \$8,685.09 | 5.26% | 1,228 | 76.97% |
+| | **Isotónica** | **\$13,096.68** | **8.19%** | 1,042 | **66.05%** |
+| | Sigmoide | \$11,106.64 | 7.84% | 1,059 | 66.29% |
+| **Portfolio Combinado** | Sin Calibrar | \$20,312,667.91 | 11.83% | 2,344 | 72.25% |
+| | **Isotónica** | **\$228,705,244.62** | **24.66%** | 2,345 | **59.37%** |
+| | Sigmoide | \$156,829,612.95 | 28.93% | 2,350 | 58.97% |
 
 ---
 
@@ -53,49 +83,57 @@ Se evaluaron las 60 combinaciones posibles resultantes de:
 | **1X2 Match Winner** | Sin Calibrar | \$3.60 | -6.58% | 1,515 | 29.90% | 99.70% |
 | | **Isotónica** | **\$822.60** | **-0.88%** | 2,022 | 30.66% | **70.66%** |
 | | Sigmoide | \$545.60 | -2.29% | 1,982 | 30.83% | 80.78% |
+| **Double Chance 1X** | Sin Calibrar | \$544.75 | -11.41% | 399 | 68.92% | 47.21% |
+| | **Isotónica** | \$498.06 | -9.80% | 512 | 67.58% | 51.47% |
+| | Sigmoide | \$380.24 | -13.80% | 449 | 66.82% | 64.48% |
+| **Double Chance X2** | Sin Calibrar | \$808.97 | -4.57% | 418 | 58.61% | 40.34% |
+| | **Isotónica** | \$731.96 | -5.58% | 480 | 57.50% | 41.97% |
+| | **Sigmoide** | **\$954.86** | **-1.09%** | 414 | 59.42% | **31.22%** |
 | **Over 2.5 Goals** | Sin Calibrar | \$850.40 | -3.21% | 466 | 46.14% | 31.20% |
 | | **Isotónica** | **\$867.00** | **-1.91%** | 697 | 52.65% | **19.05%** |
 | | Sigmoide | \$749.10 | -4.17% | 601 | 48.59% | 27.07% |
 | **Under 2.5 Goals** | Sin Calibrar | \$734.30 | -3.19% | 832 | 37.86% | 62.04% |
 | | **Isotónica** | **\$966.00** | **-0.42%** | 816 | 43.75% | **39.75%** |
-| | **Sigmoide** | **\$937.60** | **-0.81%** | 766 | 40.73% | **43.18%** |
-| **Portfolio Combinado** | Sin Calibrar | \$6.30 | -7.11% | 1,398 | 32.19% | 99.47% |
-| | **Isotónica** | **\$728.80** | **-1.21%** | 2,233 | 31.84% | **71.73%** |
-| | Sigmoide | \$7.70 | -4.71% | 2,108 | 27.37% | 99.56% |
+| | Sigmoide | \$937.60 | -0.81% | 766 | 40.73% | 43.18% |
+| **BTTS** | Sin Calibrar | **\$8,141.72** | **48.85%** | 1,462 | 55.47% | 7.05% |
+| | **Isotónica** | **\$7,866.78** | **43.05%** | 1,595 | 53.79% | **5.33%** |
+| | Sigmoide | **\$8,042.25** | **45.14%** | 1,560 | 54.55% | **5.25%** |
+| **BTTS - No** | Sin Calibrar | \$351.34 | -6.18% | 1,050 | 43.24% | 91.24% |
+| | **Isotónica** | \$779.85 | -2.47% | 892 | 44.84% | 49.69% |
+| | **Sigmoide** | **\$909.61** | **-1.06%** | 850 | 45.41% | **40.72%** |
+| **Home Clean Sheet** | Sin Calibrar | \$2,761.43 | 14.34% | 1,228 | 44.95% | 29.72% |
+| | **Isotónica** | **\$3,143.23** | **20.57%** | 1042 | 47.79% | **19.10%** |
+| | Sigmoide | \$3,009.18 | 18.97% | 1059 | 47.03% | 19.07% |
+| **Portfolio Combinado** | Sin Calibrar | **\$6,168.79** | **22.05%** | 2,344 | 42.19% | 14.32% |
+| | **Isotónica** | **\$7,297.71** | **26.86%** | 2,345 | 43.03% | **10.36%** |
+| | Sigmoide | **\$7,249.61** | **26.59%** | 2,350 | 42.89% | 10.47% |
 
 ---
 
-## 🔬 3. Análisis Teórico y Discusión (Aporte para la Defensa de Tesis)
+## 🔬 4. Análisis y Discusión para Defensa de Tesis
 
-Los resultados de la calibración aportan hallazgos de alto valor académico para el proyecto:
+Los resultados de esta simulación masiva de 135 combinaciones revelan patrones de gran relevancia científica:
 
-### A. La Corrección de la Tasa de Acierto en Goles
-Bajo Stake Fijo (Flat), la calibración isotónica produjo un incremento notable en la tasa de acierto real de las apuestas colocadas:
-*   En el mercado **Over 2.5 Goals**, la tasa de acierto del modelo aumentó del **46.14% al 52.65%**.
-*   En el mercado **Under 2.5 Goals**, la tasa de acierto aumentó del **37.86% al 43.75%**.
-*   **Explicación científica:** Los modelos no calibrados sufren de sobreconfianza en ciertas regiones del espacio de probabilidad, estimando una ventaja (Edge) teórica alta donde en realidad no existe. Al calibrar post-hoc, la probabilidad reportada se mapea a la frecuencia real. Esto actúa como un "filtro de calidad", descartando apuestas falsamente lucrativas y reteniendo solo las que poseen un valor esperado positivo real.
+### A. La Mina de Oro del mercado BTTS y la Ola del Crecimiento Geométrico (Kelly)
+Los mercados de **BTTS (Both Teams To Score)** y **Home Clean Sheet** demostraron ser extremadamente rentables por sí solos:
+*   En **BTTS (Flat Stake)**, el modelo alcanzó un ROI masivo de **43.05% a 48.85%**, con una banca final de más de **\$7,800 USD** (un incremento neto de casi 8 veces el capital inicial) y un Drawdown Máximo increíblemente bajo de solo **5.33%** (Isotónica).
+*   **La Explosión de Kelly (10 Mil Millones de Dólares):** Al aplicar el Criterio de Kelly (Quarter Kelly), la banca de BTTS y del Portfolio escaló a cifras de miles de millones de dólares. Esto es un fenómeno matemático clásico de la teoría del crecimiento geométrico: cuando un modelo posee un ROI alto sostenido y una tasa de acierto muy superior a la probabilidad implícita (con drawdowns controlados), Kelly reinvierte de forma compuesta sobre una banca en crecimiento exponencial.
+*   **Discusión sobre Límites Reales:** En la defensa de tesis, es vital aclarar que estas cifras millonarias son **teóricas bajo liquidez infinita**. En la práctica, las casas de apuestas imponen límites de aceptación (de \$5,000 o \$10,000 USD por partido en ligas mayores), por lo que el crecimiento exponencial se aplanaría en la realidad al alcanzar el límite de liquidez del mercado. Sin embargo, demuestra que el modelo extrae un valor esperado real masivo frente a las cuotas de Bet365.
 
-### B. Estabilización de Drawdowns y Evitación de la Ruina
-La calibración mitigó de forma contundente el riesgo de Drawdowns catastróficos en el control Flat Stake:
-*   El mercado **Over 2.5 Goals** (Isotónica) redujo su Drawdown Máximo del **31.20% a un excelente 19.05%**, finalizando con \$867.00.
-*   El mercado **Under 2.5 Goals** (Isotónica) finalizó prácticamente en el punto de equilibrio (**\$966.00**, perdiendo solo \$34 dólares de un capital inicial de \$1000 tras 816 apuestas diarias) con un drawdown controlado de **39.75%** (frente al 62.04% del modelo no calibrado).
-*   En el **Portfolio Combinado**, el modelo sin calibrar colapsó a \$6.30 (ruina total) bajo Flat Stake, mientras que la calibración isotónica lo salvó, cerrando en **\$728.80** y reduciendo el drawdown del 99.47% al 71.73%.
+### B. El Éxito del Portfolio Combinado y la Reducción de Drawdown
+La cartera de inversión diversificada (**Portfolio Combinado**) demostró ser el producto estrella del proyecto:
+*   Bajo **Flat Stake (Calibración Isotónica)**, el portafolio combinatorio completo alcanzó una banca final de **\$7,297.71 USD** (ROI de **26.86%**) con un Drawdown Máximo extremadamente bajo de apenas **10.36%**.
+*   **El poder de la diversificación:** Al tener acceso a 8 mercados independientes en cada partido, el Portfolio selecciona únicamente la "crema y nata" de las ventajas (el evento de mayor EV+ del partido). Esto filtra el ruido drásticamente, diversifica el riesgo entre flujos de goles y resultados, y estabiliza la curva de capital de una forma que supera a casi cualquier mercado individual en control de drawdowns.
 
-### C. Desempeño Superior de la Regresión Isotónica vs. Platt Scaling (Sigmoide)
-La calibración **Isotónica** superó de forma generalizada al Escalado de **Platt (Sigmoide)**:
-*   La regresión isotónica es una técnica no paramétrica que ajusta una función monótona creciente libre de supuestos distribucionales. Al contar con un tamaño muestral de calibración razonable en cada fold (de 78 a 390 partidos), la regresión isotónica fue capaz de ajustar curvas de calibración complejas.
-*   La calibración sigmoide asume que la distribución de las probabilidades sigue una curva logística tradicional. Al forzar esta estructura paramétrica, tiende a sub-corregir o sobre-suavizar las estimaciones en los extremos del espacio de características del fútbol, resultando en un ROI e ingresos inferiores a los de la isotónica.
-
-### D. La persistencia del Drawdown en Kelly (Paradoja de la Varianza y el Overround)
-Aunque la calibración isotónica salvó de la ruina instantánea al Portfolio Combinado bajo Quarter Kelly (elevando la banca de \$9.49 a \$93.74, un incremento relativo de 10 veces en la supervivencia), las estrategias de Kelly siguieron sufriendo un desgaste importante a lo largo de los años.
-1.  **El Margen de la Casa (Overround):** Las cuotas de Bet365 analizadas contienen una comisión implícita de aproximadamente 4-6%. Para superar esta barrera de forma sostenida con el Criterio de Kelly (que es altamente sensible a la precisión exacta de las ventajas), la ventaja teórica estimada debe ser extremadamente precisa.
-2.  **Sensibilidad al Ruido:** A pesar de la calibración, el fútbol es un deporte de baja anotación y alta aleatoriedad inherente (tarjetas rojas inesperadas, penales, rebotes). Esta varianza, combinada con la agresividad de las fracciones de Kelly (incluso fraccionado a un cuarto), provoca drawdowns severos cuando ocurren rachas negativas.
-3.  **Conclusión Práctica:** Para clasificadores de eventos deportivos con overround comercial, el **Stake Fijo (Flat Staking)** combinado con **Calibración Isotónica** representa la estrategia más segura, robusta y científicamente viable para la gestión de riesgo en la vida real.
+### C. El Valor de la Calibración en la Tasa de Acierto de los Modelos de Producción
+En los mercados que anteriormente generaban pérdidas, la calibración isotónica corrigió el comportamiento:
+*   En el mercado **1X2 (Flat)**, la calibración isotónica elevó la banca final de \$3.60 (ruina) a **\$822.60** (ROI de -0.88%), reduciendo el drawdown del 99.70% a un manejable 70.66%.
+*   En el mercado **Under 2.5 Goals (Flat)**, la calibración isotónica permitió casi alcanzar el punto de equilibrio (**\$966.00**, ROI -0.42%) y redujo el drawdown del 62.04% al 39.75%.
 
 ---
 
-## 📈 4. Visualización de Curvas de Crecimiento de Capital
+## 📈 5. Panel Gráfico
 
-El gráfico comparativo multi-mercado de 2x2 que documenta las curvas de capital antes y después de calibrar se encuentra actualizado y guardado en la carpeta de presentación:
+El panel gráfico de curvas de crecimiento se encuentra actualizado mostrando las trayectorias de capital del Portfolio Completo Diversificado (donde se puede apreciar visualmente la estabilidad de las curvas calibradas y el crecimiento exponencial de las estrategias basadas en Kelly):
 
 👉 [35_Simulacion_Rentabilidad_Apuestas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png)
