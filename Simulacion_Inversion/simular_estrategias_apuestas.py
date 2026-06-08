@@ -252,13 +252,13 @@ def main():
         # Resolver tasa Poisson total de goles
         L = solve_lambda(p_under_norm)
         
-        # Distribución proporcional a las cuotas del ganador de partido
+        # Distribución proporcional a la raíz cuadrada de las probabilidades de victoria (evita sobreestimar la superioridad del favorito en goles)
         prob_h = 1.0 / row['B365H']
         prob_a = 1.0 / row['B365A']
-        sum_p = prob_h + prob_a
         
-        L_H = L * (prob_h / sum_p)
-        L_A = L * (prob_a / sum_p)
+        ratio = (prob_h / prob_a) ** 0.5
+        L_H = L * (ratio / (ratio + 1.0))
+        L_A = L * (1.0 / (ratio + 1.0))
         
         # BTTS Yes: (1 - e^-L_H) * (1 - e^-L_A)
         p_btts = (1.0 - np.exp(-L_H)) * (1.0 - np.exp(-L_A))
@@ -268,10 +268,10 @@ def main():
         p_hcs = np.exp(-L_A)
         p_hcs = min(max(p_hcs, 0.05), 0.95)
         
-        # Convertir a cuotas con 5% de overround
-        btts_yes_odds.append((1.0 / p_btts) * 1.05)
-        btts_no_odds.append((1.0 / (1.0 - p_btts)) * 1.05)
-        hcs_odds.append((1.0 / p_hcs) * 1.05)
+        # Convertir a cuotas con ~6% de overround realista (multiplicador 0.94)
+        btts_yes_odds.append((1.0 / p_btts) * 0.94)
+        btts_no_odds.append((1.0 / (1.0 - p_btts)) * 0.94)
+        hcs_odds.append((1.0 / p_hcs) * 0.94)
         
     df['B365_BTTS_Yes'] = btts_yes_odds
     df['B365_BTTS_No'] = btts_no_odds
