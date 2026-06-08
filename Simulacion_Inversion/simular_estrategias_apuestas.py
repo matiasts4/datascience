@@ -515,11 +515,11 @@ def main():
     
     # Configuración de subplots
     plot_configs = [
-        # (row, col, market, strategy, title)
-        (0, 0, 'over', 'quarter', 'Over 2.5 Goals (Staking: Quarter Kelly)'),
-        (0, 1, 'portfolio', 'quarter', 'Portfolio Completo Diversificado (Staking: Quarter Kelly)'),
-        (1, 0, 'over', 'flat', 'Over 2.5 Goals (Staking: Flat Stake 1%)'),
-        (1, 1, 'portfolio', 'flat', 'Portfolio Completo Diversificado (Staking: Flat Stake 1%)')
+        # (row, col, market, strategy, title, use_log)
+        (0, 0, 'btts', 'quarter', 'Ambos Anotan (Staking: Quarter Kelly) [Escala Logarítmica]', True),
+        (0, 1, 'portfolio', 'quarter', 'Portfolio Completo Diversificado (Staking: Quarter Kelly) [Escala Logarítmica]', True),
+        (1, 0, 'btts', 'flat', 'Ambos Anotan (Staking: Flat Stake 1%) [Escala Lineal]', False),
+        (1, 1, 'portfolio', 'flat', 'Portfolio Completo Diversificado (Staking: Flat Stake 1%) [Escala Lineal]', False)
     ]
     
     colors = {
@@ -534,13 +534,28 @@ def main():
         'sig': 'Calibración Sigmoide (Platt)'
     }
     
-    for r, c, m_type, strat, title in plot_configs:
+    for r, c, m_type, strat, title, use_log in plot_configs:
         ax = axs[r, c]
         for c_mode in cal_modes:
             history = all_runs_results[c_mode][m_type][strat]['history']
             ax.plot(dates, history, label=labels[c_mode], color=colors[c_mode], linewidth=1.5 if c_mode=='uncal' else 2.0)
             
         ax.axhline(y=1000.0, color='black', linestyle=':', alpha=0.6)
+        
+        if use_log:
+            ax.set_yscale('log')
+            from matplotlib.ticker import FuncFormatter
+            def dollar_format(x, pos):
+                if x >= 1e9:
+                    return f"${x*1e-9:.1f}B"
+                elif x >= 1e6:
+                    return f"${x*1e-6:.1f}M"
+                elif x >= 1e3:
+                    return f"${x*1e-3:.0f}K"
+                else:
+                    return f"${x:.0f}"
+            ax.yaxis.set_major_formatter(FuncFormatter(dollar_format))
+            
         ax.set_title(title, fontsize=11, fontweight='bold', pad=10)
         ax.set_xlabel('Línea Temporal de Partidos', fontsize=9)
         ax.set_ylabel('Banca (USD)', fontsize=9)

@@ -182,8 +182,19 @@ En los mercados que anteriormente generaban pérdidas, la calibración isotónic
 
 ---
 
-## 📈 5. Panel Gráfico
+## 📈 5. Panel Gráfico Comparativo 2x2
 
-El panel gráfico de curvas de crecimiento se encuentra actualizado mostrando las trayectorias de capital del Portfolio Completo Diversificado (donde se puede apreciar visualmente la estabilidad de las curvas calibradas y el crecimiento exponencial de las estrategias basadas en Kelly):
+El panel gráfico de curvas de crecimiento se encuentra completamente actualizado y guardado en tu carpeta de diapositivas:
 
 👉 [35_Simulacion_Rentabilidad_Apuestas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png)
+
+La visualización está estructurada en una cuadrícula de **2x2** con las siguientes características técnicas y visuales:
+
+*   **Fila Superior (Estrategia de Kelly - Crecimiento Exponencial):**
+    *   **Panel Izquierdo:** *Ambos Anotan (BTTS)* bajo *Quarter Kelly*.
+    *   **Panel Derecho:** *Portfolio Completo Diversificado* bajo *Quarter Kelly*.
+    *   **Escala Logarítmica (Eje Y):** Debido a que la reinversión geométrica de Kelly genera ganancias que escalan a millones y miles de millones de dólares, el eje Y utiliza escala logarítmica. Esto permite apreciar el progreso real desde la banca inicial de **\$1,000 (1K)** hasta los máximos históricos de forma continua, en lugar de parecer que las curvas inician en cero. Las etiquetas se formatean automáticamente como `$1K`, `$1.0M`, `$1.0B` para facilitar la lectura.
+*   **Fila Inferior (Estrategia Flat Stake 1% - Control de Varianza):**
+    *   **Panel Izquierdo:** *Ambos Anotan (BTTS)* bajo *Flat Staking*.
+    *   **Panel Derecho:** *Portfolio Completo Diversificado* bajo *Flat Staking*.
+    *   **Escala Lineal (Eje Y):** Al apostar montos planos, el capital progresa de forma lineal, lo que permite contrastar directamente la estabilidad de los drawdowns y la rentabilidad neta acumulada de las tres calibraciones. Se puede observar con nitidez cómo la línea base sin calibrar (rojo/gris) decae de forma progresiva mientras la calibrada (azul) sube de forma robusta.
