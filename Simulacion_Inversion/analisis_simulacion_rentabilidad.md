@@ -38,7 +38,57 @@ Implementamos un **Solver Poisson Bivariado Independiente** por cada partido:
 
 ---
 
-## 📊 3. Resultados Comparativos de las Estrategias de Capital
+## 🛠️ 3. Fundamento Teórico: Calibración y Gestión de Capital
+
+Para una correcta defensa de tesis, a continuación se detallan los principios matemáticos detrás de las calibraciones y las estrategias de gestión del capital (staking) simuladas.
+
+### A. Métodos de Calibración de Probabilidades
+Los clasificadores de Machine Learning convencionales estiman probabilidades (`predict_proba`) que a menudo carecen de "consistencia frecuencial". Es decir, una predicción numérica del 80% de probabilidad de éxito no se traduce empíricamente en un 80% de aciertos reales. Corregir esta desviación es crucial en las finanzas cuantitativas, ya que la estimación del Valor Esperado ($EV = p \cdot \text{Cuota} - 1$) asume que $p$ representa la probabilidad exacta.
+
+#### 1. Calibración Isotónica (Isotonic Regression)
+Es un método **no paramétrico** que ajusta una función monótona no decreciente constante por partes sobre las predicciones brutas del clasificador:
+$$\min \sum_{i=1}^n \left( y_i - \hat{p}_i^{\text{cal}} \right)^2 \quad \text{sujeto a} \quad \hat{p}_i^{\text{cal}} \le \hat{p}_j^{\text{cal}} \text{ si } p_i \le p_j$$
+*   **Cómo funciona:** Mapea las salidas sin forzar una forma funcional rígida (como una sigmoide). Se adapta con extrema flexibilidad a cualquier deformación de la curva de probabilidad original, pero requiere un volumen de datos suficiente ($\ge 100$ muestras) para evitar el sobreajuste.
+
+#### 2. Escalado de Platt / Sigmoide (Platt Scaling)
+Es un método **paramétrico** que pasa las puntuaciones o probabilidades brutas del clasificador base a través de una función de regresión logística:
+$$\hat{p}^{\text{cal}}(x) = \frac{1}{1 + e^{A \cdot f(x) + B}}$$
+donde $f(x)$ es la salida del modelo base, y $A$ y $B$ son parámetros escalares ajustados por máxima verosimilitud en el conjunto de calibración.
+*   **Cómo funciona:** Asume que la descalibración del modelo tiene un comportamiento logístico tradicional. Es muy robusto cuando los datos de calibración son escasos o cuando el clasificador base simplemente sobreestima/subestima la probabilidad de manera simétrica.
+
+---
+
+### B. Estrategias de Gestión de Capital (Staking)
+El Staking define la fracción de banca ($f$) a arriesgar en cada operación detectada con ventaja teórica ($EV \ge 5\%$).
+
+#### 1. Stake Fijo (Flat Staking - 1%)
+*   **Qué hace:** Apuesta una cantidad monetaria constante e idéntica en cada oportunidad de valor sin importar la banca actual ni el tamaño de la ventaja.
+*   **Fórmula:** $\text{Stake} = 0.01 \cdot \text{Banca Inicial} = \$10.00 \text{ USD}$.
+*   **Propósito:** Sirve como control y línea base de supervivencia. Es la estrategia más robusta cuando los modelos no están bien calibrados, puesto que no amplifica los errores por sobreconfianza numérica.
+
+#### 2. Criterio de Kelly Completo (Full Kelly)
+*   **Qué hace:** Determina la fracción matemáticamente óptima de la banca actual para arriesgar con el fin de maximizar la tasa de crecimiento geométrico o logarítmico del capital a largo plazo.
+*   **Fórmula:** $f^* = \frac{EV}{\text{Cuota} - 1} = \frac{p \cdot \text{Cuota} - 1}{\text{Cuota} - 1}$
+*   **Propósito:** Es la estrategia ideal bajo información perfecta. No obstante, al depender críticamente de la exactitud de $p$, si el modelo no está calibrado y sobreestima la ventaja, Kelly sobreapuesta, lo que matemáticamente lleva a la ruina práctica (Drawdown $\approx 100\%$).
+
+#### 3. Criterio de Half Kelly (Medio Kelly)
+*   **Qué hace:** Apuesta la mitad de la fracción óptima dictada por Kelly, imponiendo un límite de riesgo por operación para evitar la volatilidad extrema.
+*   **Fórmula:** $f = 0.5 \cdot f^*$, con un límite máximo de stake del 5% de la banca actual.
+*   **Propósito:** Reduce el drawdown y la varianza de la banca a un cuarto, manteniendo cerca del 75% del crecimiento logarítmico teórico de Kelly.
+
+#### 4. Criterio de Quarter Kelly (Un Cuarto de Kelly)
+*   **Qué hace:** Es una versión ultra-conservadora y muy extendida en la gestión institucional de carteras deportivas.
+*   **Fórmula:** $f = 0.25 \cdot f^*$, con un límite máximo de stake del 2.5% de la banca actual.
+*   **Propósito:** Proteger al máximo la banca contra rachas de pérdidas consecutivas y tolerar imperfecciones menores que puedan quedar en la calibración del modelo.
+
+#### 5. Proporcional al Edge (Edge-proportional Staking)
+*   **Qué hace:** Modula el tamaño del stake proporcionalmente a la ventaja teórica ($EV$), ignorando el valor absoluto de la cuota.
+*   **Fórmula:** $f = 0.5 \cdot EV$, con un límite máximo del 5% de la banca actual.
+*   **Propósito:** Asigna apuestas más pesadas a anomalías del mercado donde el modelo encuentra diferencias muy amplias con la casa de apuestas.
+
+---
+
+## 📊 4. Resultados Comparativos de las Estrategias de Capital
 
 Se evaluaron las 135 combinaciones resultantes del análisis de 3 calibraciones, 9 mercados/portfolio y 5 staking strategies (Banca inicial: \$1,000 USD).
 
