@@ -1,6 +1,0 @@
-soccerdata
-pandas
-loguru
-seleniumbase
-python-dotenv
-lxml

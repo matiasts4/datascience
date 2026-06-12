@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 
 from src.config import MODELS_DIR, TARGETS, FEATURES
+from src.models_neural import PyTorchMLPClassifier
 
 class MasterBetSelector:
     def __init__(self):
