@@ -53,8 +53,8 @@ python scratch/test_shap_all.py
 | Presentación 1 | POC con leakage — problemas identificados |
 | Iteración | TimeSeriesSplit, Optuna, resampling |
 | Calibración | 135 combos simulación |
-| Meta-Labeling | +9.96% ROI (commits 835b1cd, 943cd99) |
-| Paralelo | `pl-web/` en rama `matias-trabajo-local` |
+| Meta-Labeling | +9.96% ROI en mercados reales |
+| Frontend | Dashboard `pl-web/` (módulo aparte) |
 
 ## B.2 Cinco correcciones desde Presentación 1
 
@@ -76,15 +76,15 @@ P1 ROI engañoso              →  −1.85% real / +9.96% con meta
 Sin meta-decisión              →  RandomForest walk-forward
 ```
 
-## B.4 Commits clave (RAMASERGIO)
+## B.4 Hitos de desarrollo
 
-| Commit | Aportación |
-|--------|------------|
-| `c314699` | Optuna + resampling definitivo |
-| `541451a` | Informe evaluación rúbrica |
-| `835b1cd` | Comparativa meta-algoritmos |
-| `eaa37ba` | Gráficos SHAP |
-| `943cd99` | Log-loss, matrices confusión |
+| Hito | Aportación |
+|------|------------|
+| Optuna + resampling | Hiperparámetros definitivos y estudio Tomek Links |
+| Informe de evaluación | Documento de defensa ante rúbrica académica |
+| Comparativa meta-modelos | Evaluación RF, LogReg, SVM y XGBoost |
+| Análisis SHAP | Interpretabilidad Capa 1 y Capa 2 |
+| Métricas completas | Log-loss, matrices de confusión y tablas finales |
 
 ## B.5 Decisiones de diseño
 
