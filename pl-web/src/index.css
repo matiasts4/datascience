@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Rich Deep Space Navy Palette */
+    --background: 228 40% 4%;
+    --foreground: 220 15% 95%;
+
+    --card: 228 35% 8%;
+    --card-foreground: 220 15% 95%;
+
+    --popover: 228 35% 8%;
+    --popover-foreground: 220 15% 95%;
+
+    /* Vivid neon blue for primary */
+    --primary: 215 100% 60%;
+    --primary-foreground: 220 30% 5%;
+
+    --secondary: 228 25% 15%;
+    --secondary-foreground: 220 15% 85%;
+
+    --muted: 228 20% 12%;
+    --muted-foreground: 220 12% 55%;
+
+    --accent: 215 90% 55%;
+    --accent-foreground: 220 15% 98%;
+
+    --destructive: 350 80% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 228 25% 18%;
+    --input: 228 25% 18%;
+    --ring: 215 100% 60%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 228 40% 5%;
+    --sidebar-foreground: 220 12% 65%;
+    --sidebar-primary: 215 100% 60%;
+    --sidebar-primary-foreground: 220 30% 5%;
+    --sidebar-accent: 228 25% 12%;
+    --sidebar-accent-foreground: 220 15% 95%;
+    --sidebar-border: 228 25% 14%;
+    --sidebar-ring: 215 100% 60%;
+
+    /* Vivid semantics */
+    --success: 152 75% 50%;
+    --success-foreground: 220 30% 5%;
+    --warning: 40 90% 55%;
+    --warning-foreground: 220 30% 5%;
+    --info: 200 90% 60%;
+    --info-foreground: 220 15% 98%;
+
+    /* Elegant glass effect */
+    --glass: 228 35% 8%;
+    --glass-border: 228 25% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground antialiased;
+    /* Immersive Radial Background */
+    background: radial-gradient(circle at top right, hsl(228 40% 12%), hsl(228 40% 4%) 40%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1 {
+    @apply text-3xl font-bold tracking-tight text-foreground;
+    letter-spacing: -0.025em;
+  }
+  h2 {
+    @apply text-xl font-semibold tracking-tight text-foreground;
+    letter-spacing: -0.02em;
+  }
+  h3 {
+    @apply text-base font-semibold text-foreground;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    /* Authentic glassmorphism properties */
+    background: linear-gradient(135deg, hsl(var(--card)/0.6), hsl(var(--card)/0.4));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply border border-border/60 rounded-xl relative overflow-hidden;
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255,255,255,0.03), transparent 40%);
+    z-index: 10;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    @apply border-primary/40;
+    box-shadow: 0 8px 32px -4px hsl(var(--primary)/0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-info to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient;
+  }
+  .gradient-blue {
+    @apply bg-gradient-to-br from-primary/15 via-primary/5 to-transparent;
+  }
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), 0 0 60px hsl(var(--primary) / 0.05);
+  }
+  .glow-green {
+    box-shadow: 0 0 20px hsl(var(--success) / 0.15);
+  }
+  .entity-link {
+    @apply text-primary/80 hover:text-primary cursor-pointer transition-colors duration-150 underline-offset-2 hover:underline font-medium;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
