@@ -1,8 +1,7 @@
 # BetAnalytics — Documentación Técnica Final
 
 > **Proyecto:** Predicción de mercados de apuestas y gestión cuantitativa de capital — Premier League  
-> **Rama:** `RAMASERGIO` · Commit `943cd99` (*metricas completas*)  
-> **Junio 2026**
+> **Versión:** Entrega final · Premier League 2017/18 – 2025/26
 
 ---
 

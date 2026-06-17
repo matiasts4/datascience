@@ -70,7 +70,7 @@ Definidos en `archive/pl-predictor/src/config.py`:
 | Calibración | `CalibratedClassifierCV` (isotónica, sigmoide) |
 | Explicabilidad | SHAP |
 | Scraping histórico | `archive/pl-scraper/` (FBRef) |
-| Frontend (rama separada) | `pl-web/` en rama `matias-trabajo-local` |
+| Frontend (módulo aparte) | `pl-web/` |
 
 ---
 
@@ -82,9 +82,3 @@ Definidos en `archive/pl-predictor/src/config.py`:
 | Informe evaluación rúbrica | `Simulacion_Inversion/Entregable_Final_Evaluacion_Rubrica.md` |
 | Guía presentación 10 min | `Carpeta_Presentacion/Guia_Presentacion_10_Minutos.md` |
 | Rúbrica del curso | `rubrica.md` |
-
----
-
-## 1.7 Rama de trabajo local separada
-
-Los cambios de frontend (`pl-web/`) y scraper extendido viven en la rama **`matias-trabajo-local`** (commit `fed90ce`). La documentación de este folder describe el **resultado final de modelado y simulación** en **`RAMASERGIO`**, que es la rama de entrega académica consolidada con Sergio.
