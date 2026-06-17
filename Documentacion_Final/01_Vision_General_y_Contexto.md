@@ -11,6 +11,8 @@
 
 El workspace sigue los marcos **OSSEMN** (Obtain, Scrub, Explore, Model, iNterpret) y **CRISP-DM**.
 
+La capa de **Obtain + Scrub** (scraping FBRef → unificación → `sanitizer_pipeline.py`) está documentada en detalle en el documento **02**, incluyendo corrección de errores, tratamiento de nulos (MCAR/MAR/MNAR) y la matriz de 27 features.
+
 ---
 
 ## 1.2 Pregunta de investigación

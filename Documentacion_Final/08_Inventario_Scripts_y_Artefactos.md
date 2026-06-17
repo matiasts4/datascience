@@ -33,10 +33,27 @@ datascience/
 ├── Carpeta_Presentacion/      ← PNGs, informes visuales
 ├── Simulacion_Inversion/      ← simulación, CSVs de resultados
 ├── scratch/                   ← SHAP, meta-modelos, log-loss
+├── archive/pl-scraper/        ← extracción FBRef, CSV por temporada
 ├── archive/pl-predictor/      ← entrenamiento, modelos, config
 ├── sanitizer_pipeline.py
 └── sanitizacion.md
 ```
+
+---
+
+## 8.2b Scripts de extracción y limpieza
+
+| Script / módulo | Función |
+|-----------------|---------|
+| `archive/pl-scraper/pipeline.py` | Scrape por temporada (schedule → lineups → events → stats) |
+| `archive/pl-scraper/run_all_seasons.py` | Orquestador multi-temporada |
+| `archive/pl-scraper/checkpoint/manager.py` | Reanudación incremental por `game_id` |
+| `archive/pl-scraper/scraper/fbref_client.py` | Cliente FBRef (`soccerdata`) |
+| **`sanitizer_pipeline.py`** | RAW v4_xg → `historical_sanitized_v8.csv` |
+| `sanitizacion.md` | Checklist metodológico OSSEMN (7 secciones) |
+| `run_eda.py` | EDA automatizado pre-modelado |
+
+**Informes de calidad:** `Carpeta_Presentacion/17_Tratamiento_Problemas_Datos.md` · `18_Auditoria_Calidad_Datos.md`
 
 ---
 
