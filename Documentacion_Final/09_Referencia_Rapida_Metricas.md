@@ -128,6 +128,25 @@ Fuente: `scratch/comparacion_algoritmos_metamodelo.md`
 
 ---
 
+## K. Calidad de datos — referencia rápida
+
+| Concepto | Valor / decisión |
+|----------|------------------|
+| RAW (no entrenar) | `all_match_features_v4_xg.csv` · 3.420 filas |
+| Producción | `historical_sanitized_v8.csv` · 3.420 filas |
+| Train efectivo | ~3.389 partidos con `result_1x2` |
+| Columnas totales v8 | ~51 · 42 con 0% nulos críticos |
+| MCAR | `attendance` — 1 fila eliminada |
+| MAR | xG, L5, B365 — KNN k=5 en CV |
+| MNAR | Fixtures futuros — excluidos del train |
+| Leakage drop | `score`, fouls, `total_cards`, Pinnacle |
+| Outliers | Conservados · Yeo-Johnson (no MinMax) |
+| Test K-S post-imputación | p = 0.054 → distribución preservada |
+| Checklist formal | `sanitizacion.md` |
+| Detalle completo | Documento **02** · `17_*` · `18_*` |
+
+---
+
 ## J. Resultado final (una línea)
 
 **BetAnalytics en 5 mercados reales Bet365: calibración isotónica + Meta-Labeling (RF) → ROI +9.96%, drawdown 19.23%, 827/2.260 apuestas ejecutadas.**

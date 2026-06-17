@@ -11,7 +11,7 @@
 |---|-----------|-----------|
 | **00** | [INDICE_MAESTRO.md](./00_INDICE_MAESTRO.md) | Este índice y convenciones |
 | **01** | [Vision_General_y_Contexto.md](./01_Vision_General_y_Contexto.md) | Alcance, pregunta de investigación, stack, mercados |
-| **02** | [Arquitectura_y_Pipeline_Datos.md](./02_Arquitectura_y_Pipeline_Datos.md) | Tres capas + meta-decisión, ETL, features, leakage |
+| **02** | [Arquitectura_y_Pipeline_Datos.md](./02_Arquitectura_y_Pipeline_Datos.md) | Arquitectura, **scraping FBRef**, limpieza OSSEMN, sanitización v8, missing data, leakage |
 | **03** | [Modelos_ML_y_Validacion.md](./03_Modelos_ML_y_Validacion.md) | Algoritmos, modelos producción, Optuna, resampling, métricas |
 | **04** | [Cuotas_Calibracion_y_Gestion_Riesgo.md](./04_Cuotas_Calibracion_y_Gestion_Riesgo.md) | Bet365, Poisson, calibración isotónica, EV, Kelly |
 | **05** | [Resultados_Simulacion_Financiera.md](./05_Resultados_Simulacion_Financiera.md) | ROI, drawdown, P&L por mercado, Monte Carlo |
