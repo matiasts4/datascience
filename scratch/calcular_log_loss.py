@@ -43,11 +43,11 @@ def main():
         "1X2 (Match Winner)": "Logistic Regression (Elastic Net)",
         "Double Chance 1X (Home or Draw)": "Logistic Regression (Elastic Net)",
         "Double Chance X2 (Away or Draw)": "Logistic Regression (Elastic Net)",
-        "Over 2.5 Goals": "XGBoost (L1/L2 Regularized)",
-        "Under 2.5 Goals": "XGBoost (L1/L2 Regularized)",
+        "Over 2.5 Goals": "Random Forest",
+        "Under 2.5 Goals": "HistGradientBoosting (Early Stopping)",
         "BTTS (Both Teams To Score)": "HistGradientBoosting (Early Stopping)",
-        "BTTS - No": "Neural Network (Dropout)",
-        "Home Clean Sheet": "Neural Network (Dropout)"
+        "BTTS - No": "XGBoost (L1/L2 Regularized)",
+        "Home Clean Sheet": "Logistic Regression (Elastic Net)"
     }
     
     print("\n=======================================================")
@@ -58,7 +58,7 @@ def main():
     for target_name, target_col in TARGETS.items():
         y = df[target_col]
         is_multiclass = len(np.unique(y)) > 2
-        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet", "Double Chance 1X (Home or Draw)", "Double Chance X2 (Away or Draw)"]
         winner_model = winners[target_name]
         
         print(f"\nMercado: {target_name}")

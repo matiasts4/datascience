@@ -23,5 +23,6 @@ FEATURES = [
     'home_elo', 'away_elo', 'home_rest', 'away_rest',
     'h_l5_pts', 'h_l5_sh', 'h_l5_sot', 'h_l5_sot_c', 'h_l5_gf', 'h_l5_ga', 'h_l5_fls', 'h_l5_conv', 'h_l5_xg', 'h_l5_xga',
     'a_l5_pts', 'a_l5_sh', 'a_l5_sot', 'a_l5_sot_c', 'a_l5_gf', 'a_l5_ga', 'a_l5_fls', 'a_l5_conv', 'a_l5_xg', 'a_l5_xga',
+    'h_l3_xg', 'a_l3_xg', 'h_l3_xga', 'a_l3_xga', 'h_l3_gf', 'a_l3_gf', 'h_l3_ga', 'a_l3_ga', 'h_l3_btts', 'a_l3_btts',
     'referee_avg_cards_history', 'is_derby', 'relegation_pressure'
 ]

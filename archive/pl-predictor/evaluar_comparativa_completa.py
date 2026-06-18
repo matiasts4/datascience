@@ -205,7 +205,7 @@ def main():
     for target_name, target_col in TARGETS.items():
         y = df[target_col]
         is_multiclass = len(np.unique(y)) > 2
-        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet", "Double Chance 1X (Home or Draw)", "Double Chance X2 (Away or Draw)"]
         
         print(f"\nProcesando Mercado: {target_name}")
         if use_tomek:

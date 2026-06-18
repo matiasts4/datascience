@@ -135,7 +135,7 @@ def main():
         
         # Instanciar y construir el pipeline completo
         clf = instantiate_classifier(best_model_name, best_params)
-        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet", "Double Chance 1X (Home or Draw)", "Double Chance X2 (Away or Draw)"]
         if use_tomek:
             print("   -> Aplicando submuestreo de Tomek Links para balanceo de fronteras...")
         pipe = create_pipeline(clf, use_tomek=use_tomek)

@@ -6,17 +6,17 @@ Este reporte compara el desempeño de las 4 opciones de algoritmos evaluados par
 
 | Algoritmo Meta-Modelo | Banca Final | ROI | Apuestas | Evitadas (Falsos Positivos) | Max Drawdown |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| Random Forest | $1823.62 | 9.96% | 827 | 1433 | 19.23% |
-| Logistic Regression | $1880.89 | 10.77% | 818 | 1442 | 19.23% |
-| SVM | $1528.37 | 9.68% | 546 | 1714 | 19.23% |
-| XGBoost | $1671.38 | 7.42% | 905 | 1355 | 19.23% |
+| Random Forest | $1396.64 | 5.05% | 786 | 1472 | 24.91% |
+| Logistic Regression | $1352.14 | 4.87% | 723 | 1535 | 24.91% |
+| SVM | $1467.56 | 9.74% | 480 | 1778 | 24.91% |
+| XGBoost | $817.92 | -2.05% | 887 | 1371 | 48.39% |
 
 ## Sistema Dual (EV + Meta)
 
 | Algoritmo Meta-Modelo | Banca Final | ROI | Apuestas | Evitadas (Falsos Positivos) | Max Drawdown |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| Random Forest | $1711.82 | 8.52% | 835 | 1391 | 19.23% |
-| Logistic Regression | $1845.69 | 10.28% | 823 | 1403 | 19.23% |
-| SVM | $1562.37 | 10.32% | 545 | 1681 | 19.23% |
-| XGBoost | $1415.64 | 4.50% | 924 | 1302 | 19.91% |
+| Random Forest | $1449.14 | 5.82% | 772 | 1442 | 24.91% |
+| Logistic Regression | $1339.44 | 4.68% | 726 | 1488 | 24.91% |
+| SVM | $1463.66 | 9.24% | 502 | 1712 | 24.91% |
+| XGBoost | $1076.64 | 0.88% | 874 | 1340 | 32.86% |
 

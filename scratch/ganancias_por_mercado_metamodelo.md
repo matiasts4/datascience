@@ -1,26 +1,37 @@
-# Analisis de Desempeño y Ganancias por Mercado del Meta-Modelo
+# Análisis de Desempeño y Ganancias por Mercado del Meta-Modelo
 
 Este reporte desglosa los resultados financieros de la simulación de segunda capa, agrupados por mercado de apuestas, para evaluar dónde genera mayor valor el Meta-Modelo.
+
+## Meta-Modelo: SVM (Sistema Dual)
+
+| Mercado | Apuestas Candidatas | Apuestas Colocadas | Evitadas (Falsos Positivos) | Ganadas | Perdidas | ROI Neto | Ganancia Neta (USD) | Tasa de Acierto |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1X2 (Home/Draw/Away) | 1603 | 399 | 1204 | 97 | 302 | 9.05% | $361.20 | 24.31% |
+| Double Chance 1X | 19 | 6 | 13 | 4 | 2 | 11.19% | $6.72 | 66.67% |
+| Double Chance X2 | 77 | 15 | 62 | 9 | 6 | -12.91% | $-19.36 | 60.00% |
+| Over 2.5 Goals | 227 | 46 | 181 | 27 | 19 | 13.24% | $60.90 | 58.70% |
+| Under 2.5 Goals | 288 | 36 | 252 | 17 | 19 | 15.06% | $54.20 | 47.22% |
+| **TOTAL PORTAFOLIO** | **2214** | **502** | **1712** | **154** | **348** | **9.24%** | **$463.66** | **30.68%** |
 
 ## Meta-Modelo: Random Forest (Sistema Dual)
 
 | Mercado | Apuestas Candidatas | Apuestas Colocadas | Evitadas (Falsos Positivos) | Ganadas | Perdidas | ROI Neto | Ganancia Neta (USD) | Tasa de Acierto |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1X2 (Home/Draw/Away) | 1494 | 397 | 1097 | 117 | 280 | 14.16% | $562.20 | 29.47% |
-| Double Chance 1X | 37 | 21 | 16 | 14 | 7 | -1.43% | $-3.00 | 66.67% |
-| Double Chance X2 | 67 | 42 | 25 | 29 | 13 | 6.50% | $27.31 | 69.05% |
-| Over 2.5 Goals | 295 | 222 | 73 | 121 | 101 | 1.62% | $35.90 | 54.50% |
-| Under 2.5 Goals | 333 | 153 | 180 | 82 | 71 | 5.84% | $89.40 | 53.59% |
-| **TOTAL PORTAFOLIO** | **2226** | **835** | **1391** | **363** | **472** | **8.52%** | **$711.82** | **43.47%** |
+| 1X2 (Home/Draw/Away) | 1603 | 444 | 1159 | 122 | 322 | 8.16% | $362.30 | 27.48% |
+| Double Chance 1X | 19 | 12 | 7 | 7 | 5 | -14.14% | $-16.97 | 58.33% |
+| Double Chance X2 | 77 | 39 | 38 | 25 | 14 | -2.79% | $-10.89 | 64.10% |
+| Over 2.5 Goals | 227 | 183 | 44 | 93 | 90 | -5.09% | $-93.10 | 50.82% |
+| Under 2.5 Goals | 288 | 94 | 194 | 59 | 35 | 22.11% | $207.80 | 62.77% |
+| **TOTAL PORTAFOLIO** | **2214** | **772** | **1442** | **306** | **466** | **5.82%** | **$449.14** | **39.64%** |
 
 ## Meta-Modelo: Logistic Regression (Sistema Dual)
 
 | Mercado | Apuestas Candidatas | Apuestas Colocadas | Evitadas (Falsos Positivos) | Ganadas | Perdidas | ROI Neto | Ganancia Neta (USD) | Tasa de Acierto |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1X2 (Home/Draw/Away) | 1494 | 371 | 1123 | 101 | 270 | 14.42% | $534.80 | 27.22% |
-| Double Chance 1X | 37 | 17 | 20 | 11 | 6 | -10.72% | $-18.22 | 64.71% |
-| Double Chance X2 | 67 | 35 | 32 | 26 | 9 | 13.43% | $47.01 | 74.29% |
-| Over 2.5 Goals | 295 | 238 | 57 | 132 | 106 | 4.60% | $109.50 | 55.46% |
-| Under 2.5 Goals | 333 | 162 | 171 | 89 | 73 | 10.65% | $172.60 | 54.94% |
-| **TOTAL PORTAFOLIO** | **2226** | **823** | **1403** | **359** | **464** | **10.28%** | **$845.69** | **43.62%** |
+| 1X2 (Home/Draw/Away) | 1603 | 405 | 1198 | 100 | 305 | 8.85% | $358.40 | 24.69% |
+| Double Chance 1X | 19 | 13 | 6 | 7 | 6 | -20.75% | $-26.97 | 53.85% |
+| Double Chance X2 | 77 | 24 | 53 | 16 | 8 | -8.29% | $-19.89 | 66.67% |
+| Over 2.5 Goals | 227 | 162 | 65 | 83 | 79 | -3.81% | $-61.80 | 51.23% |
+| Under 2.5 Goals | 288 | 122 | 166 | 64 | 58 | 7.35% | $89.70 | 52.46% |
+| **TOTAL PORTAFOLIO** | **2214** | **726** | **1488** | **270** | **456** | **4.68%** | **$339.44** | **37.19%** |
 

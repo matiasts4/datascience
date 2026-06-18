@@ -3,8 +3,10 @@ import numpy as np
 import os
 import sys
 import warnings
+import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 
 warnings.filterwarnings("ignore")
 
@@ -46,6 +48,8 @@ def instantiate_meta_classifier(model_type):
         return RandomForestClassifier(n_estimators=100, max_depth=3, random_state=42)
     elif model_type == 'Logistic Regression':
         return LogisticRegression(C=0.5, random_state=42)
+    elif model_type == 'SVM':
+        return SVC(C=1.0, kernel='rbf', probability=True, random_state=42)
     else:
         raise ValueError(f"Modelo desconocido: {model_type}")
 
@@ -171,6 +175,7 @@ def run_detailed_simulation(df, mode='dual', model_type='Random Forest', edge_th
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     sim_dir = os.path.join(current_dir, "..", "Simulacion_Inversion")
+    pres_dir = os.path.join(current_dir, "..", "Carpeta_Presentacion")
     csv_preds = os.path.join(sim_dir, "predicciones_prueba_calibradas.csv")
     csv_master = os.path.join(sim_dir, "historical_with_ou_odds.csv")
     
@@ -185,12 +190,12 @@ def main():
     df['date'] = pd.to_datetime(df['date'])
     df = df.sort_values('date').reset_index(drop=True)
     
-    # Analizar para los dos mejores metamodelos en modo dual
-    models = ['Random Forest', 'Logistic Regression']
+    # Evaluar los metamodelos
+    models = ['SVM', 'Random Forest', 'Logistic Regression']
     
     out_md = os.path.join(current_dir, "ganancias_por_mercado_metamodelo.md")
     with open(out_md, "w", encoding="utf-8") as f:
-        f.write("# Analisis de Desempeño y Ganancias por Mercado del Meta-Modelo\n\n")
+        f.write("# Análisis de Desempeño y Ganancias por Mercado del Meta-Modelo\n\n")
         f.write("Este reporte desglosa los resultados financieros de la simulación de segunda capa, agrupados por mercado de apuestas, para evaluar dónde genera mayor valor el Meta-Modelo.\n\n")
         
         for model in models:
@@ -250,7 +255,49 @@ def main():
             
             f.write(f"| **TOTAL PORTAFOLIO** | **{tot_cand}** | **{tot_plac}** | **{tot_avoi}** | **{tot_wins}** | **{tot_loss}** | **{tot_roi:.2f}%** | **${tot_prof:.2f}** | **{tot_wr:.2f}%** |\n\n")
             
-            print(f"Rendimiento por mercado guardado en reporte.")
+            # Crear gráfico de distribución de apuestas para el SVM (modelo ganador)
+            if model == 'SVM':
+                fig, ax = plt.subplots(figsize=(10, 6))
+                markets = stats_df['market'].tolist()
+                placed_vals = stats_df['placed'].tolist()
+                avoided_vals = stats_df['avoided'].tolist()
+                
+                x_pos = np.arange(len(markets))
+                width_bar = 0.35
+                
+                rects1 = ax.bar(x_pos - width_bar/2, placed_vals, width_bar, label='Apuestas Colocadas', color='#38A169')
+                rects2 = ax.bar(x_pos + width_bar/2, avoided_vals, width_bar, label='Apuestas Evitadas (Bloqueadas)', color='#E53E3E')
+                
+                ax.set_ylabel('Cantidad de Apuestas', fontsize=11)
+                ax.set_title('Distribución de Apuestas Colocadas vs. Evitadas por Mercado\n(Meta-Modelo SVM | Sistema Dual Calibrado)', fontsize=12, fontweight='bold', pad=15)
+                ax.set_xticks(x_pos)
+                ax.set_xticklabels(markets, rotation=15, ha='right', fontsize=9.5)
+                ax.legend(frameon=True, facecolor='white', edgecolor='#E2E8F0')
+                ax.grid(True, linestyle='--', alpha=0.3)
+                ax.spines['top'].set_visible(False)
+                ax.spines['right'].set_visible(False)
+                
+                # Añadir números sobre las barras
+                for rect in rects1:
+                    h = rect.get_height()
+                    ax.annotate(f'{int(h)}', xy=(rect.get_x() + rect.get_width()/2, h), xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=9)
+                for rect in rects2:
+                    h = rect.get_height()
+                    ax.annotate(f'{int(h)}', xy=(rect.get_x() + rect.get_width()/2, h), xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=9)
+                    
+                plt.tight_layout()
+                fig_path = os.path.join(current_dir, "distribucion_apuestas_svm.png")
+                plt.savefig(fig_path, dpi=300)
+                plt.close()
+                
+                # Copiar a Carpeta_Presentacion
+                pres_fig_path = os.path.join(pres_dir, "distribucion_apuestas_svm.png")
+                try:
+                    import shutil
+                    shutil.copy(fig_path, pres_fig_path)
+                    print(f"[OK] Gráfico copiado a presentación: {pres_fig_path}")
+                except Exception as e:
+                    print(f"[Aviso] No se pudo copiar el gráfico: {e}")
             
     print(f"\n[OK] Análisis por mercado completado. Reporte guardado en: {out_md}")
 

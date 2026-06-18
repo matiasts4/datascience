@@ -6,7 +6,7 @@ import json
 import warnings
 import optuna
 from sklearn.model_selection import TimeSeriesSplit
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, log_loss
 from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 import xgboost as xgb
@@ -117,18 +117,19 @@ def get_baseline_classifier(model_name, target_name):
 
 def evaluate_baseline_score(X, y, tscv, model_name, target_name):
     clf = get_baseline_classifier(model_name, target_name)
-    use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+    use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet", "Double Chance 1X (Home or Draw)", "Double Chance X2 (Away or Draw)"]
     pipe = create_pipeline(clf, use_tomek=use_tomek)
     scores = []
+    labels = [0, 1, 2] if len(np.unique(y)) > 2 else [0, 1]
     for train_idx, test_idx in tscv.split(X):
         X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
         y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
         try:
             pipe.fit(X_train, y_train)
-            preds = pipe.predict(X_test)
-            scores.append(accuracy_score(y_test, preds))
+            probs = pipe.predict_proba(X_test)
+            scores.append(log_loss(y_test, probs, labels=labels))
         except Exception:
-            scores.append(0.0)
+            scores.append(999.0)
     return float(np.mean(scores))
 
 def make_json_serializable(obj):
@@ -182,7 +183,7 @@ def main():
         
     tuning_reports = []
     
-    target_keys = ["1X2 (Match Winner)", "Home Clean Sheet"]
+    target_keys = list(TARGETS.keys())
     for target_name in target_keys:
         if target_name not in TARGETS:
             continue
@@ -195,13 +196,13 @@ def main():
         y = df[target_col]
         optimized_params[target_name] = {}
         
-        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet"]
+        use_tomek = target_name in ["1X2 (Match Winner)", "Home Clean Sheet", "Double Chance 1X (Home or Draw)", "Double Chance X2 (Away or Draw)"]
         for model_name in models_list:
             print(f"  > Optimizando {model_name}...")
             
             # 1. Evaluar línea base
             baseline_score = evaluate_baseline_score(X, y, tscv, model_name, target_name)
-            print(f"    Línea Base CV Accuracy: {baseline_score:.4f}")
+            print(f"    Línea Base CV Log Loss: {baseline_score:.4f}")
             
             # 2. Definir objetivo de Optuna
             def objective(trial):
@@ -244,31 +245,32 @@ def main():
                 
                 pipe = create_pipeline(clf, use_tomek=use_tomek)
                 scores = []
+                labels = [0, 1, 2] if len(np.unique(y)) > 2 else [0, 1]
                 for train_idx, test_idx in tscv.split(X):
                     X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
                     y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
                     try:
                         pipe.fit(X_train, y_train)
-                        preds = pipe.predict(X_test)
-                        scores.append(accuracy_score(y_test, preds))
+                        probs = pipe.predict_proba(X_test)
+                        scores.append(log_loss(y_test, probs, labels=labels))
                     except Exception:
-                        scores.append(0.0)
-                return np.mean(scores)
+                        scores.append(999.0)
+                return float(np.mean(scores))
             
-            # 3. Determinar número de ensayos
-            n_trials = 8 if model_name == "Neural Network (Dropout)" else 15
+            # 3. Determinar número de ensayos (Reducidos para velocidad)
+            n_trials = 5 if model_name == "Neural Network (Dropout)" else 10
             
-            study = optuna.create_study(direction="maximize")
+            study = optuna.create_study(direction="minimize")
             study.optimize(objective, n_trials=n_trials)
             
             best_score = float(study.best_value)
             best_params = study.best_params
             
-            print(f"    Mejor CV Accuracy (Optuna): {best_score:.4f}")
+            print(f"    Mejor CV Log Loss (Optuna): {best_score:.4f}")
             print(f"    Parámetros óptimos: {best_params}")
             
-            improved = best_score > baseline_score
-            improvement_diff = best_score - baseline_score
+            improved = best_score < baseline_score
+            improvement_diff = baseline_score - best_score
             
             optimized_params[target_name][model_name] = {
                 "best_params": best_params,

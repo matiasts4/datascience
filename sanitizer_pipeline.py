@@ -4,6 +4,12 @@ import warnings
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PowerTransformer
 
+import sys
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except AttributeError:
+    pass
+
 warnings.filterwarnings('ignore')
 
 def run_sanitization():
@@ -13,7 +19,7 @@ def run_sanitization():
     todos sus vicios de acuerdo al checklist formal 'sanitizacion.md'.
     Además, inyecta filtros cuantitativos avanzados (Rachas xG).
     """
-    print("🚀 Iniciando Pipeline de Sanitización OSSEMN...")
+    print("[INFO] Iniciando Pipeline de Sanitización OSSEMN...")
     
     # 1. Cargar Datos
     raw_path = "archive/pl-predictor/data/historical/all_match_features_v4_xg.csv"
@@ -76,10 +82,10 @@ def run_sanitization():
     # Reconstruimos temporalmente para usar operaciones de grupo cronológicas
     temp_df = pd.concat([df[meta_cols], targets_df, features_df], axis=1).sort_values('date')
     
-    home_perf = temp_df[['date', 'home_team', 'away_team', 'home_xg', 'away_xg']].copy()
-    home_perf.columns = ['date', 'team', 'opponent', 'xg_for', 'xg_against']
-    away_perf = temp_df[['date', 'away_team', 'home_team', 'away_xg', 'home_xg']].copy()
-    away_perf.columns = ['date', 'team', 'opponent', 'xg_for', 'xg_against']
+    home_perf = temp_df[['date', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_goals', 'away_goals', 'btts']].copy()
+    home_perf.columns = ['date', 'team', 'opponent', 'xg_for', 'xg_against', 'gf', 'ga', 'btts_val']
+    away_perf = temp_df[['date', 'away_team', 'home_team', 'away_xg', 'home_xg', 'away_goals', 'home_goals', 'btts']].copy()
+    away_perf.columns = ['date', 'team', 'opponent', 'xg_for', 'xg_against', 'gf', 'ga', 'btts_val']
     
     perf = pd.concat([home_perf, away_perf], ignore_index=True)
     perf = perf.sort_values('date').reset_index(drop=True)
@@ -88,8 +94,33 @@ def run_sanitization():
     perf['last5_xg_for'] = groups['xg_for'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
     perf['last5_xg_against'] = groups['xg_against'].apply(lambda x: x.shift(1).ewm(span=5, min_periods=1).mean()).reset_index(level=0, drop=True)
     
-    home_feat = perf[['date', 'team', 'last5_xg_for', 'last5_xg_against']].rename(columns={'team': 'home_team', 'last5_xg_for': 'h_l5_xg', 'last5_xg_against': 'h_l5_xga'})
-    away_feat = perf[['date', 'team', 'last5_xg_for', 'last5_xg_against']].rename(columns={'team': 'away_team', 'last5_xg_for': 'a_l5_xg', 'last5_xg_against': 'a_l5_xga'})
+    # Rodaje 3 (Goles y BTTS)
+    perf['last3_xg_for'] = groups['xg_for'].apply(lambda x: x.shift(1).ewm(span=3, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last3_xg_against'] = groups['xg_against'].apply(lambda x: x.shift(1).ewm(span=3, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last3_gf'] = groups['gf'].apply(lambda x: x.shift(1).ewm(span=3, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last3_ga'] = groups['ga'].apply(lambda x: x.shift(1).ewm(span=3, min_periods=1).mean()).reset_index(level=0, drop=True)
+    perf['last3_btts'] = groups['btts_val'].apply(lambda x: x.shift(1).ewm(span=3, min_periods=1).mean()).reset_index(level=0, drop=True)
+    
+    home_feat = perf[['date', 'team', 'last5_xg_for', 'last5_xg_against', 'last3_xg_for', 'last3_xg_against', 'last3_gf', 'last3_ga', 'last3_btts']].rename(columns={
+        'team': 'home_team',
+        'last5_xg_for': 'h_l5_xg',
+        'last5_xg_against': 'h_l5_xga',
+        'last3_xg_for': 'h_l3_xg',
+        'last3_xg_against': 'h_l3_xga',
+        'last3_gf': 'h_l3_gf',
+        'last3_ga': 'h_l3_ga',
+        'last3_btts': 'h_l3_btts'
+    })
+    away_feat = perf[['date', 'team', 'last5_xg_for', 'last5_xg_against', 'last3_xg_for', 'last3_xg_against', 'last3_gf', 'last3_ga', 'last3_btts']].rename(columns={
+        'team': 'away_team',
+        'last5_xg_for': 'a_l5_xg',
+        'last5_xg_against': 'a_l5_xga',
+        'last3_xg_for': 'a_l3_xg',
+        'last3_xg_against': 'a_l3_xga',
+        'last3_gf': 'a_l3_gf',
+        'last3_ga': 'a_l3_ga',
+        'last3_btts': 'a_l3_btts'
+    })
     
     # Evitar duplicados si hay partidos el mismo día (improbable pero seguro)
     home_feat = home_feat.drop_duplicates(subset=['date', 'home_team'])
@@ -98,7 +129,7 @@ def run_sanitization():
     temp_df = pd.merge(temp_df, home_feat, on=['date', 'home_team'], how='left')
     temp_df = pd.merge(temp_df, away_feat, on=['date', 'away_team'], how='left')
     
-    new_cols = ['h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga']
+    new_cols = ['h_l5_xg', 'a_l5_xg', 'h_l5_xga', 'a_l5_xga', 'h_l3_xg', 'a_l3_xg', 'h_l3_xga', 'a_l3_xga', 'h_l3_gf', 'a_l3_gf', 'h_l3_ga', 'a_l3_ga', 'h_l3_btts', 'a_l3_btts']
     for col in new_cols:
         # Aquí permitimos NaN porque el Pipeline se encargará de imputarlos en train_models.py
         features_df[col] = temp_df[col]
@@ -113,9 +144,9 @@ def run_sanitization():
     export_path = "archive/pl-predictor/data/historical/historical_sanitized_v8.csv"
     final_df.to_csv(export_path, index=False)
     
-    print(f"✅ ¡Sanitización Pura Completada con éxito! Dataset base generado en: {export_path}")
-    print(f"📉 Dimensión final obtenida: {final_df.shape}")
-    print(f"🔍 Atención: Este dataset contiene valores nulos. La imputación y el escalamiento deben hacerse dentro de un scikit-learn Pipeline.")
+    print(f"[OK] ¡Sanitización Pura Completada con éxito! Dataset base generado en: {export_path}")
+    print(f"[INFO] Dimensión final obtenida: {final_df.shape}")
+    print(f"[WARN] Atención: Este dataset contiene valores nulos. La imputación y el escalamiento deben hacerse dentro de un scikit-learn Pipeline.")
 
 if __name__ == "__main__":
     run_sanitization()

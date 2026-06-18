@@ -1,41 +1,41 @@
 target,model,log_loss,accuracy,is_winner
-1X2 (Match Winner),Logistic Regression (Elastic Net),0.9912560713358062,0.5283687943262411,True
-1X2 (Match Winner),Random Forest,1.000464401459492,0.526241134751773,False
-1X2 (Match Winner),HistGradientBoosting (Early Stopping),1.0141736595135629,0.5209219858156028,False
-1X2 (Match Winner),XGBoost (L1/L2 Regularized),1.0027343708454637,0.525177304964539,False
-1X2 (Match Winner),Neural Network (Dropout),1.0767180934262508,0.5134751773049645,False
-Double Chance 1X (Home or Draw),Logistic Regression (Elastic Net),0.5734118589658693,0.7081560283687944,True
-Double Chance 1X (Home or Draw),Random Forest,0.5814343638170937,0.7046099290780141,False
-Double Chance 1X (Home or Draw),HistGradientBoosting (Early Stopping),0.5874015834876504,0.6932624113475178,False
-Double Chance 1X (Home or Draw),XGBoost (L1/L2 Regularized),0.5895907649984079,0.6975177304964538,False
-Double Chance 1X (Home or Draw),Neural Network (Dropout),0.6002010788443347,0.701418439716312,False
-Double Chance X2 (Away or Draw),Logistic Regression (Elastic Net),0.6190808088744861,0.6535460992907802,True
-Double Chance X2 (Away or Draw),Random Forest,0.6252592215539217,0.6464539007092198,False
-Double Chance X2 (Away or Draw),HistGradientBoosting (Early Stopping),0.6300367548447784,0.6439716312056738,False
-Double Chance X2 (Away or Draw),XGBoost (L1/L2 Regularized),0.6334313571374223,0.6439716312056738,False
-Double Chance X2 (Away or Draw),Neural Network (Dropout),0.6282344279498681,0.6436170212765957,False
-Over 2.5 Goals,Logistic Regression (Elastic Net),0.6999716416238294,0.5475177304964539,False
-Over 2.5 Goals,Random Forest,0.6847090021928136,0.5602836879432624,False
-Over 2.5 Goals,HistGradientBoosting (Early Stopping),0.6879194433211058,0.55,False
-Over 2.5 Goals,XGBoost (L1/L2 Regularized),0.6843863250312178,0.5702127659574467,True
-Over 2.5 Goals,Neural Network (Dropout),0.73363954803922,0.5468085106382979,False
-Under 2.5 Goals,Logistic Regression (Elastic Net),0.7006790800162443,0.54822695035461,False
-Under 2.5 Goals,Random Forest,0.6846235779266212,0.5606382978723404,False
-Under 2.5 Goals,HistGradientBoosting (Early Stopping),0.6872233391894635,0.5588652482269504,False
-Under 2.5 Goals,XGBoost (L1/L2 Regularized),0.684100400761955,0.5734042553191488,True
-Under 2.5 Goals,Neural Network (Dropout),0.6904810514816815,0.5478723404255319,False
-BTTS (Both Teams To Score),Logistic Regression (Elastic Net),0.6926615026532298,0.5336879432624114,False
-BTTS (Both Teams To Score),Random Forest,0.6932924004122147,0.5219858156028369,False
-BTTS (Both Teams To Score),HistGradientBoosting (Early Stopping),0.6912873764285108,0.5460992907801419,True
-BTTS (Both Teams To Score),XGBoost (L1/L2 Regularized),0.6937034918765306,0.5283687943262411,False
-BTTS (Both Teams To Score),Neural Network (Dropout),0.6902458122035015,0.5322695035460994,False
-BTTS - No,Logistic Regression (Elastic Net),0.6927089279209881,0.5336879432624114,False
-BTTS - No,Random Forest,0.6939725937758625,0.5131205673758864,False
-BTTS - No,HistGradientBoosting (Early Stopping),0.7215450719673904,0.5375886524822695,False
-BTTS - No,XGBoost (L1/L2 Regularized),0.6927888537645216,0.525531914893617,False
-BTTS - No,Neural Network (Dropout),1.212229525811337,0.5393617021276595,True
-Home Clean Sheet,Logistic Regression (Elastic Net),0.607075923510702,0.7085106382978724,False
-Home Clean Sheet,Random Forest,0.5943531196337344,0.7070921985815604,False
-Home Clean Sheet,HistGradientBoosting (Early Stopping),0.5980198020509256,0.7088652482269504,False
-Home Clean Sheet,XGBoost (L1/L2 Regularized),0.6007166525334448,0.7085106382978724,False
-Home Clean Sheet,Neural Network (Dropout),0.6569361727320936,0.7099290780141845,True
+1X2 (Match Winner),Logistic Regression (Elastic Net),0.9877026821512919,0.5290780141843971,True
+1X2 (Match Winner),Random Forest,0.9987892287479404,0.524822695035461,False
+1X2 (Match Winner),HistGradientBoosting (Early Stopping),1.0051983574167522,0.5212765957446809,False
+1X2 (Match Winner),XGBoost (L1/L2 Regularized),1.0117181353642912,0.5102836879432624,False
+1X2 (Match Winner),Neural Network (Dropout),1.1578160873564929,0.4943262411347519,False
+Double Chance 1X (Home or Draw),Logistic Regression (Elastic Net),0.5732822404319606,0.70354609929078,True
+Double Chance 1X (Home or Draw),Random Forest,0.5837553021937193,0.6950354609929078,False
+Double Chance 1X (Home or Draw),HistGradientBoosting (Early Stopping),0.586085623149894,0.6943262411347518,False
+Double Chance 1X (Home or Draw),XGBoost (L1/L2 Regularized),0.5838400908144235,0.6943262411347517,False
+Double Chance 1X (Home or Draw),Neural Network (Dropout),0.7786915965918669,0.6801418439716312,False
+Double Chance X2 (Away or Draw),Logistic Regression (Elastic Net),0.628364050432187,0.6386524822695036,True
+Double Chance X2 (Away or Draw),Random Forest,0.6305739291870088,0.6361702127659574,False
+Double Chance X2 (Away or Draw),HistGradientBoosting (Early Stopping),0.6360317031515381,0.6379432624113475,False
+Double Chance X2 (Away or Draw),XGBoost (L1/L2 Regularized),0.6385533297724326,0.6450354609929079,False
+Double Chance X2 (Away or Draw),Neural Network (Dropout),0.7263994190354032,0.6351063829787233,False
+Over 2.5 Goals,Logistic Regression (Elastic Net),0.688122377878482,0.54822695035461,False
+Over 2.5 Goals,Random Forest,0.6852459029554478,0.5542553191489361,True
+Over 2.5 Goals,HistGradientBoosting (Early Stopping),0.6873775164433831,0.5539007092198581,False
+Over 2.5 Goals,XGBoost (L1/L2 Regularized),0.6881943157892275,0.54822695035461,False
+Over 2.5 Goals,Neural Network (Dropout),0.7214915230737307,0.5379432624113475,False
+Under 2.5 Goals,Logistic Regression (Elastic Net),0.6884412675752463,0.5379432624113475,False
+Under 2.5 Goals,Random Forest,0.6868447315459633,0.553191489361702,False
+Under 2.5 Goals,HistGradientBoosting (Early Stopping),0.6866503806811858,0.5570921985815602,True
+Under 2.5 Goals,XGBoost (L1/L2 Regularized),0.6868078995660539,0.5556737588652483,False
+Under 2.5 Goals,Neural Network (Dropout),0.7097724704231843,0.5453900709219858,False
+BTTS (Both Teams To Score),Logistic Regression (Elastic Net),0.6925791168941238,0.5336879432624114,False
+BTTS (Both Teams To Score),Random Forest,0.694053198375458,0.5297872340425532,False
+BTTS (Both Teams To Score),HistGradientBoosting (Early Stopping),0.6904855612754488,0.5322695035460993,True
+BTTS (Both Teams To Score),XGBoost (L1/L2 Regularized),0.6917075921735713,0.528723404255319,False
+BTTS (Both Teams To Score),Neural Network (Dropout),0.784338999692784,0.4907801418439717,False
+BTTS - No,Logistic Regression (Elastic Net),0.6923664727356241,0.5322695035460994,False
+BTTS - No,Random Forest,0.6932698160659911,0.522340425531915,False
+BTTS - No,HistGradientBoosting (Early Stopping),0.692258622722056,0.5333333333333334,False
+BTTS - No,XGBoost (L1/L2 Regularized),0.6913049843727735,0.5294326241134751,True
+BTTS - No,Neural Network (Dropout),0.8671458273528909,0.5010638297872341,False
+Home Clean Sheet,Logistic Regression (Elastic Net),0.5919442318977045,0.70177304964539,True
+Home Clean Sheet,Random Forest,0.5947512387074065,0.7053191489361703,False
+Home Clean Sheet,HistGradientBoosting (Early Stopping),0.6004589167248404,0.6943262411347518,False
+Home Clean Sheet,XGBoost (L1/L2 Regularized),0.6019674993350661,0.6879432624113475,False
+Home Clean Sheet,Neural Network (Dropout),0.6055200832006451,0.6890070921985816,False

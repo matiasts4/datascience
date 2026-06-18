@@ -336,15 +336,15 @@ def main():
         # Encontrar el mejor modelo dinámicamente
         target_models = optimized_data[market_name]
         best_model_name = None
-        best_score = -1
+        best_score = 999.0
         best_params = None
         for model_name, info in target_models.items():
-            if info["best_score"] > best_score:
+            if info["best_score"] < best_score:
                 best_score = info["best_score"]
                 best_model_name = model_name
                 best_params = info["best_params"]
                 
-        print(f"  -> Modelo Ganador: {best_model_name} (CV Accuracy: {best_score:.4f})")
+        print(f"  -> Modelo Ganador: {best_model_name} (CV Log Loss: {best_score:.4f})")
         
         probs_uncal_all = []
         probs_iso_all = []
