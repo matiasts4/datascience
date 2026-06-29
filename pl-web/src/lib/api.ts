@@ -210,7 +210,20 @@ export interface APIUpcomingResponse {
     Market: string;
     Probability: number;
     Confidence: string;
+    Pick?: number;
+    FairOdds?: number;
+    ExpectedValue?: number;
+    RecommendedStakePct?: number;
   };
+  allPredictions?: {
+    Market: string;
+    Probability: number;
+    Confidence: string;
+    Pick: number;
+    FairOdds: number;
+    ExpectedValue: number;
+    RecommendedStakePct: number;
+  }[];
 }
 
 export const fetchUpcomingMatches = async (): Promise<APIUpcomingResponse[]> => {
@@ -223,9 +236,9 @@ export const useAPIUpcomingMatches = () => {
   return useQuery({
     queryKey: ["matches_upcoming"],
     queryFn: fetchUpcomingMatches,
-    staleTime: 30 * 60 * 1000,   // 30 minutes — scraper data is stable
+    staleTime: 30 * 60 * 1000,   // 30 minutes — upcoming match data is stable
     gcTime: 60 * 60 * 1000,      // keep in cache for 60 minutes after unmount
-    refetchOnWindowFocus: false,  // don't re-trigger scraper on tab switch
+    refetchOnWindowFocus: false,  // don't re-trigger reload on tab switch
     retry: 1,
   });
 };
@@ -236,18 +249,66 @@ export const mapAPIUpcomingToMockMatch = (m: APIUpcomingResponse) => {
   const away = Object.values(teamsData).find(t => t.name === m.awayTeam) || 
     { id: m.awayTeam, name: m.awayTeam, shortName: m.awayTeam.substring(0,3).toUpperCase(), logo: "⚽", colors: { primary: "#000", secondary: "#fff" } };
 
-  const markets = [];
-  if (m.topPrediction) {
+  const getPredictionLabel = (market: string, pick: number, homeShort: string, awayShort: string) => {
+    const mLower = market.toLowerCase();
+    if (mLower.includes("1x2")) {
+      if (pick === 2) return `Gana ${homeShort}`;
+      if (pick === 0) return `Gana ${awayShort}`;
+      return "Empate";
+    }
+    if (mLower.includes("double chance 1x") || mLower.includes("doble oportunidad 1x")) {
+      return `${homeShort} o Empate`;
+    }
+    if (mLower.includes("double chance x2") || mLower.includes("doble oportunidad x2")) {
+      return `${awayShort} o Empate`;
+    }
+    if (mLower.includes("over 2.5")) return "Más de 2.5 Goles";
+    if (mLower.includes("under 2.5")) return "Menos de 2.5 Goles";
+    if (mLower.includes("btts (both") || mLower.includes("btts (ambos")) return "Ambos Equipos Marcan";
+    if (mLower.includes("btts - no") || mLower.includes("ambos marcan - no")) return "Ambos Equipos Marcan (No)";
+    if (mLower.includes("home clean sheet") || mLower.includes("valla invicta local")) return `${homeShort} Valla Invicta`;
+    if (mLower.includes("away clean sheet") || mLower.includes("valla invicta visitante")) return `${awayShort} Valla Invicta`;
+    return `Pick: ${pick}`;
+  };
+
+  const markets: any[] = [];
+  const predsList = m.allPredictions || (m.topPrediction ? [m.topPrediction] : []);
+
+  predsList.forEach((p: any) => {
+    let category: "match-odds" | "goals" | "player-props" | "cards-corners" = "match-odds";
+    const mLower = p.Market.toLowerCase();
+    
+    if (mLower.includes("goal") || mLower.includes("btts") || mLower.includes("clean sheet")) {
+      category = "goals";
+    } else if (mLower.includes("cards") || mLower.includes("corners")) {
+      category = "cards-corners";
+    }
+
+    // offered odds can be deduced from expected value
+    // EV = (prob * offered_odds) - 1 => offered_odds = (EV + 1) / prob
+    const bookieOdds = p.Probability > 0 ? (p.ExpectedValue + 1.0) / p.Probability : 1.0;
+    const edge = p.ExpectedValue * 100;
+
     markets.push({
-      category: "match-odds",
-      name: m.topPrediction.Market,
-      prediction: m.topPrediction.Confidence,
-      odds: 1.0, 
-      fairOdds: 1.0, 
-      confidence: m.topPrediction.Probability * 100,
-      edge: 0
+      category,
+      name: p.Market,
+      prediction: getPredictionLabel(p.Market, p.Pick !== undefined ? p.Pick : 1, home.shortName, away.shortName),
+      odds: Math.max(1.01, parseFloat(bookieOdds.toFixed(2))),
+      fairOdds: p.FairOdds || (p.Probability > 0 ? 1.0 / p.Probability : 1.0),
+      confidence: p.Probability * 100,
+      edge: edge,
+      recommendedStakePct: p.RecommendedStakePct || 0.0
     });
-  }
+  });
+
+  // Calculate ELO-based probabilities
+  const eloDiff = (m.awayElo || 1500) - (m.homeElo || 1500);
+  const probHome = 1.0 / (1.0 + Math.pow(10, eloDiff / 400.0));
+  const drawProb = 0.25 * (1.0 - Math.abs(probHome - 0.5));
+  const remaining = 1.0 - drawProb;
+  const homeWin = parseFloat((probHome * remaining).toFixed(3));
+  const awayWin = parseFloat(((1.0 - probHome) * remaining).toFixed(3));
+  const draw = parseFloat(drawProb.toFixed(3));
 
   return {
     id: m.id,
@@ -257,7 +318,7 @@ export const mapAPIUpcomingToMockMatch = (m: APIUpcomingResponse) => {
     time: "TBD", 
     stadium: "Premier League",
     refereeId: "tbd",
-    prediction: { homeWin: 0.33, draw: 0.33, awayWin: 0.33 }, 
+    prediction: { homeWin, draw, awayWin }, 
     markets: markets as any[],
     status: "upcoming" as any,
   };
@@ -536,4 +597,71 @@ export const fetchHistoryMatches = async (n: number = 50, season?: number | null
 
 export const useAPIHistoryMatches = (n: number = 50, season?: number | null) =>
   useQuery({ queryKey: ["history", n, season ?? "all"], queryFn: () => fetchHistoryMatches(n, season), staleTime: 60000 });
+
+export interface APIAnalyzeParams {
+  homeTeam: string;
+  awayTeam: string;
+  date: string;
+  provider: string;
+  model?: string;
+}
+
+export interface APIAnalyzeResponse {
+  analysis: string;
+  predictions: any[];
+}
+
+export const fetchAIAnalysis = async (params: APIAnalyzeParams): Promise<APIAnalyzeResponse> => {
+  const res = await fetch("/api/assistant/analyze-match", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params)
+  });
+  if (!res.ok) {
+    let errMsg = "Error al obtener el análisis de IA";
+    try {
+      const clone = res.clone();
+      const errJson = await clone.json();
+      if (errJson && errJson.error) {
+        errMsg = errJson.error;
+        if (errMsg.includes("Exception:")) {
+          errMsg = errMsg.split("Exception:").pop()!.trim();
+        }
+      }
+    } catch (e) {
+      try {
+        const errorText = await res.text();
+        if (errorText) errMsg = errorText;
+      } catch (e2) {}
+    }
+    throw new Error(errMsg);
+  }
+  return res.json();
+};
+
+export const updateUpcomingMatches = async (): Promise<any> => {
+  const res = await fetch("/api/matches/upcoming/update", {
+    method: "POST"
+  });
+  if (!res.ok) {
+    let errMsg = "Error al actualizar los partidos";
+    try {
+      const clone = res.clone();
+      const errJson = await clone.json();
+      if (errJson && errJson.error) {
+        errMsg = errJson.error;
+        if (errMsg.includes("Exception:")) {
+          errMsg = errMsg.split("Exception:").pop()!.trim();
+        }
+      }
+    } catch (e) {
+      try {
+        const errorText = await res.text();
+        if (errorText) errMsg = errorText;
+      } catch (e2) {}
+    }
+    throw new Error(errMsg);
+  }
+  return res.json();
+};
 

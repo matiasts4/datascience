@@ -1,14 +1,17 @@
-import { TrendingUp, Target, Activity, Flame, Loader2, BarChart3, Zap } from "lucide-react";
+import { TrendingUp, Target, Activity, Flame, Loader2, BarChart3, Zap, RefreshCw } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { MatchCard } from "@/components/MatchCard";
 import { ConfidenceBadge } from "@/components/ConfidenceBadge";
 import { OddsButton } from "@/components/OddsButton";
-import { useAPIStats, useAPIUpcomingMatches, mapAPIUpcomingToMockMatch, APIUpcomingResponse } from "@/lib/api";
+import { useAPIStats, useAPIUpcomingMatches, mapAPIUpcomingToMockMatch, APIUpcomingResponse, updateUpcomingMatches } from "@/lib/api";
 import { MarketPrediction } from "@/data/mockData";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 // Fallback hot picks — only valid market categories, no player-specific props
 const FALLBACK_HOT_PICKS: MarketPrediction[] = [
-  { category: "match-odds", name: "Ganador del Partido (1X2)", prediction: "Datos del scraper cargando…", odds: 2.10, fairOdds: 2.00, confidence: 72, edge: 5.0 },
+  { category: "match-odds", name: "Ganador del Partido (1X2)", prediction: "Datos cargando…", odds: 2.10, fairOdds: 2.00, confidence: 72, edge: 5.0 },
   { category: "goals", name: "Más de 2.5 Goles", prediction: "Mercado de goles predefinido", odds: 1.85, fairOdds: 1.72, confidence: 76, edge: 7.6 },
   { category: "goals", name: "Ambos Marcan (Sí)", prediction: "Mercado BTTS predefinido", odds: 1.72, fairOdds: 1.65, confidence: 74, edge: 5.8 },
   { category: "match-odds", name: "Doble Oportunidad (1X)", prediction: "Local o Empate", odds: 1.45, fairOdds: 1.38, confidence: 80, edge: 5.1 },
@@ -52,8 +55,24 @@ function buildHotPicksFromAPI(matches: APIUpcomingResponse[]): MarketPrediction[
 }
 
 const Dashboard = () => {
+  const queryClient = useQueryClient();
+  const [isUpdating, setIsUpdating] = useState(false);
   const { data: stats, isLoading: statsLoading } = useAPIStats();
   const { data: matches, isLoading: matchesLoading } = useAPIUpcomingMatches();
+
+  const handleUpdate = async () => {
+    setIsUpdating(true);
+    toast.loading("Actualizando partidos y predicciones desde FBref...", { id: "update-toast" });
+    try {
+      await updateUpcomingMatches();
+      queryClient.invalidateQueries({ queryKey: ["matches_upcoming"] });
+      toast.success("¡Calendario y predicciones actualizados con éxito!", { id: "update-toast" });
+    } catch (err: any) {
+      toast.error(err.message || "Error al actualizar los partidos", { id: "update-toast" });
+    } finally {
+      setIsUpdating(false);
+    }
+  };
 
   const hotPicks = matches && matches.length > 0
     ? buildHotPicksFromAPI(matches)
@@ -156,14 +175,24 @@ const Dashboard = () => {
 
       {/* Upcoming Matches */}
       <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-        <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="h-5 w-5 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground tracking-tight">Próximos Partidos</h2>
-          {matches && (
-            <span className="text-xs text-muted-foreground ml-auto">
-              {matches.length} partido{matches.length !== 1 ? "s" : ""} encontrado{matches.length !== 1 ? "s" : ""}
-            </span>
-          )}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <BarChart3 className="h-5 w-5 text-primary" />
+            <h2 className="text-lg font-semibold text-foreground tracking-tight">Próximos Partidos</h2>
+            {matches && (
+              <span className="text-xs text-muted-foreground ml-2">
+                ({matches.length} partido{matches.length !== 1 ? "s" : ""})
+              </span>
+            )}
+          </div>
+          <button
+            onClick={handleUpdate}
+            disabled={isUpdating}
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-primary hover:text-primary-foreground bg-primary/10 hover:bg-primary border border-primary/20 rounded-md transition-all disabled:opacity-50 disabled:pointer-events-none"
+          >
+            <RefreshCw className={`h-3.5 w-3.5 ${isUpdating ? "animate-spin" : ""}`} />
+            {isUpdating ? "Actualizando..." : "Actualizar Calendario"}
+          </button>
         </div>
         {matchesLoading ? (
           <div className="flex items-center justify-center p-12">
@@ -179,7 +208,7 @@ const Dashboard = () => {
           <div className="glass-card p-10 flex flex-col items-center justify-center text-center text-muted-foreground gap-2">
             <BarChart3 className="h-10 w-10 opacity-20 mb-1" />
             <p className="text-sm font-medium">No hay partidos próximos disponibles</p>
-            <p className="text-xs opacity-60">El scraper no encontró fixtures en los próximos 30 días</p>
+            <p className="text-xs opacity-60">No se encontraron fixtures próximos en el sistema</p>
           </div>
         )}
       </div>

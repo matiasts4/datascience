@@ -357,6 +357,23 @@ const Simulator = () => {
 
             {simData && !simMutation.isPending && (
               <>
+                {/* Visual warning for in-sample predictions */}
+                <div className="glass-card border-warning/20 bg-warning/5 p-4 flex items-start gap-3 text-xs mb-6">
+                  <AlertTriangle className="h-4 w-4 text-warning shrink-0 mt-0.5" />
+                  <div className="space-y-1 text-muted-foreground">
+                    <p className="font-semibold text-foreground flex items-center gap-1.5">
+                      Evaluación de Datos Históricos (In-Sample)
+                    </p>
+                    <p className="leading-relaxed">
+                      El conjunto de partidos evaluado para la temporada <strong className="text-foreground">
+                        {params.season === "all" 
+                          ? `los últimos ${params.nMatches} partidos` 
+                          : (seasons?.find(s => String(s.season) === params.season)?.label || `Temporada ${params.season}`)}
+                      </strong> forma parte del conjunto de datos histórico en el cual fueron entrenados los modelos de producción. Dado que los clasificadores predictivos se entrenan con todo el historial de juego disponible para maximizar la exactitud de las predicciones en vivo, esta simulación retrospectiva representa un rendimiento de entrenamiento ("Dentro de Muestra"). Las métricas de exactitud ciega real (Out-of-Sample) se validan únicamente sobre partidos futuros no jugados.
+                    </p>
+                  </div>
+                </div>
+
                 {/* Primary Model KPIs */}
                 <div>
                   <h3 className="text-sm font-semibold text-foreground mb-3 px-1 border-l-2 border-primary pl-2">

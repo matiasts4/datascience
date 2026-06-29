@@ -136,6 +136,96 @@ export default defineConfig(({ mode }) => ({
               }
               return;
             }
+
+            if (pathname === "/api/stats" && req.method === "GET") {
+              try {
+                const result = await runPythonBridge("stats", {});
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/teams" && req.method === "GET") {
+              try {
+                const season = url.searchParams.get("season") || "all";
+                const result = await runPythonBridge("teams", { season });
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/teams/list" && req.method === "GET") {
+              try {
+                const result = await runPythonBridge("teams-list", {});
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/matches/recent" && req.method === "GET") {
+              try {
+                const result = await runPythonBridge("recent-matches", {});
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/matches/upcoming" && req.method === "GET") {
+              try {
+                const result = await runPythonBridge("upcoming", {});
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/matches/upcoming/update" && req.method === "POST") {
+              try {
+                const result = await runPythonBridge("update-upcoming", {});
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.end(JSON.stringify(result));
+              } catch (err) {
+                res.writeHead(500, { "Content-Type": "application/json" });
+                res.end(JSON.stringify({ error: err.message }));
+              }
+              return;
+            }
+
+            if (pathname === "/api/assistant/analyze-match" && req.method === "POST") {
+              let body = "";
+              req.on("data", chunk => { body += chunk; });
+              req.on("end", async () => {
+                try {
+                  const payload = JSON.parse(body);
+                  const result = await runPythonBridge("analyze-match", payload);
+                  res.writeHead(200, { "Content-Type": "application/json" });
+                  res.end(JSON.stringify(result));
+                } catch (err) {
+                  res.writeHead(500, { "Content-Type": "application/json" });
+                  res.end(JSON.stringify({ error: err.message }));
+                }
+              });
+              return;
+            }
           }
           next();
         });

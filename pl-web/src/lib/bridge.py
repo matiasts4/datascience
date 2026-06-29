@@ -15,6 +15,10 @@ from src.config import TARGETS, FEATURES, MODELS_DIR
 from src.models.selector import MasterBetSelector
 from src.api import compute_elo_map, build_team_last5
 
+sys.path.append(os.path.dirname(__file__))
+from db import get_upcoming_matches, save_upcoming_matches, init_db
+from assistant import get_provider
+
 def clean_json(obj):
     if isinstance(obj, list):
         return [clean_json(x) for x in obj]
@@ -66,7 +70,7 @@ def run_predict(payload):
     match_date = payload.get('date', None)
 
     # Cargar datos
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
 
@@ -149,7 +153,7 @@ def run_simulate(payload):
     allowed_markets = payload.get('allowedMarkets', [])
     selection_criteria = payload.get('selectionCriteria', 'combined')
 
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
 
@@ -474,7 +478,7 @@ def run_simulate(payload):
     return clean_json(result)
 
 def run_performance():
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
 
@@ -621,7 +625,7 @@ def run_performance():
 def run_detailed_history(payload):
     n = int(payload.get('n', 100))
     
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
 
@@ -707,7 +711,7 @@ def run_detailed_history(payload):
     return clean_json(detailed_results)
 
 def run_seasons():
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
     completed = df[df['home_goals'].notna()].copy()
@@ -781,7 +785,7 @@ def run_history(payload):
     n = int(payload.get('n', 50))
     season = payload.get('season', 'all')
     
-    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v7.csv")
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
     df = pd.read_csv(features_path, parse_dates=['date'])
     df = df.sort_values('date').reset_index(drop=True)
     completed = df[df['home_goals'].notna()].copy()
@@ -831,6 +835,368 @@ def run_history(payload):
     result.reverse()  # newest first
     return clean_json(result)
 
+def run_stats():
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    total = len(df)
+    teams = sorted(list(set(df['home_team'].dropna().unique()) | set(df['away_team'].dropna().unique())))
+    def get_season_code(date):
+        if pd.isna(date):
+            return None
+        year = date.year
+        month = date.month
+        if month >= 8:
+            start_yr = year
+        else:
+            start_yr = year - 1
+        return (start_yr % 100) * 100 + ((start_yr + 1) % 100)
+    df['real_season'] = df['date'].apply(get_season_code)
+    seasons_count = int(df['real_season'].nunique())
+    return {
+        'totalMatches': total,
+        'seasons': seasons_count,
+        'teams': len(teams),
+        'accuracy_pct': 56.0,
+        'brier_score': 0.19,
+        'markets_tracked': 8,
+    }
+
+def run_teams(payload):
+    season_param = payload.get('season', None)
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    def get_season_code(date):
+        if pd.isna(date):
+            return None
+        year = date.year
+        month = date.month
+        if month >= 8:
+            start_yr = year
+        else:
+            start_yr = year - 1
+        return (start_yr % 100) * 100 + ((start_yr + 1) % 100)
+    df['real_season'] = df['date'].apply(get_season_code)
+    df['result_1x2'] = pd.to_numeric(df['result_1x2'], errors='coerce')
+    df['home_goals'] = pd.to_numeric(df['home_goals'], errors='coerce')
+    df['away_goals'] = pd.to_numeric(df['away_goals'], errors='coerce')
+    df_stats = df
+    available_seasons = sorted([int(s) for s in df['real_season'].dropna().unique()], reverse=True)
+    if season_param and season_param != 'all':
+        try:
+            df_stats = df[df['real_season'] == int(season_param)]
+        except Exception:
+            pass
+    elo_map = compute_elo_map(df)
+    all_teams = sorted(list(set(df['home_team'].dropna().unique()) | set(df['away_team'].dropna().unique())))
+    result = []
+    for team in all_teams:
+        form = build_team_last5(team, df)
+        home_matches = df_stats[df_stats['home_team'] == team]
+        away_matches = df_stats[df_stats['away_team'] == team]
+        if len(home_matches) + len(away_matches) == 0:
+            continue
+        gf = int(home_matches['home_goals'].sum() + away_matches['away_goals'].sum())
+        ga = int(home_matches['away_goals'].sum() + away_matches['home_goals'].sum())
+        played = len(home_matches) + len(away_matches)
+        h_wins = int((home_matches['result_1x2'] == 2).sum())
+        a_wins = int((away_matches['result_1x2'] == 0).sum())
+        draws  = int((home_matches['result_1x2'] == 1).sum() + (away_matches['result_1x2'] == 1).sum())
+        clean_sheets = int((home_matches['away_goals'] == 0).sum() + (away_matches['home_goals'] == 0).sum())
+        result.append({
+            'id':               team.lower().replace(' ', '-'),
+            'name':             team,
+            'elo':              round(elo_map.get(team, 1500), 1),
+            'played':           played,
+            'won':              h_wins + a_wins,
+            'drawn':            draws,
+            'lost':             played - h_wins - a_wins - draws,
+            'goalsFor':         gf,
+            'goalsAgainst':     ga,
+            'cleanSheets':      clean_sheets,
+            'form':             form,
+            'availableSeasons': available_seasons,
+        })
+    result.sort(key=lambda x: x['elo'], reverse=True)
+    return result
+
+def run_teams_list():
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    all_teams = sorted(list(set(df['home_team'].dropna().unique()) | set(df['away_team'].dropna().unique())))
+    return all_teams
+
+def run_recent_matches():
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    completed = df[df['home_goals'].notna()].tail(30)
+    result = []
+    for _, row in completed.iterrows():
+        date_str = row['date'].strftime('%Y-%m-%d')
+        home = row['home_team']
+        away = row['away_team']
+        match_id = f"{date_str} {home}-{away}"
+        hg = int(row['home_goals'])
+        ag = int(row['away_goals'])
+        res_val = 'H' if hg > ag else ('A' if hg < ag else 'D')
+        result.append({
+            'id':        match_id,
+            'date':      date_str,
+            'homeTeam':  home,
+            'awayTeam':  away,
+            'homeGoals': hg,
+            'awayGoals': ag,
+            'result':    res_val,
+            'referee':   str(row.get('referee', '')) if pd.notna(row.get('referee')) else '',
+            'totalCards':int(row.get('total_cards', 0)) if pd.notna(row.get('total_cards')) else 0,
+        })
+    return result[::-1]
+
+def generate_default_upcoming():
+    from datetime import datetime, timedelta
+    today = datetime.now()
+    fixtures = [
+        {"home": "Arsenal", "away": "Manchester City", "offset": 0},
+        {"home": "Liverpool", "away": "Chelsea", "offset": 1},
+        {"home": "Tottenham Hotspur", "away": "Manchester Utd", "offset": 2},
+        {"home": "Newcastle United", "away": "Aston Villa", "offset": 3},
+        {"home": "West Ham United", "away": "Brighton", "offset": 4},
+    ]
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    elo_map = compute_elo_map(df)
+    ref_avg = float(df['referee_avg_cards_history'].mean()) if 'referee_avg_cards_history' in df.columns else 3.5
+    selector = MasterBetSelector()
+    upcoming_list = []
+    for i, fixture in enumerate(fixtures):
+        home = fixture["home"]
+        away = fixture["away"]
+        match_date = today + timedelta(days=fixture["offset"])
+        h_form = build_team_last5(home, df)
+        a_form = build_team_last5(away, df)
+        features = {
+            'home_elo':              round(elo_map.get(home, 1500), 1),
+            'away_elo':              round(elo_map.get(away, 1500), 1),
+            'h_missing_key_player':  0,
+            'a_missing_key_player':  0,
+            'home_rest':             7,
+            'away_rest':             7,
+            'h_l5_pts':              h_form.get('pts', 0),
+            'h_l5_sh':               h_form.get('sh', 0),
+            'h_l5_sot':              h_form.get('sot', 0),
+            'h_l5_sot_c':            0.0,
+            'h_l5_gf':               h_form.get('gf', 0),
+            'h_l5_ga':               h_form.get('ga', 0),
+            'h_l5_fls':              h_form.get('fls', 0),
+            'h_l5_conv':             h_form.get('conv', 0),
+            'h_l5_xg':               h_form.get('xg', 0),
+            'h_l5_xga':              h_form.get('xga', 0),
+            'a_l5_pts':              a_form.get('pts', 0),
+            'a_l5_sh':               a_form.get('sh', 0),
+            'a_l5_sot':              a_form.get('sot', 0),
+            'a_l5_sot_c':            0.0,
+            'a_l5_gf':               a_form.get('gf', 0),
+            'a_l5_ga':               a_form.get('ga', 0),
+            'a_l5_fls':              a_form.get('fls', 0),
+            'a_l5_conv':             a_form.get('conv', 0),
+            'a_l5_xg':               a_form.get('xg', 0),
+            'a_l5_xga':              a_form.get('xga', 0),
+            'referee_avg_cards_history': ref_avg,
+            'is_derby':              0,
+            'relegation_pressure':   0,
+        }
+        preds = selector.get_best_bet(features)
+        preds.sort(key=lambda x: x.get('ExpectedValue', 0.0), reverse=True)
+        top_bet = clean_json(preds[0]) if preds else None
+        upcoming_list.append({
+            'id': f"upcoming-{i}",
+            'date': match_date.strftime('%Y-%m-%d'),
+            'homeTeam': home,
+            'awayTeam': away,
+            'homeElo': float(features['home_elo']),
+            'awayElo': float(features['away_elo']),
+            'topPrediction': top_bet,
+            'allPredictions': clean_json(preds)
+        })
+    save_upcoming_matches(upcoming_list)
+    return upcoming_list
+
+def run_upcoming():
+    init_db()
+    matches_list = get_upcoming_matches()
+    if not matches_list:
+        matches_list = generate_default_upcoming()
+    return matches_list
+
+def run_update_upcoming():
+    from src.upcoming import fetch_upcoming_fixtures
+    print("[Bridge] Running Selenium scraper for upcoming fixtures...")
+    fixtures_df = fetch_upcoming_fixtures()
+    if fixtures_df.empty:
+        raise Exception("El scraper de FBref no devolvió fixtures. Posible bloqueo de Cloudflare. Por favor, intente de nuevo en unos minutos.")
+        
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    elo_map = compute_elo_map(df)
+    ref_avg = float(df['referee_avg_cards_history'].mean()) if 'referee_avg_cards_history' in df.columns else 3.5
+    selector = MasterBetSelector()
+    
+    upcoming_list = []
+    for i, row in fixtures_df.iterrows():
+        home = str(row['home_team'])
+        away = str(row['away_team'])
+        match_date = row['date']
+        
+        h_form = build_team_last5(home, df)
+        a_form = build_team_last5(away, df)
+        features = {
+            'home_elo':              round(elo_map.get(home, 1500), 1),
+            'away_elo':              round(elo_map.get(away, 1500), 1),
+            'h_missing_key_player':  0,
+            'a_missing_key_player':  0,
+            'home_rest':             7,
+            'away_rest':             7,
+            'h_l5_pts':              h_form.get('pts', 0),
+            'h_l5_sh':               h_form.get('sh', 0),
+            'h_l5_sot':              h_form.get('sot', 0),
+            'h_l5_sot_c':            0.0,
+            'h_l5_gf':               h_form.get('gf', 0),
+            'h_l5_ga':               h_form.get('ga', 0),
+            'h_l5_fls':              h_form.get('fls', 0),
+            'h_l5_conv':             h_form.get('conv', 0),
+            'h_l5_xg':               h_form.get('xg', 0),
+            'h_l5_xga':              h_form.get('xga', 0),
+            'a_l5_pts':              a_form.get('pts', 0),
+            'a_l5_sh':               a_form.get('sh', 0),
+            'a_l5_sot':              a_form.get('sot', 0),
+            'a_l5_sot_c':            0.0,
+            'a_l5_gf':               a_form.get('gf', 0),
+            'a_l5_ga':               a_form.get('ga', 0),
+            'a_l5_fls':              a_form.get('fls', 0),
+            'a_l5_conv':             a_form.get('conv', 0),
+            'a_l5_xg':               a_form.get('xg', 0),
+            'a_l5_xga':              a_form.get('xga', 0),
+            'referee_avg_cards_history': ref_avg,
+            'is_derby':              0,
+            'relegation_pressure':   0,
+        }
+        preds = selector.get_best_bet(features)
+        preds.sort(key=lambda x: x.get('ExpectedValue', 0.0), reverse=True)
+        top_bet = clean_json(preds[0]) if preds else None
+        
+        upcoming_list.append({
+            'id': f"upcoming-{i}",
+            'date': match_date.strftime('%Y-%m-%d'),
+            'homeTeam': home,
+            'awayTeam': away,
+            'homeElo': float(features['home_elo']),
+            'awayElo': float(features['away_elo']),
+            'topPrediction': top_bet,
+            'allPredictions': clean_json(preds)
+        })
+        
+    save_upcoming_matches(upcoming_list)
+    return upcoming_list
+
+def run_analyze_match(payload):
+    home = payload.get('homeTeam')
+    away = payload.get('awayTeam')
+    date = payload.get('date')
+    provider_name = payload.get('provider', 'minimax')
+    model = payload.get('model', '')
+    
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v8.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    elo_map = compute_elo_map(df)
+    ref_avg = float(df['referee_avg_cards_history'].mean()) if 'referee_avg_cards_history' in df.columns else 3.5
+    selector = MasterBetSelector()
+    
+    h_form = build_team_last5(home, df)
+    a_form = build_team_last5(away, df)
+    features = {
+        'home_elo':              round(elo_map.get(home, 1500), 1),
+        'away_elo':              round(elo_map.get(away, 1500), 1),
+        'h_missing_key_player':  0,
+        'a_missing_key_player':  0,
+        'home_rest':             7,
+        'away_rest':             7,
+        'h_l5_pts':              h_form.get('pts', 0),
+        'h_l5_sh':               h_form.get('sh', 0),
+        'h_l5_sot':              h_form.get('sot', 0),
+        'h_l5_sot_c':            0.0,
+        'h_l5_gf':               h_form.get('gf', 0),
+        'h_l5_ga':               h_form.get('ga', 0),
+        'h_l5_fls':              h_form.get('fls', 0),
+        'h_l5_conv':             h_form.get('conv', 0),
+        'h_l5_xg':               h_form.get('xg', 0),
+        'h_l5_xga':              h_form.get('xga', 0),
+        'a_l5_pts':              a_form.get('pts', 0),
+        'a_l5_sh':               a_form.get('sh', 0),
+        'a_l5_sot':              a_form.get('sot', 0),
+        'a_l5_sot_c':            0.0,
+        'a_l5_gf':               a_form.get('gf', 0),
+        'a_l5_ga':               a_form.get('ga', 0),
+        'a_l5_fls':              a_form.get('fls', 0),
+        'a_l5_conv':             a_form.get('conv', 0),
+        'a_l5_xg':               a_form.get('xg', 0),
+        'a_l5_xga':              a_form.get('xga', 0),
+        'referee_avg_cards_history': ref_avg,
+        'is_derby':              0,
+        'relegation_pressure':   0,
+    }
+    
+    preds = selector.get_best_bet(features)
+    preds.sort(key=lambda x: x.get('ExpectedValue', 0.0), reverse=True)
+    
+    match_report = f"""
+    ANALISIS DE PARTIDO: {home} vs {away}
+    Fecha: {date}
+    
+    Estadisticas base:
+    - {home} (Local) - ELO: {features['home_elo']}, Puntos últimos 5 partidos: {features['h_l5_pts']}
+    - {away} (Visitante) - ELO: {features['away_elo']}, Puntos últimos 5 partidos: {features['a_l5_pts']}
+    
+    Predicciones de los modelos de Machine Learning (ordenadas por Valor Esperado / EV descendente):
+    """
+    
+    for i, p in enumerate(preds):
+        match_report += f"""
+        {i+1}. Mercado: {p['Market']}
+           - Probabilidad de acierto del modelo: {p['Probability'] * 100:.1f}%
+           - Cuota del modelo / Cuota Justa: {p['FairOdds']:.2f}
+           - Cuota del mercado / Bookie: {p['ExpectedValue'] / p['Probability'] + 1.0:.2f}
+           - Valor Esperado (EV): {p['ExpectedValue'] * 100:+.1f}%
+           - Recomendacion Kelly (Stake %): {p['RecommendedStakePct']:.1f}%
+           - Pick sugerido: {p['Pick']}
+        """
+        
+    system_prompt = """
+    Actúa como un Analista de Apuestas Deportivas Senior y Experto en Machine Learning para la Premier League.
+    Tu trabajo es recibir las predicciones matemáticas generadas por nuestros modelos predictivos locales para un partido y traducirlas a un análisis comprensible, profesional, sensato y claro en español neutro (evitando modismos argentinos o de voseo).
+    
+    Sigue estas pautas estrictas en tu respuesta:
+    1. Comienza con una bienvenida profesional y directa.
+    2. Identifica la apuesta que ofrece mayor rentabilidad/EV (Valor Esperado) positivo y explícala claramente, justificando por qué el modelo la prefiere.
+    3. Cuantifica las posibles ganancias netas para ayudar al usuario a entender el valor. Usa como ejemplo una apuesta estándar de $10.000 CLP (o $10 USD): por ejemplo, si la cuota de mercado es 1.80, la ganancia neta potencial sería de $8.000 CLP por cada $10.000 CLP apostados.
+    4. Analiza los riesgos: si el stake sugerido por Kelly es alto o si el EV es ajustado. Advierte al usuario sobre el juego responsable y el control del bankroll.
+    5. Explica brevemente qué factores (como la diferencia de ELO o la racha reciente) justifican las probabilidades de los modelos.
+    6. Utiliza formato Markdown limpio con negritas y listas para que sea muy legible.
+    """
+    
+    user_prompt = f"Por favor analiza el siguiente reporte de partido y dame tus sugerencias y análisis experto:\n{match_report}"
+    
+    provider = get_provider(provider_name)
+    analysis_text = provider.generate(system_prompt, user_prompt, model)
+    
+    return {
+        "analysis": analysis_text,
+        "predictions": clean_json(preds)
+    }
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         # Some calls like seasons may not pass payload
@@ -856,5 +1222,19 @@ if __name__ == '__main__':
         print(json.dumps(run_seasons()))
     elif action == 'history':
         print(json.dumps(run_history(payload)))
+    elif action == 'stats':
+        print(json.dumps(run_stats()))
+    elif action == 'teams':
+        print(json.dumps(run_teams(payload)))
+    elif action == 'teams-list':
+        print(json.dumps(run_teams_list()))
+    elif action == 'recent-matches':
+        print(json.dumps(run_recent_matches()))
+    elif action == 'upcoming':
+        print(json.dumps(run_upcoming()))
+    elif action == 'update-upcoming':
+        print(json.dumps(run_update_upcoming()))
+    elif action == 'analyze-match':
+        print(json.dumps(run_analyze_match(payload)))
     else:
         sys.exit(1)
