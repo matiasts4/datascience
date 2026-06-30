@@ -1,6 +1,6 @@
 import { LayoutDashboard, CalendarDays, BarChart3, Bot, History, Database, Activity } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -28,12 +28,12 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-sidebar-border">
       <SidebarContent>
-        <div className="p-4 flex items-center gap-2">
+        <Link to="/" className="p-4 flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Bot className="h-7 w-7 text-primary shrink-0" />
           {!collapsed && (
-            <span className="text-lg font-bold gradient-text whitespace-nowrap">BetAnalitycs</span>
+            <span className="text-lg font-bold gradient-text whitespace-nowrap">BetAnalytics</span>
           )}
-        </div>
+        </Link>
 
         <SidebarGroup>
           <SidebarGroupLabel className="text-[10px] uppercase tracking-widest text-muted-foreground/60">

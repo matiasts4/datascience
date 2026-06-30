@@ -19,10 +19,10 @@ export const LandingBacktesting = () => {
   const { metaDecision } = landingData;
 
   const summaryStats = [
-    { label: "ROI del Meta-Modelo", value: "+9.96%", detail: "Frente al -1.85% de la línea base", icon: TrendingUp },
-    { label: "Mitigación del Varianza", value: "19.23%", detail: "Drawdown desplomado desde 77.26%", icon: ShieldAlert },
-    { label: "Falsos Positivos Evitados", value: "1,433", detail: "63.4% del volumen total de candidatos bloqueados", icon: Filter },
-    { label: "Apuestas Quirúrgicas", value: "827", detail: "Picks de alta confianza sobre 2,260 eventos reales", icon: Zap },
+    { label: "ROI del Meta-Modelo", value: "+6.91%", detail: "Frente al -5.08% de la línea base", icon: TrendingUp },
+    { label: "Mitigación de Varianza", value: "27.77%", detail: "Drawdown controlado frente al 99.42% de la línea base", icon: ShieldAlert },
+    { label: "Falsos Positivos Evitados", value: "1,463", detail: "64.6% del volumen de candidatos sospechosos bloqueados", icon: Filter },
+    { label: "Apuestas Realizadas", value: "802", detail: "Picks de alta confianza sobre 2,265 eventos simulados", icon: Zap },
   ];
 
   // Colors for Recharts lines
@@ -44,7 +44,7 @@ export const LandingBacktesting = () => {
           Motor de Inversión y Backtesting Real
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-          Evaluamos la robustez financiera de BetAnalytics sobre una línea temporal cronológica de <strong>2,260 partidos reales</strong> con cuotas 100% de <strong>Bet365</strong>. Comparamos la eficacia de los filtros cuantitativos y del motor de Meta-Labeling.
+          Evaluamos la robustez financiera de BetAnalytics sobre una línea temporal cronológica de <strong>2,265 partidos reales</strong> con cuotas 100% de <strong>Bet365</strong>. Comparamos la eficacia de los filtros cuantitativos y del motor de Meta-Labeling.
         </p>
       </div>
 
@@ -266,13 +266,13 @@ export const LandingBacktesting = () => {
           <Award className="h-5 w-5 text-primary" /> Justificación del Motor de Meta-Decisión
         </h2>
         <p>
-          En el mercado tradicional de apuestas, el cobro del <strong>overround comercial</strong> (~6.38% en Bet365) empuja sistemáticamente las cuentas al terreno de pérdidas si solo se apuesta basándose en la exactitud bruta del clasificador primario (Capa 1). Nuestra Línea Base Real lo demuestra al sufrir un drawdown acumulado del <strong>77.26%</strong>.
+          En el mercado tradicional de apuestas, el cobro del <strong>overround comercial</strong> (~6.38% en Bet365) empuja sistemáticamente las cuentas al terreno de pérdidas si solo se apuesta basándose en la exactitud bruta del clasificador primario (Capa 1). Nuestra Línea Base Real lo demuestra al sufrir un drawdown acumulado del <strong>99.42%</strong>.
         </p>
         <p>
           Para resolver esto, aplicamos la teoría de <strong>Meta-Labeling de Marcos López de Prado</strong>. En lugar de forzar al modelo principal a reajustar sus hiperparámetros (lo que causaría overfitting), creamos una segunda capa de Machine Learning que actúa como un guardián de riesgo (gatekeeper). Esta segunda capa analiza el contexto del mercado (fatiga de los equipos, diferencia de ELO, varianza de cuotas) y predice <em>la probabilidad de éxito de la decisión de inversión en sí misma</em>.
         </p>
         <p>
-          Como se observa en los resultados empíricos, el Meta-Modelo **evitó 1,433 apuestas perdedoras** (el 63.4% del volumen total), elevando el ROI neto al **+9.96%** y reduciendo drásticamente el drawdown a solo el **19.23%**. Esto valida la estrategia como un activo financiero de bajo riesgo y crecimiento robusto en la Premier League.
+          Como se observa en los resultados empíricos, el Meta-Modelo **evitó 1,463 apuestas perdedoras** (el 64.6% del volumen total), elevando el ROI neto al **+6.91%** y reduciendo drásticamente el drawdown a solo el **27.77%**. Esto valida la estrategia como un activo financiero de bajo riesgo y crecimiento robusto en la Premier League.
         </p>
       </div>
     </div>

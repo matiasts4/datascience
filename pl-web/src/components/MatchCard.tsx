@@ -12,6 +12,7 @@ interface MatchCardProps {
 
 export function MatchCard({ match }: MatchCardProps) {
   const isCompleted = match.status === "completed";
+  const isTestMatch = String(match.id).startsWith("test-");
   const topMarket = match.markets.length > 0
     ? match.markets.reduce((a, b) => (a.edge ?? 0) > (b.edge ?? 0) ? a : b)
     : null;
@@ -32,7 +33,7 @@ export function MatchCard({ match }: MatchCardProps) {
               : "bg-primary/15 text-primary"
           )}
         >
-          {isCompleted ? "Finalizado" : match.time !== "TBD" ? match.time : "Próximo"}
+          {isTestMatch ? "Test" : isCompleted ? "Finalizado" : match.time !== "TBD" ? match.time : "Próximo"}
         </span>
       </div>
 

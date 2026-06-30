@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { ArrowLeft, Calendar, MapPin, User, Loader2, Shield, Target, CreditCard, TrendingUp, Sparkles, Brain, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, User, Loader2, Shield, Target, CreditCard, TrendingUp, Sparkles, Brain, AlertTriangle, Trash, Plus } from "lucide-react";
 import { matches, getRefereeName } from "@/data/mockData";
 import { WinProbabilityBar } from "@/components/WinProbabilityBar";
 import { OddsButton } from "@/components/OddsButton";
@@ -209,6 +209,9 @@ const MatchDetail = () => {
   const goalsTotal = match.score ? match.score.home + match.score.away : null;
   const btts = match.score ? match.score.home > 0 && match.score.away > 0 : false;
 
+  const sortedMarkets = [...match.markets].sort((a: any, b: any) => b.edge - a.edge);
+  const bestMarket = sortedMarkets.length > 0 && sortedMarkets[0].edge > 0 ? sortedMarkets[0] : null;
+
   return (
     <div className="space-y-6 max-w-4xl mx-auto animate-fade-in">
       <Link to="/matches" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -330,9 +333,9 @@ const MatchDetail = () => {
         </div>
       )}
 
-      {/* UPCOMING MATCH: show prediction tabs */}
+      {/* UPCOMING MATCH: show predictions list */}
       {!isCompleted && (
-        <>
+        <div className="space-y-6">
           {/* AI EXPERT ANALYST CARD */}
           <div className="glass-card p-5 relative overflow-hidden bg-gradient-to-br from-primary/10 via-card to-card border-primary/20 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -341,7 +344,7 @@ const MatchDetail = () => {
                   <Brain className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-foreground flex items-center gap-1.5 text-sm">
+                  <h3 className="font-bold text-foreground text-sm flex items-center gap-1.5">
                     Analista Experto de IA <Sparkles className="h-3.5 w-3.5 text-primary animate-pulse" />
                   </h3>
                   <p className="text-[11px] text-muted-foreground">Análisis de valor y sugerencias en base a ELO y racha en Premier League</p>
@@ -409,54 +412,89 @@ const MatchDetail = () => {
             )}
           </div>
 
-          <Tabs defaultValue="match-odds" className="w-full">
-            <TabsList className="w-full bg-card border border-border grid grid-cols-2 md:grid-cols-4">
-              {predictionCategories.map((c) => (
-                <TabsTrigger key={c.key} value={c.key} className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  {c.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            {predictionCategories.map((c) => {
-              const categoryMarkets = match.markets.filter((m: any) => m.category === c.key);
-              return (
-                <TabsContent key={c.key} value={c.key} className="mt-4 space-y-3">
-                  {categoryMarkets.length === 0 ? (
-                    <p className="text-sm text-muted-foreground text-center py-8">Aún no hay predicciones para este mercado.</p>
-                  ) : (
-                    categoryMarkets.map((market: any, i: number) => (
-                      <div key={i} className="glass-card p-4 flex flex-col sm:flex-row sm:items-center gap-4 justify-between animate-fade-in" style={{ animationDelay: `${i * 80}ms` }}>
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-foreground">{market.name}</p>
-                          <p className="text-xs text-muted-foreground mt-0.5">{market.prediction}</p>
-                        </div>
-                        <div className="flex items-center gap-3 flex-wrap">
-                          <ConfidenceBadge confidence={market.confidence} />
-                          {market.edge > 5 && (
-                            <span className="inline-flex items-center rounded-full bg-success/15 px-2.5 py-0.5 text-[10px] font-bold text-success border border-success/20">
-                              ALTO VALOR
-                            </span>
+          {/* Model predictions compact table */}
+          <div className="glass-card p-5 border-border/50">
+            <div className="border-b border-border/50 pb-3 mb-4">
+              <h3 className="font-bold text-foreground text-sm">
+                Predicciones de Modelos de Machine Learning
+              </h3>
+              <p className="text-[11px] text-muted-foreground">
+                Evaluación de todos los mercados ordenada por ventaja matemática (EV) en base a los modelos optimizados.
+              </p>
+            </div>
+
+            {sortedMarkets.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center py-8">Aún no hay predicciones calculadas para este encuentro.</p>
+            ) : (
+              <div className="overflow-x-auto border border-border/40 rounded-lg">
+                <table className="w-full text-xs text-left border-collapse">
+                  <thead className="text-[10px] uppercase bg-muted/70 text-foreground border-b border-border/40">
+                    <tr>
+                      <th className="px-3 py-2.5 font-bold">Mercado / Selección</th>
+                      <th className="px-3 py-2.5 font-bold text-center">Probabilidad</th>
+                      <th className="px-3 py-2.5 font-bold text-center">Cuota Bookie</th>
+                      <th className="px-3 py-2.5 font-bold text-center">Cuota Justa</th>
+                      <th className="px-3 py-2.5 font-bold text-center">Ventaja (EV)</th>
+                      <th className="px-3 py-2.5 font-bold text-center">Stake Kelly (0.25x)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/30">
+                    {sortedMarkets.map((market: any, i: number) => {
+                      const isBest = bestMarket && bestMarket.name === market.name;
+                      return (
+                        <tr
+                          key={i}
+                          className={cn(
+                            "transition-colors",
+                            isBest ? "bg-success/5 border-l-4 border-l-success font-medium" : "hover:bg-muted/5"
                           )}
-                          <OddsButton odds={market.odds} label="Cuota" />
-                          <div className="text-center">
-                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground block">Justa</span>
-                            <span className="text-sm font-semibold text-foreground">{market.fairOdds.toFixed(2)}</span>
-                          </div>
-                          <div className="text-center">
-                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground block">Ventaja</span>
-                            <span className={`text-sm font-bold ${market.edge > 5 ? "text-success" : "text-muted-foreground"}`}>
-                              +{market.edge.toFixed(1)}%
+                        >
+                          <td className="px-3 py-2.5">
+                            <div className="flex flex-col gap-0.5">
+                              <div className="flex items-center gap-1.5">
+                                <span className="font-bold text-foreground">{market.name}</span>
+                                {isBest && (
+                                  <span className="bg-success text-success-foreground text-[8px] font-bold px-1 rounded uppercase tracking-wider">
+                                    Mejor Opción
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-[10px] text-muted-foreground">{market.prediction}</span>
+                            </div>
+                          </td>
+                          <td className="px-3 py-2.5 text-center">
+                            <ConfidenceBadge confidence={Math.round(market.confidence)} />
+                          </td>
+                          <td className="px-3 py-2.5 text-center font-semibold font-mono text-foreground">
+                            x{market.odds.toFixed(2)}
+                          </td>
+                          <td className="px-3 py-2.5 text-center text-muted-foreground font-mono">
+                            x{market.fairOdds.toFixed(2)}
+                          </td>
+                          <td className="px-3 py-2.5 text-center">
+                            <span className={cn(
+                              "font-bold font-mono text-xs",
+                              market.edge > 5
+                                ? "text-success"
+                                : market.edge > 0
+                                  ? "text-warning"
+                                  : "text-muted-foreground"
+                            )}>
+                              {market.edge > 0 ? "+" : ""}{market.edge.toFixed(1)}%
                             </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </TabsContent>
-              );
-            })}
-          </Tabs>
-        </>
+                          </td>
+                          <td className="px-3 py-2.5 text-center font-bold font-mono text-primary">
+                            {market.recommendedStakePct.toFixed(1)}%
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

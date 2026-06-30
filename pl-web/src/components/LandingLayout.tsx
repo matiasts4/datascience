@@ -11,7 +11,7 @@ export const LandingLayout = () => {
     { label: "Inicio", path: "/" },
     { label: "Modelos e IA", path: "/technology" },
     { label: "Rendimiento", path: "/backtesting" },
-    { label: "Pipeline V8", path: "/pipeline" },
+    { label: "Pipeline de Datos", path: "/pipeline" },
   ];
 
   return (

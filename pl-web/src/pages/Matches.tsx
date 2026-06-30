@@ -54,7 +54,7 @@ const Matches = () => {
           )}
         >
           <CalendarDays className="h-4 w-4" />
-          Próximos
+          Test / Demo
           {apiUpcomingMatches && (
             <span className={cn(
               "ml-1 text-[10px] font-bold px-1.5 py-0.5 rounded-full",
@@ -114,7 +114,7 @@ const Matches = () => {
         <div className="text-center py-12 text-muted-foreground glass-card p-10">
           <Search className="h-8 w-8 mx-auto mb-3 opacity-20" />
           <p className="text-sm font-medium">
-            {search ? "No se encontraron partidos con ese nombre" : `No hay partidos ${activeTab === "upcoming" ? "próximos" : "recientes"}`}
+            {search ? "No se encontraron partidos con ese nombre" : `No hay partidos ${activeTab === "upcoming" ? "de test" : "recientes"}`}
           </p>
         </div>
       )}

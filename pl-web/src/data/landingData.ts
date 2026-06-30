@@ -116,27 +116,27 @@ export interface LandingData {
 
 // -------------- BRAND --------------
 const brand: LandingData["brand"] = {
-  name: "BetAnalitycs",
-  tagline: "Apuestas más inteligentes. Mayores ventajas.",
+  name: "BetAnalytics",
+  tagline: "Modelado Predictivo y Optimización Financiera en la Premier League",
   description:
-    "Nuestra IA analiza miles de puntos de datos por partido para encontrar las oportunidades de apuestas de mayor valor en cada partido de la Premier League.",
+    "Un proyecto académico de investigación cuantitativa que integra modelos de Machine Learning y algoritmos de optimización de portafolios (criterio de Kelly) para modelar ventajas matemáticas reales sobre el mercado de cuotas deportivas.",
   ctaPrimary: "Abrir Panel",
   ctaSecondary: "Saber más",
 };
 
 // -------------- HERO STATS --------------
-// Actualizar cuando cambien las métricas globales del predictor.
+// Dimensiones reales de este proyecto de investigación.
 const heroStats: HeroStat[] = [
-  { label: "Tasa de Acierto", value: "67.3%", icon: Target },
-  { label: "ROI", value: "12.8%", icon: TrendingUp },
-  { label: "Predicciones", value: "1,247", icon: BarChart3 },
-  { label: "Beneficio Total", value: "£3,842", icon: Zap },
+  { label: "Modelos Predictivos", value: "8 Pipelines", icon: Brain },
+  { label: "Histórico Premier", value: "9 Temporadas", icon: Database },
+  { label: "Gestión de Banca", value: "Quarter Kelly", icon: Calculator },
+  { label: "Capas de Control", value: "3 Niveles", icon: Shield },
 ];
 
 // -------------- HERO --------------
 const hero: LandingData["hero"] = {
-  badge: "Analítica de la Premier League con IA",
-  headline: ["Apuestas más inteligentes.", "Mayores ventajas."],
+  badge: "Investigación y Analítica de Datos con IA",
+  headline: ["Modelado Predictivo y", "Optimización de Banca"],
   subheadline: brand.description,
   stats: heroStats,
 };
@@ -165,11 +165,11 @@ const features: Feature[] = [
     icon: Brain,
     title: "Ensemble de 4 Modelos",
     description:
-      "Combinamos Logistic Regression, Random Forest, HistGradientBoosting y XGBoost evaluados con TimeSeriesSplit sobre 3.389 partidos reales.",
+      "Combinamos Logistic Regression, Random Forest, HistGradientBoosting y XGBoost evaluados con TimeSeriesSplit sobre 3.420 partidos reales.",
   },
   {
     icon: Database,
-    title: "Pipeline Sanitizado V8",
+    title: "Pipeline Sanitizado",
     description:
       "Datos crudos pasan por un pipeline que elimina fugas de información, cuotas del bookmaker en entrenamiento y goles reales previos por colinealidad.",
   },
@@ -181,20 +181,16 @@ const features: Feature[] = [
   },
 ];
 
-// -------------- RESULTADOS DE MODELOS V8 --------------
-// Datos extraídos de generate_model_results_table.py
-// (Carpeta_Presentacion/14_Tabla_Resultados_Modelos_V8.csv).
-// El flag isBest marca el modelo ganador dentro de cada mercado.
-// Para actualizar: regenerar el CSV y copiar ac// -------------- RESULTADOS DE MODELOS V9 --------------
+// -------------- RESULTADOS DE MODELOS --------------
 // Datos extraídos de evaluar_modelos_optimos.py y evaluar_comparativa_completa.py
 // (archive/pl-predictor/models/optimized_models_comparison_results.csv).
 // El flag isBest marca el modelo ganador dentro de cada mercado.
 const modelResults: LandingData["modelResults"] = {
   title: "Resultados por Mercado y Modelo",
   subtitle:
-    "Métricas reales entrenadas sobre historical_sanitized_v9.csv (3.420 partidos de Premier League).",
+    "Métricas reales entrenadas sobre el dataset histórico (3.420 partidos de Premier League).",
   source:
-    "Fuente: corrida real de train_models.py con TimeSeriesSplit en el dataset V9. ROC-AUC figura como N/A en 1X2 porque el target es multiclase en este evaluador.",
+    "Fuente: corrida real de train_models.py con TimeSeriesSplit en el dataset principal. ROC-AUC figura como N/A en 1X2 porque el target es multiclase en este evaluador.",
   markets: [
     {
       id: "1x2",
@@ -303,7 +299,7 @@ const decisionFlow: LandingData["decisionFlow"] = {
       icon: Shield,
       title: "2. Sanitizamos el dataset",
       description:
-        "El pipeline V9 elimina de forma estricta fugas de información: no usamos cuotas del bookmaker ni goles reales previos como features de entrenamiento.",
+        "El pipeline de datos elimina de forma estricta fugas de información: no usamos cuotas del bookmaker ni goles reales previos como features de entrenamiento.",
     },
     {
       icon: Brain,
@@ -344,13 +340,13 @@ const markets: LandingData["markets"] = {
 
 // -------------- CTA Y FOOTER --------------
 const cta: LandingData["cta"] = {
-  title: "¿Listo para Encontrar tu Ventaja?",
-  subtitle: "Comienza a explorar predicciones con IA para cada partido de la Premier League.",
+  title: "¿Listo para Explorar los Modelos?",
+  subtitle: "Explora los análisis predictivos y simulaciones matemáticas para cada encuentro de la Premier League.",
   button: "Abrir Panel",
 };
 
 const footer: LandingData["footer"] = {
-  tagline: "Analíticas de apuestas de la Premier League impulsadas por inteligencia artificial.",
+  tagline: "Analítica cuantitativa y modelado predictivo de la Premier League impulsado por Machine Learning.",
 };
 
 // -------------- OVERFITTING DATA --------------

@@ -41,7 +41,7 @@ export const LandingPipeline = () => {
     <div className="py-12 px-6 max-w-7xl mx-auto flex flex-col min-h-[calc(100vh-8rem)]">
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-foreground mb-4">
-          Pipeline V8 y Arquitectura de 3 Capas
+          Pipeline de Datos y Arquitectura de 3 Capas
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           Para lograr rentabilidad consistente frente a las cuotas de Bet365, BetAnalytics utiliza una arquitectura de control cuantitativo modular de tres capas, aislando los descriptores tácticos del ruido mercantil.
@@ -79,10 +79,10 @@ export const LandingPipeline = () => {
 
       {/* Feature Importance & Preprocessing Grid */}
       <div className="grid lg:grid-cols-5 gap-8 items-start mb-16">
-        {/* Left Column: Data Sanitization V8 & Resampling */}
+        {/* Left Column: Data Sanitization V9 & Resampling */}
         <div className="lg:col-span-2 space-y-6">
           <h2 className="text-lg font-bold text-foreground tracking-tight mb-2">
-            Sanitización del Dataset V8
+            Sanitización del Dataset
           </h2>
           <div className="space-y-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
             <div className="flex gap-3 items-start">

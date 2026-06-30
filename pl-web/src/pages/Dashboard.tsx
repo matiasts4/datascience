@@ -97,27 +97,27 @@ const Dashboard = () => {
             <StatCard
               label="TASA DE ACIERTO"
               value={stats ? `${stats.accuracy_pct.toFixed(1)}%` : "—"}
-              change="Modelo ML real"
+              change="Evaluado en 380 partidos out-of-sample"
               icon={Target}
               positive
             />
             <StatCard
               label="MERCADOS ACTIVOS"
               value={stats ? stats.markets_tracked.toString() : "—"}
-              change="Mercados evaluados"
+              change="Tipos de apuesta con modelos propios"
               icon={Zap}
             />
             <StatCard
-              label="PARTIDOS TOTALES"
+              label="PARTIDOS ANALIZADOS"
               value={stats ? stats.totalMatches.toLocaleString() : "—"}
-              change="En la base histórica"
+              change="Historial de la Premier League"
               icon={Activity}
               positive
             />
             <StatCard
               label="TEMPORADAS"
               value={stats ? stats.seasons.toString() : "—"}
-              change="Temporadas de la PL"
+              change="Desde 2017/18 hasta 2025/26"
               icon={TrendingUp}
               positive
             />
@@ -131,7 +131,7 @@ const Dashboard = () => {
           <Flame className="h-5 w-5 text-warning" />
           <h2 className="text-lg font-semibold text-foreground tracking-tight">Selecciones Destacadas</h2>
           <span className="text-xs text-muted-foreground">
-            · {matches && matches.length > 0 ? "Generadas desde partidos reales" : "Las mejores apuestas de hoy"}
+            · {matches && matches.length > 0 ? "Generadas desde partidos de test" : "Las mejores apuestas de test"}
           </span>
         </div>
         <div className="space-y-2.5">
@@ -178,7 +178,7 @@ const Dashboard = () => {
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 justify-between mb-4">
           <div className="flex items-center gap-2">
             <BarChart3 className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold text-foreground tracking-tight">Próximos Partidos</h2>
+            <h2 className="text-lg font-semibold text-foreground tracking-tight">Partidos de Test</h2>
             {matches && (
               <span className="text-xs text-muted-foreground ml-2">
                 ({matches.length} partido{matches.length !== 1 ? "s" : ""})
@@ -191,7 +191,7 @@ const Dashboard = () => {
             className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-primary hover:text-primary-foreground bg-primary/10 hover:bg-primary border border-primary/20 rounded-md transition-all disabled:opacity-50 disabled:pointer-events-none"
           >
             <RefreshCw className={`h-3.5 w-3.5 ${isUpdating ? "animate-spin" : ""}`} />
-            {isUpdating ? "Actualizando..." : "Actualizar Calendario"}
+            {isUpdating ? "Actualizando..." : "Recargar Partidos de Test"}
           </button>
         </div>
         {matchesLoading ? (
@@ -207,8 +207,8 @@ const Dashboard = () => {
         ) : (
           <div className="glass-card p-10 flex flex-col items-center justify-center text-center text-muted-foreground gap-2">
             <BarChart3 className="h-10 w-10 opacity-20 mb-1" />
-            <p className="text-sm font-medium">No hay partidos próximos disponibles</p>
-            <p className="text-xs opacity-60">No se encontraron fixtures próximos en el sistema</p>
+            <p className="text-sm font-medium">No hay partidos de test disponibles</p>
+            <p className="text-xs opacity-60">No se encontraron partidos de test en el sistema</p>
           </div>
         )}
       </div>
