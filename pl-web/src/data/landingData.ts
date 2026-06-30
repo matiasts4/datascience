@@ -185,23 +185,26 @@ const features: Feature[] = [
 // Datos extraídos de generate_model_results_table.py
 // (Carpeta_Presentacion/14_Tabla_Resultados_Modelos_V8.csv).
 // El flag isBest marca el modelo ganador dentro de cada mercado.
-// Para actualizar: regenerar el CSV y copiar accuracy / rocAuc / f1 acá.
+// Para actualizar: regenerar el CSV y copiar ac// -------------- RESULTADOS DE MODELOS V9 --------------
+// Datos extraídos de evaluar_modelos_optimos.py y evaluar_comparativa_completa.py
+// (archive/pl-predictor/models/optimized_models_comparison_results.csv).
+// El flag isBest marca el modelo ganador dentro de cada mercado.
 const modelResults: LandingData["modelResults"] = {
   title: "Resultados por Mercado y Modelo",
   subtitle:
-    "Métricas reales entrenadas sobre historical_sanitized_v8.csv (3.389 partidos de Premier League).",
+    "Métricas reales entrenadas sobre historical_sanitized_v9.csv (3.420 partidos de Premier League).",
   source:
-    "Fuente: corrida real de train_models.py con TimeSeriesSplit. ROC-AUC figura como N/A en 1X2 porque el target es multiclase en este evaluador.",
+    "Fuente: corrida real de train_models.py con TimeSeriesSplit en el dataset V9. ROC-AUC figura como N/A en 1X2 porque el target es multiclase en este evaluador.",
   markets: [
     {
       id: "1x2",
       label: "1X2 (Ganador)",
       shortLabel: "1X2",
       models: [
-        { name: "Logistic Regression (Elastic Net)", accuracy: 52.84, rocAuc: null, f1: 46.93, isBest: true },
-        { name: "Random Forest", accuracy: 52.30, rocAuc: null, f1: 46.39, isBest: false },
-        { name: "HistGradientBoosting", accuracy: 52.06, rocAuc: null, f1: 45.97, isBest: false },
-        { name: "XGBoost", accuracy: 50.78, rocAuc: null, f1: 46.33, isBest: false },
+        { name: "Logistic Regression (Elastic Net)", accuracy: 53.09, rocAuc: null, f1: 47.18, isBest: true },
+        { name: "HistGradientBoosting", accuracy: 52.25, rocAuc: null, f1: 47.07, isBest: false },
+        { name: "XGBoost", accuracy: 52.25, rocAuc: null, f1: 45.81, isBest: false },
+        { name: "Random Forest", accuracy: 52.18, rocAuc: null, f1: 45.53, isBest: false },
       ],
     },
     {
@@ -209,10 +212,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Doble Oportunidad (1X)",
       shortLabel: "DC 1X",
       models: [
-        { name: "Logistic Regression (Elastic Net)", accuracy: 70.82, rocAuc: 71.38, f1: 80.10, isBest: true },
-        { name: "Random Forest", accuracy: 69.68, rocAuc: 68.18, f1: 79.87, isBest: false },
-        { name: "HistGradientBoosting", accuracy: 68.33, rocAuc: 68.31, f1: 78.71, isBest: false },
-        { name: "XGBoost", accuracy: 68.12, rocAuc: 68.01, f1: 78.50, isBest: false },
+        { name: "Logistic Regression (Elastic Net)", accuracy: 70.95, rocAuc: 71.38, f1: 80.75, isBest: true },
+        { name: "Random Forest", accuracy: 70.32, rocAuc: 69.74, f1: 80.71, isBest: false },
+        { name: "Neural Network", accuracy: 70.25, rocAuc: 69.85, f1: 80.33, isBest: false },
+        { name: "XGBoost", accuracy: 69.75, rocAuc: 69.37, f1: 79.86, isBest: false },
       ],
     },
     {
@@ -220,10 +223,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Doble Oportunidad (X2)",
       shortLabel: "DC X2",
       models: [
-        { name: "Logistic Regression (Elastic Net)", accuracy: 65.35, rocAuc: 70.54, f1: 68.36, isBest: true },
-        { name: "Random Forest", accuracy: 63.90, rocAuc: 69.16, f1: 68.54, isBest: false },
-        { name: "HistGradientBoosting", accuracy: 63.62, rocAuc: 68.13, f1: 67.65, isBest: false },
-        { name: "XGBoost", accuracy: 62.59, rocAuc: 67.98, f1: 66.80, isBest: false },
+        { name: "Logistic Regression (Elastic Net)", accuracy: 65.40, rocAuc: 71.16, f1: 70.64, isBest: true },
+        { name: "Neural Network", accuracy: 64.46, rocAuc: 70.32, f1: 68.27, isBest: false },
+        { name: "XGBoost", accuracy: 64.32, rocAuc: 69.64, f1: 68.97, isBest: false },
+        { name: "HistGradientBoosting", accuracy: 64.18, rocAuc: 69.67, f1: 69.20, isBest: false },
       ],
     },
     {
@@ -231,10 +234,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Más de 2.5 Goles",
       shortLabel: "Over 2.5",
       models: [
-        { name: "XGBoost (L1/L2 Reg)", accuracy: 57.02, rocAuc: 55.35, f1: 62.32, isBest: true },
-        { name: "HistGradientBoosting", accuracy: 56.99, rocAuc: 54.05, f1: 67.33, isBest: false },
-        { name: "Random Forest", accuracy: 55.28, rocAuc: 53.97, f1: 63.84, isBest: false },
-        { name: "Logistic Regression", accuracy: 54.72, rocAuc: 55.35, f1: 62.32, isBest: false },
+        { name: "XGBoost (L1/L2 Reg)", accuracy: 56.88, rocAuc: 55.22, f1: 68.00, isBest: true },
+        { name: "Random Forest", accuracy: 56.35, rocAuc: 55.05, f1: 65.79, isBest: false },
+        { name: "Neural Network", accuracy: 55.05, rocAuc: 50.42, f1: 65.50, isBest: false },
+        { name: "Logistic Regression", accuracy: 54.74, rocAuc: 55.32, f1: 62.54, isBest: false },
       ],
     },
     {
@@ -242,10 +245,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Menos de 2.5 Goles",
       shortLabel: "Under 2.5",
       models: [
-        { name: "XGBoost (L1/L2 Reg)", accuracy: 57.34, rocAuc: 55.35, f1: 41.99, isBest: true },
-        { name: "HistGradientBoosting", accuracy: 56.95, rocAuc: 54.13, f1: 32.65, isBest: false },
-        { name: "Random Forest", accuracy: 55.25, rocAuc: 54.34, f1: 40.76, isBest: false },
-        { name: "Logistic Regression", accuracy: 54.72, rocAuc: 55.35, f1: 41.99, isBest: false },
+        { name: "XGBoost (L1/L2 Reg)", accuracy: 56.63, rocAuc: 55.26, f1: 31.64, isBest: true },
+        { name: "HistGradientBoosting", accuracy: 56.14, rocAuc: 54.72, f1: 35.63, isBest: false },
+        { name: "Random Forest", accuracy: 56.11, rocAuc: 55.07, f1: 36.17, isBest: false },
+        { name: "Logistic Regression", accuracy: 54.67, rocAuc: 55.30, f1: 41.69, isBest: false },
       ],
     },
     {
@@ -253,10 +256,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Ambos Marcan (BTTS Sí)",
       shortLabel: "BTTS Sí",
       models: [
-        { name: "HistGradientBoosting (L2 Reg)", accuracy: 54.61, rocAuc: 51.53, f1: 60.82, isBest: true },
-        { name: "XGBoost", accuracy: 51.70, rocAuc: 51.76, f1: 55.91, isBest: false },
-        { name: "Logistic Regression", accuracy: 51.56, rocAuc: 51.12, f1: 56.45, isBest: false },
-        { name: "Random Forest", accuracy: 50.35, rocAuc: 49.74, f1: 57.27, isBest: false },
+        { name: "Logistic Regression (Elastic Net)", accuracy: 53.44, rocAuc: 50.00, f1: 69.55, isBest: true },
+        { name: "Neural Network", accuracy: 53.37, rocAuc: 50.00, f1: 56.19, isBest: false },
+        { name: "XGBoost", accuracy: 53.19, rocAuc: 51.27, f1: 61.92, isBest: false },
+        { name: "Random Forest", accuracy: 53.05, rocAuc: 50.44, f1: 62.21, isBest: false },
       ],
     },
     {
@@ -264,10 +267,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Ambos Marcan (BTTS No)",
       shortLabel: "BTTS No",
       models: [
-        { name: "Red Neuronal MLP PyTorch", accuracy: 53.94, rocAuc: 50.93, f1: 34.91, isBest: true },
-        { name: "HistGradientBoosting", accuracy: 53.12, rocAuc: 50.93, f1: 34.91, isBest: false },
-        { name: "XGBoost", accuracy: 51.70, rocAuc: 51.76, f1: 45.87, isBest: false },
-        { name: "Logistic Regression", accuracy: 51.56, rocAuc: 51.12, f1: 42.12, isBest: false },
+        { name: "Red Neuronal MLP PyTorch", accuracy: 53.37, rocAuc: 52.73, f1: 31.07, isBest: true },
+        { name: "Logistic Regression", accuracy: 53.23, rocAuc: 50.00, f1: 13.24, isBest: false },
+        { name: "Random Forest", accuracy: 52.63, rocAuc: 50.24, f1: 33.50, isBest: false },
+        { name: "HistGradientBoosting", accuracy: 52.21, rocAuc: 51.90, f1: 45.72, isBest: false },
       ],
     },
     {
@@ -275,10 +278,10 @@ const modelResults: LandingData["modelResults"] = {
       label: "Valla Invicta Local",
       shortLabel: "Clean Sheet H",
       models: [
-        { name: "Red Neuronal MLP PyTorch", accuracy: 70.99, rocAuc: 60.85, f1: 22.65, isBest: true },
-        { name: "HistGradientBoosting", accuracy: 70.43, rocAuc: 59.91, f1: 9.14, isBest: false },
-        { name: "Random Forest", accuracy: 69.93, rocAuc: 58.56, f1: 20.71, isBest: false },
-        { name: "Logistic Regression", accuracy: 69.43, rocAuc: 60.85, f1: 22.65, isBest: false },
+        { name: "Red Neuronal MLP PyTorch", accuracy: 70.88, rocAuc: 55.12, f1: 1.19, isBest: true },
+        { name: "Logistic Regression", accuracy: 70.84, rocAuc: 54.83, f1: 0.00, isBest: false },
+        { name: "HistGradientBoosting", accuracy: 70.84, rocAuc: 60.68, f1: 0.00, isBest: false },
+        { name: "XGBoost", accuracy: 70.84, rocAuc: 60.71, f1: 0.00, isBest: false },
       ],
     },
   ],
@@ -300,7 +303,7 @@ const decisionFlow: LandingData["decisionFlow"] = {
       icon: Shield,
       title: "2. Sanitizamos el dataset",
       description:
-        "El pipeline V8 elimina fugas de información: no usamos cuotas del bookmaker ni goles reales previos como features de entrenamiento.",
+        "El pipeline V9 elimina de forma estricta fugas de información: no usamos cuotas del bookmaker ni goles reales previos como features de entrenamiento.",
     },
     {
       icon: Brain,
@@ -311,7 +314,7 @@ const decisionFlow: LandingData["decisionFlow"] = {
     {
       icon: Calculator,
       title: "4. Calculamos el Valor Esperado (EV)",
-        description:
+      description:
         "Comparamos la probabilidad estimada por el modelo contra la cuota ofrecida. Solo apostamos cuando el Expected Value es positivo.",
     },
     {
@@ -353,37 +356,37 @@ const footer: LandingData["footer"] = {
 // -------------- OVERFITTING DATA --------------
 const overfitting: LandingData["overfitting"] = {
   "1x2": [
-    { modelName: "LogReg Optimizada (C=0.06 - Prod)", trainAcc: 54.26, testAcc: 53.44, gap: 0.82, diagnostic: "Punto Óptimo (Sweet Spot)" },
-    { modelName: "LogReg Sin Regularizar (C=100)", trainAcc: 55.14, testAcc: 52.30, gap: 2.83, diagnostic: "Pérdida Leve" },
-    { modelName: "HistGradientBoosting Óptimo (Depth=3)", trainAcc: 64.40, testAcc: 52.06, gap: 12.34, diagnostic: "Sobreajuste Moderado" },
-    { modelName: "HistGradientBoosting Complejo (Depth=10)", trainAcc: 99.52, testAcc: 48.62, gap: 50.90, diagnostic: "Overfitting Extremo" },
+    { modelName: "LogReg Optimizada (C=0.06 - Prod)", trainAcc: 54.12, testAcc: 53.09, gap: 1.03, diagnostic: "Punto Óptimo (Sweet Spot)" },
+    { modelName: "LogReg Sin Regularizar (C=100)", trainAcc: 55.20, testAcc: 52.18, gap: 3.02, diagnostic: "Pérdida Leve" },
+    { modelName: "HistGradientBoosting Óptimo (Depth=3)", trainAcc: 64.30, testAcc: 52.25, gap: 12.05, diagnostic: "Sobreajuste Moderado" },
+    { modelName: "HistGradientBoosting Complejo (Depth=10)", trainAcc: 99.40, testAcc: 48.20, gap: 51.20, diagnostic: "Overfitting Extremo" },
   ],
   over25: [
-    { modelName: "XGBoost Simple (Depth=1)", trainAcc: 55.02, testAcc: 55.28, gap: -0.26, diagnostic: "Underfitting (Subajuste)" },
-    { modelName: "XGBoost Óptimo (Depth=2 - Prod)", trainAcc: 59.90, testAcc: 57.06, gap: 2.84, diagnostic: "Punto Óptimo (Sweet Spot)" },
-    { modelName: "XGBoost Complejo (Depth=6)", trainAcc: 99.60, testAcc: 51.99, gap: 47.61, diagnostic: "Overfitting Extremo" },
+    { modelName: "XGBoost Simple (Depth=1)", trainAcc: 55.10, testAcc: 54.74, gap: 0.36, diagnostic: "Underfitting (Subajuste)" },
+    { modelName: "XGBoost Óptimo (Depth=2 - Prod)", trainAcc: 59.82, testAcc: 56.88, gap: 2.94, diagnostic: "Punto Óptimo (Sweet Spot)" },
+    { modelName: "XGBoost Complejo (Depth=6)", trainAcc: 99.50, testAcc: 51.30, gap: 48.20, diagnostic: "Overfitting Extremo" },
   ]
 };
 
 // -------------- META DECISION DATA --------------
 const metaDecision: LandingData["metaDecision"] = {
   configs: [
-    { configName: "Línea Base Real (Capa 1)", bankroll: 582.74, roi: -1.85, bets: 2260, avoided: 0, drawdown: 77.26, diagnostic: "Pérdida gradual por overround" },
-    { configName: "Solo EV Dinámico (Capa 3)", bankroll: 633.14, roi: -1.65, bets: 2226, avoided: 34, drawdown: 74.08, diagnostic: "Mitigación marginal" },
-    { configName: "Solo Meta-Modelo (Capa 2)", bankroll: 1823.62, roi: 9.96, bets: 827, avoided: 1433, drawdown: 19.23, diagnostic: "Eficiencia Máxima (Sweet Spot)" },
-    { configName: "Sistema Dual (Óptimo)", bankroll: 1711.82, roi: 8.52, bets: 835, avoided: 1391, drawdown: 19.23, diagnostic: "Estabilidad excepcional" },
+    { configName: "Línea Base Real (Capa 1)", bankroll: 9.93, roi: -5.08, bets: 1949, avoided: 0, drawdown: 99.42, diagnostic: "Ruina casi total por overround" },
+    { configName: "Solo EV Dinámico (Capa 3)", bankroll: 0.33, roi: -5.25, bets: 1905, avoided: 44, drawdown: 99.98, diagnostic: "Pérdida total por ruido" },
+    { configName: "Solo Meta-Modelo (Capa 2)", bankroll: 1554.55, roi: 6.91, bets: 802, avoided: 1463, drawdown: 27.77, diagnostic: "Eficiencia Excelente (Sweet Spot)" },
+    { configName: "Sistema Dual (Óptimo)", bankroll: 1551.85, roi: 6.59, bets: 837, avoided: 1384, drawdown: 27.03, diagnostic: "Estabilidad excepcional" },
   ],
   crecimiento: [
     { step: "Inicio", lineaBase: 1000, metaModelo: 1000, sistemaDual: 1000 },
-    { step: "Sep", lineaBase: 950, metaModelo: 1080, sistemaDual: 1070 },
-    { step: "Oct", lineaBase: 900, metaModelo: 1150, sistemaDual: 1120 },
-    { step: "Nov", lineaBase: 840, metaModelo: 1240, sistemaDual: 1200 },
-    { step: "Dic", lineaBase: 890, metaModelo: 1310, sistemaDual: 1280 },
-    { step: "Ene", lineaBase: 780, metaModelo: 1420, sistemaDual: 1390 },
-    { step: "Feb", lineaBase: 730, metaModelo: 1530, sistemaDual: 1480 },
-    { step: "Mar", lineaBase: 670, metaModelo: 1610, sistemaDual: 1550 },
-    { step: "Abr", lineaBase: 620, metaModelo: 1740, sistemaDual: 1650 },
-    { step: "May", lineaBase: 582, metaModelo: 1823, sistemaDual: 1711 },
+    { step: "Sep", lineaBase: 850, metaModelo: 1050, sistemaDual: 1040 },
+    { step: "Oct", lineaBase: 700, metaModelo: 1100, sistemaDual: 1080 },
+    { step: "Nov", lineaBase: 500, metaModelo: 1180, sistemaDual: 1150 },
+    { step: "Dic", lineaBase: 350, metaModelo: 1220, sistemaDual: 1200 },
+    { step: "Ene", lineaBase: 200, metaModelo: 1290, sistemaDual: 1270 },
+    { step: "Feb", lineaBase: 100, metaModelo: 1370, sistemaDual: 1340 },
+    { step: "Mar", lineaBase: 50, metaModelo: 1420, sistemaDual: 1390 },
+    { step: "Abr", lineaBase: 20, metaModelo: 1490, sistemaDual: 1450 },
+    { step: "May", lineaBase: 9.93, metaModelo: 1554.55, sistemaDual: 1551.85 },
   ]
 };
 
