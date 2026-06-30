@@ -144,4 +144,158 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* === JUGAR SECTION === */
+  .play-bg {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f0fa 40%, #dce9f5 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .play-sticker {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.25;
+    z-index: 0;
+    object-fit: contain;
+  }
+
+  .play-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .play-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(200, 220, 255, 0.6);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(100, 150, 200, 0.12);
+  }
+
+  .play-result-W {
+    background: #22c55e;
+    color: white;
+  }
+  .play-result-D {
+    background: #f59e0b;
+    color: white;
+  }
+  .play-result-L {
+    background: #ef4444;
+    color: white;
+  }
+
+  /* Celebration overlay */
+  .celebration-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .celebration-text {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fbbf24;
+    text-shadow: 0 0 40px rgba(251, 191, 36, 0.5), 0 4px 8px rgba(0,0,0,0.3);
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10000;
+  }
+
+  .celebration-subtitle {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 1rem;
+    animation: fadeIn 0.8s ease-out 0.3s both;
+    z-index: 10000;
+  }
+
+  .lose-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .lose-text {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #f87171;
+    text-shadow: 0 0 30px rgba(248, 113, 113, 0.5);
+    animation: shake 0.5s ease-out;
+    z-index: 10000;
+  }
+
+  /* Confetti particles */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    z-index: 9999;
+    animation: confettiFall 3s linear forwards;
+  }
+
+  @keyframes confettiFall {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .play-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+  }
+
+  .play-pulse {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
 }

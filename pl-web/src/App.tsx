@@ -9,6 +9,7 @@ import { LandingHome } from "./pages/LandingHome";
 import { LandingTechnology } from "./pages/LandingTechnology";
 import { LandingBacktesting } from "./pages/LandingBacktesting";
 import { LandingPipeline } from "./pages/LandingPipeline";
+import { LandingUseCases } from "./pages/LandingUseCases";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
 import MatchDetail from "./pages/MatchDetail";
@@ -18,6 +19,7 @@ import RefereeProfile from "./pages/RefereeProfile";
 import History from "./pages/History";
 import Predictor from "./pages/Predictor";
 import Simulator from "./pages/Simulator";
+import Jugar from "./pages/Jugar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +37,7 @@ const App = () => (
             <Route path="/technology" element={<LandingTechnology />} />
             <Route path="/backtesting" element={<LandingBacktesting />} />
             <Route path="/pipeline" element={<LandingPipeline />} />
+            <Route path="/use-cases" element={<LandingUseCases />} />
           </Route>
 
           {/* App routes with sidebar */}
@@ -46,6 +49,7 @@ const App = () => (
           <Route path="/history" element={<AppLayout><History /></AppLayout>} />
           <Route path="/detailed-history" element={<Navigate to="/simulator" replace />} />
           <Route path="/simulator" element={<AppLayout><Simulator /></AppLayout>} />
+          <Route path="/jugar" element={<AppLayout><Jugar /></AppLayout>} />
           <Route path="/team/:id" element={<AppLayout><TeamProfile /></AppLayout>} />
           <Route path="/player/:id" element={<AppLayout><PlayerProfile /></AppLayout>} />
           <Route path="/referee/:id" element={<AppLayout><RefereeProfile /></AppLayout>} />

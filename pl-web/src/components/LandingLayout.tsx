@@ -12,6 +12,7 @@ export const LandingLayout = () => {
     { label: "Modelos e IA", path: "/technology" },
     { label: "Rendimiento", path: "/backtesting" },
     { label: "Pipeline V8", path: "/pipeline" },
+    { label: "Casos de Uso", path: "/use-cases" },
   ];
 
   return (
