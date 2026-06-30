@@ -46,8 +46,8 @@ Entrenamos y comparamos 5 clasificadores (lineales y no lineales). A continuaci�
 
 En este proyecto, contrastamos y aplicamos la teoría de optimización de hiperparámetros para ajustar la complejidad de los modelos:
 
-* **Búsqueda Aleatoria (Random Search):** En la fase exploratoria del proyecto ([trainer.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/src/models/trainer.py#L43)), utilizamos `RandomizedSearchCV` de scikit-learn. Este método selecciona combinaciones al azar dentro de un espacio de búsqueda definido, siendo mucho más eficiente que una búsqueda exhaustiva (Grid Search) en tiempo de cómputo.
-* **Optimización Bayesiana (Optuna):** Para el script final de producción ([train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L74)), refinamos la búsqueda utilizando un enfoque bayesiano. La optimización bayesiana construye un modelo probabilístico que "aprende" de los resultados de experimentos previos para proponer combinaciones inteligentes en las zonas más prometedoras.
+* **Búsqueda Aleatoria (Random Search):** En la fase exploratoria del proyecto ([trainer.py](file:///d:/datascience/archive/pl-predictor/src/models/trainer.py#L43)), utilizamos `RandomizedSearchCV` de scikit-learn. Este método selecciona combinaciones al azar dentro de un espacio de búsqueda definido, siendo mucho más eficiente que una búsqueda exhaustiva (Grid Search) en tiempo de cómputo.
+* **Optimización Bayesiana (Optuna):** Para el script final de producción ([train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L74)), refinamos la búsqueda utilizando un enfoque bayesiano. La optimización bayesiana construye un modelo probabilístico que "aprende" de los resultados de experimentos previos para proponer combinaciones inteligentes en las zonas más prometedoras.
   * *Parámetros Específicos Encontrados:* Este enfoque arrojó los valores altamente precisos y específicos utilizados en producción, tales como la tasa de aprendizaje fraccionaria (`learning_rate=0.0187`) y la penalización L2 exacta (`l2_regularization=7.36`) para el clasificador `HistGradientBoosting`.
 
 ---
@@ -56,7 +56,7 @@ En este proyecto, contrastamos y aplicamos la teoría de optimización de hiperp
 
 A continuación se presentan las métricas de rendimiento reales obtenidas por los modelos sobre los 3,389 partidos históricos del dataset final:
 
-![Comparativa de Modelos de Machine Learning (Línea Base Original)](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/25_Comparativa_Modelos_Original.png)
+![Comparativa de Modelos de Machine Learning (Línea Base Original)](file:///d:/datascience/Carpeta_Presentacion/25_Comparativa_Modelos_Original.png)
 
 
 ### A. Mercado: 1X2 (Match Winner) - Clasificación Multiclase
@@ -206,7 +206,7 @@ En la predicción de eventos deportivos, los datos tienen un alto **ruido aleato
   * Con `max_depth` muy alto ($>10$): El score de train sigue subiendo hacia el $94.79\%$, pero el score de validación decae y se estanca en $69.4\%$ (el modelo se sobreajusta y memoriza el ruido).
 * **Decisión:** Los hiperparámetros elegidos para producción representan el **vértice óptimo de la curva de validación**, maximizando la generalización sobre datos no vistos.
 
-![Curva de Validación: Rendimiento vs. Complejidad](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/21_Curva_Validacion_Complejidad.png)
+![Curva de Validación: Rendimiento vs. Complejidad](file:///d:/datascience/Carpeta_Presentacion/21_Curva_Validacion_Complejidad.png)
 
 ### D. Learning Curve (Curva de Aprendizaje) y la Convergencia de Datos
 * **Comportamiento:** Grafica el rendimiento del modelo a medida que aumentamos el número de partidos de entrenamiento.
@@ -216,7 +216,7 @@ En la predicción de eventos deportivos, los datos tienen un alto **ruido aleato
   * *Implicancia clave:* Añadir más datos históricos antiguos (de ligas de hace 15 o 20 años) no mejoraría el ajuste (el fútbol táctico ha cambiado y actuaría como ruido).
   * *Estrategia de Mejora:* En lugar de recopilar más volumen de datos horizontales ($N$), la única forma de elevar la asíntota de rendimiento es mediante la **Ingeniería de Características (Feature Engineering)**, es decir, aumentando la complejidad predictiva de las variables (métricas de Expected Goals, cuotas implícitas de casas de apuestas y ratings dinámicos de rendimiento).
 
-![Curva de Aprendizaje: Rendimiento vs. Volumen de Datos](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/22_Curva_Aprendizaje_Convergencia.png)
+![Curva de Aprendizaje: Rendimiento vs. Volumen de Datos](file:///d:/datascience/Carpeta_Presentacion/22_Curva_Aprendizaje_Convergencia.png)
 
 ---
 
@@ -225,7 +225,7 @@ En la predicción de eventos deportivos, los datos tienen un alto **ruido aleato
 Por recomendación de la comisión académica, se realizó un estudio experimental en espejo aplicando técnicas avanzadas de sobremuestreo y submuestreo (`Random Oversampling`, `SMOTE`, `Random Undersampling`, `Tomek Links`, `Cluster Centroids` y `NearMiss`) sobre los conjuntos de entrenamiento. 
 
 Los resultados completos, las métricas comparativas y la justificación teórica de por qué la línea base original sin remuestreo es la opción metodológicamente óptima para este sistema se encuentran en el documento:
-* [Estudio Comparativo: Tratamiento del Desbalanceo de Clases mediante Modelos Espejo (23_Estudio_Desbalance_Resampling.md)](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/23_Estudio_Desbalance_Resampling.md)
+* [Estudio Comparativo: Tratamiento del Desbalanceo de Clases mediante Modelos Espejo (23_Estudio_Desbalance_Resampling.md)](file:///d:/datascience/Carpeta_Presentacion/23_Estudio_Desbalance_Resampling.md)
 
 ---
 
@@ -237,9 +237,9 @@ Este proceso evaluó de forma inteligente el espacio paramétrico de los 5 clasi
 
 Para un análisis visual exhaustivo del impacto de la sintonización bayesiana en las tres dimensiones de rendimiento críticas, se generaron las curvas comparativas Baseline vs. Optuna para todas las variables y clasificadores:
 
-* **Exactitud general:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - Accuracy](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png)
-* **Medida de balance:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - F1-Score](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png)
-* **Capacidad discriminativa:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - ROC-AUC](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png)
+* **Exactitud general:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - Accuracy](file:///d:/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png)
+* **Medida de balance:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - F1-Score](file:///d:/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png)
+* **Capacidad discriminativa:** ![Impacto de la Sintonización de Hiperparámetros con Optuna - ROC-AUC](file:///d:/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png)
 
 ### Tabla Comparativa de Rendimiento (Accuracy CV: Línea Base vs. Optuna)
 

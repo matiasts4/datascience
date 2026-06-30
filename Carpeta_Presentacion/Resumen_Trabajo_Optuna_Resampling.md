@@ -21,7 +21,7 @@ El objetivo principal de hoy fue **unificar y calibrar de manera consistente el 
 A lo largo del día, completamos el siguiente flujo de trabajo secuencial en el sistema:
 
 ### Paso A: Sintonización de Hiperparámetros con Optuna en Segundo Plano
-*   **Archivo Modificado:** [tune_hyperparameters_optuna.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/tune_hyperparameters_optuna.py)
+*   **Archivo Modificado:** [tune_hyperparameters_optuna.py](file:///d:/datascience/archive/pl-predictor/tune_hyperparameters_optuna.py)
 *   **Lógica Implementada:** El script carga el dataset sanitizado, configura una partición de validación cruzada de series de tiempo (`TimeSeriesSplit` con 5 splits) e inyecta dinámicamente un pipeline de `imblearn` (`ImbPipeline`) que aplica `TomekLinks()` en el bucle de validación cruzada *solo* si el target es `1X2` o `Home Clean Sheet`.
 *   **Ejecución:** Se ejecutó en segundo plano (durante aproximadamente 12 minutos) optimizando los hiperparámetros de los 5 tipos de clasificadores (Regresión Logística, Random Forest, HistGradientBoosting, XGBoost y Red Neuronal MLP) mediante el algoritmo **TPE** de Optuna.
 *   **Salida:** Se generaron y actualizaron los archivos paramétricos maestros:
@@ -29,12 +29,12 @@ A lo largo del día, completamos el siguiente flujo de trabajo secuencial en el 
     *   `models/tuning_comparison_results.csv`
 
 ### Paso B: Recálculo de Métricas Homogéneas (Baseline vs. Optuna)
-*   **Archivo Ejecutado:** [evaluar_comparativa_completa.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/evaluar_comparativa_completa.py)
+*   **Archivo Ejecutado:** [evaluar_comparativa_completa.py](file:///d:/datascience/archive/pl-predictor/evaluar_comparativa_completa.py)
 *   **Propósito:** Evaluar y comparar cronológicamente las métricas de rendimiento (Accuracy, F1-Score y ROC-AUC) entre las arquitecturas base originales y los modelos optimizados por Optuna para los 8 mercados, usando Tomek Links en los 2 mercados designados.
-*   **Salida:** Generación del archivo consolidado [baseline_vs_optimized_metrics.csv](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/models/baseline_vs_optimized_metrics.csv).
+*   **Salida:** Generación del archivo consolidado [baseline_vs_optimized_metrics.csv](file:///d:/datascience/archive/pl-predictor/models/baseline_vs_optimized_metrics.csv).
 
 ### Paso C: Actualización de la Galería de Gráficos Comparativos
-*   **Archivo Ejecutado:** [generar_graficos_optuna_vs_baseline_all.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/generar_graficos_optuna_vs_baseline_all.py)
+*   **Archivo Ejecutado:** [generar_graficos_optuna_vs_baseline_all.py](file:///d:/datascience/archive/pl-predictor/generar_graficos_optuna_vs_baseline_all.py)
 *   **Propósito:** Regenerar los paneles comparativos visuales (cuadrículas de 2x4 subplots) que demuestran el incremento de rendimiento obtenido tras la optimización bayesiana en las tres dimensiones críticas.
 *   **Imágenes Actualizadas en `Carpeta_Presentacion/`:**
     *   `30_Comparativa_Baseline_vs_Optuna.png` (Exactitud / Accuracy)
@@ -42,15 +42,15 @@ A lo largo del día, completamos el siguiente flujo de trabajo secuencial en el 
     *   `32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png` (Discriminación / ROC-AUC)
 
 ### Paso D: Entrenamiento de Modelos de Producción Finales
-*   **Archivo Ejecutado:** [aplicar_hiperparametros.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/aplicar_hiperparametros.py)
+*   **Archivo Ejecutado:** [aplicar_hiperparametros.py](file:///d:/datascience/archive/pl-predictor/aplicar_hiperparametros.py)
 *   **Propósito:** Ajustar y entrenar el clasificador ganador de cada mercado sobre la totalidad del dataset histórico consolidado ($N = 3,389$ partidos) utilizando los hiperparámetros óptimos y aplicando `TomekLinks` donde corresponda.
 *   **Salida:** Exportación y sobrescritura de los 8 archivos de modelos serializados `.pkl` en el directorio de producción `models/`.
 
 ### Paso E: Ajuste Dinámico y Regeneración del Gráfico F1-Score (Paradoja del Empate)
-*   **Archivo Modificado:** [visualizar_explicacion_f1_1x2.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/visualizar_explicacion_f1_1x2.py)
+*   **Archivo Modificado:** [visualizar_explicacion_f1_1x2.py](file:///d:/datascience/archive/pl-predictor/visualizar_explicacion_f1_1x2.py)
 *   **Cambio Crítico:** Se eliminaron los hiperparámetros hardcoded y se programó el script para leer directamente desde `optimized_hyperparams.json` las configuraciones reales de producción de la Regresión Logística con Elastic Net.
 *   **Ejecución:** Se corrió el script para generar el gráfico que visualiza cómo el modelo optimizado colapsa deliberadamente las predicciones de la clase "Empate" a fin de maximizar la exactitud general.
-*   **Salida:** Se guardó el gráfico en [33_Explicacion_F1_1X2.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png) y se eliminó la carpeta temporal redundante `pl-predictor/Carpeta_Presentacion/` para mantener el espacio limpio.
+*   **Salida:** Se guardó el gráfico en [33_Explicacion_F1_1X2.png](file:///d:/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png) y se eliminó la carpeta temporal redundante `pl-predictor/Carpeta_Presentacion/` para mantener el espacio limpio.
 
 ---
 
@@ -86,7 +86,7 @@ El proceso de optimización bayesiana con submuestreo de Tomek Links arrojó mej
 ## 📝 4. Actualización de Documentos de Tesis
 
 Para asegurar la coherencia de todos los materiales entregables, actualizamos dos documentos críticos en el repositorio:
-1.  **Guía Metodológica de Modelos ([20_Modelos_Metricas_Performance.md](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/20_Modelos_Metricas_Performance.md)):**
+1.  **Guía Metodológica de Modelos ([20_Modelos_Metricas_Performance.md](file:///d:/datascience/Carpeta_Presentacion/20_Modelos_Metricas_Performance.md)):**
     *   Se actualizaron las métricas base y optimizadas de la sección 8 para los mercados `1X2` y `Valla Invicta Local` con los valores reales obtenidos con Tomek Links.
     *   Se incluyó la descripción del nuevo ganador (Red Neuronal) en el mercado de vallas invictas.
     *   Se documentó la mejora en el rendimiento relativo en el análisis clave.

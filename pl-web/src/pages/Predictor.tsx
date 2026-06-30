@@ -95,8 +95,7 @@ const Predictor = () => {
   return (
     <div className="space-y-8 max-w-5xl mx-auto animate-fade-in">
       <div>
-        <h1 className="text-2xl font-bold text-foreground mb-1 tracking-tight flex items-center gap-2">
-          <Brain className="h-6 w-6 text-primary" />
+        <h1 className="text-2xl font-bold text-foreground mb-1 tracking-tight">
           Predictor Neuronal
         </h1>
         <p className="text-sm text-muted-foreground">Simula cualquier enfrentamiento usando el Motor de IA V2.</p>
@@ -177,6 +176,15 @@ const Predictor = () => {
               </Popover>
             </div>
           </div>
+
+          {(homeMissingKey || awayMissingKey) && (
+            <div className="mt-4 bg-warning/5 border border-warning/25 rounded-lg p-3.5 flex gap-2.5 text-xs text-warning leading-normal">
+              <Bot className="h-4 w-4 shrink-0 text-warning" />
+              <div>
+                <span className="font-bold">Nota del Modelo:</span> El motor predictivo actual está optimizado sobre una matriz matemática de 27 variables de rendimiento continuo (ELO, goles, xG, tiros). La ausencia de jugadores clave se incluye de manera ilustrativa y no altera la probabilidad numérica en esta versión del modelo.
+              </div>
+            </div>
+          )}
 
           {error && <p className="mt-4 text-destructive text-sm font-medium bg-destructive/10 p-3 rounded-md">{error}</p>}
 

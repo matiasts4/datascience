@@ -4,7 +4,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppLayout } from "@/components/AppLayout";
-import Landing from "./pages/Landing";
+import { LandingLayout } from "./components/LandingLayout";
+import { LandingHome } from "./pages/LandingHome";
+import { LandingTechnology } from "./pages/LandingTechnology";
+import { LandingBacktesting } from "./pages/LandingBacktesting";
+import { LandingPipeline } from "./pages/LandingPipeline";
 import Dashboard from "./pages/Dashboard";
 import Matches from "./pages/Matches";
 import MatchDetail from "./pages/MatchDetail";
@@ -25,8 +29,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Landing page without sidebar */}
-          <Route path="/" element={<Landing />} />
+          {/* Landing page and subpages */}
+          <Route element={<LandingLayout />}>
+            <Route path="/" element={<LandingHome />} />
+            <Route path="/technology" element={<LandingTechnology />} />
+            <Route path="/backtesting" element={<LandingBacktesting />} />
+            <Route path="/pipeline" element={<LandingPipeline />} />
+          </Route>
 
           {/* App routes with sidebar */}
           <Route path="/dashboard" element={<AppLayout><Dashboard /></AppLayout>} />

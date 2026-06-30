@@ -207,7 +207,7 @@ Se evaluaron las 135 combinaciones resultantes del análisis de 3 calibraciones,
 
 El panel gráfico de curvas de crecimiento se encuentra completamente actualizado y guardado en tu carpeta de diapositivas:
 
-👉 [35_Simulacion_Rentabilidad_Apuestas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png)
+👉 [35_Simulacion_Rentabilidad_Apuestas.png](file:///d:/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png)
 
 La visualización está estructurada en una cuadrícula de **2x2** con las siguientes características técnicas y visuales:
 

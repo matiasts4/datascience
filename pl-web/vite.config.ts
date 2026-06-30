@@ -7,7 +7,13 @@ import { execFile } from "child_process";
 // Helper to run Python bridge script
 function runPythonBridge(action: string, payload: any): Promise<any> {
   return new Promise((resolve, reject) => {
-    const pythonPath = path.resolve(__dirname, "../archive/pl-predictor/venv/bin/python");
+    const isWindows = process.platform === "win32";
+    const pythonPath = path.resolve(
+      __dirname,
+      isWindows
+        ? "../archive/pl-predictor/venv/Scripts/python.exe"
+        : "../archive/pl-predictor/venv/bin/python"
+    );
     const scriptPath = path.resolve(__dirname, "./src/lib/bridge.py");
     
     execFile(pythonPath, [scriptPath, action, JSON.stringify(payload)], (error, stdout, stderr) => {

@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 from simular_estrategias_apuestas import run_single_simulation
 
-csv_path = "c:/Users/sergi/Desktop/datascience/Simulacion_Inversion/predicciones_prueba_calibradas.csv"
+csv_path = "d:/datascience/Simulacion_Inversion/predicciones_prueba_calibradas.csv"
 df = pd.read_csv(csv_path)
 
 # Modificar run_single_simulation para un portafolio de solo 5 mercados reales

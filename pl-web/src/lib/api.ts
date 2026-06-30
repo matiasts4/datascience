@@ -94,7 +94,11 @@ export const fetchPrediction = async (params: APIPredictParams): Promise<APIPred
     body: JSON.stringify(params),
   });
   if (!res.ok) throw new Error("Error fetching prediction");
-  return res.json();
+  const data = await res.json();
+  if (data && data.predictions) {
+    data.predictions.sort((a: any, b: any) => b.Probability - a.Probability);
+  }
+  return data;
 };
 
 import { teamsData } from "@/data/mockData";

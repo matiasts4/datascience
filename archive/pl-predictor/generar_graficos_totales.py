@@ -89,7 +89,7 @@ def main():
     fig.legend(handles, labels, loc='lower center', ncol=5, frameon=True, facecolor='white', edgecolor='#E2E8F0', fontsize=12, bbox_to_anchor=(0.5, 0.01))
     plt.suptitle("Comparativa de Exactitud (Accuracy): Todos los Modelos en Todos los Mercados e Hitos de Resampling", fontsize=16, fontweight='bold', y=0.96)
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
-    output_acc = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/27_Comparativa_Completa_Accuracy.png'
+    output_acc = 'd:/datascience/Carpeta_Presentacion/27_Comparativa_Completa_Accuracy.png'
     plt.savefig(output_acc, dpi=300)
     plt.close()
     print(f"  [OK] Guardado: {output_acc}")
@@ -126,7 +126,7 @@ def main():
     fig.legend(handles, labels, loc='lower center', ncol=5, frameon=True, facecolor='white', edgecolor='#E2E8F0', fontsize=12, bbox_to_anchor=(0.5, 0.01))
     plt.suptitle("Comparativa de F1-Score: Todos los Modelos en Todos los Mercados e Hitos de Resampling", fontsize=16, fontweight='bold', y=0.96)
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
-    output_f1 = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/28_Comparativa_Completa_F1.png'
+    output_f1 = 'd:/datascience/Carpeta_Presentacion/28_Comparativa_Completa_F1.png'
     plt.savefig(output_f1, dpi=300)
     plt.close()
     print(f"  [OK] Guardado: {output_f1}")
@@ -170,7 +170,7 @@ def main():
     fig.legend(handles, labels, loc='lower center', ncol=5, frameon=True, facecolor='white', edgecolor='#E2E8F0', fontsize=12, bbox_to_anchor=(0.5, 0.01))
     plt.suptitle("Comparativa de ROC-AUC: Todos los Modelos en Todos los Mercados e Hitos de Resampling", fontsize=16, fontweight='bold', y=0.96)
     plt.tight_layout(rect=[0, 0.05, 1, 0.92])
-    output_auc = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/29_Comparativa_Completa_ROC_AUC.png'
+    output_auc = 'd:/datascience/Carpeta_Presentacion/29_Comparativa_Completa_ROC_AUC.png'
     plt.savefig(output_auc, dpi=300)
     plt.close()
     print(f"  [OK] Guardado: {output_auc}")

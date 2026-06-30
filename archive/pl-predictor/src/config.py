@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 HISTORICAL_DIR = os.path.join(BASE_DIR, "data", "historical")
-FEATURES_PATH = os.path.join(HISTORICAL_DIR, "historical_sanitized_v8.csv")
+FEATURES_PATH = os.path.join(HISTORICAL_DIR, "historical_sanitized_v9.csv")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -135,7 +135,7 @@ def main():
         
     plt.tight_layout(rect=[0, 0.08, 1, 0.90])
     
-    output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/26_Comparativa_Completa_Modelos_Resampling.png'
+    output_path = 'd:/datascience/Carpeta_Presentacion/26_Comparativa_Completa_Modelos_Resampling.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
     print(f"[OK] Gráfico de comparativa cruzada completa guardado en: {output_path}")

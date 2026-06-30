@@ -103,7 +103,7 @@ def main():
     
     plt.tight_layout(rect=[0, 0.06, 1, 0.91])
     
-    output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png'
+    output_path = 'd:/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
     print(f"[OK] Gráfico comparativo de optimización guardado en: {output_path}")

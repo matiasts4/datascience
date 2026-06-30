@@ -80,7 +80,7 @@ Evaluamos el impacto de limitar el rango de las cuotas operadas:
 
 Con el fin de contrastar las trayectorias de capital de las configuraciones más exitosas e ilustrar la frontera eficiente del sistema, se generó un gráfico consolidado:
 
-👉 **[45_Simulacion_Configuraciones_Optimas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/45_Simulacion_Configuraciones_Optimas.png)**
+👉 **[45_Simulacion_Configuraciones_Optimas.png](file:///d:/datascience/Carpeta_Presentacion/45_Simulacion_Configuraciones_Optimas.png)**
 
 Este panel permite comparar directamente los perfiles frente a la **Línea Base de Mercados Reales (Sin Filtros)** (línea punteada gris, banca final **$582.74**):
 

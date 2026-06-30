@@ -9,7 +9,7 @@ Este documento detalla el abordaje científico y la implementación en código d
 * **Diagnóstico en BetAnalytics:** Columnas como `league` (siempre contiene "Premier League"), y columnas de texto libre o metadatos de administración como `notes` o `match_report`.
 * **Tratamiento Aplicado:** Eliminación implacable antes del entrenamiento de modelos.
 * **Línea de Código:** 
-  * [sanitizer_pipeline.py](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L29-L32) ➔ `df.drop(columns=['league', 'notes', 'match_report'])`.
+  * [sanitizer_pipeline.py](file:///d:/datascience/sanitizer_pipeline.py#L29-L32) ➔ `df.drop(columns=['league', 'notes', 'match_report'])`.
 
 ---
 
@@ -24,7 +24,7 @@ Este documento detalla el abordaje científico y la implementación en código d
   $$x_{norm} = \frac{x - x_{min}}{x_{max} - x_{min}}$$
   Si existe un outlier muy grande (por ejemplo, un xG máximo de $6.67$), el denominador se vuelve gigantesco. Como consecuencia, el 99% de tus datos normales (que oscilan entre $0.5$ y $2.5$) quedarán comprimidos en un rango diminuto (ej. entre $0.05$ y $0.20$), perdiendo casi toda su resolución y variabilidad para los modelos de ML. Al usar **Estandarización (StandardScaler)**, la división se hace por la desviación estándar ($\sigma$) en lugar del rango, lo que preserva la variabilidad interna de los datos comunes sin aplastarlos.
 * **Líneas de Código:** 
-  * [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L41-L53) ➔ `ColumnTransformer` encapsulando `PowerTransformer` y `StandardScaler`.
+  * [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L41-L53) ➔ `ColumnTransformer` encapsulando `PowerTransformer` y `StandardScaler`.
 
 ---
 
@@ -36,7 +36,7 @@ Este documento detalla el abordaje científico y la implementación en código d
   * En fútbol, variables como los goles esperados (`home_xg`) o tarjetas históricas pueden registrar exactamente **$0.0$** (por ejemplo, un equipo que no genera situaciones o un partido sin tarjetas).
   * Por ello, implementamos la transformación **Yeo-Johnson**, la cual soporta matemáticamente valores nulos y cero sin generar indeterminaciones matemáticas.
 * **Línea de Código:** 
-  * [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L43-L46) ➔ `('yeo_johnson', PowerTransformer(method='yeo-johnson', standardize=True))`.
+  * [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L43-L46) ➔ `('yeo_johnson', PowerTransformer(method='yeo-johnson', standardize=True))`.
 
 ---
 
@@ -69,7 +69,7 @@ Ocurre debido al diseño de los datos o combinaciones matemáticas de las variab
 * **¿Qué NO cambia cuando centramos los predictores?**
   * La bondad de ajuste del modelo (el $R^2$ ajustado y múltiple se mantiene idéntico).
   * Las predicciones del modelo y el error estándar de los residuos (RSE).
-* **Código del Proyecto:** En [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L41-L50) implementamos este centrado/estandarización dentro del pipeline usando `StandardScaler` y `PowerTransformer(standardize=True)`.
+* **Código del Proyecto:** En [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L41-L50) implementamos este centrado/estandarización dentro del pipeline usando `StandardScaler` y `PowerTransformer(standardize=True)`.
 
 #### B. Para corregir la Multicolinealidad de los Datos
 Ocurre por la naturaleza y recolección propia de la muestra.
@@ -80,12 +80,12 @@ Ocurre por la naturaleza y recolección propia de la muestra.
   4. **Realizar una regresión que pueda manejar la multicolinealidad** (ej: LASSO y regresión de Ridge).
 * **Código del Proyecto (Aplicación y Defensa Metodológica):**
   * **Vulnerabilidad de Estimadores Tradicionales:** Los estimadores tradicionales de regresión (como Variables Instrumentales - IV, Método Generalizado de Momentos - GMM, Máxima Verosimilitud clásica como Probit, Logit y Logit Multinomial) asumen independencia y sufren inflación extrema de errores estándar ante multicolinealidad.
-  * **Solución 1 (Eliminación):** Eliminamos las cuotas de Pinnacle (`PSH`, `PSD`, `PSA`) en [sanitizer_pipeline.py](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L59-L61) por su redundancia del 99% con Bet365.
-  * **Solución 4 (Regresión Penalizada):** En lugar de eliminar arbitrariamente variables colineales complejas (como remates totales vs remates al arco), donde es difícil decidir cuál se queda y cuál se va, implementamos la **Regresión Logística con Elastic Net (Lasso + Ridge)** en [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L107). La penalización sopesa cuánta información nueva aporta una variable frente al costo de inflación de la varianza que introduce, automatizando y objetivando la selección de predictores.
+  * **Solución 1 (Eliminación):** Eliminamos las cuotas de Pinnacle (`PSH`, `PSD`, `PSA`) en [sanitizer_pipeline.py](file:///d:/datascience/sanitizer_pipeline.py#L59-L61) por su redundancia del 99% con Bet365.
+  * **Solución 4 (Regresión Penalizada):** En lugar de eliminar arbitrariamente variables colineales complejas (como remates totales vs remates al arco), donde es difícil decidir cuál se queda y cuál se va, implementamos la **Regresión Logística con Elastic Net (Lasso + Ridge)** en [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L107). La penalización sopesa cuánta información nueva aporta una variable frente al costo de inflación de la varianza que introduce, automatizando y objetivando la selección de predictores.
 * **Líneas de Código:** 
-  * *Eliminación:* [sanitizer_pipeline.py](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L59-L61) ➔ `df.drop(columns=['PSH', 'PSD', 'PSA'])`.
-  * *Centrado:* [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L41-L50).
-  * *Elastic Net:* [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L107-L110).
+  * *Eliminación:* [sanitizer_pipeline.py](file:///d:/datascience/sanitizer_pipeline.py#L59-L61) ➔ `df.drop(columns=['PSH', 'PSD', 'PSA'])`.
+  * *Centrado:* [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L41-L50).
+  * *Elastic Net:* [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L107-L110).
 
 ---
 
@@ -97,13 +97,13 @@ Ocurre por la naturaleza y recolección propia de la muestra.
 * **Diagnóstico:** Variables del partido actual como la cantidad final de tarjetas (`total_cards`), faltas comúnmente registradas (`home_match_fouls`) o el marcador final (`score`) no se conocen en el minuto 0 (momento en que se ejecuta la apuesta).
 * **Tratamiento:** Eliminación del set de características de entrenamiento.
 * **Línea de Código:** 
-  * [sanitizer_pipeline.py](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L55-L57) ➔ `df.drop(columns=['score', 'home_match_fouls', 'away_match_fouls', 'total_cards'])`.
+  * [sanitizer_pipeline.py](file:///d:/datascience/sanitizer_pipeline.py#L55-L57) ➔ `df.drop(columns=['score', 'home_match_fouls', 'away_match_fouls', 'total_cards'])`.
 
 ### B. Fuga Temporal en Validación Cruzada (Cross-Validation Leakage)
 * **Diagnóstico:** Si utilizáramos una validación cruzada aleatoria estándar (K-Fold normal), la IA entrenaría con partidos del año 2024 para predecir un partido jugado en el año 2018. Esto violaría la causalidad temporal y causaría fuga de información de series de tiempo (cambios en plantillas de equipos, tendencias tácticas a lo largo de los años, etc.).
 * **Tratamiento:** Implementación obligatoria de **TimeSeriesSplit (Validación Temporal)**. La muestra se divide en ventanas continuas ordenadas por fecha cronológica. El modelo solo predice el "Futuro" (bloque de testeo) habiendo aprendido estrictamente del "Pasado" (bloque de entrenamiento).
 * **Línea de Código:** 
-  * [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L115) ➔ `tscv = TimeSeriesSplit(n_splits=5)`.
+  * [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L115) ➔ `tscv = TimeSeriesSplit(n_splits=5)`.
 
 ---
 
@@ -124,7 +124,7 @@ Ocurre por la naturaleza y recolección propia de la muestra.
 El análisis del target es crucial para definir la viabilidad del proyecto supervisado. En BetAnalytics, estructuramos este estudio bajo las siguientes directrices teóricas y empíricas:
 
 * **¿Qué queremos hacer? (Objetivo Predictivo):**
-  Queremos predecir la probabilidad de ocurrencia de distintos eventos deportivos y de mercado de apuestas para partidos futuros de la Premier League. Para ello, construimos **8 targets categóricos** en [train_models.py:L17-L29](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L17-L29):
+  Queremos predecir la probabilidad de ocurrencia de distintos eventos deportivos y de mercado de apuestas para partidos futuros de la Premier League. Para ello, construimos **8 targets categóricos** en [train_models.py:L17-L29](file:///d:/datascience/archive/pl-predictor/train_models.py#L17-L29):
   1. `target_1x2`: Resultado final (Gana Local = 2, Empate = 1, Gana Visitante = 0).
   2. `target_dc_1X` / `target_dc_X2`: Doble oportunidad (Local o Empate / Visitante o Empate).
   3. `target_over_2_5_goals` / `target_under_2_5_goals`: Total de goles mayor o menor/igual a 2.5.
@@ -182,13 +182,13 @@ En machine learning, la preparación de datos exige decidir cómo codificar y tr
   * **Distribuciones Asimétricas:** Logaritmo $\text{Log}(X_i+k)$, Box-Cox, Ext. Yeo-Johnson.
   * **Normalización y Escalamiento:** Min Max Scaler, Estandarización.
 * **Aplicación en el Proyecto:**
-  * **Asimetría:** Aplicamos la transformación de potencia **Yeo-Johnson** en [train_models.py:L45](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L45). Se prefirió sobre Box-Cox debido a que variables de rendimiento deportivo (como xG o tarjetas) pueden registrar valores de exactamente **$0.0$** (donde Box-Cox falla al exigir datos estrictamente positivos).
+  * **Asimetría:** Aplicamos la transformación de potencia **Yeo-Johnson** en [train_models.py:L45](file:///d:/datascience/archive/pl-predictor/train_models.py#L45). Se prefirió sobre Box-Cox debido a que variables de rendimiento deportivo (como xG o tarjetas) pueden registrar valores de exactamente **$0.0$** (donde Box-Cox falla al exigir datos estrictamente positivos).
   * **Escalamiento:** Descartamos `MinMaxScaler` debido a la presencia de outliers genuinos (evitando el "efecto compresión" que aplasta los datos normales). Implementamos **Estandarización (StandardScaler)** para centrar las variables con media $\mu = 0$ y desviación $\sigma = 1$, estabilizando la física del descenso de gradientes en la Red Neuronal y Regresión Logística.
 
 ### D. Feature Engineering ("Sea su propio jefe" - Algoritmos y Heurísticas Propios)
 * **Enfoque de tus diapositivas:** WOE & IV, Catboost Encoding, heurísticas propias (ej: RFM, Métricas de distancia).
 * **Aplicación en el Proyecto:** En lugar de basarnos en encodings tradicionales supervisados (como WOE o Catboost), tomamos el rol de *"ser nuestro propio jefe"* diseñando **métricas y algoritmos ad-hoc** con fuerte sustento en el dominio del fútbol profesional:
-  1. **EWMA de Rendimiento Reciente (Goles Esperados Ponderados):** Diseñamos un promedio móvil ponderado exponencialmente (EWMA) sobre los últimos 5 partidos (`h_l5_xg`, `a_l5_xg`, etc.) en [sanitizer_pipeline.py:L88-L92](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L88-L92). Esto da más peso a los partidos recientes, capturando mejor la "racha" o momento dinámico del equipo.
+  1. **EWMA de Rendimiento Reciente (Goles Esperados Ponderados):** Diseñamos un promedio móvil ponderado exponencialmente (EWMA) sobre los últimos 5 partidos (`h_l5_xg`, `a_l5_xg`, etc.) en [sanitizer_pipeline.py:L88-L92](file:///d:/datascience/sanitizer_pipeline.py#L88-L92). Esto da más peso a los partidos recientes, capturando mejor la "racha" o momento dinámico del equipo.
   2. **Diferencial de Descanso Físico (`home_rest`, `away_rest`):** Cálculo del número de días transcurridos desde el último partido oficial para medir la fatiga.
   3. **Presión de Descenso (`relegation_pressure`):** Algoritmo propio que mide la cercanía y urgencia matemática de un equipo respecto a la zona de descenso en la tabla de posiciones en tiempo real.
 
@@ -200,16 +200,16 @@ La siguiente tabla resume de forma consolidada el censo completo de las variable
 
 | Categoría del Problema | Variable(s) Afectada(s) | Diagnóstico / Impacto | Tratamiento Técnico Aplicado | Archivo y Línea de Código |
 | :--- | :--- | :--- | :--- | :--- |
-| **Varianza Cero** | `league` | Constante ("Premier League") en toda la muestra. | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L31) |
-| **Varianza Casi Cero / Ruido** | `notes` | Concentrado al 99.97% en un único valor ("0"). | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L31) |
-| **Identificadores Únicos / Ruido**| `match_report` | URLs de reportes. Cardinalidad única por fila. | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L31) |
-| **Fuga de Información** | `score`, `home_match_fouls`, `away_match_fouls`, `total_cards` | Variables post-partido no disponibles antes del pitazo inicial. | Eliminación física de la columna. | [sanitizer_pipeline.py:L56](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L56) |
-| **Multicolinealidad** | `PSH`, `PSD`, `PSA` | Cuotas de Pinnacle correlacionadas al $r \approx 0.99$ con Bet365. | Selección de representante (Eliminar Pinnacle). | [sanitizer_pipeline.py:L60](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L60) |
-| **Datos Faltantes (MCAR)** | `attendance` | Un único registro nulo por olvido de registro. | Eliminación del registro (fila `dropna`). | [sanitizer_pipeline.py:L36](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L36) |
-| **Formato e Integridad** | `game_id` | Lectura flotante por defecto de Pandas (ej: `0.0`). | Forzado estricto a String y saneamiento de sufijo `.0`. | [sanitizer_pipeline.py:L23-L27](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L23-L27) |
-| **Formato Temporal** | `date` | Lectura de fechas en formato texto/string. | Parseo estricto a DateTime y ordenamiento. | [sanitizer_pipeline.py:L40](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L40) |
-| **Datos Faltantes (MAR)** | `home_xg`, `away_xg`, `h_l5_xg`, `a_l5_xg`, `h_l5_xga`, `a_l5_xga`, `B365H`, `B365D`, `B365A` | Concentración de nulos en temporadas viejas o inicios de liga. | Imputación KNN ($K=5$, peso por distancia inversa) en validación. | [train_models.py:L44,L48](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L44) |
-| **Outliers Genuinos** | `home_xg`, `away_xg`, `h_l5_xg`, `a_l5_xg`, `home_elo`, `away_elo` | Rendimientos extremos pero válidos de equipos de élite. | Conservación física + transformación Yeo-Johnson y StandardScaler. | [train_models.py:L41-L50](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L41-L50) |
-| **Asimetría (Skewed)** | `away_xg`, `referee_avg_cards_history`, `B365H`, `B365D`, `B365A`, `h_l5_fls`, `a_l5_fls`, `h_l5_xg`... | Distribuciones con sesgo y colas asimétricas pronunciadas. | PowerTransformer Yeo-Johnson (soporta ceros). | [train_models.py:L37,L45](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L37) |
-| **Fuga Temporal (Leakage)** | Todos los features del dataset. | Causalidad del tiempo en series temporales. | División temporal obligatoria vía `TimeSeriesSplit(n_splits=5)`. | [train_models.py:L115](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L115) |
+| **Varianza Cero** | `league` | Constante ("Premier League") en toda la muestra. | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///d:/datascience/sanitizer_pipeline.py#L31) |
+| **Varianza Casi Cero / Ruido** | `notes` | Concentrado al 99.97% en un único valor ("0"). | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///d:/datascience/sanitizer_pipeline.py#L31) |
+| **Identificadores Únicos / Ruido**| `match_report` | URLs de reportes. Cardinalidad única por fila. | Eliminación física de la columna. | [sanitizer_pipeline.py:L31](file:///d:/datascience/sanitizer_pipeline.py#L31) |
+| **Fuga de Información** | `score`, `home_match_fouls`, `away_match_fouls`, `total_cards` | Variables post-partido no disponibles antes del pitazo inicial. | Eliminación física de la columna. | [sanitizer_pipeline.py:L56](file:///d:/datascience/sanitizer_pipeline.py#L56) |
+| **Multicolinealidad** | `PSH`, `PSD`, `PSA` | Cuotas de Pinnacle correlacionadas al $r \approx 0.99$ con Bet365. | Selección de representante (Eliminar Pinnacle). | [sanitizer_pipeline.py:L60](file:///d:/datascience/sanitizer_pipeline.py#L60) |
+| **Datos Faltantes (MCAR)** | `attendance` | Un único registro nulo por olvido de registro. | Eliminación del registro (fila `dropna`). | [sanitizer_pipeline.py:L36](file:///d:/datascience/sanitizer_pipeline.py#L36) |
+| **Formato e Integridad** | `game_id` | Lectura flotante por defecto de Pandas (ej: `0.0`). | Forzado estricto a String y saneamiento de sufijo `.0`. | [sanitizer_pipeline.py:L23-L27](file:///d:/datascience/sanitizer_pipeline.py#L23-L27) |
+| **Formato Temporal** | `date` | Lectura de fechas en formato texto/string. | Parseo estricto a DateTime y ordenamiento. | [sanitizer_pipeline.py:L40](file:///d:/datascience/sanitizer_pipeline.py#L40) |
+| **Datos Faltantes (MAR)** | `home_xg`, `away_xg`, `h_l5_xg`, `a_l5_xg`, `h_l5_xga`, `a_l5_xga`, `B365H`, `B365D`, `B365A` | Concentración de nulos en temporadas viejas o inicios de liga. | Imputación KNN ($K=5$, peso por distancia inversa) en validación. | [train_models.py:L44,L48](file:///d:/datascience/archive/pl-predictor/train_models.py#L44) |
+| **Outliers Genuinos** | `home_xg`, `away_xg`, `h_l5_xg`, `a_l5_xg`, `home_elo`, `away_elo` | Rendimientos extremos pero válidos de equipos de élite. | Conservación física + transformación Yeo-Johnson y StandardScaler. | [train_models.py:L41-L50](file:///d:/datascience/archive/pl-predictor/train_models.py#L41-L50) |
+| **Asimetría (Skewed)** | `away_xg`, `referee_avg_cards_history`, `B365H`, `B365D`, `B365A`, `h_l5_fls`, `a_l5_fls`, `h_l5_xg`... | Distribuciones con sesgo y colas asimétricas pronunciadas. | PowerTransformer Yeo-Johnson (soporta ceros). | [train_models.py:L37,L45](file:///d:/datascience/archive/pl-predictor/train_models.py#L37) |
+| **Fuga Temporal (Leakage)** | Todos los features del dataset. | Causalidad del tiempo en series temporales. | División temporal obligatoria vía `TimeSeriesSplit(n_splits=5)`. | [train_models.py:L115](file:///d:/datascience/archive/pl-predictor/train_models.py#L115) |
 
