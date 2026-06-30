@@ -1224,6 +1224,130 @@ def run_analyze_match(payload):
         "predictions": clean_json(preds)
     }
 
+def run_play(payload):
+    """Endpoint para la sección Jugar: devuelve últimos 5 partidos de cada equipo
+    y la predicción 1X2 del modelo para que el usuario adivine quién gana."""
+    home = payload.get('homeTeam', '')
+    away = payload.get('awayTeam', '')
+
+    features_path = os.path.join(BASE_DIR, "data", "historical", "historical_sanitized_v9.csv")
+    df = pd.read_csv(features_path, parse_dates=['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+
+    elo_map = compute_elo_map(df)
+
+    def get_last5_matches(team, df):
+        """Obtiene los últimos 5 partidos reales de un equipo con resultados."""
+        team_matches = df[(df['home_team'] == team) | (df['away_team'] == team)].copy()
+        team_matches = team_matches[team_matches['home_goals'].notna()].sort_values('date').tail(5)
+        results = []
+        for _, row in team_matches.iterrows():
+            is_home = row['home_team'] == team
+            team_goals = int(row['home_goals']) if is_home else int(row['away_goals'])
+            opp_goals = int(row['away_goals']) if is_home else int(row['home_goals'])
+            opponent = row['away_team'] if is_home else row['home_team']
+            if team_goals > opp_goals:
+                outcome = 'W'
+            elif team_goals == opp_goals:
+                outcome = 'D'
+            else:
+                outcome = 'L'
+            results.append({
+                'date': row['date'].strftime('%Y-%m-%d'),
+                'opponent': opponent,
+                'teamGoals': team_goals,
+                'oppGoals': opp_goals,
+                'result': outcome,
+                'venue': 'Home' if is_home else 'Away',
+            })
+        return results[::-1]  # newest first
+
+    home_last5 = get_last5_matches(home, df)
+    away_last5 = get_last5_matches(away, df)
+
+    # Predicción del modelo (1X2)
+    selector = MasterBetSelector()
+    h_form = build_team_last5(home, df)
+    a_form = build_team_last5(away, df)
+    ref_avg = float(df['referee_avg_cards_history'].mean()) if 'referee_avg_cards_history' in df.columns else 3.5
+
+    features = {
+        'home_elo':              round(elo_map.get(home, 1500), 1),
+        'away_elo':              round(elo_map.get(away, 1500), 1),
+        'h_missing_key_player':  0,
+        'a_missing_key_player':  0,
+        'home_rest':             7,
+        'away_rest':             7,
+        'h_l5_pts':              h_form.get('pts', 0),
+        'h_l5_sh':               h_form.get('sh', 0),
+        'h_l5_sot':              h_form.get('sot', 0),
+        'h_l5_sot_c':            0.0,
+        'h_l5_gf':               h_form.get('gf', 0),
+        'h_l5_ga':               h_form.get('ga', 0),
+        'h_l5_fls':              h_form.get('fls', 0),
+        'h_l5_conv':             h_form.get('conv', 0),
+        'h_l5_xg':               h_form.get('xg', 0),
+        'h_l5_xga':              h_form.get('xga', 0),
+        'a_l5_pts':              a_form.get('pts', 0),
+        'a_l5_sh':               a_form.get('sh', 0),
+        'a_l5_sot':              a_form.get('sot', 0),
+        'a_l5_sot_c':            0.0,
+        'a_l5_gf':               a_form.get('gf', 0),
+        'a_l5_ga':               a_form.get('ga', 0),
+        'a_l5_fls':              a_form.get('fls', 0),
+        'a_l5_conv':             a_form.get('conv', 0),
+        'a_l5_xg':               a_form.get('xg', 0),
+        'a_l5_xga':              a_form.get('xga', 0),
+        'referee_avg_cards_history': ref_avg,
+        'is_derby':              0,
+        'relegation_pressure':   0,
+    }
+
+    preds = selector.get_best_bet(features)
+
+    # Extraer la predicción 1X2 específica
+    pred_1x2 = None
+    for p in preds:
+        if '1X2' in p.get('Market', ''):
+            pred_1x2 = p
+            break
+    # Si no hay 1X2 directa, usar ELO para calcular probabilidades 1X2
+    if not pred_1x2:
+        home_elo = features['home_elo']
+        away_elo = features['away_elo']
+        prob_home = 1.0 / (1.0 + 10.0 ** ((away_elo - home_elo) / 400.0))
+        draw_prob = 0.25 * (1.0 - abs(prob_home - 0.5))
+        remaining = 1.0 - draw_prob
+        home_win = prob_home * remaining
+        away_win = (1.0 - prob_home) * remaining
+        pred_1x2 = {
+            'Market': '1X2',
+            'Probability': max(home_win, draw_prob, away_win),
+            'Pick': 2 if home_win >= max(draw_prob, away_win) else (0 if away_win >= max(home_win, draw_prob) else 1),
+            'Confidence': 'Medium',
+            'FairOdds': round(1.0 / max(home_win, draw_prob, away_win), 2) if max(home_win, draw_prob, away_win) > 0 else 100.0,
+        }
+
+    # Pick del modelo: 2=Home, 1=Draw, 0=Away
+    model_pick = pred_1x2.get('Pick', 2)
+    model_result = 'home' if model_pick == 2 else ('away' if model_pick == 0 else 'draw')
+
+    result = {
+        'homeTeam': home,
+        'awayTeam': away,
+        'homeElo': features['home_elo'],
+        'awayElo': features['away_elo'],
+        'homeLast5': home_last5,
+        'awayLast5': away_last5,
+        'modelPrediction': {
+            'market': pred_1x2.get('Market', '1X2'),
+            'probability': round(pred_1x2.get('Probability', 0) * 100, 1),
+            'pick': model_result,
+            'confidence': pred_1x2.get('Confidence', 'Medium'),
+        },
+    }
+    return clean_json(result)
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         # Some calls like seasons may not pass payload
@@ -1263,5 +1387,7 @@ if __name__ == '__main__':
         print(json.dumps(run_update_upcoming()))
     elif action == 'analyze-match':
         print(json.dumps(run_analyze_match(payload)))
+    elif action == 'play':
+        print(json.dumps(run_play(payload)))
     else:
         sys.exit(1)

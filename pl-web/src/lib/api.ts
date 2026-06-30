@@ -643,6 +643,45 @@ export const fetchAIAnalysis = async (params: APIAnalyzeParams): Promise<APIAnal
   return res.json();
 };
 
+export interface APIPlayResponse {
+  homeTeam: string;
+  awayTeam: string;
+  homeElo: number;
+  awayElo: number;
+  homeLast5: {
+    date: string;
+    opponent: string;
+    teamGoals: number;
+    oppGoals: number;
+    result: 'W' | 'D' | 'L';
+    venue: 'Home' | 'Away';
+  }[];
+  awayLast5: {
+    date: string;
+    opponent: string;
+    teamGoals: number;
+    oppGoals: number;
+    result: 'W' | 'D' | 'L';
+    venue: 'Home' | 'Away';
+  }[];
+  modelPrediction: {
+    market: string;
+    probability: number;
+    pick: 'home' | 'away' | 'draw';
+    confidence: string;
+  };
+}
+
+export const fetchPlay = async (homeTeam: string, awayTeam: string): Promise<APIPlayResponse> => {
+  const res = await fetch("/api/play", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ homeTeam, awayTeam }),
+  });
+  if (!res.ok) throw new Error("Error fetching play data");
+  return res.json();
+};
+
 export const updateUpcomingMatches = async (): Promise<any> => {
   const res = await fetch("/api/matches/upcoming/update", {
     method: "POST"

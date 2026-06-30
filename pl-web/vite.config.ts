@@ -8,15 +8,15 @@ import { execFile } from "child_process";
 function runPythonBridge(action: string, payload: any): Promise<any> {
   return new Promise((resolve, reject) => {
     const isWindows = process.platform === "win32";
-    const pythonPath = path.resolve(
-      __dirname,
-      isWindows
+    const venvPath = isWindows
         ? "../archive/pl-predictor/venv/Scripts/python.exe"
-        : "../archive/pl-predictor/venv/bin/python"
-    );
+        : "../archive/pl-predictor/.venv/bin/python";
+    const pythonPath = path.resolve(__dirname, venvPath);
     const scriptPath = path.resolve(__dirname, "./src/lib/bridge.py");
     
-    execFile(pythonPath, [scriptPath, action, JSON.stringify(payload)], (error, stdout, stderr) => {
+    execFile(pythonPath, [scriptPath, action, JSON.stringify(payload)], {
+      env: { ...process.env, PYTHONPATH: "", PYTHONHOME: "" },
+    }, (error, stdout, stderr) => {
       if (error) {
         console.error(`[Bridge Error] action=${action}:`, stderr || error.message);
         reject(error);
@@ -223,6 +223,23 @@ export default defineConfig(({ mode }) => ({
                 try {
                   const payload = JSON.parse(body);
                   const result = await runPythonBridge("analyze-match", payload);
+                  res.writeHead(200, { "Content-Type": "application/json" });
+                  res.end(JSON.stringify(result));
+                } catch (err) {
+                  res.writeHead(500, { "Content-Type": "application/json" });
+                  res.end(JSON.stringify({ error: err.message }));
+                }
+              });
+              return;
+            }
+
+            if (pathname === "/api/play" && req.method === "POST") {
+              let body = "";
+              req.on("data", chunk => { body += chunk; });
+              req.on("end", async () => {
+                try {
+                  const payload = JSON.parse(body);
+                  const result = await runPythonBridge("play", payload);
                   res.writeHead(200, { "Content-Type": "application/json" });
                   res.end(JSON.stringify(result));
                 } catch (err) {

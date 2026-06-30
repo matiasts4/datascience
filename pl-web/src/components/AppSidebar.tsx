@@ -1,4 +1,4 @@
-import { LayoutDashboard, CalendarDays, BarChart3, Bot, History, Database, Activity } from "lucide-react";
+import { LayoutDashboard, CalendarDays, BarChart3, Bot, History, Database, Activity, Gamepad2 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import {
@@ -19,6 +19,7 @@ const mainItems = [
   { title: "Partidos", url: "/matches", icon: CalendarDays },
   { title: "Simulador", url: "/simulator", icon: Activity },
   { title: "Historial", url: "/history", icon: History },
+  { title: "Jugar", url: "/jugar", icon: Gamepad2 },
 ];
 
 export function AppSidebar() {
