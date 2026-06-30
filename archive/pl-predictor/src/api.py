@@ -33,7 +33,8 @@ CORS(app)
 # ─────────────────────────────────────────────────────────────────────────────
 # Lazy-load data so the server starts fast
 # ─────────────────────────────────────────────────────────────────────────────
-_df: pd.DataFrame | None = None
+from typing import Optional, Dict, Any
+_df: Optional[pd.DataFrame] = None
 
 # ─────────────────────────────────────────────────────────────────────────────
 # In-memory cache for scraped upcoming fixtures (avoids hitting FBref every request)
