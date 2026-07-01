@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAPITeamList, fetchPlay, APIPlayResponse } from "@/lib/api";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Loader2, Zap, Trophy, RotateCcw } from "lucide-react";
+import { Loader2, Zap, Trophy, RotateCcw, Home, Plane, Target, Brain, CheckCircle2, XCircle, AlertTriangle, Swords, X } from "lucide-react";
 
 // ---- Stickers config (posiciones desordenadas, hardcodeadas) ----
 const STICKERS = [
@@ -89,6 +89,7 @@ export default function Jugar() {
   const [error, setError] = useState<string | null>(null);
 
   const [deciding, setDeciding] = useState(false);
+  const [showWinModal, setShowWinModal] = useState(false);
 
   const handleLoad = async () => {
     if (!homeTeam || !awayTeam) return;
@@ -118,6 +119,7 @@ export default function Jugar() {
     setTimeout(() => {
       if (pick === playData.modelPrediction.pick) {
         setResult("win");
+        setShowWinModal(true);
       } else {
         setResult("lose");
       }
@@ -130,6 +132,7 @@ export default function Jugar() {
     setUserPick(null);
     setResult(null);
     setError(null);
+    setShowWinModal(false);
   };
 
   return (
@@ -138,7 +141,8 @@ export default function Jugar() {
         position: "relative",
         minHeight: "100vh",
         width: "100%",
-        background: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #dbeafe 100%)",
+        background: "radial-gradient(circle at top right, hsl(228 40% 12%), hsl(228 40% 4%) 40%)",
+        color: "hsl(var(--foreground))",
         overflow: "hidden",
         fontFamily: "inherit",
       }}
@@ -156,7 +160,7 @@ export default function Jugar() {
               left: s.left,
               width: `${s.size}px`,
               transform: `rotate(${s.rotate}deg)`,
-              opacity: 0.35,
+              opacity: 0.50,
               pointerEvents: "none",
               userSelect: "none",
             }}
@@ -165,7 +169,7 @@ export default function Jugar() {
       </div>
 
       {/* Overlay de celebración */}
-      {result === "win" && (
+      {result === "win" && showWinModal && (
         <div className="celebration-overlay" style={{
           position: "fixed",
           inset: 0,
@@ -195,24 +199,53 @@ export default function Jugar() {
             ))}
           </div>
           <div style={{
-            background: "white",
+            background: "hsl(var(--card))",
+            border: "1px solid hsl(var(--border))",
             borderRadius: "24px",
             padding: "48px 56px",
             textAlign: "center",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
             zIndex: 1,
+            position: "relative",
+            minWidth: "320px",
           }}>
-            <Trophy size={72} style={{ margin: "0 auto 16px", color: "#f59e0b" }} />
+            {/* Botón cerrar modal */}
+            <button
+              onClick={() => setShowWinModal(false)}
+              style={{
+                position: "absolute",
+                top: "16px",
+                right: "16px",
+                background: "transparent",
+                border: "none",
+                color: "hsl(var(--muted-foreground))",
+                cursor: "pointer",
+                padding: "4px",
+                borderRadius: "50%",
+                transition: "all 0.2s",
+              }}
+              className="hover:bg-muted hover:text-foreground"
+            >
+              <X size={20} />
+            </button>
+
             <h1 style={{
               fontSize: "48px",
               fontWeight: 900,
-              color: "#1e3a8a",
+              color: "hsl(var(--foreground))",
               margin: 0,
-            }}>¡WINNER! 🎉</h1>
-            <p style={{ fontSize: "18px", color: "#475569", marginTop: "12px" }}>
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "12px",
+            }}>
+              <Trophy size={52} style={{ color: "#f59e0b" }} />
+              ¡WINNER!
+            </h1>
+            <p style={{ fontSize: "18px", color: "hsl(var(--muted-foreground))", marginTop: "12px" }}>
               Acertaste la predicción del modelo
             </p>
-            <Button onClick={handleReset} style={{ marginTop: "24px", background: "#3b82f6" }}>
+            <Button onClick={handleReset} style={{ marginTop: "24px", background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
               <RotateCcw size={18} style={{ marginRight: 8 }} />
               Jugar de nuevo
             </Button>
@@ -233,31 +266,36 @@ export default function Jugar() {
             padding: "8px 20px",
             marginBottom: "16px",
           }}>
-            <Zap size={20} style={{ color: "#3b82f6" }} />
-            <span style={{ fontWeight: 600, color: "#1e3a8a" }}>FERIA DE CIENCIA · PL-WEB</span>
+            <Zap size={20} style={{ color: "hsl(var(--primary))" }} />
+            <span style={{ fontWeight: 600, color: "hsl(var(--primary))" }}>FERIA DE CIENCIA · PL-WEB</span>
           </div>
           <h1 style={{
             fontSize: "44px",
             fontWeight: 900,
-            color: "#0f172a",
+            color: "hsl(var(--foreground))",
             margin: 0,
             letterSpacing: "-1px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "14px",
           }}>
-            ⚽ Adivina el Resultado
+            <Swords size={40} style={{ color: "hsl(var(--primary))" }} />
+            Adivina al Modelo
           </h1>
-          <p style={{ fontSize: "17px", color: "#475569", marginTop: "8px" }}>
-            Elige dos equipos, revisa sus estadísticas y pon a prueba tu intuición contra el modelo
+          <p style={{ fontSize: "17px", color: "hsl(var(--muted-foreground))", marginTop: "8px" }}>
+            ¿Qué equipo <strong>predice el modelo</strong> que ganará? Acerta su predicción y gana el premio.
           </p>
         </div>
 
         {/* Selector de equipos */}
         <div style={{
-          background: "rgba(255,255,255,0.7)",
-          backdropFilter: "blur(10px)",
+          background: "linear-gradient(135deg, hsl(var(--card)/0.92), hsl(var(--card)/0.88))",
+          backdropFilter: "blur(16px)",
           borderRadius: "20px",
           padding: "28px",
-          boxShadow: "0 8px 32px rgba(59,130,246,0.12)",
-          border: "1px solid rgba(255,255,255,0.8)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+          border: "1px solid hsl(var(--border)/0.8)",
           marginBottom: "24px",
         }}>
           <div style={{
@@ -268,19 +306,20 @@ export default function Jugar() {
             justifyContent: "center",
           }}>
             <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#1e40af", marginBottom: "8px" }}>
-                🏠 EQUIPO LOCAL
+              <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 700, color: "#1e40af", marginBottom: "8px" }}>
+                <Home size={14} />
+                EQUIPO LOCAL
               </label>
               <Select value={homeTeam} onValueChange={setHomeTeam}>
-                <SelectTrigger style={{ background: "white", borderColor: "#bfdbfe", height: "44px", color: "#0f172a", fontWeight: 600 }}>
+                <SelectTrigger style={{ background: "hsl(var(--muted)/0.5)", borderColor: "hsl(var(--border))", height: "44px", color: "hsl(var(--foreground))", fontWeight: 600 }}>
                   <SelectValue placeholder="Selecciona local" />
                 </SelectTrigger>
-                <SelectContent style={{ background: "white", color: "#0f172a" }}>
+                <SelectContent style={{ background: "hsl(var(--popover))", color: "hsl(var(--foreground))", borderColor: "hsl(var(--border))" }}>
                   {teamsLoading ? (
                     <SelectItem value="__loading" disabled>Cargando equipos…</SelectItem>
                   ) : (
                     teams?.map((t: string) => (
-                      <SelectItem key={t} value={t} style={{ color: "#0f172a" }}>{t}</SelectItem>
+                      <SelectItem key={t} value={t} style={{ color: "hsl(var(--foreground))" }}>{t}</SelectItem>
                     ))
                   )}
                 </SelectContent>
@@ -289,8 +328,8 @@ export default function Jugar() {
 
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0 4px" }}>
               <div style={{
-                background: "#3b82f6",
-                color: "white",
+                background: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))",
                 borderRadius: "50%",
                 width: "40px",
                 height: "40px",
@@ -305,19 +344,20 @@ export default function Jugar() {
             </div>
 
             <div style={{ flex: "1 1 200px", minWidth: "200px" }}>
-              <label style={{ display: "block", fontSize: "13px", fontWeight: 700, color: "#1e40af", marginBottom: "8px" }}>
-                ✈️ EQUIPO VISITANTE
+              <label style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 700, color: "#1e40af", marginBottom: "8px" }}>
+                <Plane size={14} />
+                EQUIPO VISITANTE
               </label>
               <Select value={awayTeam} onValueChange={setAwayTeam}>
-                <SelectTrigger style={{ background: "white", borderColor: "#bfdbfe", height: "44px", color: "#0f172a", fontWeight: 600 }}>
+                <SelectTrigger style={{ background: "hsl(var(--muted)/0.5)", borderColor: "hsl(var(--border))", height: "44px", color: "hsl(var(--foreground))", fontWeight: 600 }}>
                   <SelectValue placeholder="Selecciona visitante" />
                 </SelectTrigger>
-                <SelectContent style={{ background: "white", color: "#0f172a" }}>
+                <SelectContent style={{ background: "hsl(var(--popover))", color: "hsl(var(--foreground))", borderColor: "hsl(var(--border))" }}>
                   {teamsLoading ? (
                     <SelectItem value="__loading" disabled>Cargando equipos…</SelectItem>
                   ) : (
                     teams?.map((t: string) => (
-                      <SelectItem key={t} value={t} style={{ color: "#0f172a" }}>{t}</SelectItem>
+                      <SelectItem key={t} value={t} style={{ color: "hsl(var(--foreground))" }}>{t}</SelectItem>
                     ))
                   )}
                 </SelectContent>
@@ -328,7 +368,8 @@ export default function Jugar() {
               onClick={handleLoad}
               disabled={loading || !homeTeam || !awayTeam}
               style={{
-                background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+                background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)/0.8))",
+                color: "hsl(var(--primary-foreground))",
                 height: "44px",
                 padding: "0 28px",
                 fontSize: "15px",
@@ -341,8 +382,8 @@ export default function Jugar() {
           </div>
 
           {error && (
-            <p style={{ color: "#dc2626", textAlign: "center", marginTop: "16px", fontWeight: 600 }}>
-              ⚠️ {error}
+            <p style={{ color: "#dc2626", textAlign: "center", marginTop: "16px", fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "center", gap: "6px" }}>
+              <AlertTriangle size={16} /> {error}
             </p>
           )}
         </div>
@@ -352,12 +393,12 @@ export default function Jugar() {
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             {/* ELO + título del partido */}
             <div style={{
-              background: "rgba(255,255,255,0.75)",
-              backdropFilter: "blur(10px)",
+              background: "linear-gradient(135deg, hsl(var(--card)/0.92), hsl(var(--card)/0.88))",
+              backdropFilter: "blur(16px)",
               borderRadius: "20px",
               padding: "24px 28px",
-              boxShadow: "0 8px 32px rgba(59,130,246,0.12)",
-              border: "1px solid rgba(255,255,255,0.8)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+              border: "1px solid hsl(var(--border)/0.8)",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -365,25 +406,26 @@ export default function Jugar() {
               gap: "16px",
             }}>
               <div style={{ textAlign: "center", flex: "1" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#64748b" }}>LOCAL</div>
-                <div style={{ fontSize: "22px", fontWeight: 800, color: "#0f172a" }}>{playData.homeTeam}</div>
+                <div style={{ fontSize: "13px", fontWeight: 700, color: "hsl(var(--muted-foreground))" }}>LOCAL</div>
+                <div style={{ fontSize: "22px", fontWeight: 800, color: "hsl(var(--foreground))" }}>{playData.homeTeam}</div>
                 <div style={{
                   display: "inline-block",
                   marginTop: "6px",
-                  background: "#dbeafe",
-                  color: "#1e40af",
+                  background: "hsl(var(--muted))",
+                  color: "hsl(var(--primary))",
                   fontWeight: 800,
                   padding: "4px 14px",
                   borderRadius: "999px",
                   fontSize: "15px",
+                  border: "1px solid hsl(var(--border))",
                 }}>
                   ELO {playData.homeElo}
                 </div>
               </div>
 
               <div style={{
-                background: "#3b82f6",
-                color: "white",
+                background: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))",
                 borderRadius: "50%",
                 width: "48px",
                 height: "48px",
@@ -396,17 +438,18 @@ export default function Jugar() {
               </div>
 
               <div style={{ textAlign: "center", flex: "1" }}>
-                <div style={{ fontSize: "13px", fontWeight: 700, color: "#64748b" }}>VISITANTE</div>
-                <div style={{ fontSize: "22px", fontWeight: 800, color: "#0f172a" }}>{playData.awayTeam}</div>
+                <div style={{ fontSize: "13px", fontWeight: 700, color: "hsl(var(--muted-foreground))" }}>VISITANTE</div>
+                <div style={{ fontSize: "22px", fontWeight: 800, color: "hsl(var(--foreground))" }}>{playData.awayTeam}</div>
                 <div style={{
                   display: "inline-block",
                   marginTop: "6px",
-                  background: "#dbeafe",
-                  color: "#1e40af",
+                  background: "hsl(var(--muted))",
+                  color: "hsl(var(--primary))",
                   fontWeight: 800,
                   padding: "4px 14px",
                   borderRadius: "999px",
                   fontSize: "15px",
+                  border: "1px solid hsl(var(--border))",
                 }}>
                   ELO {playData.awayElo}
                 </div>
@@ -425,18 +468,19 @@ export default function Jugar() {
 
             {/* Botones de predicción */}
             <div style={{
-              background: "rgba(255,255,255,0.75)",
-              backdropFilter: "blur(10px)",
+              background: "linear-gradient(135deg, hsl(var(--card)/0.92), hsl(var(--card)/0.88))",
+              backdropFilter: "blur(16px)",
               borderRadius: "20px",
               padding: "28px",
-              boxShadow: "0 8px 32px rgba(59,130,246,0.12)",
-              border: "1px solid rgba(255,255,255,0.8)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+              border: "1px solid hsl(var(--border)/0.8)",
             }}>
-              <h2 style={{ textAlign: "center", fontSize: "22px", fontWeight: 800, color: "#0f172a", marginBottom: "6px" }}>
-                🎯 ¿Quién crees que gana?
+              <h2 style={{ textAlign: "center", fontSize: "22px", fontWeight: 800, color: "hsl(var(--foreground))", marginBottom: "6px", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
+                <Target size={22} style={{ color: "hsl(var(--primary))" }} />
+                ¿Qué predice el modelo?
               </h2>
-              <p style={{ textAlign: "center", color: "#64748b", fontSize: "14px", marginBottom: "20px" }}>
-                Compara tu intuición con la predicción del modelo
+              <p style={{ textAlign: "center", color: "hsl(var(--muted-foreground))", fontSize: "14px", marginBottom: "20px" }}>
+                Analiza las estadísticas y adivina cuál será la predicción del modelo de Machine Learning
               </p>
 
               <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -469,24 +513,29 @@ export default function Jugar() {
                   <div style={{
                     fontSize: "18px",
                     fontWeight: 700,
-                    color: "#1e40af",
+                    color: "hsl(var(--primary))",
                     marginBottom: "14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
                   }}>
-                    🤔 El modelo está decidiendo...
+                    <Brain size={20} style={{ color: "hsl(var(--primary))" }} />
+                    Consultando los modelos de ML...
                   </div>
                   <div style={{
                     width: "100%",
                     maxWidth: "400px",
                     margin: "0 auto",
                     height: "12px",
-                    background: "#e0e7ff",
+                    background: "hsl(var(--muted))",
                     borderRadius: "999px",
                     overflow: "hidden",
-                    border: "1px solid #bfdbfe",
+                    border: "1px solid hsl(var(--border))",
                   }}>
                     <div style={{
                       height: "100%",
-                      background: "linear-gradient(90deg, #3b82f6, #2563eb, #3b82f6)",
+                      background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)/0.6), hsl(var(--primary)))",
                       backgroundSize: "200% 100%",
                       borderRadius: "999px",
                       animation: "loadingBar 2s linear forwards",
@@ -500,50 +549,61 @@ export default function Jugar() {
                 <div style={{ marginTop: "24px", textAlign: "center" }}>
                   {result === "win" ? (
                     <div style={{
-                      background: "linear-gradient(135deg, #10b981, #059669)",
-                      color: "white",
+                      background: "linear-gradient(135deg, hsl(var(--success)), hsl(var(--success)/0.8))",
+                      color: "hsl(var(--success-foreground))",
                       padding: "16px 24px",
                       borderRadius: "14px",
                       fontSize: "20px",
                       fontWeight: 800,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "12px",
                     }}>
-                      🎉 ¡WINNER! Acertaste la predicción del modelo
+                      <CheckCircle2 size={24} />
+                      ¡Correcto! Adivinaste la predicción del modelo
                     </div>
                   ) : (
                     <div style={{
-                      background: "linear-gradient(135deg, #ef4444, #dc2626)",
-                      color: "white",
+                      background: "linear-gradient(135deg, hsl(var(--destructive)), hsl(var(--destructive)/0.8))",
+                      color: "hsl(var(--destructive-foreground))",
                       padding: "16px 24px",
                       borderRadius: "14px",
                       fontSize: "20px",
                       fontWeight: 800,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "12px",
                     }}>
-                      😅 ¡Inténtalo de nuevo!
+                      <XCircle size={24} />
+                      No coincidiste con el modelo
                     </div>
                   )}
 
                   <div style={{
                     marginTop: "14px",
-                    background: "rgba(59,130,246,0.1)",
+                    background: "hsl(var(--muted)/0.5)",
                     padding: "12px 20px",
                     borderRadius: "12px",
                     display: "inline-block",
+                    border: "1px solid hsl(var(--border))",
                   }}>
-                    <span style={{ fontWeight: 700, color: "#1e40af" }}>
-                      Predicción del modelo:{" "}
+                    <span style={{ fontWeight: 700, color: "hsl(var(--primary))" }}>
+                      El modelo predice:{" "}
                     </span>
-                    <span style={{ fontWeight: 800, color: "#0f172a" }}>
+                    <span style={{ fontWeight: 800, color: "hsl(var(--foreground))" }}>
                       {playData.modelPrediction.pick === "home" && `Gana ${playData.homeTeam}`}
                       {playData.modelPrediction.pick === "away" && `Gana ${playData.awayTeam}`}
                       {playData.modelPrediction.pick === "draw" && "Empate"}
                     </span>
-                    <span style={{ color: "#64748b", marginLeft: "8px" }}>
-                      ({playData.modelPrediction.market} · {playData.modelPrediction.probability}% · {playData.modelPrediction.confidence})
+                    <span style={{ color: "hsl(var(--muted-foreground))", marginLeft: "8px", fontSize: "13px" }}>
+                      ({playData.modelPrediction.probability}% confianza)
                     </span>
                   </div>
 
                   <div style={{ marginTop: "20px" }}>
-                    <Button onClick={handleReset} variant="outline" style={{ borderColor: "#3b82f6", color: "#3b82f6", fontWeight: 700 }}>
+                    <Button onClick={handleReset} variant="outline" style={{ borderColor: "hsl(var(--primary))", color: "hsl(var(--primary))", fontWeight: 700 }}>
                       <RotateCcw size={18} style={{ marginRight: 8 }} />
                       Jugar de nuevo
                     </Button>
@@ -557,14 +617,17 @@ export default function Jugar() {
         {/* Placeholder cuando no hay datos */}
         {!playData && !loading && (
           <div style={{
-            background: "rgba(255,255,255,0.5)",
+            background: "linear-gradient(135deg, hsl(var(--card)/0.92), hsl(var(--card)/0.88))",
+            backdropFilter: "blur(16px)",
             borderRadius: "20px",
             padding: "60px 24px",
             textAlign: "center",
-            border: "2px dashed rgba(59,130,246,0.3)",
+            border: "2px dashed hsl(var(--border))",
           }}>
-            <div style={{ fontSize: "56px", marginBottom: "12px" }}>⚽</div>
-            <p style={{ fontSize: "18px", color: "#475569", fontWeight: 600 }}>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}>
+              <Swords size={56} style={{ color: "hsl(var(--muted-foreground)/0.4)" }} />
+            </div>
+            <p style={{ fontSize: "18px", color: "hsl(var(--muted-foreground))", fontWeight: 600 }}>
               Selecciona dos equipos y carga el partido para empezar a jugar
             </p>
           </div>
@@ -597,14 +660,14 @@ function Last5Card({ title, matches }: {
 }) {
   return (
     <div style={{
-      background: "rgba(255,255,255,0.75)",
-      backdropFilter: "blur(10px)",
+      background: "linear-gradient(135deg, hsl(var(--card)/0.6), hsl(var(--card)/0.4))",
+      backdropFilter: "blur(12px)",
       borderRadius: "20px",
       padding: "20px",
-      boxShadow: "0 8px 32px rgba(59,130,246,0.12)",
-      border: "1px solid rgba(255,255,255,0.8)",
+      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4)",
+      border: "1px solid hsl(var(--border)/0.6)",
     }}>
-      <h3 style={{ fontSize: "15px", fontWeight: 800, color: "#1e3a8a", marginBottom: "14px" }}>
+      <h3 style={{ fontSize: "15px", fontWeight: 800, color: "hsl(var(--primary))", marginBottom: "14px" }}>
         {title}
       </h3>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -615,9 +678,10 @@ function Last5Card({ title, matches }: {
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              background: "rgba(248,250,252,0.8)",
+              background: "hsl(var(--muted)/0.4)",
               borderRadius: "12px",
               padding: "10px 14px",
+              border: "1px solid hsl(var(--border)/0.3)",
             }}
           >
             <div style={{
@@ -636,17 +700,17 @@ function Last5Card({ title, matches }: {
               {m.result}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: "14px", fontWeight: 700, color: "#0f172a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+              <div style={{ fontSize: "14px", fontWeight: 700, color: "hsl(var(--foreground))", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 vs {m.opponent}
               </div>
-              <div style={{ fontSize: "12px", color: "#64748b" }}>
+              <div style={{ fontSize: "12px", color: "hsl(var(--muted-foreground))" }}>
                 {m.date} · {m.venue}
               </div>
             </div>
             <div style={{
               fontSize: "13px",
               fontWeight: 700,
-              color: "#475569",
+              color: "hsl(var(--foreground))",
               flexShrink: 0,
             }}>
               {m.teamGoals}–{m.oppGoals}
@@ -671,7 +735,7 @@ function PickButton({ label, color, active, disabled, onClick }: {
       onClick={onClick}
       disabled={disabled}
       style={{
-        background: active ? color : "white",
+        background: active ? color : "hsl(var(--card))",
         color: active ? "white" : color,
         border: `2px solid ${color}`,
         borderRadius: "14px",
@@ -680,8 +744,8 @@ function PickButton({ label, color, active, disabled, onClick }: {
         fontWeight: 800,
         cursor: disabled ? "default" : "pointer",
         transition: "all 0.2s",
-        boxShadow: active ? `0 8px 24px ${color}55` : "0 2px 8px rgba(0,0,0,0.06)",
-        opacity: disabled && !active ? 0.5 : 1,
+        boxShadow: active ? `0 8px 24px ${color}55` : "0 2px 8px rgba(0,0,0,0.4)",
+        opacity: disabled && !active ? 0.3 : 1,
       }}
     >
       {label}

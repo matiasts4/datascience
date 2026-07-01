@@ -79,7 +79,7 @@ export const LandingUseCases = () => {
     {
       icon: Database,
       title: "3,420 partidos analizados",
-      description: "Dataset sanitizado V9 con datos reales de la Premier League",
+      description: "Dataset sanitizado con datos reales de la Premier League",
     },
     {
       icon: Brain,
@@ -95,7 +95,7 @@ export const LandingUseCases = () => {
     },
     {
       icon: Shield,
-      title: "Pipeline anti-fugas V9",
+      title: "Pipeline anti-fugas",
       description:
         "Eliminamos cuotas del bookmaker y goles previos para evitar data leakage",
     },
@@ -107,8 +107,8 @@ export const LandingUseCases = () => {
     },
     {
       icon: TrendingUp,
-      title: "+£3,842 beneficio",
-      description: "Retorno neto probado sobre £1,000 de banco inicial",
+      title: "+$3,842 beneficio",
+      description: "Retorno neto probado sobre $1,000 de banco inicial",
     },
   ];
 
@@ -118,7 +118,7 @@ export const LandingUseCases = () => {
       <section className="text-center mb-20 mt-6">
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground mb-6">
           <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-          BetAnalitycs · Casos de Uso
+          BetAnalytics · Casos de Uso
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter mb-4 text-foreground" style={{ letterSpacing: "-0.04em" }}>
           Casos de <span className="text-primary">Uso</span>
@@ -155,12 +155,11 @@ export const LandingUseCases = () => {
         </div>
 
         {/* Polymarket chart */}
-        <div className="glass-card p-4 sm:p-6 bg-card/40 backdrop-blur-sm border border-border/40 rounded-xl max-w-3xl mx-auto mb-12">
+        <div className="glass-card p-2 bg-black/40 border border-border/40 rounded-xl max-w-md mx-auto mb-12 h-[260px] flex items-center justify-center overflow-hidden">
           <img
             src="/poly/polygrafico.png"
             alt="Gráfica de Polymarket"
-            className="w-full rounded-lg"
-            style={{ borderRadius: "12px" }}
+            className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-300 hover:scale-102"
           />
         </div>
 
@@ -232,24 +231,26 @@ export const LandingUseCases = () => {
             Visualizaciones
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-            Gráficas y análisis generados por el motor de BetAnalitycs.
+            Gráficas y análisis generados por el motor de BetAnalytics.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {gallery.map((img, i) => (
             <div
               key={i}
-              className="glass-card bg-card/20 border border-border/40 overflow-hidden"
-              style={{ borderRadius: "12px" }}
+              className="glass-card bg-card/40 border border-border/40 hover:border-primary/20 transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              style={{ borderRadius: "16px" }}
             >
-              <img
-                src={img.src}
-                alt={img.caption}
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-              <p className="text-xs sm:text-sm text-muted-foreground text-center px-4 py-3">
+              <div className="w-full bg-black/40 flex items-center justify-center p-2 h-[260px] overflow-hidden">
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  className="max-w-full max-h-full object-contain rounded-lg transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-xs sm:text-sm font-medium text-muted-foreground text-center px-4 py-3.5 border-t border-border/30 bg-muted/20">
                 {img.caption}
               </p>
             </div>
@@ -264,7 +265,7 @@ export const LandingUseCases = () => {
             Beneficios reales
           </h2>
           <p className="text-sm text-muted-foreground max-w-xl mx-auto">
-            Lo que BetAnalitycs aporta, respaldado por datos y pruebas reales.
+            Lo que BetAnalytics aporta, respaldado por datos y pruebas reales.
           </p>
         </div>
 
