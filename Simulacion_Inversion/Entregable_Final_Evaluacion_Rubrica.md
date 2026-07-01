@@ -47,7 +47,7 @@ Se evaluaron sistemáticamente 5 arquitecturas de modelado sobre el conjunto de 
 | **Valla Invicta Local** | 69.82% (Tomek) | 70.89% (Tomek) | 67.11% | 67.24% | **70.99%** (Tomek) | **Red Neuronal (MLP)** |
 
 *Nota: Se hace referencia al gráfico comparativo de Accuracy de los 8 mercados en la Carpeta de Presentación:*
-👉 **[30_Comparativa_Baseline_vs_Optuna.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png)**
+👉 **[30_Comparativa_Baseline_vs_Optuna.png](file:///d:/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png)**
 
 ---
 
@@ -92,20 +92,20 @@ Los resultados del proyecto demuestran fenómenos teóricos e interpretativos de
 ### A. La Paradoja del Empate (Maximización de Exactitud vs. F1-Score)
 Un hallazgo crítico fue que al optimizar el mercado `1X2` para **Accuracy (Exactitud)**, el clasificador de Regresión Logística tiende a reducir casi a cero las predicciones directas del resultado "Empate".
 * *Interpretación Técnica:* El empate es un resultado de altísima varianza en fútbol (frecuencia empírica ~25%). Maximizar la exactitud general obliga a la IA a asignar la probabilidad a las dos clases mayoritarias y estables (Local/Visitante), penalizando el F1-Score de los empates pero incrementando la precisión general de los favoritos.
-* *Gráfico de Soporte:* Ver el panel de la paradoja del empate: [33_Explicacion_F1_1X2.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png).
+* *Gráfico de Soporte:* Ver el panel de la paradoja del empate: [33_Explicacion_F1_1X2.png](file:///d:/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png).
 
 ### B. Evidencia Empírica del *Favorite-Longshot Bias*
 Al realizar el barrido del rango de cuotas se demostró que:
 * Limitar el portafolio completo a **Solo Favoritos (cuotas $1.0 - 2.0$)** arroja pérdidas severas (**ROI: -2.35%**).
 * Limitar el portafolio completo a **Solo Sorpresas (cuotas $\ge 2.50$)** es altamente rentable (**ROI: +0.49%**).
 * *Interpretación Económica:* El público general tiende a subestimar el riesgo y a sobre-apostar a los favoritos de cuotas bajas (por ejemplo, Chelsea a 1.30). Esto infla artificialmente el precio de los desfavorecidos (sorpresas), generando ineficiencias del mercado que son explotadas sistemáticamente por los modelos de BetAnalytics.
-* *Gráfico de Soporte:* Ver el barrido de cuotas: [44_Sensibilidad_Filtro_Cuotas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/44_Sensibilidad_Filtro_Cuotas.png).
+* *Gráfico de Soporte:* Ver el barrido de cuotas: [44_Sensibilidad_Filtro_Cuotas.png](file:///d:/datascience/Carpeta_Presentacion/44_Sensibilidad_Filtro_Cuotas.png).
 
 ### C. Eficiencia Máxima del Meta-Labeling
 El Meta-Modelo de segunda capa demostró ser un filtro de precisión de gran efectividad:
 * **Bloqueó 1,433 falsos positivos (63.4% del volumen total).** Eran partidos donde el modelo principal detectaba valor teórico, pero variables de fatiga (cansancio acumulado) o diferencia extrema de ELO hacían inviable la apuesta.
 * Al evitar estas pérdidas, la banca final bajo Flat Staking aumentó de **$582.74** a **$1,823.62** y el ROI neto subió del **-1.85%** al **+9.96%**.
-* *Gráfico de Soporte:* Ver la evolución de la banca bajo el Meta-Modelo: [46_Simulacion_Meta_Labeling.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/46_Simulacion_Meta_Labeling.png).
+* *Gráfico de Soporte:* Ver la evolución de la banca bajo el Meta-Modelo: [46_Simulacion_Meta_Labeling.png](file:///d:/datascience/Carpeta_Presentacion/46_Simulacion_Meta_Labeling.png).
 
 ---
 

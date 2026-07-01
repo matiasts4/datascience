@@ -8,7 +8,7 @@ Este informe técnico documenta la calidad del dataset sanitizado de BetAnalytic
 
 El siguiente gráfico de auditoría (en formato académico sobrio) muestra la distribución y porcentaje exacto de nulos en tu dataset maestro sanitizado de **3,420 partidos**:
 
-![Frecuencia de Datos Faltantes (Nulos)](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/18_Auditoria_Nulos_Matriz.png)
+![Frecuencia de Datos Faltantes (Nulos)](file:///d:/datascience/Carpeta_Presentacion/18_Auditoria_Nulos_Matriz.png)
 
 ---
 
@@ -20,13 +20,13 @@ De las **51 columnas** totales de tu base de datos final, **42 variables crític
 * **Variable:** `attendance` (Asistencia).
 * **Diagnóstico:** Tenía un único valor nulo en todo el histórico de partidos de la liga. Esto se debió a un descuido aislado de registro humano en la planilla de ese partido. No tiene relación alguna con el rendimiento futbolístico o con otras variables del dataset.
 * **Tratamiento Aplicado:** Al ser una sola fila entre más de 3,400, la solución más eficiente y limpia fue **eliminar la observación (fila)**.
-  * *Código:* [sanitizer_pipeline.py](file:///c:/Users/sergi/Desktop/datascience/sanitizer_pipeline.py#L34-L36) ➔ `df.dropna(subset=['attendance'])`.
+  * *Código:* [sanitizer_pipeline.py](file:///d:/datascience/sanitizer_pipeline.py#L34-L36) ➔ `df.dropna(subset=['attendance'])`.
 
 ### B. Missing at Random (MAR)
 * **Variables:** `home_xg`, `away_xg`, `h_l5_xg`, `a_l5_xg`, `h_l5_xga`, `a_l5_xga`, y cuotas Bet365 (`B365H`, `B365D`, `B365A`).
 * **Diagnóstico:** Los nulos en goles esperados (`xg`) se concentran en las temporadas iniciales (2017/18). Esto es **MAR** porque la falta de datos se explica directamente por la variable `date` (en esos años la tecnología de tracking óptico de FBref no estaba estandarizada), y no por los valores en sí mismos. Los nulos en promedios móviles `h_l5` corresponden a los partidos iniciales de temporada donde aún no hay historial previo para promediar.
 * **Tratamiento Aplicado:** No borramos estas observaciones para no perder valioso historial. En su lugar, aplicamos **Imputación por Vecinos Más Cercanos (K-NN)** dentro de la validación cruzada para estimar los nulos basándonos en la distancia/similitud matemática con otros partidos jugados.
-  * *Código:* [train_models.py](file:///c:/Users/sergi/Desktop/datascience/archive/pl-predictor/train_models.py#L42) ➔ `KNNImputer(n_neighbors=5, weights='distance')` encapsulado dentro de `ColumnTransformer`.
+  * *Código:* [train_models.py](file:///d:/datascience/archive/pl-predictor/train_models.py#L42) ➔ `KNNImputer(n_neighbors=5, weights='distance')` encapsulado dentro de `ColumnTransformer`.
 
 ### C. Missing Not at Random (MNAR)
 * **Variables:** Resultados finales (`result_1x2`) y goles reales (`home_goals`, `away_goals`) de partidos futuros del calendario.
@@ -41,7 +41,7 @@ Un riesgo crítico al imputar datos es alterar la distribución original de la v
 
 Para validar el tratamiento, comparamos la distribución de probabilidad (Histograma y Estimación de Densidad Kernel - KDE) de los Goles Esperados de Local (`home_xg`) antes y después de aplicar el **KNNImputer (K=5, pesos por distancia)**:
 
-![Comparación de Distribución Antes y Después de la Imputación](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/19_Comparacion_Antes_Despues_Imputacion.png)
+![Comparación de Distribución Antes y Después de la Imputación](file:///d:/datascience/Carpeta_Presentacion/19_Comparacion_Antes_Despues_Imputacion.png)
 
 ### Análisis Métrico de Momentos Estadísticos
 La imputación de los 494 registros faltantes de `home_xg` (14.4% del dataset) demuestra una excelente consistencia estadística:

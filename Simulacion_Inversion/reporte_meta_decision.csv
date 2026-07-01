@@ -1,5 +1,5 @@
 Configuracion,Banca Final,ROI,Bets,Evitadas,Max Drawdown
-Línea Base Real,$582.74,-1.85%,2260,0,77.26%
-Solo EV Dinámico,$633.14,-1.65%,2226,0,74.08%
-Solo Meta-Modelo,$1823.62,9.96%,827,1433,19.23%
-Sistema Dual (Óptimo),$1711.82,8.52%,835,1391,19.23%
+Línea Base Real,$9.93,-5.08%,1949,0,99.42%
+Solo EV Dinámico,$0.33,-5.25%,1905,0,99.98%
+Solo Meta-Modelo,$1554.55,6.91%,802,1463,27.77%
+Sistema Dual (Óptimo),$1551.85,6.59%,837,1384,27.03%

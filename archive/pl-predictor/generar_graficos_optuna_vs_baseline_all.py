@@ -121,7 +121,7 @@ def main():
         metric_opt_col="accuracy_optuna",
         metric_label="Accuracy",
         title="Impacto de la Sintonización de Hiperparámetros con Optuna en Todos los Mercados\n(Comparativa de Exactitud: Hiperparámetros Baseline vs. Optimización Bayesiana TPE)",
-        output_path='c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png',
+        output_path='d:/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png',
         y_min=0.40,
         y_max=0.75,
         show_diff_percentage=True
@@ -137,7 +137,7 @@ def main():
         metric_opt_col="f1_optuna",
         metric_label="F1-Score",
         title="Impacto de la Sintonización de Hiperparámetros con Optuna en Todos los Mercados\n(Comparativa de F1-Score: Hiperparámetros Baseline vs. Optimización Bayesiana TPE)",
-        output_path='c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png',
+        output_path='d:/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png',
         y_min=0.00,
         y_max=0.85,
         show_diff_percentage=True
@@ -153,7 +153,7 @@ def main():
         metric_opt_col="auc_optuna",
         metric_label="ROC-AUC",
         title="Impacto de la Sintonización de Hiperparámetros con Optuna en Todos los Mercados\n(Comparativa de ROC-AUC: Hiperparámetros Baseline vs. Optimización Bayesiana TPE)",
-        output_path='c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png',
+        output_path='d:/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png',
         y_min=0.40,
         y_max=0.75,
         show_diff_percentage=True

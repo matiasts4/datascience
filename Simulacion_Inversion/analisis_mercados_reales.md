@@ -86,8 +86,8 @@ Esto demuestra que **la calibración cumple exactamente con su función teórica
 
 Se han generado gráficos independientes del crecimiento de la banca para los 5 mercados y su portafolio real bajo ambas estrategias:
 
-1. **Stake Fijo (1%):** [36_Simulacion_Mercados_Reales_Flat.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/36_Simulacion_Mercados_Reales_Flat.png)
+1. **Stake Fijo (1%):** [36_Simulacion_Mercados_Reales_Flat.png](file:///d:/datascience/Carpeta_Presentacion/36_Simulacion_Mercados_Reales_Flat.png)
    * *Qué muestra:* Se puede observar de forma lineal cómo el modelo sin calibrar (línea gris/roja) decae con rapidez hacia la quiebra. Por otro lado, la curva de la Calibración Isotónica (azul) muestra una resistencia notable, amortiguando las rachas de pérdidas y manteniéndose cerca del capital inicial.
    
-2. **Quarter Kelly:** [37_Simulacion_Mercados_Reales_Kelly.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/37_Simulacion_Mercados_Reales_Kelly.png)
+2. **Quarter Kelly:** [37_Simulacion_Mercados_Reales_Kelly.png](file:///d:/datascience/Carpeta_Presentacion/37_Simulacion_Mercados_Reales_Kelly.png)
    * *Qué muestra:* Al ser una estrategia perdedora a largo plazo, el criterio de Kelly acelera la caída. Sin embargo, se aprecia claramente que las versiones calibradas (especialmente la Isotónica en azul) caen a un ritmo mucho más lento que las versiones sin calibrar debido a la correcta contención del tamaño de las apuestas cuando el edge real es bajo.

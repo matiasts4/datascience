@@ -3,7 +3,7 @@ import os
 
 def main():
     csv_path = "models/mirrors/mirror_comparison_results.csv"
-    md_path = "c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/23_Estudio_Desbalance_Resampling.md"
+    md_path = "d:/datascience/Carpeta_Presentacion/23_Estudio_Desbalance_Resampling.md"
     
     if not os.path.exists(csv_path):
         print(f"❌ Error: No se encontró {csv_path}")
@@ -102,24 +102,24 @@ A continuación se presentan las tablas de rendimiento del mejor modelo entrenad
 
 El gráfico general a continuación contrasta el rendimiento de las 7 configuraciones espejo a través de tres dimensiones críticas (Exactitud, F1-Score y ROC-AUC) para los mercados analizados:
 
-![Comparativa General de Resampling](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/24_Comparativa_Multimetrica_Resampling.png)
+![Comparativa General de Resampling](file:///d:/datascience/Carpeta_Presentacion/24_Comparativa_Multimetrica_Resampling.png)
 
 A continuación, para un análisis granular y exhaustivo de cómo responde **cada modelo clasificador individual** (Logistic Regression, Random Forest, HistGradientBoosting, XGBoost, y Neural Network) a cada una de las técnicas de remuestreo, se presentan las curvas de rendimiento cruzadas en cuadrículas de 2x4 que cubren **todos los mercados (targets)** y **las tres métricas analizadas**:
 
 ### A. Comparativa Completa de Exactitud (Accuracy)
 El siguiente gráfico muestra la exactitud de todos los modelos a través de todos los métodos de resampling en las 8 variables predictivas:
 
-![Comparativa Completa de Accuracy](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/27_Comparativa_Completa_Accuracy.png)
+![Comparativa Completa de Accuracy](file:///d:/datascience/Carpeta_Presentacion/27_Comparativa_Completa_Accuracy.png)
 
 ### B. Comparativa Completa de F1-Score
 El siguiente gráfico muestra el F1-Score de todos los modelos a través de todos los métodos de resampling en las 8 variables predictivas:
 
-![Comparativa Completa de F1-Score](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/28_Comparativa_Completa_F1.png)
+![Comparativa Completa de F1-Score](file:///d:/datascience/Carpeta_Presentacion/28_Comparativa_Completa_F1.png)
 
 ### C. Comparativa Completa de ROC-AUC
 El siguiente gráfico muestra el ROC-AUC de todos los modelos a través de todos los métodos de resampling en las 8 variables predictivas. Para el mercado multiclase `1X2 (Match Winner)`, se detalla estéticamente como *N/A (No Aplicable)* dado que esta métrica está definida estrictamente para clasificaciones binarias:
 
-![Comparativa Completa de ROC-AUC](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/29_Comparativa_Completa_ROC_AUC.png)
+![Comparativa Completa de ROC-AUC](file:///d:/datascience/Carpeta_Presentacion/29_Comparativa_Completa_ROC_AUC.png)
 
 ---
 

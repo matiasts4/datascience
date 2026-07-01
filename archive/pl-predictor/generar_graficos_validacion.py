@@ -133,7 +133,7 @@ def main():
     ax.spines['bottom'].set_color('#718096')
     
     plt.tight_layout()
-    output_path_val = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/21_Curva_Validacion_Complejidad.png'
+    output_path_val = 'd:/datascience/Carpeta_Presentacion/21_Curva_Validacion_Complejidad.png'
     plt.savefig(output_path_val, dpi=300)
     plt.close()
     print(f"✅ Curva de Validación guardada en: {output_path_val}")
@@ -203,7 +203,7 @@ def main():
     ax.spines['bottom'].set_color('#718096')
     
     plt.tight_layout()
-    output_path_lc = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/22_Curva_Aprendizaje_Convergencia.png'
+    output_path_lc = 'd:/datascience/Carpeta_Presentacion/22_Curva_Aprendizaje_Convergencia.png'
     plt.savefig(output_path_lc, dpi=300)
     plt.close()
     print(f"✅ Curva de Aprendizaje guardada en: {output_path_lc}")

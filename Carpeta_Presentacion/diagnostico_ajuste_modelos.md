@@ -3,7 +3,7 @@
 Este informe documenta la evaluación metodológica del nivel de ajuste de nuestros modelos de Machine Learning en **BetAnalytics**. Con el fin de responder a la pregunta fundamental de si los modelos sufren de sobreajuste (overfitting) o subajuste (underfitting), se comparó la exactitud en el conjunto de entrenamiento (**Train Accuracy**) frente a la exactitud en datos de prueba no vistos (**Test Accuracy**) bajo validación cruzada temporal (`TimeSeriesSplit` de 5 splits).
 
 El script de diagnóstico utilizado para replicar este análisis se encuentra disponible en:
-👉 [inspect_overfitting.py](file:///c:/Users/sergi/Desktop/datascience/Simulacion_Inversion/inspect_overfitting.py)
+👉 [inspect_overfitting.py](file:///d:/datascience/Simulacion_Inversion/inspect_overfitting.py)
 
 ---
 

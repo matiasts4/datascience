@@ -109,7 +109,7 @@ def main():
     ax.spines['bottom'].set_color('#718096')
     
     plt.tight_layout()
-    output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/23_Comparativa_Tecnicas_Resampling.png'
+    output_path = 'd:/datascience/Carpeta_Presentacion/23_Comparativa_Tecnicas_Resampling.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
     print(f"✅ Gráfico comparativo guardado en: {output_path}")

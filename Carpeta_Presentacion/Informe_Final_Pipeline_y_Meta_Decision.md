@@ -51,10 +51,10 @@ Para garantizar la robustez del sistema y la ausencia total de sesgos o fugas de
 4. **Remuestreo Híbrido (Clases Desbalanceadas):** Se identificó desbalance severo en el mercado de `1X2` (alta concentración de empates) y en `Home Clean Sheet`. Se aplicaron **Tomek Links** exclusivamente en estos dos mercados en el bucle de entrenamiento, limpiando las fronteras de decisión difusas y eliminando falsos positivos.
 
 ### 🖼️ Gráficos de Respaldo de Preprocesamiento:
-* **Missing Values:** [1_Missing_Values_Antes_y_Despues.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/1_Missing_Values_Antes_y_Despues.png). Muestra la eliminación e imputación consistente de nulos.
-* **Tratamiento de Outliers:** [2_Outliers_Antes_y_Despues.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/2_Outliers_Antes_y_Despues.png) y [5_Boxplots_Outliers.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/5_Boxplots_Outliers.png). Visualizan las distribuciones antes y después del escalado y truncamiento.
-* **Correlación y Multicolinealidad:** [3_Multicolinealidad_Antes_y_Despues.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/3_Multicolinealidad_Antes_y_Despues.png). Demuestra la remoción de variables altamente colineales para estabilizar los modelos lineales.
-* **Desbalance de Clases:** [4_Target_Imbalance.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/4_Target_Imbalance.png). Ilustra el desbalance estructural de los empates y vallas invictas locales.
+* **Missing Values:** [1_Missing_Values_Antes_y_Despues.png](file:///d:/datascience/Carpeta_Presentacion/1_Missing_Values_Antes_y_Despues.png). Muestra la eliminación e imputación consistente de nulos.
+* **Tratamiento de Outliers:** [2_Outliers_Antes_y_Despues.png](file:///d:/datascience/Carpeta_Presentacion/2_Outliers_Antes_y_Despues.png) y [5_Boxplots_Outliers.png](file:///d:/datascience/Carpeta_Presentacion/5_Boxplots_Outliers.png). Visualizan las distribuciones antes y después del escalado y truncamiento.
+* **Correlación y Multicolinealidad:** [3_Multicolinealidad_Antes_y_Despues.png](file:///d:/datascience/Carpeta_Presentacion/3_Multicolinealidad_Antes_y_Despues.png). Demuestra la remoción de variables altamente colineales para estabilizar los modelos lineales.
+* **Desbalance de Clases:** [4_Target_Imbalance.png](file:///d:/datascience/Carpeta_Presentacion/4_Target_Imbalance.png). Ilustra el desbalance estructural de los empates y vallas invictas locales.
 
 ---
 
@@ -85,8 +85,8 @@ La optimización de hiperparámetros se realizó de forma automatizada mediante 
 | **Valla Invicta Local (HCS)** | Red Neuronal MLP PyTorch | **Tomek Links** | `hidden: 32`, `dropout: 0.3010`, `lr: 0.0466` | **70.99%** |
 
 ### 🖼️ Gráficos de Respaldo de Modelado:
-* **Evolución del Rendimiento:** [30_Comparativa_Baseline_vs_Optuna.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png), [31_Comparativa_F1_Baseline_vs_Optuna.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png) y [32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png). Demuestran el incremento de rendimiento obtenido tras la optimización bayesiana en las tres métricas clave para los 8 mercados.
-* **La Paradoja del Empate:** [33_Explicacion_F1_1X2.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png). Explica por qué el optimizador de exactitud prefiere sacrificar la clase Empate a favor de la estabilidad predictiva de Local/Visitante.
+* **Evolución del Rendimiento:** [30_Comparativa_Baseline_vs_Optuna.png](file:///d:/datascience/Carpeta_Presentacion/30_Comparativa_Baseline_vs_Optuna.png), [31_Comparativa_F1_Baseline_vs_Optuna.png](file:///d:/datascience/Carpeta_Presentacion/31_Comparativa_F1_Baseline_vs_Optuna.png) y [32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png](file:///d:/datascience/Carpeta_Presentacion/32_Comparativa_ROC_AUC_Baseline_vs_Optuna.png). Demuestran el incremento de rendimiento obtenido tras la optimización bayesiana en las tres métricas clave para los 8 mercados.
+* **La Paradoja del Empate:** [33_Explicacion_F1_1X2.png](file:///d:/datascience/Carpeta_Presentacion/33_Explicacion_F1_1X2.png). Explica por qué el optimizador de exactitud prefiere sacrificar la clase Empate a favor de la estabilidad predictiva de Local/Visitante.
 
 ---
 
@@ -103,7 +103,7 @@ Para corregir esto, implementamos y comparamos dos técnicas de calibración:
 * **Línea Base Calibrada con Regresión Isotónica:** El sistema alinea las probabilidades con las frecuencias empíricas reales y logra absorber el overround de la casa de apuestas, terminando con una banca de **$1,334.42 USD (ROI de +1.44%)** bajo Flat Staking, con un Drawdown del **51.54%**.
 
 ### 🖼️ Gráficos de Respaldo de Calibración:
-* **Evolución del Portafolio:** [35_Simulacion_Rentabilidad_Apuestas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png). Muestra cómo la calibración isotónica evita la quiebra del portafolio completo y lo estabiliza en terreno positivo.
+* **Evolución del Portafolio:** [35_Simulacion_Rentabilidad_Apuestas.png](file:///d:/datascience/Carpeta_Presentacion/35_Simulacion_Rentabilidad_Apuestas.png). Muestra cómo la calibración isotónica evita la quiebra del portafolio completo y lo estabiliza en terreno positivo.
 
 ---
 
@@ -125,8 +125,8 @@ Donde $c$ es la cuota comercial ofrecida por Bet365. Para mitigar la varianza, e
    * En mercados reales líquidos (1X2 y Over/Under), refugiarse en favoritos (cuotas $\le 2.00$) es mucho más seguro (**ROI: -0.70%** frente a pérdidas severas en sorpresas).
 
 ### 🖼️ Gráficos de Respaldo de Filtros:
-* **Sensibilidad de Umbrales:** [43_Sensibilidad_Filtro_Probabilidad.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/43_Sensibilidad_Filtro_Probabilidad.png) y [44_Sensibilidad_Filtro_Cuotas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/44_Sensibilidad_Filtro_Cuotas.png). Muestran las curvas de capital bajo las distintas restricciones paramétricas.
-* **Frontera Eficiente:** [45_Simulacion_Configuraciones_Optimas.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/45_Simulacion_Configuraciones_Optimas.png). Compara visualmente las trayectorias de capital de las configuraciones óptimas frente al portafolio real sin filtros.
+* **Sensibilidad de Umbrales:** [43_Sensibilidad_Filtro_Probabilidad.png](file:///d:/datascience/Carpeta_Presentacion/43_Sensibilidad_Filtro_Probabilidad.png) y [44_Sensibilidad_Filtro_Cuotas.png](file:///d:/datascience/Carpeta_Presentacion/44_Sensibilidad_Filtro_Cuotas.png). Muestran las curvas de capital bajo las distintas restricciones paramétricas.
+* **Frontera Eficiente:** [45_Simulacion_Configuraciones_Optimas.png](file:///d:/datascience/Carpeta_Presentacion/45_Simulacion_Configuraciones_Optimas.png). Compara visualmente las trayectorias de capital de las configuraciones óptimas frente al portafolio real sin filtros.
 
 ---
 
@@ -164,7 +164,7 @@ Los resultados consolidados demuestran que **el Meta-Modelo es el motor principa
 | **Sistema Dual (Óptimo)** | **$1,711.82** | **+8.52%** | **835** | **1,391 (61.5%)** | **19.23%** | Estabilidad y robustez excepcional |
 
 ### 🖼️ Gráfico de Respaldo de Meta-Labeling:
-* **Trayectoria de Capital:** [46_Simulacion_Meta_Labeling.png](file:///c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/46_Simulacion_Meta_Labeling.png). Compara las cuatro estrategias y muestra de forma contundente la estabilización y crecimiento sostenido que introduce el Meta-Modelo.
+* **Trayectoria de Capital:** [46_Simulacion_Meta_Labeling.png](file:///d:/datascience/Carpeta_Presentacion/46_Simulacion_Meta_Labeling.png). Compara las cuatro estrategias y muestra de forma contundente la estabilización y crecimiento sostenido que introduce el Meta-Modelo.
 
 ### Conclusiones Financieras Críticas para la Tesis:
 1. **Filtro Quirúrgico de Falsos Positivos:** El Meta-Modelo identificó y **evitó 1,433 apuestas perdedoras** (el 63.4% del volumen total de candidatos). Al remover este ruido, el ROI neto se disparó del **-1.85%** al **+9.96%** en mercados reales altamente eficientes.

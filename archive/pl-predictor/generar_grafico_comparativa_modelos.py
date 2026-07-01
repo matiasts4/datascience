@@ -109,7 +109,7 @@ def main():
         
     plt.tight_layout(rect=[0, 0.08, 1, 0.90])
     
-    output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/25_Comparativa_Modelos_Original.png'
+    output_path = 'd:/datascience/Carpeta_Presentacion/25_Comparativa_Modelos_Original.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
     print(f"[OK] Gráfico comparativo de modelos guardado en: {output_path}")

@@ -172,7 +172,7 @@ def main():
         
     plt.tight_layout(rect=[0, 0.06, 1, 0.90])
     
-    output_path = 'c:/Users/sergi/Desktop/datascience/Carpeta_Presentacion/24_Comparativa_Multimetrica_Resampling.png'
+    output_path = 'd:/datascience/Carpeta_Presentacion/24_Comparativa_Multimetrica_Resampling.png'
     plt.savefig(output_path, dpi=300)
     plt.close()
     print(f"[OK] Gráfico comparativo multimétrica guardado en: {output_path}")
